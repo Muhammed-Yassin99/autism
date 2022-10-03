@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types
 import 'package:flutter/material.dart';
+
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 import 'animals/level1.dart';
@@ -42,7 +43,7 @@ class gamesHomePage extends StatelessWidget {
           ],
         ),
         body: Stack(
-          children: [
+          children: <Widget>[
             CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: <Widget>[
@@ -81,16 +82,18 @@ class gamesHomePage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100.0),
       ),
-      color: const Color.fromARGB(255, 121, 23, 139),
+      //color: const Color.fromARGB(255, 121, 23, 139),
+      color: Colors.teal,
+
       hoverColor: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Image.asset(category.icon, height: 90, width: 200),
           const SizedBox(height: 5.0),
           Text(
             style: const TextStyle(
-                fontSize: 28,
+                fontSize: 22,
                 fontWeight: FontWeight.w900,
                 color: Color.fromARGB(255, 2, 9, 73)),
             category.name,
@@ -111,6 +114,10 @@ class gamesHomePage extends StatelessWidget {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => animalsLevel1()));
     }
+    if (category.id == 4) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => familyLevel1()));
+    }
     if (category.id == 3) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => numbersLevel1()));
@@ -118,10 +125,6 @@ class gamesHomePage extends StatelessWidget {
     if (category.id == 2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => digitsLevel1()));
-    }
-    if (category.id == 4) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => familyLevel1()));
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../Games/gamesHomePage.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
@@ -87,8 +88,8 @@ class HomePage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100.0),
       ),
-      color: Colors.teal,
       //color: const Color.fromARGB(255, 121, 23, 139),
+      color: Colors.teal,
       hoverColor: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +99,8 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 5.0),
           Text(
             style: const TextStyle(
-                fontSize: 28,
+                fontSize: 22,
+                wordSpacing: 1.1,
                 fontWeight: FontWeight.w900,
                 color: Color.fromARGB(255, 2, 9, 73)),
             category.name,
