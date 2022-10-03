@@ -1,0 +1,167 @@
+name: autism_zz
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.1 <3.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.5
+  font_awesome_flutter: ^10.2.1
+  audioplayers: ^1.0.1
+  shared_preferences: ^2.0.15
+  provider: ^6.0.3
+  google_fonts: ^3.0.1
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+ 
+  assets:
+     - assets/sounds/true.wav
+     - assets/sounds/false.wav
+     - assets/sounds/success.wav
+     - assets/sounds/tryAgain.wav
+     - assets/images/games/animals/lion.png
+     - assets/images/games/animals/panda.png
+     - assets/images/games/animals/camel.png
+     - assets/images/games/animals/dog.png
+     - assets/images/games/animals/cat.png
+     - assets/images/games/animals/horse.png
+     - assets/images/games/animals/sheep.png
+     - assets/images/games/animals/fox.png
+     - assets/images/games/animals/cow.png
+     - assets/images/games/animals/hen.png
+     - assets/images/games/faces/cry.png
+     - assets/images/games/faces/sad.png
+     - assets/images/games/faces/angry.png
+     - assets/images/games/faces/happy.png
+     - assets/images/games/faces/surprised.png
+     - assets/images/games/faces/calm.png
+     - assets/images/games/numbers/no0.png
+     - assets/images/games/numbers/no1.png
+     - assets/images/games/numbers/no2.png
+     - assets/images/games/numbers/no3.png
+     - assets/images/games/numbers/no4.png
+     - assets/images/games/numbers/no5.png
+     - assets/images/games/numbers/no6.png
+     - assets/images/games/numbers/no7.png
+     - assets/images/games/numbers/no8.png
+     - assets/images/games/numbers/no9.png
+     - assets/images/HomePage/games.png
+     - assets/images/HomePage/learn.png
+     - assets/images/HomePage/AddChild.png
+     - assets/images/HomePage/dailySkills.png
+     - assets/images/HomePage/registerdChildren.png
+     - assets/images/HomePage/family.png
+     - assets/images/HomePage/Efaces.png
+     - assets/images/HomePage/letters.png
+     - assets/images/HomePage/numbers.png
+     - assets/images/HomePage/animals.png
+     - assets/images/games/digits/3ean.png
+     - assets/images/games/digits/5a2.png
+     - assets/images/games/digits/7a2.png
+     - assets/images/games/digits/8ean.png
+     - assets/images/games/digits/Alf.png
+     - assets/images/games/digits/B.png
+     - assets/images/games/digits/daad.png
+     - assets/images/games/digits/dal.png
+     - assets/images/games/digits/geem.png
+     - assets/images/games/digits/heah.png
+     - assets/images/games/digits/saad.png
+     - assets/images/games/digits/seen.png
+     - assets/images/games/digits/sheen.png
+     - assets/images/games/digits/T.png
+     - assets/images/games/digits/taah.png
+     - assets/images/games/digits/tha2.png
+     - assets/images/games/digits/waw.png
+     - assets/images/games/digits/yeah.png
+     - assets/images/games/digits/zaah.png
+     - assets/images/games/digits/zal.png
+     - assets/images/games/digits/zeen.png
+     - assets/images/games/digits/meem.png
+     - assets/images/games/digits/noon.png
+     - assets/images/games/digits/kaaf.png
+     - assets/images/games/digits/laam.png
+     - assets/images/games/digits/faa2.png
+     - assets/images/games/digits/qaaf.png
+     - assets/images/games/digits/raa2.png
+     - assets/images/games/family/brothers.png
+     - assets/images/games/family/girl.png
+     - assets/images/games/family/sister.png
+     - assets/images/games/family/father.jpg
+     - assets/images/games/family/mother.jpg
+
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
