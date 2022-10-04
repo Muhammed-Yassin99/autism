@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+// ignore: camel_case_types
+class learnfaces extends StatelessWidget {
   // static const String path = "lib/src/pages/quiz_app/home.dart";
 
-  const HomePage({super.key});
+  const learnfaces({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +41,13 @@ class HomePage extends StatelessWidget {
               height: 70,
               width: 200,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  // ignore: prefer_const_constructors
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                // ignore: prefer_const_constructors
                 image: DecorationImage(
-                  image: const AssetImage(
-                      'angry.png'),
+                  image: const AssetImage('angry.png'),
                   fit: BoxFit.fill,
-              /*
+                  /*
               child: TextButton(
                   onPressed: () {},
                   // ignore: prefer_const_constructors
@@ -58,10 +58,11 @@ class HomePage extends StatelessWidget {
                     ),
                   )),
     */
-            ),
+                ),
                 shape: BoxShape.circle,
-            ),
-            )],
+              ),
+            )
+          ],
         )));
   }
 }

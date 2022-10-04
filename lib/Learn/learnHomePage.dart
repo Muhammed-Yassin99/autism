@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
+import 'faces/level1.dart';
 
 class learnHomePage extends StatelessWidget {
   // static const String path = "lib/src/pages/quiz_app/home.dart";
@@ -82,7 +83,7 @@ class learnHomePage extends StatelessWidget {
       hoverColor: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Image.asset(category.icon, height: 90, width: 200),
           const SizedBox(height: 5.0),
           Text(
@@ -99,5 +100,10 @@ class learnHomePage extends StatelessWidget {
     );
   }
 
-  _categoryPressed(BuildContext context, Category category) {}
+  _categoryPressed(BuildContext context, Category category) {
+    if (category.id == 1) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const learnfaces()));
+    }
+  }
 }
