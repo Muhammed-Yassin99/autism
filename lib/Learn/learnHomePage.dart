@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 
-class gamesHomePage extends StatelessWidget {
+class learnHomePage extends StatelessWidget {
   // static const String path = "lib/src/pages/quiz_app/home.dart";
 
-  const gamesHomePage({super.key});
+  const learnHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

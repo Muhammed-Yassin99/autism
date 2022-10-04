@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Games/gamesHomePage.dart';
+import '../Learn/learnHomePage.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 
@@ -135,6 +136,10 @@ class HomePage extends StatelessWidget {
     if (category.id == 2) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const gamesHomePage()));
+    }
+    if (category.id == 2) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const learnHomePage()));
     }
   }
 }
