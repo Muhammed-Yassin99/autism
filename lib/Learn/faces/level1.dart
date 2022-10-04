@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class learnfaces extends StatefulWidget {
+class learnfaces extends StatelessWidget {
   // static const String path = "lib/src/pages/quiz_app/home.dart";
 
   const learnfaces({super.key});
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false, // set it to false
