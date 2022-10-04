@@ -43,9 +43,11 @@ class HomePage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                   // ignore: prefer_const_constructors
-                  image: DecorationImage(
-                    Image.asset(category.icon, height: 90, width: 200),
-                  )),
+                image: DecorationImage(
+                  image: const AssetImage(
+                      'angry.png'),
+                  fit: BoxFit.fill,
+              /*
               child: TextButton(
                   onPressed: () {},
                   // ignore: prefer_const_constructors
@@ -55,11 +57,11 @@ class HomePage extends StatelessWidget {
                       color: Color.fromARGB(255, 4, 46, 81),
                     ),
                   )),
+    */
             ),
-            const SizedBox(
-              height: 40,
+                shape: BoxShape.circle,
             ),
-          ],
+            )],
         )));
   }
 }
