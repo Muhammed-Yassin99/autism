@@ -10,8 +10,6 @@ import 'family/level1.dart';
 import 'numbers/level1.dart';
 
 class gamesHomePage extends StatelessWidget {
-  // static const String path = "lib/src/pages/quiz_app/home.dart";
-
   const gamesHomePage({super.key});
 
   @override
@@ -43,7 +41,7 @@ class gamesHomePage extends StatelessWidget {
           ],
         ),
         body: Stack(
-          children:[
+          children: [
             CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
@@ -88,7 +86,7 @@ class gamesHomePage extends StatelessWidget {
       hoverColor: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children:[
+        children: [
           Image.asset(category.icon, height: 90, width: 200),
           const SizedBox(height: 5.0),
           Text(

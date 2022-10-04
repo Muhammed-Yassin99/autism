@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // ignore: camel_case_types
 class learnfaces extends StatelessWidget {
-  // static const String path = "lib/src/pages/quiz_app/home.dart";
-
-  const learnfaces({super.key});
+  final player = AudioPlayer();
+  learnfaces({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,9 @@ class learnfaces extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: InkWell(
                 splashColor: Colors.black26,
-                onTap: () {},
+                onTap: () {
+                  playBeep('sounds/true.wav');
+                },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
@@ -67,11 +69,7 @@ class learnfaces extends StatelessWidget {
     );
   }
 
-  @override
-  // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() {
-    // ignore: todo
-    // TODO: implement createState
-    throw UnimplementedError();
+  Future<void> playBeep(String path) async {
+    player.play(AssetSource(path), volume: 1.0);
   }
 }

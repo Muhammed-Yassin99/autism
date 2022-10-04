@@ -5,8 +5,6 @@ import '../model/homePage_icons.dart';
 import 'faces/level1.dart';
 
 class learnHomePage extends StatelessWidget {
-  // static const String path = "lib/src/pages/quiz_app/home.dart";
-
   const learnHomePage({super.key});
 
   @override
@@ -103,7 +101,7 @@ class learnHomePage extends StatelessWidget {
   _categoryPressed(BuildContext context, Category category) {
     if (category.id == 1) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const learnfaces()));
+          context, MaterialPageRoute(builder: (context) => learnfaces()));
     }
   }
 }

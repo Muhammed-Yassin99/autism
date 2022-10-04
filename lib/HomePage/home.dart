@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../Games/gamesHomePage.dart';
 import '../Learn/learnHomePage.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 
 class HomePage extends StatelessWidget {
-  // static const String path = "lib/src/pages/quiz_app/home.dart";
-
   const HomePage({super.key});
 
   @override
