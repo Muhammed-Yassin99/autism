@@ -43,10 +43,10 @@ class gamesHomePage extends StatelessWidget {
           ],
         ),
         body: Stack(
-          children: <Widget>[
+          children:[
             CustomScrollView(
               physics: const BouncingScrollPhysics(),
-              slivers: <Widget>[
+              slivers: [
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding:
@@ -88,7 +88,7 @@ class gamesHomePage extends StatelessWidget {
       hoverColor: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children:[
           Image.asset(category.icon, height: 90, width: 200),
           const SizedBox(height: 5.0),
           Text(

@@ -38,10 +38,10 @@ class learnHomePage extends StatelessWidget {
           ],
         ),
         body: Stack(
-          children: <Widget>[
+          children: [
             CustomScrollView(
               physics: const BouncingScrollPhysics(),
-              slivers: <Widget>[
+              slivers: [
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding:
