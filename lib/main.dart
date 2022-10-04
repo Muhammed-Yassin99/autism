@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
       title: 'Home Page',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomePage(),
-      //omaaak 2r3aaaaa
-      //tyzk dy wla bty5a ar3aaa
     );
   }
 }
