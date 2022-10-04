@@ -137,7 +137,7 @@ class HomePage extends StatelessWidget {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const gamesHomePage()));
     }
-    if (category.id == 2) {
+    if (category.id == 1) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const learnHomePage()));
     }
