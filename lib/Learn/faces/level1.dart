@@ -51,8 +51,8 @@ class learnfaces extends StatelessWidget {
               Ink.image(
                 image:
                     const AssetImage("assets/images/learn/faces/boyHappy.jpg"),
-                height: 100,
-                width: 300,
+                height: 190,
+                width: 200,
                 fit: BoxFit.cover,
               ),
               const SizedBox(
@@ -65,11 +65,11 @@ class learnfaces extends StatelessWidget {
                   color: Colors.amber,
                 ),
               ),
-              const SizedBox(
-                height: 6,
-              )
             ]),
           ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         Material(
           color: const Color.fromARGB(255, 10, 79, 135),
@@ -84,8 +84,8 @@ class learnfaces extends StatelessWidget {
             child: Column(mainAxisSize: MainAxisSize.min, children: [
               Ink.image(
                 image: const AssetImage("assets/images/learn/faces/boySad.jpg"),
-                height: 100,
-                width: 300,
+                height: 190,
+                width: 200,
                 fit: BoxFit.cover,
               ),
               const SizedBox(
@@ -98,9 +98,6 @@ class learnfaces extends StatelessWidget {
                   color: Colors.amber,
                 ),
               ),
-              const SizedBox(
-                height: 6,
-              )
             ]),
           ),
         ),
