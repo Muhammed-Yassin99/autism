@@ -102,24 +102,26 @@ class learnfaces1 extends StatelessWidget {
             ]),
           ),
         ),
-        Positioned(
-          left: MediaQuery.of(context).size.width / 2 + 100,
-          top: MediaQuery.of(context).size.height / 2,
-          child: Container(
-              color: Colors.red,
-              width: 50,
-              height: 50,
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => learnfaces2()),
-                    );
-                  },
-                  child: const Text('>',
-                      style: TextStyle(
-                          fontSize: 36, fontWeight: FontWeight.w900)))),
-        ),
+        Row(children: [
+          Positioned(
+            right: MediaQuery.of(context).size.width / 2 + 300,
+            top: MediaQuery.of(context).size.height / 2,
+            child: Container(
+                color: Colors.red,
+                width: 50,
+                height: 50,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => learnfaces2()),
+                      );
+                    },
+                    child: const Text('>',
+                        style: TextStyle(
+                            fontSize: 36, fontWeight: FontWeight.w900)))),
+          ),
+        ])
       ])),
     );
   }
