@@ -39,8 +39,8 @@ class learnfaces1 extends StatelessWidget {
       body: Center(
           child: Stack(children: [
         Positioned(
-          right: 250,
-          top: 15,
+          right: 80,
+          top: 10,
           child: Material(
             color: const Color.fromARGB(255, 10, 79, 135),
             elevation: 8,
@@ -74,8 +74,8 @@ class learnfaces1 extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 250,
-          top: 320,
+          right: 80,
+          top: 275,
           child: Material(
             color: const Color.fromARGB(255, 10, 79, 135),
             elevation: 8,
@@ -109,21 +109,17 @@ class learnfaces1 extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 0,
-          top: 310,
-          child: Container(
-              color: Colors.red,
-              child: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => learnfaces2()),
-                    );
-                  },
-                  child: const Text(
-                    '>',
-                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
-                  ))),
+          right: 10,
+          top: 235,
+          child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => learnfaces2()),
+                );
+              },
+              child: const  Icon(Icons.navigate_next_rounded)
+          ),
         ),
       ])),
     );
