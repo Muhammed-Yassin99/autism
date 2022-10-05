@@ -49,7 +49,7 @@ class learnfaces1 extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.black26,
               onTap: () {
-                playBeep('sounds/true.wav');
+                playBeep('sounds/boyHappy.wav');
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Ink.image(
@@ -84,7 +84,7 @@ class learnfaces1 extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.black26,
               onTap: () {
-                playBeep('sounds/false.wav');
+                playBeep('sounds/boySad.wav');
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Ink.image(

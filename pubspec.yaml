@@ -144,6 +144,12 @@ flutter:
      - assets/images/learn/faces/girlCalm.jpg
      - assets/images/learn/faces/girlHappy.jpg
      - assets/images/learn/faces/girlSad.jpg
+     - assets/sounds/girlSad.wav
+     - assets/sounds/girlHappy.wav
+     - assets/sounds/girlCalm.wav
+     - assets/sounds/girlAngry.wav
+     - assets/sounds/boySad.wav
+     - assets/sounds/boyHappy.wav
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
