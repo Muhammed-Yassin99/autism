@@ -101,7 +101,7 @@ class learnHomePage extends StatelessWidget {
   _categoryPressed(BuildContext context, Category category) {
     if (category.id == 1) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => learnfaces()));
+          context, MaterialPageRoute(builder: (context) => learnfaces1()));
     }
   }
 }

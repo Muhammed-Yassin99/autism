@@ -1,11 +1,11 @@
-import 'package:autism_zz/Learn/faces/level2.dart';
+import 'package:autism_zz/Learn/faces/level1.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 // ignore: camel_case_types
-class learnfaces1 extends StatelessWidget {
+class learnfaces2 extends StatelessWidget {
   final player = AudioPlayer();
-  learnfaces1({super.key});
+  learnfaces2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -113,12 +113,12 @@ class learnfaces1 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => learnfaces2()),
+                      MaterialPageRoute(builder: (context) => learnfaces1()),
                     );
                   },
-                  child: const Text('>',
-                      style: TextStyle(
-                          fontSize: 36, fontWeight: FontWeight.w900)))),
+                  child: const Text(
+                    '>',
+                  ))),
         ),
       ])),
     );
