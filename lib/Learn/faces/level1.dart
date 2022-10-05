@@ -37,91 +37,94 @@ class learnfaces1 extends StatelessWidget {
         ],
       ),
       body: Center(
-          child: Column(children: [
-        Material(
-          color: const Color.fromARGB(255, 10, 79, 135),
-          elevation: 8,
-          borderRadius: BorderRadius.circular(28),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: InkWell(
-            splashColor: Colors.black26,
-            onTap: () {
-              playBeep('sounds/true.wav');
-            },
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Ink.image(
-                image:
-                    const AssetImage("assets/images/learn/faces/boyHappy.jpg"),
-                height: 190,
-                width: 200,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                'ولد سعيد',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.amber,
+          child: Stack(children: [
+        Positioned(
+          right: 250,
+          top: 15,
+          child: Material(
+            color: const Color.fromARGB(255, 10, 79, 135),
+            elevation: 8,
+            borderRadius: BorderRadius.circular(28),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: InkWell(
+              splashColor: Colors.black26,
+              onTap: () {
+                playBeep('sounds/true.wav');
+              },
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Ink.image(
+                  image: const AssetImage(
+                      "assets/images/learn/faces/boyHappy.jpg"),
+                  height: 190,
+                  width: 200,
+                  fit: BoxFit.cover,
                 ),
-              ),
-            ]),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Material(
-          color: const Color.fromARGB(255, 10, 79, 135),
-          elevation: 8,
-          borderRadius: BorderRadius.circular(28),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: InkWell(
-            splashColor: Colors.black26,
-            onTap: () {
-              playBeep('sounds/false.wav');
-            },
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Ink.image(
-                image: const AssetImage("assets/images/learn/faces/boySad.jpg"),
-                height: 190,
-                width: 200,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                'ولد حزين',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.amber,
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-            ]),
+                const Text(
+                  'ولد سعيد',
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.amber,
+                  ),
+                ),
+              ]),
+            ),
           ),
         ),
-        Row(children: [
-          Positioned(
-            right: MediaQuery.of(context).size.width / 2 + 300,
-            top: MediaQuery.of(context).size.height / 2,
-            child: Container(
-                color: Colors.red,
-                width: 50,
-                height: 50,
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => learnfaces2()),
-                      );
-                    },
-                    child: const Text('>',
-                        style: TextStyle(
-                            fontSize: 36, fontWeight: FontWeight.w900)))),
+        Positioned(
+          left: 250,
+          top: 320,
+          child: Material(
+            color: const Color.fromARGB(255, 10, 79, 135),
+            elevation: 8,
+            borderRadius: BorderRadius.circular(28),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: InkWell(
+              splashColor: Colors.black26,
+              onTap: () {
+                playBeep('sounds/false.wav');
+              },
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Ink.image(
+                  image:
+                      const AssetImage("assets/images/learn/faces/boySad.jpg"),
+                  height: 190,
+                  width: 200,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'ولد حزين',
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.amber,
+                  ),
+                ),
+              ]),
+            ),
           ),
-        ])
+        ),
+        Positioned(
+          right: 0,
+          top: 310,
+          child: Container(
+              color: Colors.red,
+              child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => learnfaces2()),
+                    );
+                  },
+                  child: const Text(
+                    '>',
+                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
+                  ))),
+        ),
       ])),
     );
   }
