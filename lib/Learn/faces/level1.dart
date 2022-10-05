@@ -118,8 +118,7 @@ class learnfaces1 extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => learnfaces2()),
                 );
               },
-              child: const  Icon(Icons.navigate_next_rounded)
-          ),
+              child: const Icon(Icons.navigate_next_sharp)),
         ),
       ])),
     );
