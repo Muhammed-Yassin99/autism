@@ -36,71 +36,75 @@ class learnfaces extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Material(
+          child: Column(children: [
+        Material(
           color: const Color.fromARGB(255, 10, 79, 135),
           elevation: 8,
           borderRadius: BorderRadius.circular(28),
           clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: Column(children: [
-            InkWell(
-              splashColor: Colors.black26,
-              onTap: () {
-                playBeep('sounds/true.wav');
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                  image: const AssetImage(
-                      "assets/images/learn/faces/boyHappy.jpg"),
-                  height: 300,
-                  width: 300,
-                  fit: BoxFit.cover,
+          child: InkWell(
+            splashColor: Colors.black26,
+            onTap: () {
+              playBeep('sounds/true.wav');
+            },
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Ink.image(
+                image:
+                    const AssetImage("assets/images/learn/faces/boyHappy.jpg"),
+                height: 100,
+                width: 300,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'ولد سعيد',
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Colors.amber,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'ولد سعيد',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.amber,
-                  ),
-                ),
-                const SizedBox(
-                  height: 6,
-                )
-              ]),
-            ),
-            InkWell(
-              splashColor: Colors.black26,
-              onTap: () {
-                playBeep('sounds/false.wav');
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                  image:
-                      const AssetImage("assets/images/learn/faces/boySad.jpg"),
-                  height: 300,
-                  width: 300,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'ولد حزين',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.amber,
-                  ),
-                ),
-                const SizedBox(
-                  height: 6,
-                )
-              ]),
-            ),
-          ]),
+              ),
+              const SizedBox(
+                height: 6,
+              )
+            ]),
+          ),
         ),
-      ),
+        Material(
+          color: const Color.fromARGB(255, 10, 79, 135),
+          elevation: 8,
+          borderRadius: BorderRadius.circular(28),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: InkWell(
+            splashColor: Colors.black26,
+            onTap: () {
+              playBeep('sounds/false.wav');
+            },
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Ink.image(
+                image: const AssetImage("assets/images/learn/faces/boySad.jpg"),
+                height: 100,
+                width: 300,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'ولد حزين',
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Colors.amber,
+                ),
+              ),
+              const SizedBox(
+                height: 6,
+              )
+            ]),
+          ),
+        ),
+      ])),
     );
   }
 
