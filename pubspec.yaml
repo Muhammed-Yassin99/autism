@@ -138,7 +138,12 @@ flutter:
      - assets/images/games/family/sister.png
      - assets/images/games/family/father.jpg
      - assets/images/games/family/mother.jpg
-
+     - assets/images/learn/faces/boyHappy.jpg
+     - assets/images/learn/faces/boySad.jpg
+     - assets/images/learn/faces/girlAngry.jpg
+     - assets/images/learn/faces/girlCalm.jpg
+     - assets/images/learn/faces/girlHappy.jpg
+     - assets/images/learn/faces/girlSad.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

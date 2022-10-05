@@ -36,36 +36,41 @@ class learnfaces extends StatelessWidget {
         ],
       ),
       body: Center(
-          child: Material(
-              color: Colors.blue,
-              elevation: 8,
-              borderRadius: BorderRadius.circular(28),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: InkWell(
-                splashColor: Colors.black26,
-                onTap: () {
-                  playBeep('sounds/true.wav');
-                },
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Ink.image(
-                    image:
-                        const AssetImage("assets/images/HomePage/Efaces.png"),
-                    height: 200,
-                    width: 200,
-                    fit: BoxFit.cover,
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  ),
-                  const Text(
-                    'وجه سعيد',
-                    style: TextStyle(fontSize: 32, color: Colors.amber),
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  )
-                ]),
-              ))),
+        child: Material(
+          color: const Color.fromARGB(255, 10, 79, 135),
+          elevation: 8,
+          borderRadius: BorderRadius.circular(28),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: InkWell(
+            splashColor: Colors.black26,
+            onTap: () {
+              playBeep('sounds/true.wav');
+            },
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Ink.image(
+                image:
+                    const AssetImage("assets/images/learn/faces/boyHappy.jpg"),
+                height: 300,
+                width: 300,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'ولد سعيد',
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Colors.amber,
+                ),
+              ),
+              const SizedBox(
+                height: 6,
+              )
+            ]),
+          ),
+        ),
+      ),
     );
   }
 
