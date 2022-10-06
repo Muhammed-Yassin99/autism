@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import '../../HomePage/home.dart';
 import 'level5.dart';
 import 'level3.dart';
 
@@ -37,103 +38,122 @@ class learnAnimals4 extends StatelessWidget {
           const SizedBox(width: 12),
         ],
       ),
-      body: Center(
-          child: Stack(children: [
-        Positioned(
-          right: 80,
-          top: 10,
-          child: Material(
-            color: const Color.fromARGB(255, 10, 79, 135),
-            elevation: 8,
-            borderRadius: BorderRadius.circular(28),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: InkWell(
-              splashColor: Colors.black26,
-              onTap: () {
-                playBeep('sounds/learn/animals/camel.wav');
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                  image:
-                      const AssetImage("assets/images/games/animals/camel.png"),
-                  height: 190,
-                  width: 200,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'جمل ',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.amber,
+      body: Container(
+        color: Colors.teal,
+        child: Center(
+            child: Stack(children: [
+          Positioned(
+            right: 80,
+            top: 10,
+            child: Material(
+              color: const Color.fromARGB(255, 10, 79, 135),
+              elevation: 8,
+              borderRadius: BorderRadius.circular(28),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: InkWell(
+                splashColor: Colors.black26,
+                onTap: () {
+                  playBeep('sounds/learn/animals/camel.wav');
+                },
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Ink.image(
+                    image: const AssetImage(
+                        "assets/images/games/animals/camel.png"),
+                    height: 190,
+                    width: 200,
+                    fit: BoxFit.cover,
                   ),
-                ),
-              ]),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'جمل ',
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.amber,
+                    ),
+                  ),
+                ]),
+              ),
             ),
           ),
-        ),
-        Positioned(
-          right: 80,
-          top: 275,
-          child: Material(
-            color: const Color.fromARGB(255, 10, 79, 135),
-            elevation: 8,
-            borderRadius: BorderRadius.circular(28),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: InkWell(
-              splashColor: Colors.black26,
-              onTap: () {
-                playBeep('sounds/learn/animals/horse.wav');
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                  image:
-                      const AssetImage("assets/images/games/animals/horse.png"),
-                  height: 190,
-                  width: 200,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  ' حصان',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.amber,
+          Positioned(
+            right: 80,
+            top: 275,
+            child: Material(
+              color: const Color.fromARGB(255, 10, 79, 135),
+              elevation: 8,
+              borderRadius: BorderRadius.circular(28),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: InkWell(
+                splashColor: Colors.black26,
+                onTap: () {
+                  playBeep('sounds/learn/animals/horse.wav');
+                },
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Ink.image(
+                    image: const AssetImage(
+                        "assets/images/games/animals/horse.png"),
+                    height: 190,
+                    width: 200,
+                    fit: BoxFit.cover,
                   ),
-                ),
-              ]),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    ' حصان',
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.amber,
+                    ),
+                  ),
+                ]),
+              ),
             ),
           ),
-        ),
-        Positioned(
-          right: 10,
-          top: 235,
-          child: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => learnAnimals5()),
-                );
-              },
-              child: const Icon(Icons.navigate_next_sharp)),
-        ),
-        Positioned(
-          left: 10,
-          top: 235,
-          child: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => learnAnimals3()),
-                );
-              },
-              child: const Icon(Icons.navigate_before_sharp)),
-        ),
-      ])),
+          Positioned(
+            right: 10,
+            top: 235,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => learnAnimals5()),
+                  );
+                },
+                child: const Icon(Icons.navigate_next_sharp)),
+          ),
+          Positioned(
+            left: 10,
+            top: 235,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => learnAnimals3()),
+                  );
+                },
+                child: const Icon(Icons.navigate_before_sharp)),
+          ),
+          Positioned(
+            right: 10,
+            top: 0,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                child: const Icon(
+                  Icons.home_filled,
+                  color: Color.fromARGB(255, 143, 33, 162),
+                  size: 50,
+                )),
+          ),
+        ])),
+      ),
     );
   }
 

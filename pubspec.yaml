@@ -95,6 +95,10 @@ flutter:
      - assets/images/games/numbers/no7.png
      - assets/images/games/numbers/no8.png
      - assets/images/games/numbers/no9.png
+     - assets/images/HomePage/themes1.png
+     - assets/images/HomePage/themes.png
+     - assets/images/HomePage/zoo.png
+     - assets/images/HomePage/bigFamily.png
      - assets/images/HomePage/games.png
      - assets/images/HomePage/learn.png
      - assets/images/HomePage/AddChild.png

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import '../../HomePage/home.dart';
 import 'level2.dart';
 
 // ignore: camel_case_types
@@ -37,90 +38,110 @@ class learnfaces1 extends StatelessWidget {
         ],
       ),
       body: Center(
-          child: Stack(children: [
-        Positioned(
-          right: 80,
-          top: 10,
-          child: Material(
-            color: const Color.fromARGB(255, 10, 79, 135),
-            elevation: 8,
-            borderRadius: BorderRadius.circular(28),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: InkWell(
-              splashColor: Colors.black26,
-              onTap: () {
-                playBeep('sounds/learn/faces/boyHappy.wav');
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                  image: const AssetImage(
-                      "assets/images/learn/faces/boyHappy.jpg"),
-                  height: 190,
-                  width: 200,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'ولد سعيد',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.amber,
+        child: Container(
+            color: Colors.teal,
+            child: Stack(children: [
+              Positioned(
+                right: 80,
+                top: 10,
+                child: Material(
+                  color: const Color.fromARGB(255, 10, 79, 135),
+                  elevation: 8,
+                  borderRadius: BorderRadius.circular(28),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: InkWell(
+                    splashColor: Colors.black26,
+                    onTap: () {
+                      playBeep('sounds/learn/faces/boyHappy.wav');
+                    },
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      Ink.image(
+                        image: const AssetImage(
+                            "assets/images/learn/faces/boyHappy.jpg"),
+                        height: 190,
+                        width: 200,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        'ولد سعيد',
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.amber,
+                        ),
+                      ),
+                    ]),
                   ),
                 ),
-              ]),
-            ),
-          ),
-        ),
-        Positioned(
-          right: 80,
-          top: 275,
-          child: Material(
-            color: const Color.fromARGB(255, 10, 79, 135),
-            elevation: 8,
-            borderRadius: BorderRadius.circular(28),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: InkWell(
-              splashColor: Colors.black26,
-              onTap: () {
-                playBeep('sounds/learn/faces/boySad.wav');
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                  image:
-                      const AssetImage("assets/images/learn/faces/boySad.jpg"),
-                  height: 190,
-                  width: 200,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'ولد حزين',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Colors.amber,
+              ),
+              Positioned(
+                right: 80,
+                top: 275,
+                child: Material(
+                  color: const Color.fromARGB(255, 10, 79, 135),
+                  elevation: 8,
+                  borderRadius: BorderRadius.circular(28),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: InkWell(
+                    splashColor: Colors.black26,
+                    onTap: () {
+                      playBeep('sounds/learn/faces/boySad.wav');
+                    },
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      Ink.image(
+                        image: const AssetImage(
+                            "assets/images/learn/faces/boySad.jpg"),
+                        height: 190,
+                        width: 200,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        'ولد حزين',
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.amber,
+                        ),
+                      ),
+                    ]),
                   ),
                 ),
-              ]),
-            ),
-          ),
-        ),
-        Positioned(
-          right: 10,
-          top: 235,
-          child: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => learnfaces2()),
-                );
-              },
-              child: const Icon(Icons.navigate_next_sharp)),
-        ),
-      ])),
+              ),
+              Positioned(
+                right: 10,
+                top: 235,
+                child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => learnfaces2()),
+                      );
+                    },
+                    child: const Icon(Icons.navigate_next_sharp)),
+              ),
+              Positioned(
+                right: 10,
+                top: 0,
+                child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.home_filled,
+                      color: Color.fromARGB(255, 143, 33, 162),
+                      size: 50,
+                    )),
+              ),
+            ])),
+      ),
     );
   }
 

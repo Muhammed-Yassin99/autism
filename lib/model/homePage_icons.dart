@@ -16,15 +16,15 @@ final List<Category> game_categories = [
   Category(1, "اوجه تعبيرية", icon: "assets/images/HomePage/Efaces.png"),
   Category(3, "الارقام ", icon: "assets/images/HomePage/numbers.png"),
   Category(2, "الحروف", icon: "assets/images/HomePage/letters.png"),
-  //Category(6, "مشاهد ", icon: "assets/images/HomePage/animals.png"),
+  Category(6, "مشاهد ", icon: "assets/images/HomePage/themes1.png"),
   Category(5, "الحيوانات ", icon: "assets/images/HomePage/animals.png"),
 ];
 
 final List<Category> learn_categories = [
-  Category(4, "العائلة ", icon: "assets/images/HomePage/family.png"),
+  Category(4, "العائلة ", icon: "assets/images/HomePage/bigFamily.png"),
   Category(1, "اوجه تعبيرية", icon: "assets/images/HomePage/Efaces.png"),
   Category(3, "الارقام ", icon: "assets/images/HomePage/numbers.png"),
   Category(2, "الحروف", icon: "assets/images/HomePage/letters.png"),
-  Category(6, "مشاهد ", icon: "assets/images/HomePage/animals.png"),
-  Category(5, "الحيوانات ", icon: "assets/images/HomePage/animals.png"),
+  Category(6, "مشاهد ", icon: "assets/images/HomePage/themes.png"),
+  Category(5, "الحيوانات ", icon: "assets/images/HomePage/zoo.png"),
 ];
