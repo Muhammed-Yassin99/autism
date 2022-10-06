@@ -94,7 +94,7 @@ class learnDigits1 extends StatelessWidget {
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image: const AssetImage("assets/images/learn/digits/B.png"),
+                    image: const AssetImage("assets/images/learn/digits/B.jpg"),
                     height: 90,
                     width: 95,
                     fit: BoxFit.cover,
@@ -128,7 +128,7 @@ class learnDigits1 extends StatelessWidget {
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image: const AssetImage("assets/images/learn/digits/T.png"),
+                    image: const AssetImage("assets/images/learn/digits/T.jpg"),
                     height: 90,
                     width: 95,
                     fit: BoxFit.cover,
@@ -163,7 +163,7 @@ class learnDigits1 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/digits/tha2.png"),
+                        const AssetImage("assets/images/learn/digits/tha2.jpg"),
                     height: 90,
                     width: 95,
                     fit: BoxFit.cover,
