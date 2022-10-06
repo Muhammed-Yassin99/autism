@@ -66,7 +66,7 @@ class learnAnimals5 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'ذئب ',
+                    'ثعلب',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
