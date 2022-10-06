@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level2.dart';
+import 'learnFaces1.dart';
+import 'learnFaces3.dart';
 
 // ignore: camel_case_types
-class learnfaces3 extends StatelessWidget {
+class learnfaces2 extends StatelessWidget {
   final player = AudioPlayer();
-  learnfaces3({super.key});
+  learnfaces2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,12 @@ class learnfaces3 extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.black26,
                     onTap: () {
-                      playBeep('sounds/learn/faces/girlAngry.wav');
+                      playBeep('sounds/learn/faces/girlHappy.wav');
                     },
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
                       Ink.image(
                         image: const AssetImage(
-                            "assets/images/learn/faces/girlAngry.jpg"),
+                            "assets/images/learn/faces/girlHappy.jpg"),
                         height: 190,
                         width: 200,
                         fit: BoxFit.cover,
@@ -66,7 +67,7 @@ class learnfaces3 extends StatelessWidget {
                         height: 10,
                       ),
                       const Text(
-                        'فتاة غاضبة',
+                        'فتاة سعيدة',
                         style: TextStyle(
                           fontSize: 32,
                           color: Colors.amber,
@@ -87,12 +88,12 @@ class learnfaces3 extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.black26,
                     onTap: () {
-                      playBeep('sounds/learn/faces/girlCalm.wav');
+                      playBeep('sounds/learn/faces/girlSad.wav');
                     },
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
                       Ink.image(
                         image: const AssetImage(
-                            "assets/images/learn/faces/girlCalm.jpg"),
+                            "assets/images/learn/faces/girlSad.jpg"),
                         height: 190,
                         width: 200,
                         fit: BoxFit.cover,
@@ -101,7 +102,7 @@ class learnfaces3 extends StatelessWidget {
                         height: 10,
                       ),
                       const Text(
-                        'فتاة هادئة',
+                        'فتاة حزينة',
                         style: TextStyle(
                           fontSize: 32,
                           color: Colors.amber,
@@ -112,13 +113,25 @@ class learnfaces3 extends StatelessWidget {
                 ),
               ),
               Positioned(
+                right: 10,
+                top: 235,
+                child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => learnfaces3()),
+                      );
+                    },
+                    child: const Icon(Icons.navigate_next_sharp)),
+              ),
+              Positioned(
                 left: 10,
                 top: 235,
                 child: FloatingActionButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => learnfaces2()),
+                        MaterialPageRoute(builder: (context) => learnfaces1()),
                       );
                     },
                     child: const Icon(Icons.navigate_before_sharp)),

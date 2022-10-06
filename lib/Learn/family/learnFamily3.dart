@@ -1,12 +1,14 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level4.dart';
+import 'learnFamily2.dart';
 
 // ignore: camel_case_types
-class learnAnimals5 extends StatelessWidget {
+class learnFamily3 extends StatelessWidget {
   final player = AudioPlayer();
-  learnAnimals5({super.key});
+  learnFamily3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class learnAnimals5 extends StatelessWidget {
         title: const Align(
           alignment: Alignment.center,
           child: Text(
-            'هيا لنتعلم الحيوانات',
+            'هيا لنتعلم العائلة',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -52,12 +54,12 @@ class learnAnimals5 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/animals/fox.wav');
+                  playBeep('sounds/learn/family/grandFather.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image:
-                        const AssetImage("assets/images/games/animals/fox.png"),
+                    image: const AssetImage(
+                        "assets/images/learn/family/grandFather.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -66,7 +68,7 @@ class learnAnimals5 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'ذئب ',
+                    'جدي ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -87,12 +89,12 @@ class learnAnimals5 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/animals/lion.wav');
+                  playBeep('sounds/learn/family/grandMother.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/games/animals/lion.png"),
+                        "assets/images/learn/family/grandMother.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -101,7 +103,7 @@ class learnAnimals5 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    ' أسد',
+                    ' جدتي',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -118,7 +120,7 @@ class learnAnimals5 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => learnAnimals4()),
+                    MaterialPageRoute(builder: (context) => learnFamily2()),
                   );
                 },
                 child: const Icon(Icons.navigate_before_sharp)),

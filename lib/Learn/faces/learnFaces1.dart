@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level1.dart';
-import 'level3.dart';
+import 'learnFaces2.dart';
 
 // ignore: camel_case_types
-class learnfaces2 extends StatelessWidget {
+class learnfaces1 extends StatelessWidget {
   final player = AudioPlayer();
-  learnfaces2({super.key});
+  learnfaces1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +52,12 @@ class learnfaces2 extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.black26,
                     onTap: () {
-                      playBeep('sounds/learn/faces/girlHappy.wav');
+                      playBeep('sounds/learn/faces/boyHappy.wav');
                     },
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
                       Ink.image(
                         image: const AssetImage(
-                            "assets/images/learn/faces/girlHappy.jpg"),
+                            "assets/images/learn/faces/boyHappy.jpg"),
                         height: 190,
                         width: 200,
                         fit: BoxFit.cover,
@@ -67,7 +66,7 @@ class learnfaces2 extends StatelessWidget {
                         height: 10,
                       ),
                       const Text(
-                        'فتاة سعيدة',
+                        'ولد سعيد',
                         style: TextStyle(
                           fontSize: 32,
                           color: Colors.amber,
@@ -88,12 +87,12 @@ class learnfaces2 extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.black26,
                     onTap: () {
-                      playBeep('sounds/learn/faces/girlSad.wav');
+                      playBeep('sounds/learn/faces/boySad.wav');
                     },
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
                       Ink.image(
                         image: const AssetImage(
-                            "assets/images/learn/faces/girlSad.jpg"),
+                            "assets/images/learn/faces/boySad.jpg"),
                         height: 190,
                         width: 200,
                         fit: BoxFit.cover,
@@ -102,7 +101,7 @@ class learnfaces2 extends StatelessWidget {
                         height: 10,
                       ),
                       const Text(
-                        'فتاة حزينة',
+                        'ولد حزين',
                         style: TextStyle(
                           fontSize: 32,
                           color: Colors.amber,
@@ -119,22 +118,10 @@ class learnfaces2 extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => learnfaces3()),
+                        MaterialPageRoute(builder: (context) => learnfaces2()),
                       );
                     },
                     child: const Icon(Icons.navigate_next_sharp)),
-              ),
-              Positioned(
-                left: 10,
-                top: 235,
-                child: FloatingActionButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => learnfaces1()),
-                      );
-                    },
-                    child: const Icon(Icons.navigate_before_sharp)),
               ),
               Positioned(
                 right: 10,

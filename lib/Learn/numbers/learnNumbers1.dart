@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level4.dart';
+import 'learnNumbers2.dart';
 
 // ignore: camel_case_types
-class learnNumbers5 extends StatelessWidget {
+class learnNumbers1 extends StatelessWidget {
   final player = AudioPlayer();
-  learnNumbers5({super.key});
+  learnNumbers1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +52,12 @@ class learnNumbers5 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/numbers/no8.wav');
+                  playBeep('sounds/learn/numbers/no0.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/numbers/no8.jpg"),
+                        const AssetImage("assets/images/learn/numbers/no0.jpg"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class learnNumbers5 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'ثمانية ',
+                    'صفر ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -87,12 +87,12 @@ class learnNumbers5 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/numbers/no9.wav');
+                  playBeep('sounds/learn/numbers/no1.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/numbers/no9.jpg"),
+                        const AssetImage("assets/images/learn/numbers/no1.jpg"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -101,7 +101,7 @@ class learnNumbers5 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    ' تسعة',
+                    'واحد',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -112,16 +112,16 @@ class learnNumbers5 extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 10,
+            right: 10,
             top: 235,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => learnNumbers4()),
+                    MaterialPageRoute(builder: (context) => learnNumbers2()),
                   );
                 },
-                child: const Icon(Icons.navigate_before_sharp)),
+                child: const Icon(Icons.navigate_next_sharp)),
           ),
           Positioned(
             right: 10,

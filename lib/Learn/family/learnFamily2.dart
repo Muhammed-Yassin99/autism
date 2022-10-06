@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level1.dart';
-import 'level3.dart';
+import 'learnFamily1.dart';
+import 'learnFamily3.dart';
 
 // ignore: camel_case_types
-class learnNumbers2 extends StatelessWidget {
+class learnFamily2 extends StatelessWidget {
   final player = AudioPlayer();
-  learnNumbers2({super.key});
+  learnFamily2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class learnNumbers2 extends StatelessWidget {
         title: const Align(
           alignment: Alignment.center,
           child: Text(
-            'هيا لنتعلم الارقام',
+            'هيا لنتعلم العائلة',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -53,12 +53,12 @@ class learnNumbers2 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/numbers/no2.wav');
+                  playBeep('sounds/learn/family/brother.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image:
-                        const AssetImage("assets/images/learn/numbers/no2.jpg"),
+                    image: const AssetImage(
+                        "assets/images/learn/family/brother.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -67,7 +67,7 @@ class learnNumbers2 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'اثنان ',
+                    'اخي ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -88,12 +88,12 @@ class learnNumbers2 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/numbers/no3.wav');
+                  playBeep('sounds/learn/family/sister.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image:
-                        const AssetImage("assets/images/learn/numbers/no3.jpg"),
+                    image: const AssetImage(
+                        "assets/images/learn/family/sister.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -102,7 +102,7 @@ class learnNumbers2 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    ' ثلاثة',
+                    ' اختي',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -119,7 +119,7 @@ class learnNumbers2 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => learnNumbers3()),
+                    MaterialPageRoute(builder: (context) => learnFamily3()),
                   );
                 },
                 child: const Icon(Icons.navigate_next_sharp)),
@@ -131,7 +131,7 @@ class learnNumbers2 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => learnNumbers1()),
+                    MaterialPageRoute(builder: (context) => learnFamily1()),
                   );
                 },
                 child: const Icon(Icons.navigate_before_sharp)),

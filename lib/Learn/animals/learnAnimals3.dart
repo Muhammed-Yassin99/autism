@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level2.dart';
+import 'learnAnimals2.dart';
+import 'learnAnimals4.dart';
 
 // ignore: camel_case_types
-class learnNumbers1 extends StatelessWidget {
+class learnAnimals3 extends StatelessWidget {
   final player = AudioPlayer();
-  learnNumbers1({super.key});
+  learnAnimals3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class learnNumbers1 extends StatelessWidget {
         title: const Align(
           alignment: Alignment.center,
           child: Text(
-            'هيا لنتعلم الارقام',
+            'هيا لنتعلم الحيوانات',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -52,12 +53,12 @@ class learnNumbers1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/numbers/no0.wav');
+                  playBeep('sounds/learn/animals/hen.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/numbers/no0.jpg"),
+                        const AssetImage("assets/images/games/animals/hen.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -66,7 +67,7 @@ class learnNumbers1 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'صفر ',
+                    'فرخة ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -87,12 +88,12 @@ class learnNumbers1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/numbers/no1.wav');
+                  playBeep('sounds/learn/animals/panda.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image:
-                        const AssetImage("assets/images/learn/numbers/no1.jpg"),
+                    image: const AssetImage(
+                        "assets/images/games/animals/panda.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -101,7 +102,7 @@ class learnNumbers1 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'واحد',
+                    ' باندا',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -118,10 +119,22 @@ class learnNumbers1 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => learnNumbers2()),
+                    MaterialPageRoute(builder: (context) => learnAnimals4()),
                   );
                 },
                 child: const Icon(Icons.navigate_next_sharp)),
+          ),
+          Positioned(
+            left: 10,
+            top: 235,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => learnAnimals2()),
+                  );
+                },
+                child: const Icon(Icons.navigate_before_sharp)),
           ),
           Positioned(
             right: 10,

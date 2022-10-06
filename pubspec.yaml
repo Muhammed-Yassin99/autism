@@ -212,7 +212,12 @@ flutter:
      - assets/images/learn/digits/faa2.jpg
      - assets/images/learn/digits/qaaf.jpg
      - assets/images/learn/digits/raa2.jpg
-     
+     - assets/images/learn/family/father.png
+     - assets/images/learn/family/mother.png
+     - assets/images/learn/family/grandFather.png
+     - assets/images/learn/family/grandMother.png
+     - assets/images/learn/family/sister.png
+     - assets/images/learn/family/brother.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

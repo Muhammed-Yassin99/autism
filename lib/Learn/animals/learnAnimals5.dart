@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
-import 'level5.dart';
-import 'level3.dart';
+import 'learnAnimals4.dart';
 
 // ignore: camel_case_types
-class learnAnimals4 extends StatelessWidget {
+class learnAnimals5 extends StatelessWidget {
   final player = AudioPlayer();
-  learnAnimals4({super.key});
+  learnAnimals5({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +52,12 @@ class learnAnimals4 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/animals/camel.wav');
+                  playBeep('sounds/learn/animals/fox.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image: const AssetImage(
-                        "assets/images/games/animals/camel.png"),
+                    image:
+                        const AssetImage("assets/images/games/animals/fox.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -67,7 +66,7 @@ class learnAnimals4 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'جمل ',
+                    'ذئب ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -88,12 +87,12 @@ class learnAnimals4 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/animals/horse.wav');
+                  playBeep('sounds/learn/animals/lion.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/games/animals/horse.png"),
+                        "assets/images/games/animals/lion.png"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
@@ -102,7 +101,7 @@ class learnAnimals4 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    ' حصان',
+                    ' أسد',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -113,25 +112,13 @@ class learnAnimals4 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 10,
-            top: 235,
-            child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => learnAnimals5()),
-                  );
-                },
-                child: const Icon(Icons.navigate_next_sharp)),
-          ),
-          Positioned(
             left: 10,
             top: 235,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => learnAnimals3()),
+                    MaterialPageRoute(builder: (context) => learnAnimals4()),
                   );
                 },
                 child: const Icon(Icons.navigate_before_sharp)),

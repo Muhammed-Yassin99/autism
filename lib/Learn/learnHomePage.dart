@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
-import 'animals/level1.dart';
-import 'faces/level1.dart';
-import 'numbers/level1.dart';
+import 'animals/learnAnimals1.dart';
+import 'faces/learnFaces1.dart';
+import 'family/learnFamily1.dart';
+import 'numbers/learnNumbers1.dart';
 
 class learnHomePage extends StatelessWidget {
   const learnHomePage({super.key});
@@ -115,6 +116,10 @@ class learnHomePage extends StatelessWidget {
     if (category.id == 5) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => learnAnimals1()));
+    }
+    if (category.id == 4) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => learnFamily1()));
     }
   }
 }
