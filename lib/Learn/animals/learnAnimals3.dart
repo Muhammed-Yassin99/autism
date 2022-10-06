@@ -67,7 +67,7 @@ class learnAnimals3 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'فرخة ',
+                    'دجاجة ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
