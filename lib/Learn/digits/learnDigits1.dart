@@ -45,8 +45,8 @@ class learnDigits1 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 80,
-            top: 10,
+            right: 10,
+            top: 5,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -55,21 +55,21 @@ class learnDigits1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/animals/cat.wav');
+                  playBeep('sounds/learn/digits/Alf.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/games/animals/cat.png"),
-                    height: 190,
-                    width: 200,
+                        const AssetImage("assets/images/learn/digits/Alf.jpg"),
+                    height: 90,
+                    width: 95,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   const Text(
-                    'قطة ',
+                    'ألف ',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -80,7 +80,41 @@ class learnDigits1 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 80,
+            left: 10,
+            top: 5,
+            child: Material(
+              color: const Color.fromARGB(255, 10, 79, 135),
+              elevation: 8,
+              borderRadius: BorderRadius.circular(28),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: InkWell(
+                splashColor: Colors.black26,
+                onTap: () {
+                  playBeep('sounds/learn/digits/B.wav');
+                },
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Ink.image(
+                    image: const AssetImage("assets/images/learn/digits/B.png"),
+                    height: 90,
+                    width: 95,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'باء',
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.amber,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+          Positioned(
+            right: 10,
             top: 275,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
@@ -90,21 +124,55 @@ class learnDigits1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/animals/dog.wav');
+                  playBeep('sounds/learn/digits/T.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image:
-                        const AssetImage("assets/images/games/animals/dog.png"),
-                    height: 190,
-                    width: 200,
+                    image: const AssetImage("assets/images/learn/digits/T.png"),
+                    height: 90,
+                    width: 95,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   const Text(
-                    ' كلب',
+                    'تاء',
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.amber,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 10,
+            top: 275,
+            child: Material(
+              color: const Color.fromARGB(255, 10, 79, 135),
+              elevation: 8,
+              borderRadius: BorderRadius.circular(28),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: InkWell(
+                splashColor: Colors.black26,
+                onTap: () {
+                  playBeep('sounds/learn/digits/tha2.wav');
+                },
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Ink.image(
+                    image:
+                        const AssetImage("assets/images/learn/digits/tha2.png"),
+                    height: 90,
+                    width: 95,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'ثاء',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
