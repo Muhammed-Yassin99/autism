@@ -218,6 +218,12 @@ flutter:
      - assets/images/learn/family/grandMother.png
      - assets/images/learn/family/sister.png
      - assets/images/learn/family/brother.png
+     - assets/sounds/learn/family/father.wav
+     - assets/sounds/learn/family/mother.wav
+     - assets/sounds/learn/family/grandFather.wav
+     - assets/sounds/learn/family/grandMother.wav
+     - assets/sounds/learn/family/sister.wav
+     - assets/sounds/learn/family/brother.wav
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

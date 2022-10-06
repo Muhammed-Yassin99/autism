@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 import 'animals/learnAnimals1.dart';
+import 'digits/learnDigits1.dart';
 import 'faces/learnFaces1.dart';
 import 'family/learnFamily1.dart';
 import 'numbers/learnNumbers1.dart';
@@ -120,6 +121,10 @@ class learnHomePage extends StatelessWidget {
     if (category.id == 4) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => learnFamily1()));
+    }
+    if (category.id == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => learnDigits1()));
     }
   }
 }
