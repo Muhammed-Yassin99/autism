@@ -1,16 +1,16 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore
-
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
 import 'learnDigits2.dart';
+import 'learnDigits4.dart';
 //import 'learnAnimals2.dart';
 
 // ignore: camel_case_types
-class learnDigits1 extends StatelessWidget {
+class learnDigits3 extends StatelessWidget {
   final player = AudioPlayer();
-  learnDigits1({super.key});
+  learnDigits3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +56,12 @@ class learnDigits1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/digits/Alf.wav');
+                  playBeep('sounds/learn/digits/zal.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/digits/Alf.jpg"),
+                        const AssetImage("assets/images/learn/digits/zal.jpg"),
                     height: 120,
                     width: 130,
                     fit: BoxFit.cover,
@@ -70,7 +70,7 @@ class learnDigits1 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'ألف ',
+                    'زال',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -91,11 +91,12 @@ class learnDigits1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/digits/B.wav');
+                  playBeep('sounds/learn/digits/raa2.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image: const AssetImage("assets/images/learn/digits/B.jpg"),
+                    image:
+                        const AssetImage("assets/images/learn/digits/raa2.jpg"),
                     height: 120,
                     width: 130,
                     fit: BoxFit.cover,
@@ -104,7 +105,7 @@ class learnDigits1 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'باء',
+                    'راء',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -125,11 +126,12 @@ class learnDigits1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/digits/T.wav');
+                  playBeep('sounds/learn/digits/zeen.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
-                    image: const AssetImage("assets/images/learn/digits/T.jpg"),
+                    image:
+                        const AssetImage("assets/images/learn/digits/zeen.jpg"),
                     height: 120,
                     width: 130,
                     fit: BoxFit.cover,
@@ -138,7 +140,7 @@ class learnDigits1 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'تاء',
+                    'زين',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -159,12 +161,12 @@ class learnDigits1 extends StatelessWidget {
               child: InkWell(
                 splashColor: Colors.black26,
                 onTap: () {
-                  playBeep('sounds/learn/digits/tha2.wav');
+                  playBeep('sounds/learn/digits/seen.wav');
                 },
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/digits/tha2.jpg"),
+                        const AssetImage("assets/images/learn/digits/seen.jpg"),
                     height: 120,
                     width: 130,
                     fit: BoxFit.cover,
@@ -173,7 +175,7 @@ class learnDigits1 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'ثاء',
+                    'سين',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -184,13 +186,25 @@ class learnDigits1 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 10,
+            left: 10,
             top: 250,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => learnDigits2()),
+                  );
+                },
+                child: const Icon(Icons.navigate_before_sharp)),
+          ),
+          Positioned(
+            right: 10,
+            top: 250,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => learnDigits4()),
                   );
                 },
                 child: const Icon(Icons.navigate_next_sharp)),
