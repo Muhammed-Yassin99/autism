@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
+import 'animals/level1.dart';
 import 'faces/level1.dart';
 import 'numbers/level1.dart';
 
@@ -107,6 +108,10 @@ class learnHomePage extends StatelessWidget {
     if (category.id == 3) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => learnNumbers1()));
+    }
+    if (category.id == 5) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => learnAnimals1()));
     }
   }
 }

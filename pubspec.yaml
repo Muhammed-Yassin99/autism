@@ -170,6 +170,44 @@ flutter:
      - assets/images/learn/numbers/no7.jpg
      - assets/images/learn/numbers/no8.jpg
      - assets/images/learn/numbers/no9.jpg
+     - assets/sounds/learn/animals/lion.wav
+     - assets/sounds/learn/animals/panda.wav
+     - assets/sounds/learn/animals/camel.wav
+     - assets/sounds/learn/animals/dog.wav
+     - assets/sounds/learn/animals/cat.wav
+     - assets/sounds/learn/animals/horse.wav
+     - assets/sounds/learn/animals/sheep.wav
+     - assets/sounds/learn/animals/fox.wav
+     - assets/sounds/learn/animals/cow.wav
+     - assets/sounds/learn/animals/hen.wav
+     - assets/images/learn/digits/3ean.jpg
+     - assets/images/learn/digits/5a2.jpg
+     - assets/images/learn/digits/7a2.jpg
+     - assets/images/learn/digits/8ean.jpg
+     - assets/images/learn/digits/Alf.jpg
+     - assets/images/learn/digits/B.jpg
+     - assets/images/learn/digits/daad.jpg
+     - assets/images/learn/digits/dal.jpg
+     - assets/images/learn/digits/geem.jpg
+     - assets/images/learn/digits/heah.jpg
+     - assets/images/learn/digits/saad.jpg
+     - assets/images/learn/digits/seen.jpg
+     - assets/images/learn/digits/sheen.jpg
+     - assets/images/learn/digits/T.jpg
+     - assets/images/learn/digits/taah.jpg
+     - assets/images/learn/digits/tha2.jpg
+     - assets/images/learn/digits/waw.jpg
+     - assets/images/learn/digits/yeah.jpg
+     - assets/images/learn/digits/zaah.jpg
+     - assets/images/learn/digits/zal.jpg
+     - assets/images/learn/digits/zeen.jpg
+     - assets/images/learn/digits/meem.jpg
+     - assets/images/learn/digits/noon.jpg
+     - assets/images/learn/digits/kaaf.jpg
+     - assets/images/learn/digits/laam.jpg
+     - assets/images/learn/digits/faa2.jpg
+     - assets/images/learn/digits/qaaf.jpg
+     - assets/images/learn/digits/raa2.jpg
      
 
   # An image asset can refer to one or more resolution-specific "variants", see
