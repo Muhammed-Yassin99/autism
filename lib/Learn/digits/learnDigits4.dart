@@ -105,7 +105,7 @@ class learnDigits4 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'صاض',
+                    'صاد',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
@@ -140,7 +140,7 @@ class learnDigits4 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'ضاض',
+                    'ضاد',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,

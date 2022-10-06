@@ -224,6 +224,35 @@ flutter:
      - assets/sounds/learn/family/grandMother.wav
      - assets/sounds/learn/family/sister.wav
      - assets/sounds/learn/family/brother.wav
+     - assets/sounds/learn/digits/3ean.wav
+     - assets/sounds/learn/digits/5a2.wav
+     - assets/sounds/learn/digits/7a2.wav
+     - assets/sounds/learn/digits/8ean.wav
+     - assets/sounds/learn/digits/Alf.wav
+     - assets/sounds/learn/digits/B.wav
+     - assets/sounds/learn/digits/daad.wav
+     - assets/sounds/learn/digits/dal.wav
+     - assets/sounds/learn/digits/geem.wav
+     - assets/sounds/learn/digits/heah.wav
+     - assets/sounds/learn/digits/saad.wav
+     - assets/sounds/learn/digits/seen.wav
+     - assets/sounds/learn/digits/sheen.wav
+     - assets/sounds/learn/digits/T.wav
+     - assets/sounds/learn/digits/taah.wav
+     - assets/sounds/learn/digits/tha2.wav
+     - assets/sounds/learn/digits/waw.wav
+     - assets/sounds/learn/digits/yeah.wav
+     - assets/sounds/learn/digits/zaah.wav
+     - assets/sounds/learn/digits/zal.wav
+     - assets/sounds/learn/digits/zeen.wav
+     - assets/sounds/learn/digits/meem.wav
+     - assets/sounds/learn/digits/noon.wav
+     - assets/sounds/learn/digits/kaaf.wav
+     - assets/sounds/learn/digits/laam.wav
+     - assets/sounds/learn/digits/faa2.wav
+     - assets/sounds/learn/digits/qaaf.wav
+     - assets/sounds/learn/digits/raa2.wav
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
