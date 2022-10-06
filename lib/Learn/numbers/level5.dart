@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'level1.dart';
-import 'level3.dart';
+import 'level4.dart';
 
 // ignore: camel_case_types
-class learnfaces2 extends StatelessWidget {
+class learnNumbers5 extends StatelessWidget {
   final player = AudioPlayer();
-  learnfaces2({super.key});
+  learnNumbers5({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class learnfaces2 extends StatelessWidget {
         title: const Align(
           alignment: Alignment.center,
           child: Text(
-            'هيا لنتعلم الاوجه',
+            'هيا لنتعلم الارقام',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -50,12 +49,12 @@ class learnfaces2 extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.black26,
               onTap: () {
-                playBeep('sounds/learn/faces/girlHappy.wav');
+                playBeep('sounds/learn/numbers/no8.wav');
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Ink.image(
-                  image: const AssetImage(
-                      "assets/images/learn/faces/girlHappy.jpg"),
+                  image:
+                      const AssetImage("assets/images/learn/numbers/no8.jpg"),
                   height: 190,
                   width: 200,
                   fit: BoxFit.cover,
@@ -64,7 +63,7 @@ class learnfaces2 extends StatelessWidget {
                   height: 10,
                 ),
                 const Text(
-                  'فتاة سعيدة',
+                  'ثمانية ',
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.amber,
@@ -85,12 +84,12 @@ class learnfaces2 extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.black26,
               onTap: () {
-                playBeep('sounds/learn/faces/girlSad.wav');
+                playBeep('sounds/learn/numbers/no9.wav');
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Ink.image(
                   image:
-                      const AssetImage("assets/images/learn/faces/girlSad.jpg"),
+                      const AssetImage("assets/images/learn/numbers/no9.jpg"),
                   height: 190,
                   width: 200,
                   fit: BoxFit.cover,
@@ -99,7 +98,7 @@ class learnfaces2 extends StatelessWidget {
                   height: 10,
                 ),
                 const Text(
-                  'فتاة حزينة',
+                  ' تسعة',
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.amber,
@@ -110,25 +109,13 @@ class learnfaces2 extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 10,
-          top: 235,
-          child: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => learnfaces3()),
-                );
-              },
-              child: const Icon(Icons.navigate_next_sharp)),
-        ),
-        Positioned(
           left: 10,
           top: 235,
           child: FloatingActionButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => learnfaces1()),
+                  MaterialPageRoute(builder: (context) => learnNumbers4()),
                 );
               },
               child: const Icon(Icons.navigate_before_sharp)),

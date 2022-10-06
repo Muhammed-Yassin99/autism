@@ -144,12 +144,33 @@ flutter:
      - assets/images/learn/faces/girlCalm.jpg
      - assets/images/learn/faces/girlHappy.jpg
      - assets/images/learn/faces/girlSad.jpg
-     - assets/sounds/girlSad.wav
-     - assets/sounds/girlHappy.wav
-     - assets/sounds/girlCalm.wav
-     - assets/sounds/girlAngry.wav
-     - assets/sounds/boySad.wav
-     - assets/sounds/boyHappy.wav
+     - assets/sounds/learn/faces/girlSad.wav
+     - assets/sounds/learn/faces/girlHappy.wav
+     - assets/sounds/learn/faces/girlCalm.wav
+     - assets/sounds/learn/faces/girlAngry.wav
+     - assets/sounds/learn/faces/boySad.wav
+     - assets/sounds/learn/faces/boyHappy.wav
+     - assets/sounds/learn/numbers/no0.wav
+     - assets/sounds/learn/numbers/no1.wav
+     - assets/sounds/learn/numbers/no2.wav
+     - assets/sounds/learn/numbers/no3.wav
+     - assets/sounds/learn/numbers/no4.wav
+     - assets/sounds/learn/numbers/no5.wav
+     - assets/sounds/learn/numbers/no6.wav
+     - assets/sounds/learn/numbers/no7.wav
+     - assets/sounds/learn/numbers/no8.wav
+     - assets/sounds/learn/numbers/no9.wav
+     - assets/images/learn/numbers/no0.jpg
+     - assets/images/learn/numbers/no1.jpg
+     - assets/images/learn/numbers/no2.jpg
+     - assets/images/learn/numbers/no3.jpg
+     - assets/images/learn/numbers/no4.jpg
+     - assets/images/learn/numbers/no5.jpg
+     - assets/images/learn/numbers/no6.jpg
+     - assets/images/learn/numbers/no7.jpg
+     - assets/images/learn/numbers/no8.jpg
+     - assets/images/learn/numbers/no9.jpg
+     
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

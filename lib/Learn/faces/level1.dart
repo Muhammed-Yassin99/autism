@@ -1,6 +1,6 @@
-import 'package:autism_zz/Learn/faces/level2.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'level2.dart';
 
 // ignore: camel_case_types
 class learnfaces1 extends StatelessWidget {
@@ -49,7 +49,7 @@ class learnfaces1 extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.black26,
               onTap: () {
-                playBeep('sounds/boyHappy.wav');
+                playBeep('sounds/learn/faces/boyHappy.wav');
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Ink.image(
@@ -84,7 +84,7 @@ class learnfaces1 extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.black26,
               onTap: () {
-                playBeep('sounds/boySad.wav');
+                playBeep('sounds/learn/faces/boySad.wav');
               },
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Ink.image(
