@@ -93,7 +93,7 @@ class learnThemes2 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/learn/themes/party.png"),
+                        "assets/images/learn/themes/party.jpg"),
                     height: 190,
                     width: 200,
                     fit: BoxFit.cover,
