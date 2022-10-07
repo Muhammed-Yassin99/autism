@@ -252,7 +252,15 @@ flutter:
      - assets/sounds/learn/digits/faa2.wav
      - assets/sounds/learn/digits/qaaf.wav
      - assets/sounds/learn/digits/raa2.wav
-
+     - assets/sounds/learn/digits/raa2.wav
+     - assets/images/learn/themes/playing.jpg
+     - assets/images/learn/themes/reading.jpg
+     - assets/images/learn/themes/eating.jpg
+     - assets/images/learn/themes/party.jpg
+     - assets/sounds/learn/themes/party.wav
+     - assets/sounds/learn/themes/reading.wav
+     - assets/sounds/learn/themes/eating.wav
+     - assets/sounds/learn/themes/playing.wav
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
