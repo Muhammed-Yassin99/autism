@@ -7,6 +7,7 @@ import 'digits/learnDigits1.dart';
 import 'faces/learnFaces1.dart';
 import 'family/learnFamily1.dart';
 import 'numbers/learnNumbers1.dart';
+import 'themes/learnThemes1.dart';
 
 class learnHomePage extends StatelessWidget {
   const learnHomePage({super.key});
@@ -125,6 +126,10 @@ class learnHomePage extends StatelessWidget {
     if (category.id == 2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => learnDigits1()));
+    }
+    if (category.id == 6) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => learnThemes1()));
     }
   }
 }
