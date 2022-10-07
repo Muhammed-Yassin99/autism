@@ -59,8 +59,8 @@ class learnThemes1 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/playing.jpg"),
-                    height: 190,
-                    width: 200,
+                    height: 170,
+                    width: 250,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -94,8 +94,8 @@ class learnThemes1 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/reading.jpg"),
-                    height: 190,
-                    width: 200,
+                    height: 170,
+                    width: 250,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(

@@ -43,7 +43,7 @@ class learnThemes2 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 80,
+            right: 60,
             top: 10,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
@@ -59,8 +59,8 @@ class learnThemes2 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/eating.jpg"),
-                    height: 190,
-                    width: 200,
+                    height: 170,
+                    width: 250,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -78,7 +78,7 @@ class learnThemes2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 80,
+            right: 60,
             top: 275,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
@@ -94,8 +94,8 @@ class learnThemes2 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/party.jpg"),
-                    height: 190,
-                    width: 200,
+                    height: 170,
+                    width: 250,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -113,7 +113,7 @@ class learnThemes2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 10,
+            left: 0,
             top: 235,
             child: FloatingActionButton(
                 onPressed: () {
@@ -125,7 +125,7 @@ class learnThemes2 extends StatelessWidget {
                 child: const Icon(Icons.navigate_before_sharp)),
           ),
           Positioned(
-            right: 10,
+            right: 0,
             top: 0,
             child: FloatingActionButton(
                 onPressed: () {
@@ -137,7 +137,7 @@ class learnThemes2 extends StatelessWidget {
                 child: const Icon(
                   Icons.home_filled,
                   color: Color.fromARGB(255, 143, 33, 162),
-                  size: 50,
+                  size: 40,
                 )),
           ),
         ])),
