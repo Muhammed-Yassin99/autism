@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import '../../model/item_model.dart';
+import '../../../model/item_model.dart';
 import 'level2.dart';
 
 // ignore: use_key_in_widget_constructors

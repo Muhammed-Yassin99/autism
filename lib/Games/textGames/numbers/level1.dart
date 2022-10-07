@@ -1,15 +1,16 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import '../../model/item_model.dart';
+import '../../../model/item_model.dart';
+import 'level2.dart';
 
 // ignore: use_key_in_widget_constructors
-class familyLevel1 extends StatefulWidget {
+class numbersLevel1 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<familyLevel1> {
+class _HomeScreenState extends State<numbersLevel1> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
@@ -21,21 +22,21 @@ class _HomeScreenState extends State<familyLevel1> {
     score = 0;
     items = [
       ItemModel(
-          value: 'اخ',
-          name: 'اخ',
-          img: 'assets/images/games/family/brothers.png'),
+          value: 'صفر',
+          name: 'صفر',
+          img: 'assets/images/games/numbers/no0.png'),
       ItemModel(
-          value: 'اخت',
-          name: 'اخت',
-          img: 'assets/images/games/family/sister.png'),
+          value: 'واحد',
+          name: 'واحد',
+          img: 'assets/images/games/numbers/no1.png'),
       ItemModel(
-          value: 'ام',
-          name: 'ام',
-          img: 'assets/images/games/family/mother.jpg'),
+          value: 'اثنان',
+          name: 'اثنان',
+          img: 'assets/images/games/numbers/no2.png'),
       ItemModel(
-          value: 'اب',
-          name: 'اب',
-          img: 'assets/images/games/family/father.jpg'),
+          value: 'ثلاثة',
+          name: 'ثلاثة',
+          img: 'assets/images/games/numbers/no3.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -95,12 +96,12 @@ class _HomeScreenState extends State<familyLevel1> {
                             feedback: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 50,
+                              radius: 30,
                             ),
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 50,
+                              radius: 40,
                             ),
                           ),
                         );
@@ -204,6 +205,29 @@ class _HomeScreenState extends State<familyLevel1> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
+                        style: const TextStyle(color: Colors.white),
+                      )),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
+              if (gameOver && score >= 30)
+                Container(
+                  height: 70,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.blue.shade900,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => level2()),
+                        );
+                      },
+                      // ignore: prefer_const_constructors
+                      child: Text(
+                        'الانتقال الي المستوي الثاني',
                         style: const TextStyle(color: Colors.white),
                       )),
                 ),

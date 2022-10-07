@@ -1,23 +1,26 @@
+// ignore_for_file: file_names, camel_case_types
 import 'package:flutter/material.dart';
-import '../Games/gamesHomePage1.dart';
-import '../Learn/learnHomePage.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
+import 'textGames/animals/level1.dart';
+import 'textGames/digits/level1.dart';
+import 'textGames/faces/level1.dart';
+import 'textGames/family/level1.dart';
+import 'textGames/numbers/level1.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class gamesHomePage extends StatelessWidget {
+  const gamesHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, // set it to false
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         titleSpacing: 0.0,
         title: const Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'الصفحة الرئسية',
+            'الالعاب',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -35,21 +38,11 @@ class HomePage extends StatelessWidget {
         actions: [
           const SizedBox(width: 12),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            alignment: Alignment.centerRight,
-            child: buildWelcome(''),
-          ),
-        ),
       ),
       body: Container(
           color: const Color.fromARGB(164, 0, 0, 0),
           child: Stack(
             children: [
-              const SizedBox(height: 8),
-              const SizedBox(height: 32),
               CustomScrollView(
                 physics: const BouncingScrollPhysics(),
                 slivers: [
@@ -65,12 +58,12 @@ class HomePage extends StatelessWidget {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                childAspectRatio: 4 / 3,
+                                childAspectRatio: 1.2,
                                 crossAxisSpacing: 10.0,
                                 mainAxisSpacing: 10.0),
                         delegate: SliverChildBuilderDelegate(
                           _buildCategoryItem,
-                          childCount: homePage_categories.length,
+                          childCount: game_categories.length,
                         )),
                   ),
                 ],
@@ -81,27 +74,26 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildCategoryItem(BuildContext context, int index) {
-    Category category = homePage_categories[index];
+    Category category = game_categories[index];
     return MaterialButton(
       elevation: 1.0,
-      highlightElevation: 8.0,
+      highlightElevation: 1.0,
       onPressed: () => _categoryPressed(context, category),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100.0),
       ),
       //color: const Color.fromARGB(255, 121, 23, 139),
       color: Colors.teal,
+
       hoverColor: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        // ignore: prefer_const_literals_to_create_immutables
         children: [
-          Image.asset(category.icon, height: 70, width: 150),
+          Image.asset(category.icon, height: 90, width: 200),
           const SizedBox(height: 5.0),
           Text(
             style: const TextStyle(
                 fontSize: 22,
-                wordSpacing: 1.1,
                 fontWeight: FontWeight.w900,
                 color: Color.fromARGB(255, 2, 9, 73)),
             category.name,
@@ -113,33 +105,26 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildWelcome(String username) => Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            username,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const Text(
-            ' مرحبا',
-            style: TextStyle(
-                fontSize: 32, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ],
-      );
   _categoryPressed(BuildContext context, Category category) {
-    if (category.id == 2) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const gamesHomePage()));
-    }
     if (category.id == 1) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const learnHomePage()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => facesLevel1()));
+    }
+    if (category.id == 5) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => animalsLevel1()));
+    }
+    if (category.id == 4) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => familyLevel1()));
+    }
+    if (category.id == 3) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => numbersLevel1()));
+    }
+    if (category.id == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => digitsLevel1()));
     }
   }
 }

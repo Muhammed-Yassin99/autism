@@ -1,15 +1,15 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
+import '../../../model/item_model.dart';
+import '../../gamesHomePage1.dart';
 import 'package:flutter/material.dart';
-import 'package:autism_zz/model/item_model.dart' show ItemModel;
-import '../gamesHomePage.dart';
 
-class level2 extends StatefulWidget {
+class level4 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<level2> {
+class _HomeScreenState extends State<level4> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
@@ -21,29 +21,31 @@ class _HomeScreenState extends State<level2> {
     score = 0;
     items = [
       ItemModel(
-          value: 'ذئب',
-          name: 'ذئب',
-          img: 'assets/images/games/animals/fox.png'),
+          value: 'كاف',
+          name: 'كاف',
+          img: 'assets/images/games/digits/kaaf.png'),
       ItemModel(
-          value: 'حصان',
-          name: 'حصان',
-          img: 'assets/images/games/animals/horse.png'),
+          value: 'لام',
+          name: 'لام',
+          img: 'assets/images/games/digits/laam.png'),
       ItemModel(
-          value: 'باندا',
-          name: 'باندا',
-          img: 'assets/images/games/animals/panda.png'),
+          value: 'ميم',
+          name: 'ميم',
+          img: 'assets/images/games/digits/meem.png'),
       ItemModel(
-          value: 'خاروف',
-          name: 'خاروف',
-          img: 'assets/images/games/animals/sheep.png'),
+          value: 'نون',
+          name: 'نون',
+          img: 'assets/images/games/digits/noon.png'),
       ItemModel(
-          value: 'دجاجة',
-          name: 'دجاجة',
-          img: 'assets/images/games/animals/hen.png'),
+          value: 'هاء',
+          name: 'هاء',
+          img: 'assets/images/games/digits/heah.png'),
       ItemModel(
-          value: 'جمل',
-          name: 'جمل',
-          img: 'assets/images/games/animals/camel.png'),
+          value: 'واو', name: 'واو', img: 'assets/images/games/digits/waw.png'),
+      ItemModel(
+          value: 'ياء',
+          name: 'ياء',
+          img: 'assets/images/games/digits/yeah.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -108,7 +110,7 @@ class _HomeScreenState extends State<level2> {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 35,
+                              radius: 30,
                             ),
                           ),
                         );
@@ -231,7 +233,7 @@ class _HomeScreenState extends State<level2> {
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
-                        'الرجوع الي المستوي السابق',
+                        'الرجوع الي المستوي الثالث',
                         style: const TextStyle(color: Colors.white),
                       )),
                 ),
@@ -267,7 +269,7 @@ class _HomeScreenState extends State<level2> {
   }
 
   String result() {
-    if (score == 60) {
+    if (score == 70) {
       playBeep('sounds/success.wav');
       return ' !احسنت ';
     } else {

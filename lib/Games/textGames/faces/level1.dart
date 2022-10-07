@@ -1,54 +1,38 @@
-// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
+// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import '../../model/item_model.dart';
-import '../gamesHomePage.dart';
-import 'level4.dart';
+import '../../../model/item_model.dart';
+import 'level2.dart';
 
-class level3 extends StatefulWidget {
+// ignore: use_key_in_widget_constructors
+class facesLevel1 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<level3> {
+class _HomeScreenState extends State<facesLevel1> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
   late bool gameOver;
 
-  initGame1() {
+  initGame() {
     gameOver = false;
     score = 0;
     items = [
       ItemModel(
-          value: 'ضاض',
-          name: 'ضاض',
-          img: 'assets/images/games/digits/daad.png'),
+          value: 'بكاء',
+          name: 'بكاء',
+          img: 'assets/images/games/faces/cry.png'),
       ItemModel(
-          value: 'طاء',
-          name: 'طاء',
-          img: 'assets/images/games/digits/taah.png'),
+          value: 'سعيد',
+          name: 'سعيد',
+          img: 'assets/images/games/faces/happy.png'),
       ItemModel(
-          value: 'ظاء',
-          name: 'ظاء',
-          img: 'assets/images/games/digits/zaah.png'),
-      ItemModel(
-          value: 'عين',
-          name: 'عين',
-          img: 'assets/images/games/digits/3ean.png'),
-      ItemModel(
-          value: 'غين',
-          name: 'غين',
-          img: 'assets/images/games/digits/8ean.png'),
-      ItemModel(
-          value: 'فاء',
-          name: 'فاء',
-          img: 'assets/images/games/digits/faa2.png'),
-      ItemModel(
-          value: 'قاف',
-          name: 'قاف',
-          img: 'assets/images/games/digits/qaaf.png'),
+          value: 'حزين',
+          name: 'حزين',
+          img: 'assets/images/games/faces/sad.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -59,7 +43,7 @@ class _HomeScreenState extends State<level3> {
   @override
   void initState() {
     super.initState();
-    initGame1();
+    initGame();
   }
 
   @override
@@ -108,12 +92,12 @@ class _HomeScreenState extends State<level3> {
                             feedback: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 30,
+                              radius: 50,
                             ),
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 30,
+                              radius: 50,
                             ),
                           ),
                         );
@@ -148,7 +132,7 @@ class _HomeScreenState extends State<level3> {
                           },
                           onLeave: (receivedItem) {
                             setState(() {
-                              item.accepting = true;
+                              item.accepting = false;
                             });
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
@@ -211,7 +195,7 @@ class _HomeScreenState extends State<level3> {
                   child: TextButton(
                       onPressed: () {
                         setState(() {
-                          initGame1();
+                          initGame();
                         });
                       },
                       // ignore: prefer_const_constructors
@@ -223,7 +207,7 @@ class _HomeScreenState extends State<level3> {
               const SizedBox(
                 height: 20,
               ),
-              if (gameOver && score >= 55)
+              if (gameOver && score >= 20)
                 Container(
                   height: 70,
                   width: 200,
@@ -234,12 +218,12 @@ class _HomeScreenState extends State<level3> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => level4()),
+                          MaterialPageRoute(builder: (context) => level2()),
                         );
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
-                        'الانتقال الي المستوي الرابع',
+                        'الانتقال الي المستوي الثاني',
                         style: const TextStyle(color: Colors.white),
                       )),
                 ),
@@ -259,30 +243,6 @@ class _HomeScreenState extends State<level3> {
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
-                        'الرجوع الي المستوي الثاني',
-                        style: const TextStyle(color: Colors.white),
-                      )),
-                ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (gameOver)
-                Container(
-                  height: 70,
-                  width: 200,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade900,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const gamesHomePage()),
-                        );
-                      },
-                      // ignore: prefer_const_constructors
-                      child: Text(
                         'الرجوع الي صفحة الالعاب',
                         style: const TextStyle(color: Colors.white),
                       )),
@@ -295,7 +255,7 @@ class _HomeScreenState extends State<level3> {
   }
 
   String result() {
-    if (score == 70) {
+    if (score == 30) {
       playBeep('sounds/success.wav');
       return ' !احسنت ';
     } else {

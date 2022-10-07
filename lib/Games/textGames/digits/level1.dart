@@ -1,49 +1,44 @@
-// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
+// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
-import '../../model/item_model.dart';
-import '../gamesHomePage.dart';
 import 'package:flutter/material.dart';
+import '../../../model/item_model.dart';
+import 'level2.dart';
 
-class level2 extends StatefulWidget {
+// ignore: use_key_in_widget_constructors
+class digitsLevel1 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<level2> {
+class _HomeScreenState extends State<digitsLevel1> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
   late bool gameOver;
 
-  initGame1() {
+  initGame() {
     gameOver = false;
     score = 0;
     items = [
       ItemModel(
-          value: 'اربعة',
-          name: 'اربعة',
-          img: 'assets/images/games/numbers/no4.png'),
+          value: 'ألف', name: 'ألف', img: 'assets/images/games/digits/Alf.png'),
       ItemModel(
-          value: 'خمسة',
-          name: 'خمسة',
-          img: 'assets/images/games/numbers/no5.png'),
+          value: 'باء', name: 'باء', img: 'assets/images/games/digits/B.png'),
       ItemModel(
-          value: 'ستة',
-          name: 'ستة',
-          img: 'assets/images/games/numbers/no6.png'),
+          value: 'تاء', name: 'تاء', img: 'assets/images/games/digits/T.png'),
       ItemModel(
-          value: 'سبعة',
-          name: 'سبعة',
-          img: 'assets/images/games/numbers/no7.png'),
+          value: 'ثاء',
+          name: 'ثاء',
+          img: 'assets/images/games/digits/tha2.png'),
       ItemModel(
-          value: 'ثمانية',
-          name: 'ثمانية',
-          img: 'assets/images/games/numbers/no8.png'),
+          value: 'جيم',
+          name: 'جيم',
+          img: 'assets/images/games/digits/geem.png'),
       ItemModel(
-          value: 'تسعة',
-          name: 'تسعة',
-          img: 'assets/images/games/numbers/no9.png'),
+          value: 'حاء', name: 'حاء', img: 'assets/images/games/digits/7a2.png'),
+      ItemModel(
+          value: 'خاء', name: 'خاء', img: 'assets/images/games/digits/5a2.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -54,7 +49,7 @@ class _HomeScreenState extends State<level2> {
   @override
   void initState() {
     super.initState();
-    initGame1();
+    initGame();
   }
 
   @override
@@ -108,7 +103,7 @@ class _HomeScreenState extends State<level2> {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 35,
+                              radius: 30,
                             ),
                           ),
                         );
@@ -143,7 +138,7 @@ class _HomeScreenState extends State<level2> {
                           },
                           onLeave: (receivedItem) {
                             setState(() {
-                              item.accepting = true;
+                              item.accepting = false;
                             });
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
@@ -193,72 +188,70 @@ class _HomeScreenState extends State<level2> {
                           result(),
                         ),
                       ),
-                      if (gameOver)
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                              color: Colors.blue.shade900,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  initGame1();
-                                });
-                              },
-                              // ignore: prefer_const_constructors
-                              child: Text(
-                                'اللعب مجددا',
-                                style: const TextStyle(color: Colors.white),
-                              )),
-                        ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      if (gameOver)
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                              color: Colors.blue.shade900,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              // ignore: prefer_const_constructors
-                              child: Text(
-                                'الرجوع الي المستوي السابق',
-                                style: const TextStyle(color: Colors.white),
-                              )),
-                        ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      if (gameOver)
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                              color: Colors.blue.shade900,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const gamesHomePage()),
-                                );
-                              },
-                              // ignore: prefer_const_constructors
-                              child: Text(
-                                'الرجوع الي صفحة الالعاب',
-                                style: const TextStyle(color: Colors.white),
-                              )),
-                        ),
                     ],
                   ),
+                ),
+              if (gameOver)
+                Container(
+                  height: 70,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.blue.shade900,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          initGame();
+                        });
+                      },
+                      // ignore: prefer_const_constructors
+                      child: Text(
+                        'اللعب مجددا',
+                        style: const TextStyle(color: Colors.white),
+                      )),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
+              if (gameOver && score >= 55)
+                Container(
+                  height: 70,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.blue.shade900,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => level2()),
+                        );
+                      },
+                      // ignore: prefer_const_constructors
+                      child: Text(
+                        'الانتقال الي المستوي الثاني',
+                        style: const TextStyle(color: Colors.white),
+                      )),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
+              if (gameOver)
+                Container(
+                  height: 70,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.blue.shade900,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      // ignore: prefer_const_constructors
+                      child: Text(
+                        'الرجوع الي صفحة الالعاب',
+                        style: const TextStyle(color: Colors.white),
+                      )),
                 ),
             ],
           ),
@@ -268,7 +261,7 @@ class _HomeScreenState extends State<level2> {
   }
 
   String result() {
-    if (score == 60) {
+    if (score == 70) {
       playBeep('sounds/success.wav');
       return ' !احسنت ';
     } else {

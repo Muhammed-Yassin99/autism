@@ -1,8 +1,8 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
-import '../../model/item_model.dart';
-import '../gamesHomePage.dart';
 import 'package:flutter/material.dart';
+import '../../../model/item_model.dart';
+import '../../gamesHomePage1.dart';
 
 class level2 extends StatefulWidget {
   @override
@@ -21,17 +21,29 @@ class _HomeScreenState extends State<level2> {
     score = 0;
     items = [
       ItemModel(
-          value: 'دهشة',
-          name: 'دهشة',
-          img: 'assets/images/games/faces/surprised.png'),
+          value: 'ذئب',
+          name: 'ذئب',
+          img: 'assets/images/games/animals/fox.png'),
       ItemModel(
-          value: 'غاضب',
-          name: 'غاضب',
-          img: 'assets/images/games/faces/angry.png'),
+          value: 'حصان',
+          name: 'حصان',
+          img: 'assets/images/games/animals/horse.png'),
       ItemModel(
-          value: 'هادئ',
-          name: 'هادئ',
-          img: 'assets/images/games/faces/calm.png'),
+          value: 'باندا',
+          name: 'باندا',
+          img: 'assets/images/games/animals/panda.png'),
+      ItemModel(
+          value: 'خاروف',
+          name: 'خاروف',
+          img: 'assets/images/games/animals/sheep.png'),
+      ItemModel(
+          value: 'دجاجة',
+          name: 'دجاجة',
+          img: 'assets/images/games/animals/hen.png'),
+      ItemModel(
+          value: 'جمل',
+          name: 'جمل',
+          img: 'assets/images/games/animals/camel.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -91,12 +103,12 @@ class _HomeScreenState extends State<level2> {
                             feedback: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 50,
+                              radius: 30,
                             ),
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 50,
+                              radius: 35,
                             ),
                           ),
                         );
@@ -255,7 +267,7 @@ class _HomeScreenState extends State<level2> {
   }
 
   String result() {
-    if (score == 30) {
+    if (score == 60) {
       playBeep('sounds/success.wav');
       return ' !احسنت ';
     } else {

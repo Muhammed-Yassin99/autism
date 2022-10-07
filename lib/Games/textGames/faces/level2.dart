@@ -1,44 +1,37 @@
-// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
+// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
+import '../../../model/item_model.dart';
+import '../../gamesHomePage1.dart';
 import 'package:flutter/material.dart';
-import '../../model/item_model.dart';
-import 'level2.dart';
 
-// ignore: use_key_in_widget_constructors
-class digitsLevel1 extends StatefulWidget {
+class level2 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<digitsLevel1> {
+class _HomeScreenState extends State<level2> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
   late bool gameOver;
 
-  initGame() {
+  initGame1() {
     gameOver = false;
     score = 0;
     items = [
       ItemModel(
-          value: 'ألف', name: 'ألف', img: 'assets/images/games/digits/Alf.png'),
+          value: 'دهشة',
+          name: 'دهشة',
+          img: 'assets/images/games/faces/surprised.png'),
       ItemModel(
-          value: 'باء', name: 'باء', img: 'assets/images/games/digits/B.png'),
+          value: 'غاضب',
+          name: 'غاضب',
+          img: 'assets/images/games/faces/angry.png'),
       ItemModel(
-          value: 'تاء', name: 'تاء', img: 'assets/images/games/digits/T.png'),
-      ItemModel(
-          value: 'ثاء',
-          name: 'ثاء',
-          img: 'assets/images/games/digits/tha2.png'),
-      ItemModel(
-          value: 'جيم',
-          name: 'جيم',
-          img: 'assets/images/games/digits/geem.png'),
-      ItemModel(
-          value: 'حاء', name: 'حاء', img: 'assets/images/games/digits/7a2.png'),
-      ItemModel(
-          value: 'خاء', name: 'خاء', img: 'assets/images/games/digits/5a2.png'),
+          value: 'هادئ',
+          name: 'هادئ',
+          img: 'assets/images/games/faces/calm.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -49,7 +42,7 @@ class _HomeScreenState extends State<digitsLevel1> {
   @override
   void initState() {
     super.initState();
-    initGame();
+    initGame1();
   }
 
   @override
@@ -98,12 +91,12 @@ class _HomeScreenState extends State<digitsLevel1> {
                             feedback: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 30,
+                              radius: 50,
                             ),
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 30,
+                              radius: 50,
                             ),
                           ),
                         );
@@ -138,7 +131,7 @@ class _HomeScreenState extends State<digitsLevel1> {
                           },
                           onLeave: (receivedItem) {
                             setState(() {
-                              item.accepting = false;
+                              item.accepting = true;
                             });
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
@@ -201,35 +194,12 @@ class _HomeScreenState extends State<digitsLevel1> {
                   child: TextButton(
                       onPressed: () {
                         setState(() {
-                          initGame();
+                          initGame1();
                         });
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style: const TextStyle(color: Colors.white),
-                      )),
-                ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (gameOver && score >= 55)
-                Container(
-                  height: 70,
-                  width: 200,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade900,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => level2()),
-                        );
-                      },
-                      // ignore: prefer_const_constructors
-                      child: Text(
-                        'الانتقال الي المستوي الثاني',
                         style: const TextStyle(color: Colors.white),
                       )),
                 ),
@@ -249,6 +219,30 @@ class _HomeScreenState extends State<digitsLevel1> {
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
+                        'الرجوع الي المستوي السابق',
+                        style: const TextStyle(color: Colors.white),
+                      )),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
+              if (gameOver)
+                Container(
+                  height: 70,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.blue.shade900,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const gamesHomePage()),
+                        );
+                      },
+                      // ignore: prefer_const_constructors
+                      child: Text(
                         'الرجوع الي صفحة الالعاب',
                         style: const TextStyle(color: Colors.white),
                       )),
@@ -261,7 +255,7 @@ class _HomeScreenState extends State<digitsLevel1> {
   }
 
   String result() {
-    if (score == 70) {
+    if (score == 30) {
       playBeep('sounds/success.wav');
       return ' !احسنت ';
     } else {
