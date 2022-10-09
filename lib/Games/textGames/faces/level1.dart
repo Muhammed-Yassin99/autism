@@ -2,7 +2,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
-import 'level2.dart';
+//import 'level2.dart';
 
 // ignore: use_key_in_widget_constructors
 class facesLevel1 extends StatefulWidget {
@@ -24,15 +24,18 @@ class _HomeScreenState extends State<facesLevel1> {
       ItemModel(
           value: 'بكاء',
           name: 'بكاء',
-          img: 'assets/images/games/faces/cry.png'),
+          img: 'assets/images/games/faces/cry.png',
+          sound: 'sounds/learn/faces/crying.wav'),
       ItemModel(
           value: 'سعيد',
           name: 'سعيد',
-          img: 'assets/images/games/faces/happy.png'),
+          img: 'assets/images/games/faces/happy.png',
+          sound: 'sounds/learn/faces/boyHappy.wav'),
       ItemModel(
           value: 'حزين',
           name: 'حزين',
-          img: 'assets/images/games/faces/sad.png'),
+          img: 'assets/images/games/faces/sad.png',
+          sound: 'sounds/learn/faces/boySad.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -50,9 +53,11 @@ class _HomeScreenState extends State<facesLevel1> {
   Widget build(BuildContext context) {
     if (items.isEmpty) gameOver = true;
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: Container(
+        color: Colors.teal,
+        child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -60,15 +65,18 @@ class _HomeScreenState extends State<facesLevel1> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Score: ',
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      TextSpan(
                         text: '$score',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            ?.copyWith(color: Colors.teal),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const TextSpan(
+                        text: ' :النقاط',
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -137,22 +145,26 @@ class _HomeScreenState extends State<facesLevel1> {
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
                               Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: item.accepting
-                                        ? Colors.grey[400]
-                                        : Colors.grey[200],
-                                  ),
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: const EdgeInsets.all(8),
-                                  child: Text(
-                                    item.name,
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  )),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: item.accepting
+                                  ? Colors.grey[400]
+                                  : Colors.grey[200],
+                            ),
+                            alignment: Alignment.center,
+                            height: MediaQuery.of(context).size.width / 6.5,
+                            width: MediaQuery.of(context).size.width / 3,
+                            margin: const EdgeInsets.all(8),
+                            child: TextButton(
+                                onPressed: () {
+                                  playBeep(item.sound);
+                                },
+                                // ignore: prefer_const_constructors
+                                child: Text(
+                                  item.name,
+                                  style: Theme.of(context).textTheme.headline6,
+                                )),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -167,7 +179,7 @@ class _HomeScreenState extends State<facesLevel1> {
                         padding: EdgeInsets.all(2.0),
                         child: Text('انتهت اللعبة',
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 38,
                               fontWeight: FontWeight.bold,
                               color: Colors.red,
                             )),
@@ -188,7 +200,7 @@ class _HomeScreenState extends State<facesLevel1> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -201,7 +213,8 @@ class _HomeScreenState extends State<facesLevel1> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -210,7 +223,7 @@ class _HomeScreenState extends State<facesLevel1> {
               if (gameOver && score >= 20)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -218,13 +231,15 @@ class _HomeScreenState extends State<facesLevel1> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => level2()),
+                          MaterialPageRoute(
+                              builder: (context) => facesLevel1()),
                         );
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الانتقال الي المستوي الثاني',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -233,7 +248,7 @@ class _HomeScreenState extends State<facesLevel1> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -244,7 +259,8 @@ class _HomeScreenState extends State<facesLevel1> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي صفحة الالعاب',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
             ],
