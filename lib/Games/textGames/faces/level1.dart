@@ -171,7 +171,7 @@ class _HomeScreenState extends State<facesLevel1> {
                                     const SizedBox(
                                       width: 20,
                                     ),
-                                    const Icon(Icons.settings_voice),
+                                    const Icon(Icons.volume_up_sharp),
                                   ],
                                 )),
                           ),
