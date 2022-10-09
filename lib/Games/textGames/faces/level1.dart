@@ -160,9 +160,19 @@ class _HomeScreenState extends State<facesLevel1> {
                                   playBeep(item.sound);
                                 },
                                 // ignore: prefer_const_constructors
-                                child: Text(
-                                  item.name,
-                                  style: Theme.of(context).textTheme.headline6,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.name,
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    const Icon(Icons.settings_voice),
+                                  ],
                                 )),
                           ),
                         );
