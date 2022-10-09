@@ -36,7 +36,7 @@ class gamesHomePage extends StatelessWidget {
         ),
         // ignore: prefer_const_literals_to_create_immutables
         actions: [
-          const SizedBox(width: 12),
+          const SizedBox(width: 18),
         ],
       ),
       body: Container(
@@ -53,7 +53,7 @@ class gamesHomePage extends StatelessWidget {
                     ),
                   ),
                   SliverPadding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(6.0),
                     sliver: SliverGrid(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(

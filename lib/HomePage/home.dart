@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
         ),
         // ignore: prefer_const_literals_to_create_immutables
         actions: [
-          const SizedBox(width: 12),
+          const SizedBox(width: 18),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(80),
