@@ -45,7 +45,7 @@ class learnNumbers5 extends StatelessWidget {
             child: Stack(children: [
           Positioned(
             right: 80,
-            top: 10,
+            top: 25,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -60,8 +60,8 @@ class learnNumbers5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/numbers/no8.jpg"),
-                    height: 190,
-                    width: 200,
+                    height: 220,
+                    width: 240,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -80,7 +80,7 @@ class learnNumbers5 extends StatelessWidget {
           ),
           Positioned(
             right: 80,
-            top: 275,
+            top: 370,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -95,8 +95,8 @@ class learnNumbers5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/numbers/no9.jpg"),
-                    height: 190,
-                    width: 200,
+                    height: 220,
+                    width: 240,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -115,7 +115,7 @@ class learnNumbers5 extends StatelessWidget {
           ),
           Positioned(
             left: 10,
-            top: 235,
+            top: 310,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -127,7 +127,7 @@ class learnNumbers5 extends StatelessWidget {
           ),
           Positioned(
             right: 10,
-            top: 0,
+            top: 10,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
