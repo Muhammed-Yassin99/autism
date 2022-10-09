@@ -43,8 +43,8 @@ class learnThemes2 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 60,
-            top: 10,
+            right: 70,
+            top: 25,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -59,8 +59,8 @@ class learnThemes2 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/eating.jpg"),
-                    height: 170,
-                    width: 250,
+                    height: 220,
+                    width: 290,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -78,8 +78,8 @@ class learnThemes2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 60,
-            top: 275,
+            right: 70,
+            top: 370,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -94,8 +94,8 @@ class learnThemes2 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/party.jpg"),
-                    height: 170,
-                    width: 250,
+                    height: 220,
+                    width: 290,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -114,7 +114,7 @@ class learnThemes2 extends StatelessWidget {
           ),
           Positioned(
             left: 0,
-            top: 235,
+            top: 310,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -125,8 +125,8 @@ class learnThemes2 extends StatelessWidget {
                 child: const Icon(Icons.navigate_before_sharp)),
           ),
           Positioned(
-            right: 0,
-            top: 0,
+            right: 10,
+            top: 10,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
