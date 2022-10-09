@@ -2,7 +2,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
-//import 'level2.dart';
+import 'level2.dart';
 
 // ignore: use_key_in_widget_constructors
 class facesLevel1 extends StatefulWidget {
@@ -30,12 +30,12 @@ class _HomeScreenState extends State<facesLevel1> {
           value: 'سعيد',
           name: 'سعيد',
           img: 'assets/images/games/faces/happy.png',
-          sound: 'sounds/learn/faces/boyHappy.wav'),
+          sound: 'sounds/learn/faces/Happy.wav'),
       ItemModel(
           value: 'حزين',
           name: 'حزين',
           img: 'assets/images/games/faces/sad.png',
-          sound: 'sounds/learn/faces/boySad.wav'),
+          sound: 'sounds/learn/faces/Sad.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -241,8 +241,7 @@ class _HomeScreenState extends State<facesLevel1> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => facesLevel1()),
+                          MaterialPageRoute(builder: (context) => level2()),
                         );
                       },
                       // ignore: prefer_const_constructors

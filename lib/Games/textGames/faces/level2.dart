@@ -23,15 +23,18 @@ class _HomeScreenState extends State<level2> {
       ItemModel(
           value: 'دهشة',
           name: 'دهشة',
-          img: 'assets/images/games/faces/surprised.png'),
+          img: 'assets/images/games/faces/surprised.png',
+          sound: 'sounds/learn/faces/surprised.wav'),
       ItemModel(
           value: 'غاضب',
           name: 'غاضب',
-          img: 'assets/images/games/faces/angry.png'),
+          img: 'assets/images/games/faces/angry.png',
+          sound: 'sounds/learn/faces/angry.wav'),
       ItemModel(
           value: 'هادئ',
           name: 'هادئ',
-          img: 'assets/images/games/faces/calm.png'),
+          img: 'assets/images/games/faces/calm.png',
+          sound: 'sounds/learn/faces/calm.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -136,22 +139,36 @@ class _HomeScreenState extends State<level2> {
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
                               Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: item.accepting
-                                        ? Colors.grey[400]
-                                        : Colors.grey[200],
-                                  ),
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: const EdgeInsets.all(8),
-                                  child: Text(
-                                    item.name,
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  )),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: item.accepting
+                                  ? Colors.grey[400]
+                                  : Colors.grey[200],
+                            ),
+                            alignment: Alignment.center,
+                            height: MediaQuery.of(context).size.width / 6.5,
+                            width: MediaQuery.of(context).size.width / 3,
+                            margin: const EdgeInsets.all(8),
+                            child: TextButton(
+                                onPressed: () {
+                                  playBeep(item.sound);
+                                },
+                                // ignore: prefer_const_constructors
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.name,
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    const Icon(Icons.volume_up_sharp),
+                                  ],
+                                )),
+                          ),
                         );
                       }).toList(),
                     ),
