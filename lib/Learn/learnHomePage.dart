@@ -37,7 +37,7 @@ class learnHomePage extends StatelessWidget {
         ),
         // ignore: prefer_const_literals_to_create_immutables
         actions: [
-          const SizedBox(width: 12),
+          const SizedBox(width: 18),
         ],
       ),
       body: Container(
@@ -54,14 +54,14 @@ class learnHomePage extends StatelessWidget {
                     ),
                   ),
                   SliverPadding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(6.0),
                     sliver: SliverGrid(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                childAspectRatio: 1.2,
+                                childAspectRatio: 1,
                                 crossAxisSpacing: 10.0,
-                                mainAxisSpacing: 10.0),
+                                mainAxisSpacing: 25.0),
                         delegate: SliverChildBuilderDelegate(
                           _buildCategoryItem,
                           childCount: learn_categories.length,
@@ -81,7 +81,7 @@ class learnHomePage extends StatelessWidget {
       highlightElevation: 1.0,
       onPressed: () => _categoryPressed(context, category),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(100.0),
+        borderRadius: BorderRadius.circular(68.0),
       ),
       //color: const Color.fromARGB(255, 121, 23, 139),
       color: Colors.teal,
@@ -90,7 +90,7 @@ class learnHomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(category.icon, height: 90, width: 200),
+          Image.asset(category.icon, height: 120, width: 200),
           const SizedBox(height: 5.0),
           Text(
             style: const TextStyle(
