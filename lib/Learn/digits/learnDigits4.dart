@@ -47,7 +47,7 @@ class learnDigits4 extends StatelessWidget {
             child: Stack(children: [
           Positioned(
             right: 35,
-            top: 60,
+            top: 70,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -62,8 +62,8 @@ class learnDigits4 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/digits/sheen.jpg"),
-                    height: 120,
-                    width: 130,
+                    height: 150,
+                    width: 160,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -82,7 +82,7 @@ class learnDigits4 extends StatelessWidget {
           ),
           Positioned(
             left: 35,
-            top: 60,
+            top: 70,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -97,8 +97,8 @@ class learnDigits4 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/saad.jpg"),
-                    height: 120,
-                    width: 130,
+                    height: 150,
+                    width: 160,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -117,7 +117,7 @@ class learnDigits4 extends StatelessWidget {
           ),
           Positioned(
             right: 35,
-            top: 315,
+            top: 380,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -132,8 +132,8 @@ class learnDigits4 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/daad.jpg"),
-                    height: 120,
-                    width: 130,
+                    height: 150,
+                    width: 160,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -152,7 +152,7 @@ class learnDigits4 extends StatelessWidget {
           ),
           Positioned(
             left: 35,
-            top: 315,
+            top: 380,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -167,8 +167,8 @@ class learnDigits4 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/taah.jpg"),
-                    height: 120,
-                    width: 130,
+                    height: 150,
+                    width: 160,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -187,7 +187,7 @@ class learnDigits4 extends StatelessWidget {
           ),
           Positioned(
             left: 10,
-            top: 250,
+            top: 310,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -199,7 +199,7 @@ class learnDigits4 extends StatelessWidget {
           ),
           Positioned(
             right: 10,
-            top: 250,
+            top: 310,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -211,7 +211,7 @@ class learnDigits4 extends StatelessWidget {
           ),
           Positioned(
             right: 10,
-            top: 0,
+            top: 10,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
