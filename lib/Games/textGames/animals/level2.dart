@@ -23,27 +23,33 @@ class _HomeScreenState extends State<level2> {
       ItemModel(
           value: 'ذئب',
           name: 'ذئب',
-          img: 'assets/images/games/animals/fox.png'),
+          img: 'assets/images/games/animals/fox.png',
+          sound: 'sounds/learn/animals/fox.wav'),
       ItemModel(
           value: 'حصان',
           name: 'حصان',
-          img: 'assets/images/games/animals/horse.png'),
+          img: 'assets/images/games/animals/horse.png',
+          sound: 'sounds/learn/animals/horse.wav'),
       ItemModel(
           value: 'باندا',
           name: 'باندا',
-          img: 'assets/images/games/animals/panda.png'),
+          img: 'assets/images/games/animals/panda.png',
+          sound: 'sounds/learn/animals/panda.wav'),
       ItemModel(
           value: 'خاروف',
           name: 'خاروف',
-          img: 'assets/images/games/animals/sheep.png'),
+          img: 'assets/images/games/animals/sheep.png',
+          sound: 'sounds/learn/animals/sheep.wav'),
       ItemModel(
           value: 'دجاجة',
           name: 'دجاجة',
-          img: 'assets/images/games/animals/hen.png'),
+          img: 'assets/images/games/animals/hen.png',
+          sound: 'sounds/learn/animals/hen.wav'),
       ItemModel(
           value: 'جمل',
           name: 'جمل',
-          img: 'assets/images/games/animals/camel.png'),
+          img: 'assets/images/games/animals/camel.png',
+          sound: 'sounds/learn/animals/camel.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -62,8 +68,10 @@ class _HomeScreenState extends State<level2> {
     if (items.isEmpty) gameOver = true;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Container(
+          color: Colors.teal,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -71,15 +79,18 @@ class _HomeScreenState extends State<level2> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Score: ',
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      TextSpan(
                         text: '$score',
                         style: Theme.of(context)
                             .textTheme
                             .headline2
-                            ?.copyWith(color: Colors.teal),
+                            ?.copyWith(color: Colors.black),
+                      ),
+                      const TextSpan(
+                        text: ' :النقاط',
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -148,22 +159,36 @@ class _HomeScreenState extends State<level2> {
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
                               Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: item.accepting
-                                        ? Colors.grey[400]
-                                        : Colors.grey[200],
-                                  ),
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: const EdgeInsets.all(8),
-                                  child: Text(
-                                    item.name,
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  )),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: item.accepting
+                                  ? Colors.grey[400]
+                                  : Colors.grey[200],
+                            ),
+                            alignment: Alignment.center,
+                            height: MediaQuery.of(context).size.width / 6.5,
+                            width: MediaQuery.of(context).size.width / 3,
+                            margin: const EdgeInsets.all(8),
+                            child: TextButton(
+                                onPressed: () {
+                                  playBeep(item.sound);
+                                },
+                                // ignore: prefer_const_constructors
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.name,
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    const Icon(Icons.volume_up_sharp),
+                                  ],
+                                )),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -199,7 +224,7 @@ class _HomeScreenState extends State<level2> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -212,7 +237,8 @@ class _HomeScreenState extends State<level2> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -221,7 +247,7 @@ class _HomeScreenState extends State<level2> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -232,7 +258,8 @@ class _HomeScreenState extends State<level2> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي المستوي السابق',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -241,7 +268,7 @@ class _HomeScreenState extends State<level2> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -256,7 +283,8 @@ class _HomeScreenState extends State<level2> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي صفحة الالعاب',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
             ],

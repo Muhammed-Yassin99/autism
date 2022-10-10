@@ -71,6 +71,7 @@ class _HomeScreenState extends State<level2> {
         child: Container(
           color: Colors.teal,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
