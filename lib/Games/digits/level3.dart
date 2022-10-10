@@ -1,15 +1,16 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
-import '../../../model/item_model.dart';
-import '../../gamesHomePage1.dart';
 import 'package:flutter/material.dart';
+import '../../../model/item_model.dart';
+import '../gamesHomePage1.dart';
+import 'level4.dart';
 
-class level2 extends StatefulWidget {
+class level3 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<level2> {
+class _HomeScreenState extends State<level3> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
@@ -21,20 +22,40 @@ class _HomeScreenState extends State<level2> {
     score = 0;
     items = [
       ItemModel(
-          value: 'دهشة',
-          name: 'دهشة',
-          img: 'assets/images/games/faces/surprised.png',
-          sound: 'sounds/learn/faces/surprised.wav'),
+          value: 'ضاد',
+          name: 'ضاد',
+          img: 'assets/images/games/digits/daad.png',
+          sound: 'sounds/learn/digits/daad.wav'),
       ItemModel(
-          value: 'غاضب',
-          name: 'غاضب',
-          img: 'assets/images/games/faces/angry.png',
-          sound: 'sounds/learn/faces/angry.wav'),
+          value: 'طاء',
+          name: 'طاء',
+          img: 'assets/images/games/digits/taah.png',
+          sound: 'sounds/learn/digits/taah.wav'),
       ItemModel(
-          value: 'هادئ',
-          name: 'هادئ',
-          img: 'assets/images/games/faces/calm.png',
-          sound: 'sounds/learn/faces/calm.wav'),
+          value: 'ظاء',
+          name: 'ظاء',
+          img: 'assets/images/games/digits/zaah.png',
+          sound: 'sounds/learn/digits/zaah.wav'),
+      ItemModel(
+          value: 'عين',
+          name: 'عين',
+          img: 'assets/images/games/digits/3ean.png',
+          sound: 'sounds/learn/digits/3ean.wav'),
+      ItemModel(
+          value: 'غين',
+          name: 'غين',
+          img: 'assets/images/games/digits/8ean.png',
+          sound: 'sounds/learn/digits/8ean.wav'),
+      ItemModel(
+          value: 'فاء',
+          name: 'فاء',
+          img: 'assets/images/games/digits/faa2.png',
+          sound: 'sounds/learn/digits/faa2.wav'),
+      ItemModel(
+          value: 'قاف',
+          name: 'قاف',
+          img: 'assets/images/games/digits/qaaf.png',
+          sound: 'sounds/learn/digits/qaaf.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -53,7 +74,8 @@ class _HomeScreenState extends State<level2> {
     if (items.isEmpty) gameOver = true;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Container(
+          color: Colors.teal,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -98,12 +120,12 @@ class _HomeScreenState extends State<level2> {
                             feedback: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 50,
+                              radius: 30,
                             ),
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(item.img),
-                              radius: 50,
+                              radius: 30,
                             ),
                           ),
                         );
@@ -228,6 +250,30 @@ class _HomeScreenState extends State<level2> {
               const SizedBox(
                 height: 20,
               ),
+              if (gameOver && score >= 55)
+                Container(
+                  height: 70,
+                  width: 300,
+                  decoration: BoxDecoration(
+                      color: Colors.blue.shade900,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => level4()),
+                        );
+                      },
+                      // ignore: prefer_const_constructors
+                      child: Text(
+                        'الانتقال الي المستوي الرابع',
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
+                      )),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
               if (gameOver)
                 Container(
                   height: 70,
@@ -241,7 +287,7 @@ class _HomeScreenState extends State<level2> {
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
-                        'الرجوع الي المستوي السابق',
+                        'الرجوع الي المستوي الثاني',
                         style:
                             const TextStyle(color: Colors.white, fontSize: 26),
                       )),
@@ -279,7 +325,7 @@ class _HomeScreenState extends State<level2> {
   }
 
   String result() {
-    if (score == 30) {
+    if (score == 70) {
       playBeep('sounds/success.wav');
       return ' !احسنت ';
     } else {

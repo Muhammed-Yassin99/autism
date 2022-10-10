@@ -1,8 +1,8 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
-import '../../gamesHomePage1.dart';
+import '../gamesHomePage1.dart';
+import 'package:flutter/material.dart';
 
 class level2 extends StatefulWidget {
   @override
@@ -21,35 +21,35 @@ class _HomeScreenState extends State<level2> {
     score = 0;
     items = [
       ItemModel(
-          value: 'ذئب',
-          name: 'ذئب',
-          img: 'assets/images/games/animals/fox.png',
-          sound: 'sounds/learn/animals/fox.wav'),
+          value: 'اربعة',
+          name: 'اربعة',
+          img: 'assets/images/games/numbers/no4.png',
+          sound: 'sounds/learn/numbers/no4.wav'),
       ItemModel(
-          value: 'حصان',
-          name: 'حصان',
-          img: 'assets/images/games/animals/horse.png',
-          sound: 'sounds/learn/animals/horse.wav'),
+          value: 'خمسة',
+          name: 'خمسة',
+          img: 'assets/images/games/numbers/no5.png',
+          sound: 'sounds/learn/numbers/no5.wav'),
       ItemModel(
-          value: 'باندا',
-          name: 'باندا',
-          img: 'assets/images/games/animals/panda.png',
-          sound: 'sounds/learn/animals/panda.wav'),
+          value: 'ستة',
+          name: 'ستة',
+          img: 'assets/images/games/numbers/no6.png',
+          sound: 'sounds/learn/numbers/no6.wav'),
       ItemModel(
-          value: 'خاروف',
-          name: 'خاروف',
-          img: 'assets/images/games/animals/sheep.png',
-          sound: 'sounds/learn/animals/sheep.wav'),
+          value: 'سبعة',
+          name: 'سبعة',
+          img: 'assets/images/games/numbers/no7.png',
+          sound: 'sounds/learn/numbers/no7.wav'),
       ItemModel(
-          value: 'دجاجة',
-          name: 'دجاجة',
-          img: 'assets/images/games/animals/hen.png',
-          sound: 'sounds/learn/animals/hen.wav'),
+          value: 'ثمانية',
+          name: 'ثمانية',
+          img: 'assets/images/games/numbers/no8.png',
+          sound: 'sounds/learn/numbers/no8.wav'),
       ItemModel(
-          value: 'جمل',
-          name: 'جمل',
-          img: 'assets/images/games/animals/camel.png',
-          sound: 'sounds/learn/animals/camel.wav'),
+          value: 'تسعة',
+          name: 'تسعة',
+          img: 'assets/images/games/numbers/no9.png',
+          sound: 'sounds/learn/numbers/no9.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -218,74 +218,75 @@ class _HomeScreenState extends State<level2> {
                           result(),
                         ),
                       ),
+                      if (gameOver)
+                        Container(
+                          height: 70,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Colors.blue.shade900,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  initGame1();
+                                });
+                              },
+                              // ignore: prefer_const_constructors
+                              child: Text(
+                                'اللعب مجددا',
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 26),
+                              )),
+                        ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (gameOver)
+                        Container(
+                          height: 70,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Colors.blue.shade900,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              // ignore: prefer_const_constructors
+                              child: Text(
+                                'الرجوع الي المستوي السابق',
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 26),
+                              )),
+                        ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (gameOver)
+                        Container(
+                          height: 70,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Colors.blue.shade900,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const gamesHomePage()),
+                                );
+                              },
+                              // ignore: prefer_const_constructors
+                              child: Text(
+                                'الرجوع الي صفحة الالعاب',
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 26),
+                              )),
+                        ),
                     ],
                   ),
-                ),
-              if (gameOver)
-                Container(
-                  height: 70,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade900,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          initGame1();
-                        });
-                      },
-                      // ignore: prefer_const_constructors
-                      child: Text(
-                        'اللعب مجددا',
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 26),
-                      )),
-                ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (gameOver)
-                Container(
-                  height: 70,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade900,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      // ignore: prefer_const_constructors
-                      child: Text(
-                        'الرجوع الي المستوي السابق',
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 26),
-                      )),
-                ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (gameOver)
-                Container(
-                  height: 70,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade900,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const gamesHomePage()),
-                        );
-                      },
-                      // ignore: prefer_const_constructors
-                      child: Text(
-                        'الرجوع الي صفحة الالعاب',
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 26),
-                      )),
                 ),
             ],
           ),

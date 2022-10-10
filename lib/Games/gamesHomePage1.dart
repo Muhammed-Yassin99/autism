@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
-import 'textGames/animals/level1.dart';
-import 'textGames/digits/level1.dart';
-import 'textGames/faces/level1.dart';
-import 'textGames/family/level1.dart';
-import 'textGames/numbers/level1.dart';
+import 'animals/level1.dart';
+import 'digits/level1.dart';
+import 'faces/level1.dart';
+import 'family/level1.dart';
+import 'numbers/level1.dart';
 
 class gamesHomePage extends StatelessWidget {
   const gamesHomePage({super.key});

@@ -1,62 +1,60 @@
-// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
+// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
-import '../../gamesHomePage1.dart';
-import 'level3.dart';
+import '../gamesHomePage1.dart';
+import 'package:flutter/material.dart';
 
-// ignore: use_key_in_widget_constructors
-class level2 extends StatefulWidget {
+class level4 extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<level2> {
+class _HomeScreenState extends State<level4> {
   final player = AudioPlayer();
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
   late bool gameOver;
 
-  initGame() {
+  initGame1() {
     gameOver = false;
     score = 0;
     items = [
       ItemModel(
-          value: 'دال',
-          name: 'دال',
-          img: 'assets/images/games/digits/dal.png',
-          sound: 'sounds/learn/digits/dal.wav'),
+          value: 'كاف',
+          name: 'كاف',
+          img: 'assets/images/games/digits/kaaf.png',
+          sound: 'sounds/learn/digits/kaaf.wav'),
       ItemModel(
-          value: 'ذال',
-          name: 'ذال',
-          img: 'assets/images/games/digits/zal.png',
-          sound: 'sounds/learn/digits/zal.wav'),
+          value: 'لام',
+          name: 'لام',
+          img: 'assets/images/games/digits/laam.png',
+          sound: 'sounds/learn/digits/laam.wav'),
       ItemModel(
-          value: 'راء',
-          name: 'راء',
-          img: 'assets/images/games/digits/raa2.png',
-          sound: 'sounds/learn/digits/raa2.wav'),
+          value: 'ميم',
+          name: 'ميم',
+          img: 'assets/images/games/digits/meem.png',
+          sound: 'sounds/learn/digits/meem.wav'),
       ItemModel(
-          value: 'زال',
-          name: 'زال',
-          img: 'assets/images/games/digits/zeen.png',
-          sound: 'sounds/learn/digits/zeen.wav'),
+          value: 'نون',
+          name: 'نون',
+          img: 'assets/images/games/digits/noon.png',
+          sound: 'sounds/learn/digits/noon.wav'),
       ItemModel(
-          value: 'سين',
-          name: 'سين',
-          img: 'assets/images/games/digits/seen.png',
-          sound: 'sounds/learn/digits/seen.wav'),
+          value: 'هاء',
+          name: 'هاء',
+          img: 'assets/images/games/digits/heah.png',
+          sound: 'sounds/learn/digits/heah.wav'),
       ItemModel(
-          value: 'شين',
-          name: 'شين',
-          img: 'assets/images/games/digits/sheen.png',
-          sound: 'sounds/learn/digits/sheen.wav'),
+          value: 'واو',
+          name: 'واو',
+          img: 'assets/images/games/digits/waw.png',
+          sound: 'sounds/learn/digits/waw.wav'),
       ItemModel(
-          value: 'صاد',
-          name: 'صاد',
-          img: 'assets/images/games/digits/saad.png',
-          sound: 'sounds/learn/digits/saad.wav'),
+          value: 'ياء',
+          name: 'ياء',
+          img: 'assets/images/games/digits/yeah.png',
+          sound: 'sounds/learn/digits/yeah.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -67,7 +65,7 @@ class _HomeScreenState extends State<level2> {
   @override
   void initState() {
     super.initState();
-    initGame();
+    initGame1();
   }
 
   @override
@@ -85,6 +83,10 @@ class _HomeScreenState extends State<level2> {
                 child: Text.rich(
                   TextSpan(
                     children: [
+                      TextSpan(
+                        text: 'Score: ',
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
                       TextSpan(
                         text: '$score',
                         style: Theme.of(context)
@@ -161,7 +163,7 @@ class _HomeScreenState extends State<level2> {
                           },
                           onLeave: (receivedItem) {
                             setState(() {
-                              item.accepting = false;
+                              item.accepting = true;
                             });
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
@@ -238,36 +240,12 @@ class _HomeScreenState extends State<level2> {
                   child: TextButton(
                       onPressed: () {
                         setState(() {
-                          initGame();
+                          initGame1();
                         });
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 26),
-                      )),
-                ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (gameOver && score >= 55)
-                Container(
-                  height: 70,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      color: Colors.blue.shade900,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => level3()),
-                        );
-                      },
-                      // ignore: prefer_const_constructors
-                      child: Text(
-                        'الانتقال الي المستوي الثالث',
                         style:
                             const TextStyle(color: Colors.white, fontSize: 26),
                       )),
@@ -288,7 +266,7 @@ class _HomeScreenState extends State<level2> {
                       },
                       // ignore: prefer_const_constructors
                       child: Text(
-                        'الرجوع الي المستوي  الاول',
+                        'الرجوع الي المستوي الثالث',
                         style:
                             const TextStyle(color: Colors.white, fontSize: 26),
                       )),

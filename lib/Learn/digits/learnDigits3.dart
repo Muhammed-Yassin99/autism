@@ -70,7 +70,7 @@ class learnDigits3 extends StatelessWidget {
                     height: 10,
                   ),
                   const Text(
-                    'زال',
+                    'ذال',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.amber,
