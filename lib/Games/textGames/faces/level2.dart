@@ -204,7 +204,7 @@ class _HomeScreenState extends State<level2> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -217,7 +217,8 @@ class _HomeScreenState extends State<level2> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -226,7 +227,7 @@ class _HomeScreenState extends State<level2> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -237,7 +238,8 @@ class _HomeScreenState extends State<level2> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي المستوي السابق',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -246,7 +248,7 @@ class _HomeScreenState extends State<level2> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -261,7 +263,8 @@ class _HomeScreenState extends State<level2> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي صفحة الالعاب',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
             ],
