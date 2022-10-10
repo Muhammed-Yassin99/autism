@@ -22,33 +22,40 @@ class _HomeScreenState extends State<level3> {
     score = 0;
     items = [
       ItemModel(
-          value: 'ضاض',
-          name: 'ضاض',
-          img: 'assets/images/games/digits/daad.png'),
+          value: 'ضاد',
+          name: 'ضاد',
+          img: 'assets/images/games/digits/daad.png',
+          sound: 'sounds/learn/digits/daad.wav'),
       ItemModel(
           value: 'طاء',
           name: 'طاء',
-          img: 'assets/images/games/digits/taah.png'),
+          img: 'assets/images/games/digits/taah.png',
+          sound: 'sounds/learn/digits/taah.wav'),
       ItemModel(
           value: 'ظاء',
           name: 'ظاء',
-          img: 'assets/images/games/digits/zaah.png'),
+          img: 'assets/images/games/digits/zaah.png',
+          sound: 'sounds/learn/digits/zaah.wav'),
       ItemModel(
           value: 'عين',
           name: 'عين',
-          img: 'assets/images/games/digits/3ean.png'),
+          img: 'assets/images/games/digits/3ean.png',
+          sound: 'sounds/learn/digits/3ean.wav'),
       ItemModel(
           value: 'غين',
           name: 'غين',
-          img: 'assets/images/games/digits/8ean.png'),
+          img: 'assets/images/games/digits/8ean.png',
+          sound: 'sounds/learn/digits/8ean.wav'),
       ItemModel(
           value: 'فاء',
           name: 'فاء',
-          img: 'assets/images/games/digits/faa2.png'),
+          img: 'assets/images/games/digits/faa2.png',
+          sound: 'sounds/learn/digits/faa2.wav'),
       ItemModel(
           value: 'قاف',
           name: 'قاف',
-          img: 'assets/images/games/digits/qaaf.png'),
+          img: 'assets/images/games/digits/qaaf.png',
+          sound: 'sounds/learn/digits/qaaf.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -67,8 +74,10 @@ class _HomeScreenState extends State<level3> {
     if (items.isEmpty) gameOver = true;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Container(
+          color: Colors.teal,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -76,15 +85,18 @@ class _HomeScreenState extends State<level3> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Score: ',
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      TextSpan(
                         text: '$score',
                         style: Theme.of(context)
                             .textTheme
                             .headline2
-                            ?.copyWith(color: Colors.teal),
+                            ?.copyWith(color: Colors.black),
+                      ),
+                      const TextSpan(
+                        text: ' :النقاط',
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -153,22 +165,36 @@ class _HomeScreenState extends State<level3> {
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
                               Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: item.accepting
-                                        ? Colors.grey[400]
-                                        : Colors.grey[200],
-                                  ),
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: const EdgeInsets.all(8),
-                                  child: Text(
-                                    item.name,
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  )),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: item.accepting
+                                  ? Colors.grey[400]
+                                  : Colors.grey[200],
+                            ),
+                            alignment: Alignment.center,
+                            height: MediaQuery.of(context).size.width / 6.5,
+                            width: MediaQuery.of(context).size.width / 3,
+                            margin: const EdgeInsets.all(8),
+                            child: TextButton(
+                                onPressed: () {
+                                  playBeep(item.sound);
+                                },
+                                // ignore: prefer_const_constructors
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.name,
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    const Icon(Icons.volume_up_sharp),
+                                  ],
+                                )),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -192,7 +218,7 @@ class _HomeScreenState extends State<level3> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           style: const TextStyle(
-                            fontSize: 24,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                           result(),
@@ -204,7 +230,7 @@ class _HomeScreenState extends State<level3> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -217,7 +243,8 @@ class _HomeScreenState extends State<level3> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -226,7 +253,7 @@ class _HomeScreenState extends State<level3> {
               if (gameOver && score >= 55)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -240,7 +267,8 @@ class _HomeScreenState extends State<level3> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الانتقال الي المستوي الرابع',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -249,7 +277,7 @@ class _HomeScreenState extends State<level3> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -260,7 +288,8 @@ class _HomeScreenState extends State<level3> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي المستوي الثاني',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -269,7 +298,7 @@ class _HomeScreenState extends State<level3> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -284,7 +313,8 @@ class _HomeScreenState extends State<level3> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي صفحة الالعاب',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
             ],
