@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 //import 'textGames/animals/level1.dart';
-//import 'textGames/digits/level1.dart';
 import 'textGames/faces/level1.dart';
+import 'textGames/family/level1.dart';
+import 'textGames/numbers/level1.dart';
 //import 'textGames/family/level1.dart';
-//import 'textGames/numbers/level1.dart';
 
 class gamesHomePage extends StatelessWidget {
   const gamesHomePage({super.key});
@@ -110,10 +110,6 @@ class gamesHomePage extends StatelessWidget {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => facesLevel1()));
     }
-    /*if (category.id == 5) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => animalsLevel1()));
-    }
     if (category.id == 4) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => familyLevel1()));
@@ -122,6 +118,11 @@ class gamesHomePage extends StatelessWidget {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => numbersLevel1()));
     }
+    /*if (category.id == 5) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => animalsLevel1()));
+    }
+    
     if (category.id == 2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => digitsLevel1()));

@@ -24,19 +24,23 @@ class _HomeScreenState extends State<numbersLevel1> {
       ItemModel(
           value: 'صفر',
           name: 'صفر',
-          img: 'assets/images/games/numbers/no0.png'),
+          img: 'assets/images/games/numbers/no0.png',
+          sound: 'sounds/learn/numbers/no0.wav'),
       ItemModel(
           value: 'واحد',
           name: 'واحد',
-          img: 'assets/images/games/numbers/no1.png'),
+          img: 'assets/images/games/numbers/no1.png',
+          sound: 'sounds/learn/numbers/no1.wav'),
       ItemModel(
           value: 'اثنان',
           name: 'اثنان',
-          img: 'assets/images/games/numbers/no2.png'),
+          img: 'assets/images/games/numbers/no2.png',
+          sound: 'sounds/learn/numbers/no2.wav'),
       ItemModel(
           value: 'ثلاثة',
           name: 'ثلاثة',
-          img: 'assets/images/games/numbers/no3.png'),
+          img: 'assets/images/games/numbers/no3.png',
+          sound: 'sounds/learn/numbers/no3.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -55,8 +59,10 @@ class _HomeScreenState extends State<numbersLevel1> {
     if (items.isEmpty) gameOver = true;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Container(
+          color: Colors.teal,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -64,15 +70,18 @@ class _HomeScreenState extends State<numbersLevel1> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Score: ',
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      TextSpan(
                         text: '$score',
                         style: Theme.of(context)
                             .textTheme
                             .headline2
-                            ?.copyWith(color: Colors.teal),
+                            ?.copyWith(color: Colors.black),
+                      ),
+                      const TextSpan(
+                        text: ' :النقاط',
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -141,22 +150,36 @@ class _HomeScreenState extends State<numbersLevel1> {
                           },
                           builder: (context, acceptedItems, rejectedItems) =>
                               Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: item.accepting
-                                        ? Colors.grey[400]
-                                        : Colors.grey[200],
-                                  ),
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  margin: const EdgeInsets.all(8),
-                                  child: Text(
-                                    item.name,
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  )),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: item.accepting
+                                  ? Colors.grey[400]
+                                  : Colors.grey[200],
+                            ),
+                            alignment: Alignment.center,
+                            height: MediaQuery.of(context).size.width / 6.5,
+                            width: MediaQuery.of(context).size.width / 3,
+                            margin: const EdgeInsets.all(8),
+                            child: TextButton(
+                                onPressed: () {
+                                  playBeep(item.sound);
+                                },
+                                // ignore: prefer_const_constructors
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.name,
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    const Icon(Icons.volume_up_sharp),
+                                  ],
+                                )),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -192,7 +215,7 @@ class _HomeScreenState extends State<numbersLevel1> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -205,7 +228,8 @@ class _HomeScreenState extends State<numbersLevel1> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'اللعب مجددا',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -214,7 +238,7 @@ class _HomeScreenState extends State<numbersLevel1> {
               if (gameOver && score >= 30)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -228,7 +252,8 @@ class _HomeScreenState extends State<numbersLevel1> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الانتقال الي المستوي الثاني',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
               const SizedBox(
@@ -237,7 +262,7 @@ class _HomeScreenState extends State<numbersLevel1> {
               if (gameOver)
                 Container(
                   height: 70,
-                  width: 200,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.blue.shade900,
                       borderRadius: BorderRadius.circular(8)),
@@ -248,7 +273,8 @@ class _HomeScreenState extends State<numbersLevel1> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'الرجوع الي صفحة الالعاب',
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 26),
                       )),
                 ),
             ],
