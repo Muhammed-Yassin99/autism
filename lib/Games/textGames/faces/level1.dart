@@ -198,7 +198,7 @@ class _HomeScreenState extends State<facesLevel1> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           style: const TextStyle(
-                            fontSize: 24,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                           result(),
