@@ -1,21 +1,22 @@
 // ignore_for_file: duplicate_import
 import 'package:flutter/material.dart';
-import 'HomePage/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'routes/router.gr.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences.getInstance().then((instance) {});
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Home Page',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
-      //TEST
-    );
+    return MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: _appRouter.delegate());
   }
 }
