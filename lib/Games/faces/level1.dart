@@ -27,18 +27,18 @@ class _HomeScreenState extends State<facesLevel1> {
         value: 'بكاء',
         name: 'بكاء',
         img: 'assets/images/games/faces/cry.png',
-        sound: 'sounds/learn/faces/crying.wav',
+        sound: 'sounds/learn/faces/cry.wav',
       ),
       ItemModel(
           value: 'سعيد',
           name: 'سعيد',
           img: 'assets/images/games/faces/happy.png',
-          sound: 'sounds/learn/faces/Happy.wav'),
+          sound: 'sounds/learn/faces/happy.wav'),
       ItemModel(
           value: 'حزين',
           name: 'حزين',
           img: 'assets/images/games/faces/sad.png',
-          sound: 'sounds/learn/faces/Sad.wav'),
+          sound: 'sounds/learn/faces/sad.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<facesLevel1> {
           value: 'دهشة',
           name: 'دهشة',
           img: 'assets/images/games/faces/surprised.png',
-          sound: 'sounds/learn/faces/surprised.wav'),
+          sound: 'sounds/learn/faces/surprise.wav'),
       ItemModel(
           value: 'غاضب',
           name: 'غاضب',

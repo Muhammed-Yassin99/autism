@@ -265,6 +265,12 @@ flutter:
      - assets/sounds/learn/themes/reading.wav
      - assets/sounds/learn/themes/eating.wav
      - assets/sounds/learn/themes/playing.wav
+     - assets/sounds/learn/faces/angry.wav
+     - assets/sounds/learn/faces/happy.wav
+     - assets/sounds/learn/faces/sad.wav
+     - assets/sounds/learn/faces/calm.wav
+     - assets/sounds/learn/faces/surprise.wav
+     - assets/sounds/learn/faces/cry.wav
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

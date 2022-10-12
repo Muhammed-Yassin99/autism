@@ -1,11 +1,9 @@
 // ignore_for_file: duplicate_import
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'routes/router.gr.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences.getInstance().then((instance) {});
   runApp(MyApp());
 }
 
