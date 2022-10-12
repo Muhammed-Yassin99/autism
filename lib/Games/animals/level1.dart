@@ -1,5 +1,8 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
 import '../../HomePage/home.dart';
@@ -12,6 +15,7 @@ class animalsLevel1 extends StatefulWidget {
 
 class _HomeScreenState extends State<animalsLevel1> {
   final player = AudioPlayer();
+  final controller = ConfettiController();
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
@@ -117,7 +121,16 @@ class _HomeScreenState extends State<animalsLevel1> {
         child: Container(
             color: Colors.teal,
             child: Stack(
+              alignment: Alignment.topCenter,
               children: [
+                ConfettiWidget(
+                  confettiController: controller,
+                  shouldLoop: false,
+                  blastDirectionality: BlastDirectionality.explosive,
+                  numberOfParticles: 20,
+                  emissionFrequency: 0.09,
+                  gravity: 1,
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -186,6 +199,9 @@ class _HomeScreenState extends State<animalsLevel1> {
                                     score += 10;
                                     item.accepting = false;
                                     playBeep('sounds/true.wav');
+                                    controller.play();
+                                    Timer(const Duration(seconds: 2),
+                                        (() => controller.stop()));
                                   } else {
                                     setState(() {
                                       score -= 5;
