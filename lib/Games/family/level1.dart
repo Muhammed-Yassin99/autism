@@ -15,11 +15,13 @@ class _HomeScreenState extends State<familyLevel1> {
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
+  late int lvl;
   late bool gameOver;
 
-  initGame() {
+  initGame1() {
     gameOver = false;
     score = 0;
+    lvl = 1;
     items = [
       ItemModel(
           value: 'اخ',
@@ -51,12 +53,15 @@ class _HomeScreenState extends State<familyLevel1> {
   @override
   void initState() {
     super.initState();
-    initGame();
+    initGame1();
   }
 
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) gameOver = true;
+    if (gameOver) {
+      initGame1();
+    }
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -118,7 +123,7 @@ class _HomeScreenState extends State<familyLevel1> {
                               );
                             }).toList(),
                           ),
-                          const Spacer(flex: 2),
+                          const Spacer(flex: 1),
                           Column(
                             children: items2.map((item) {
                               return DragTarget<ItemModel>(
@@ -162,7 +167,8 @@ class _HomeScreenState extends State<familyLevel1> {
                                   alignment: Alignment.center,
                                   height:
                                       MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
+                                  width:
+                                      MediaQuery.of(context).size.width / 3.2,
                                   margin: const EdgeInsets.all(8),
                                   child: TextButton(
                                       onPressed: () {
@@ -191,73 +197,6 @@ class _HomeScreenState extends State<familyLevel1> {
                           ),
                           const Spacer(),
                         ],
-                      ),
-                    if (gameOver)
-                      Center(
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text('انتهت اللعبة',
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red,
-                                  )),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                style: const TextStyle(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                result(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                initGame();
-                              });
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'اللعب مجددا',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
-                      ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'الرجوع الي صفحة الالعاب',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
                       ),
                   ],
                 ),

@@ -3,7 +3,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
 import '../../HomePage/home.dart';
-import 'level2.dart';
 
 // ignore: use_key_in_widget_constructors
 class digitsLevel1 extends StatefulWidget {
@@ -16,11 +15,13 @@ class _HomeScreenState extends State<digitsLevel1> {
   late List<ItemModel> items;
   late List<ItemModel> items2;
   late int score;
+  late int lvl;
   late bool gameOver;
 
-  initGame() {
+  initGame1() {
     gameOver = false;
     score = 0;
+    lvl = 1;
     items = [
       ItemModel(
           value: 'ألف',
@@ -64,15 +65,177 @@ class _HomeScreenState extends State<digitsLevel1> {
     items2.shuffle();
   }
 
+  initGame2() {
+    gameOver = false;
+    score = 0;
+    lvl = 2;
+    items = [
+      ItemModel(
+          value: 'دال',
+          name: 'دال',
+          img: 'assets/images/games/digits/dal.png',
+          sound: 'sounds/learn/digits/dal.wav'),
+      ItemModel(
+          value: 'ذال',
+          name: 'ذال',
+          img: 'assets/images/games/digits/zal.png',
+          sound: 'sounds/learn/digits/zal.wav'),
+      ItemModel(
+          value: 'راء',
+          name: 'راء',
+          img: 'assets/images/games/digits/raa2.png',
+          sound: 'sounds/learn/digits/raa2.wav'),
+      ItemModel(
+          value: 'زال',
+          name: 'زال',
+          img: 'assets/images/games/digits/zeen.png',
+          sound: 'sounds/learn/digits/zeen.wav'),
+      ItemModel(
+          value: 'سين',
+          name: 'سين',
+          img: 'assets/images/games/digits/seen.png',
+          sound: 'sounds/learn/digits/seen.wav'),
+      ItemModel(
+          value: 'شين',
+          name: 'شين',
+          img: 'assets/images/games/digits/sheen.png',
+          sound: 'sounds/learn/digits/sheen.wav'),
+      ItemModel(
+          value: 'صاد',
+          name: 'صاد',
+          img: 'assets/images/games/digits/saad.png',
+          sound: 'sounds/learn/digits/saad.wav'),
+    ];
+    items2 = List<ItemModel>.from(items);
+
+    items.shuffle();
+    items2.shuffle();
+  }
+
+  initGame3() {
+    gameOver = false;
+    score = 0;
+    lvl = 3;
+    items = [
+      ItemModel(
+          value: 'ضاد',
+          name: 'ضاد',
+          img: 'assets/images/games/digits/daad.png',
+          sound: 'sounds/learn/digits/daad.wav'),
+      ItemModel(
+          value: 'طاء',
+          name: 'طاء',
+          img: 'assets/images/games/digits/taah.png',
+          sound: 'sounds/learn/digits/taah.wav'),
+      ItemModel(
+          value: 'ظاء',
+          name: 'ظاء',
+          img: 'assets/images/games/digits/zaah.png',
+          sound: 'sounds/learn/digits/zaah.wav'),
+      ItemModel(
+          value: 'عين',
+          name: 'عين',
+          img: 'assets/images/games/digits/3ean.png',
+          sound: 'sounds/learn/digits/3ean.wav'),
+      ItemModel(
+          value: 'غين',
+          name: 'غين',
+          img: 'assets/images/games/digits/8ean.png',
+          sound: 'sounds/learn/digits/8ean.wav'),
+      ItemModel(
+          value: 'فاء',
+          name: 'فاء',
+          img: 'assets/images/games/digits/faa2.png',
+          sound: 'sounds/learn/digits/faa2.wav'),
+      ItemModel(
+          value: 'قاف',
+          name: 'قاف',
+          img: 'assets/images/games/digits/qaaf.png',
+          sound: 'sounds/learn/digits/qaaf.wav'),
+    ];
+    items2 = List<ItemModel>.from(items);
+
+    items.shuffle();
+    items2.shuffle();
+  }
+
+  initGame4() {
+    gameOver = false;
+    score = 0;
+    lvl = 4;
+    items = [
+      ItemModel(
+          value: 'كاف',
+          name: 'كاف',
+          img: 'assets/images/games/digits/kaaf.png',
+          sound: 'sounds/learn/digits/kaaf.wav'),
+      ItemModel(
+          value: 'لام',
+          name: 'لام',
+          img: 'assets/images/games/digits/laam.png',
+          sound: 'sounds/learn/digits/laam.wav'),
+      ItemModel(
+          value: 'ميم',
+          name: 'ميم',
+          img: 'assets/images/games/digits/meem.png',
+          sound: 'sounds/learn/digits/meem.wav'),
+      ItemModel(
+          value: 'نون',
+          name: 'نون',
+          img: 'assets/images/games/digits/noon.png',
+          sound: 'sounds/learn/digits/noon.wav'),
+      ItemModel(
+          value: 'هاء',
+          name: 'هاء',
+          img: 'assets/images/games/digits/heah.png',
+          sound: 'sounds/learn/digits/heah.wav'),
+      ItemModel(
+          value: 'واو',
+          name: 'واو',
+          img: 'assets/images/games/digits/waw.png',
+          sound: 'sounds/learn/digits/waw.wav'),
+      ItemModel(
+          value: 'ياء',
+          name: 'ياء',
+          img: 'assets/images/games/digits/yeah.png',
+          sound: 'sounds/learn/digits/yeah.wav'),
+    ];
+    items2 = List<ItemModel>.from(items);
+    items.shuffle();
+    items2.shuffle();
+  }
+
   @override
   void initState() {
     super.initState();
-    initGame();
+    initGame1();
   }
 
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) gameOver = true;
+    if (gameOver && score < 55) {
+      if (lvl == 1) {
+        initGame1();
+      } else if (lvl == 2) {
+        initGame2();
+      } else if (lvl == 3) {
+        initGame3();
+      } else if (lvl == 4) {
+        initGame4();
+      }
+    }
+    if (gameOver && score >= 55) {
+      if (lvl == 1) {
+        initGame2();
+      } else if (lvl == 2) {
+        initGame3();
+      } else if (lvl == 3) {
+        initGame4();
+      } else if (lvl == 4) {
+        initGame4();
+      }
+    }
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -134,7 +297,7 @@ class _HomeScreenState extends State<digitsLevel1> {
                               );
                             }).toList(),
                           ),
-                          const Spacer(flex: 2),
+                          const Spacer(flex: 1),
                           Column(
                             children: items2.map((item) {
                               return DragTarget<ItemModel>(
@@ -178,7 +341,8 @@ class _HomeScreenState extends State<digitsLevel1> {
                                   alignment: Alignment.center,
                                   height:
                                       MediaQuery.of(context).size.width / 6.5,
-                                  width: MediaQuery.of(context).size.width / 3,
+                                  width:
+                                      MediaQuery.of(context).size.width / 3.2,
                                   margin: const EdgeInsets.all(8),
                                   child: TextButton(
                                       onPressed: () {
@@ -208,98 +372,6 @@ class _HomeScreenState extends State<digitsLevel1> {
                           const Spacer(),
                         ],
                       ),
-                    if (gameOver)
-                      Center(
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text('انتهت اللعبة',
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red,
-                                  )),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                style: const TextStyle(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                result(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                initGame();
-                              });
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'اللعب مجددا',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 27),
-                            )),
-                      ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (gameOver && score >= 55)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => level2()),
-                              );
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'الانتقال الي المستوي الثاني',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
-                      ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'الرجوع الي صفحة الالعاب',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
-                      ),
                   ],
                 ),
                 Positioned(
@@ -320,6 +392,42 @@ class _HomeScreenState extends State<digitsLevel1> {
                         size: 50,
                       )),
                 ),
+                if (lvl == 2)
+                  Positioned(
+                    left: 0,
+                    top: 420,
+                    child: FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            initGame1();
+                          });
+                        },
+                        child: const Icon(Icons.navigate_before_sharp)),
+                  ),
+                if (lvl == 3)
+                  Positioned(
+                    left: 0,
+                    top: 420,
+                    child: FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            initGame2();
+                          });
+                        },
+                        child: const Icon(Icons.navigate_before_sharp)),
+                  ),
+                if (lvl == 4)
+                  Positioned(
+                    left: 0,
+                    top: 420,
+                    child: FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            initGame3();
+                          });
+                        },
+                        child: const Icon(Icons.navigate_before_sharp)),
+                  ),
               ],
             )),
       ),

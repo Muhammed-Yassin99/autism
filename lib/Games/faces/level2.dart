@@ -2,7 +2,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import '../../../model/item_model.dart';
 import '../../HomePage/home.dart';
-import '../gamesHomePage1.dart';
 import 'package:flutter/material.dart';
 
 class level2 extends StatefulWidget {
@@ -17,7 +16,7 @@ class _HomeScreenState extends State<level2> {
   late int score;
   late bool gameOver;
 
-  initGame1() {
+  initGame2() {
     gameOver = false;
     score = 0;
     items = [
@@ -46,7 +45,7 @@ class _HomeScreenState extends State<level2> {
   @override
   void initState() {
     super.initState();
-    initGame1();
+    initGame2();
   }
 
   @override
@@ -187,99 +186,6 @@ class _HomeScreenState extends State<level2> {
                           const Spacer(),
                         ],
                       ),
-                    if (gameOver)
-                      Center(
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(2.0),
-                              child: Text('انتهت اللعبة',
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red,
-                                  )),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                style: const TextStyle(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                result(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                initGame1();
-                              });
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'اللعب مجددا',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
-                      ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'الرجوع الي المستوي السابق',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
-                      ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (gameOver)
-                      Container(
-                        height: 70,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.blue.shade900,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const gamesHomePage()),
-                              );
-                            },
-                            // ignore: prefer_const_constructors
-                            child: Text(
-                              'الرجوع الي صفحة الالعاب',
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
-                            )),
-                      ),
                   ],
                 ),
                 Positioned(
@@ -299,6 +205,17 @@ class _HomeScreenState extends State<level2> {
                         color: Colors.blue,
                         size: 50,
                       )),
+                ),
+                Positioned(
+                  left: 0,
+                  top: 420,
+                  child: FloatingActionButton(
+                      onPressed: () {
+                        setState(() {
+                          initGame2();
+                        });
+                      },
+                      child: const Icon(Icons.navigate_before_sharp)),
                 ),
               ],
             )),
