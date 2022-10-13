@@ -1,8 +1,13 @@
-// ignore_for_file: camel_case_types, file_names
+// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore
 import 'package:flutter/material.dart';
+import 'PhysCard.dart';
+import 'skill.dart';
 
 class skillsHomePage extends StatelessWidget {
-  const skillsHomePage({super.key});
+  skillsHomePage({super.key});
+  int seletedItem = 0;
+  var pages = [const PhysCard(), const skills()];
+  var pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +37,33 @@ class skillsHomePage extends StatelessWidget {
         actions: [
           const SizedBox(width: 18),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            alignment: Alignment.centerRight,
-          ),
-        ),
+      ),
+      body: PageView(
+        children: pages,
+        onPageChanged: (index) {
+          setState(() {
+            seletedItem = index;
+          });
+        },
+        controller: pageController,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          // ignore: prefer_const_constructors
+          BottomNavigationBarItem(icon: Icon(Icons.home), icon: Text('Home')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.photo), label: const Text('Photos')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle), title: Text('Profile'))
+        ],
+        currentIndex: seletedItem,
+        onTap: (index) {
+          setState(() {
+            seletedItem = index;
+            pageController.animateToPage(seletedItem,
+                duration: Duration(milliseconds: 200), curve: Curves.linear);
+          });
+        },
       ),
     );
   }
