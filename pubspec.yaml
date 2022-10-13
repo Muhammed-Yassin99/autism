@@ -40,6 +40,16 @@ dependencies:
   auto_route: ^5.0.1
   flutter_settings_screens: ^0.3.3-null-safety+2
   confetti: ^0.7.0
+  jiffy: ^5.0.0
+  image_picker: ^0.8.6
+  http: ^0.13.5
+  firebase_core: ^1.24.0
+  firebase_storage: ^10.3.11
+  cloud_firestore: ^3.5.1
+  firebase_messaging: ^13.1.0
+  firebase_auth: ^3.11.2
+  awesome_dialog: ^3.0.2
+  dropdown_search: ^5.0.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -40,7 +40,8 @@ class gamesHomePage extends StatelessWidget {
         ],
       ),
       body: Container(
-          color: const Color.fromARGB(164, 0, 0, 0),
+          //color: const Color.fromARGB(164, 0, 0, 0),
+          color: const Color.fromARGB(255, 12, 79, 135),
           child: Stack(
             children: [
               CustomScrollView(

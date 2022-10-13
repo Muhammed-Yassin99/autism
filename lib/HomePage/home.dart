@@ -3,6 +3,7 @@ import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
+import '../skills/skillsHomePage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -45,7 +46,8 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Container(
-          color: const Color.fromARGB(164, 0, 0, 0),
+          //color: const Color.fromARGB(164, 0, 0, 0),
+          color: const Color.fromARGB(255, 12, 79, 135),
           child: Stack(
             children: [
               const SizedBox(height: 8),
@@ -140,6 +142,10 @@ class HomePage extends StatelessWidget {
     if (category.id == 1) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const learnHomePage()));
+    }
+    if (category.id == 3) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const skillsHomePage()));
     }
   }
 }
