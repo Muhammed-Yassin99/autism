@@ -1,13 +1,24 @@
-// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore
+// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import 'PhysCard.dart';
 import 'skill.dart';
 
-class skillsHomePage extends StatelessWidget {
-  skillsHomePage({super.key});
+class skillsHomePage extends StatefulWidget {
+  const skillsHomePage({super.key});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<skillsHomePage> {
   int seletedItem = 0;
   var pages = [const PhysCard(), const skills()];
   var pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,32 +49,34 @@ class skillsHomePage extends StatelessWidget {
           const SizedBox(width: 18),
         ],
       ),
-      body: PageView(
-        children: pages,
-        onPageChanged: (index) {
-          setState(() {
-            seletedItem = index;
-          });
-        },
-        controller: pageController,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          // ignore: prefer_const_constructors
-          BottomNavigationBarItem(icon: Icon(Icons.home), icon: Text('Home')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.photo), label: const Text('Photos')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle), title: Text('Profile'))
-        ],
-        currentIndex: seletedItem,
-        onTap: (index) {
-          setState(() {
-            seletedItem = index;
-            pageController.animateToPage(seletedItem,
-                duration: Duration(milliseconds: 200), curve: Curves.linear);
-          });
-        },
+      body: Container(
+        color: Colors.amber,
+        child: PageView(
+          children: pages,
+          onPageChanged: (index) {
+            setState(() {
+              seletedItem = index;
+            });
+          },
+          controller: pageController,
+        ),
+        BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            // ignore: prefer_const_constructors
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Photos'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle), label: 'Profile')
+          ],
+          currentIndex: seletedItem,
+          onTap: (index) {
+            setState(() {
+              seletedItem = index;
+              pageController.animateToPage(seletedItem,
+                  duration: Duration(milliseconds: 200), curve: Curves.linear);
+            });
+          },
+        ),
       ),
     );
   }
