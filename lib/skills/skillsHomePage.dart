@@ -50,34 +50,38 @@ class _HomeScreenState extends State<skillsHomePage> {
         ],
       ),
       body: Container(
-        color: Colors.amber,
-        child: PageView(
-          children: pages,
-          onPageChanged: (index) {
-            setState(() {
-              seletedItem = index;
-            });
-          },
-          controller: pageController,
-        ),
-        BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            // ignore: prefer_const_constructors
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.photo), label: 'Photos'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle), label: 'Profile')
-          ],
-          currentIndex: seletedItem,
-          onTap: (index) {
-            setState(() {
-              seletedItem = index;
-              pageController.animateToPage(seletedItem,
-                  duration: Duration(milliseconds: 200), curve: Curves.linear);
-            });
-          },
-        ),
-      ),
+          color: Colors.amber,
+          child: Stack(
+            children: [
+              PageView(
+                children: pages,
+                onPageChanged: (index) {
+                  setState(() {
+                    seletedItem = index;
+                  });
+                },
+                controller: pageController,
+              ),
+              BottomNavigationBar(
+                items: <BottomNavigationBarItem>[
+                  // ignore: prefer_const_constructors
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.home), label: 'الكروت'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.photo), label: 'المهارات'),
+                ],
+                currentIndex: seletedItem,
+                onTap: (index) {
+                  setState(() {
+                    seletedItem = index;
+                    pageController.animateToPage(seletedItem,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.linear);
+                  });
+                },
+              ),
+            ],
+          )),
     );
   }
 }
