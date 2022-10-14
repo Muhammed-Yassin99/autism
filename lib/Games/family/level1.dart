@@ -193,10 +193,16 @@ class _HomeScreenState extends State<familyLevel1> {
                                         MediaQuery.of(context).size.width / 3.2,
                                     margin: const EdgeInsets.all(8),
                                     child: TextButton(
-                                        onPressed: () {
-                                          playBeep(item.sound);
-                                        },
-                                        // ignore: prefer_const_constructors
+                                      onPressed: () {
+                                        playBeep(item.sound);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize:
+                                            const Size.fromHeight(50), // NEW
+                                      ),
+                                      // ignore: prefer_const_constructors
+                                      child: Container(
+                                        alignment: Alignment.center,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -212,7 +218,9 @@ class _HomeScreenState extends State<familyLevel1> {
                                             ),
                                             const Icon(Icons.volume_up_sharp),
                                           ],
-                                        )),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 );
                               }).toList(),
