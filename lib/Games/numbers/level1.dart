@@ -117,7 +117,11 @@ class _HomeScreenState extends State<numbersLevel1> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-            color: Colors.teal,
+          color: Colors.teal,
+          height: MediaQuery.of(context).size.height * 1,
+          width: MediaQuery.of(context).size.width * 1,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
@@ -295,7 +299,9 @@ class _HomeScreenState extends State<numbersLevel1> {
                         child: const Icon(Icons.navigate_before_sharp)),
                   ),
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -119,7 +119,8 @@ class _HomeScreenState extends State<animalsLevel1> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-            color: Colors.teal,
+          color: Colors.teal,
+          child: SingleChildScrollView(
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
@@ -297,7 +298,9 @@ class _HomeScreenState extends State<animalsLevel1> {
                         child: const Icon(Icons.navigate_before_sharp)),
                   ),
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
