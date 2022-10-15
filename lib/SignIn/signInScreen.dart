@@ -52,9 +52,9 @@ class _SignInScreenState extends State<signInScreen> {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "Sign In", () {
+                firebaseUIButton(context, "Sign In", () async {
                   try {
-                    FirebaseAuth.instance
+                    await FirebaseAuth.instance
                         .signInWithEmailAndPassword(
                             email: _emailTextController.text,
                             password: _passwordTextController.text)
@@ -64,20 +64,31 @@ class _SignInScreenState extends State<signInScreen> {
                           MaterialPageRoute(
                               builder: (context) => const HomePage()));
                     });
-                  } on FirebaseException catch (e) {
                     if (kDebugMode) {
-                      print(e.code);
-                      print('No user found for that email.');
+                      //print(userCredential);
                     }
-                    if (e.code == 'user-not-found') {
-                      alert('No user found for that email.');
-                      print('No user found for that email.');
-                      print(e.code);
-                    } else if (e.code == 'wrong-password') {
-                      alert("No user found for that email.");
+                  } on FirebaseAuthException catch (e) {
+                    if (kDebugMode) {
+                      print(e.toString());
+                    }
+                    if (e.code == 'invalid-email') {
+                      alert('invalid-email format');
                       if (kDebugMode) {
-                        print('Wrong password provided for that user.');
+                        print('invalid-email format');
                       }
+                    } else if (e.code == 'user-not-found') {
+                      alert('user-not-found');
+                      if (kDebugMode) {
+                        print('user-not-found');
+                      }
+                    } else if (e.code == 'wrong-password') {
+                      alert("5ra");
+                      setState(() {
+                        alert('No matching account with such a password');
+                        if (kDebugMode) {
+                          print('Wrong password provided for that user.');
+                        }
+                      });
                     }
                   }
                 }),
@@ -129,9 +140,8 @@ class _SignInScreenState extends State<signInScreen> {
 
   Widget alert(String msg) {
     return Container(
-      alignment: Alignment.topCenter,
+      //alignment: Alignment.topCenter,
       color: Colors.amberAccent,
-      width: double.infinity,
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: <Widget>[

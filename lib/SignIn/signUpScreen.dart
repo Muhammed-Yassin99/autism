@@ -62,28 +62,80 @@ class _SignUpScreenState extends State<signUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
+                firebaseUIButton(context, "Sign Up", () async {
+                  try {
+                    await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      if (kDebugMode) {
+                        print('Account Created Successfully');
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    });
                     if (kDebugMode) {
-                      print("Created New Account");
+                      //print(userCredential);
                     }
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                  }).onError((error, stackTrace) {
+                  } on FirebaseAuthException catch (e) {
                     if (kDebugMode) {
-                      print("Error ${error.toString()}");
+                      print(e.toString());
                     }
-                  });
-                })
+                    if (e.code == 'invalid-email') {
+                      alert('invalid-email format');
+                      if (kDebugMode) {
+                        print('invalid-email format');
+                      }
+                    } else if (e.code == 'weak-password') {
+                      alert("5ra");
+                      setState(() {
+                        alert('weak-password, Try using a stronger password');
+                        if (kDebugMode) {
+                          print('weak-password, Try using a stronger password');
+                        }
+                      });
+                    }
+                  }
+                }),
               ],
             ),
           ))),
+    );
+  }
+
+  Widget alert(String msg) {
+    return Container(
+      //alignment: Alignment.topCenter,
+      color: Colors.amberAccent,
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: Icon(Icons.error_outline),
+          ),
+          const Expanded(
+            child: Text(
+              'msg',
+              maxLines: 3,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () {
+                setState(() {
+                  msg = "";
+                });
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }
