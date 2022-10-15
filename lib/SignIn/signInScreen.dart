@@ -53,20 +53,33 @@ class _SignInScreenState extends State<signInScreen> {
                 ),
                 forgetPassword(context),
                 firebaseUIButton(context, "Sign In", () {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                  }).onError((error, stackTrace) {
+                  try {
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    });
+                  } on FirebaseException catch (e) {
                     if (kDebugMode) {
-                      print("Error ${error.toString()}");
+                      print(e.code);
+                      print('No user found for that email.');
                     }
-                  });
+                    if (e.code == 'user-not-found') {
+                      alert('No user found for that email.');
+                      print('No user found for that email.');
+                      print(e.code);
+                    } else if (e.code == 'wrong-password') {
+                      alert("No user found for that email.");
+                      if (kDebugMode) {
+                        print('Wrong password provided for that user.');
+                      }
+                    }
+                  }
                 }),
                 signUpOption()
               ],
@@ -110,6 +123,40 @@ class _SignInScreenState extends State<signInScreen> {
         ),
         onPressed: () => Navigator.push(context,
             MaterialPageRoute(builder: (context) => const resetPass())),
+      ),
+    );
+  }
+
+  Widget alert(String msg) {
+    return Container(
+      alignment: Alignment.topCenter,
+      color: Colors.amberAccent,
+      width: double.infinity,
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: Icon(Icons.error_outline),
+          ),
+          const Expanded(
+            child: Text(
+              'msg',
+              maxLines: 3,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () {
+                setState(() {
+                  msg = "";
+                });
+              },
+            ),
+          )
+        ],
       ),
     );
   }
