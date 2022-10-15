@@ -282,6 +282,7 @@ flutter:
      - assets/sounds/learn/faces/calm.wav
      - assets/sounds/learn/faces/surprise.wav
      - assets/sounds/learn/faces/cry.wav
+     - assets/images/HomePage/signInLogo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
