@@ -18,6 +18,7 @@ class _SignUpScreenState extends State<signUpScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _userNameTextController = TextEditingController();
+  String errorMSG = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +53,7 @@ class _SignUpScreenState extends State<signUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email Id", Icons.person_outline, false,
+                reusableTextField("Enter Email ", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -77,22 +78,14 @@ class _SignUpScreenState extends State<signUpScreen> {
                           MaterialPageRoute(
                               builder: (context) => const HomePage()));
                     });
-                    if (kDebugMode) {
-                      //print(userCredential);
-                    }
                   } on FirebaseAuthException catch (e) {
-                    if (kDebugMode) {
-                      print(e.toString());
-                    }
+                    errorMSG = e.code;
                     if (e.code == 'invalid-email') {
-                      alert('invalid-email format');
                       if (kDebugMode) {
                         print('invalid-email format');
                       }
                     } else if (e.code == 'weak-password') {
-                      alert("5ra");
                       setState(() {
-                        alert('weak-password, Try using a stronger password');
                         if (kDebugMode) {
                           print('weak-password, Try using a stronger password');
                         }
@@ -100,13 +93,17 @@ class _SignUpScreenState extends State<signUpScreen> {
                     }
                   }
                 }),
+                const SizedBox(
+                  height: 20,
+                ),
+                if (errorMSG != "") alert(),
               ],
             ),
           ))),
     );
   }
 
-  Widget alert(String msg) {
+  Widget alert() {
     return Container(
       //alignment: Alignment.topCenter,
       color: Colors.amberAccent,
@@ -117,9 +114,9 @@ class _SignUpScreenState extends State<signUpScreen> {
             padding: EdgeInsets.only(right: 8.0),
             child: Icon(Icons.error_outline),
           ),
-          const Expanded(
+          Expanded(
             child: Text(
-              'msg',
+              errorMSG,
               maxLines: 3,
             ),
           ),
@@ -129,7 +126,7 @@ class _SignUpScreenState extends State<signUpScreen> {
               icon: const Icon(Icons.close),
               onPressed: () {
                 setState(() {
-                  msg = "";
+                  errorMSG = "";
                 });
               },
             ),

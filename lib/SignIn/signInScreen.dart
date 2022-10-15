@@ -19,6 +19,7 @@ class signInScreen extends StatefulWidget {
 class _SignInScreenState extends State<signInScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
+  String errorMSG = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +38,7 @@ class _SignInScreenState extends State<signInScreen> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
+                if (errorMSG != "") alert(),
                 logoWidget("assets/images/HomePage/signInLogo.png"),
                 const SizedBox(
                   height: 30,
@@ -64,27 +66,21 @@ class _SignInScreenState extends State<signInScreen> {
                           MaterialPageRoute(
                               builder: (context) => const HomePage()));
                     });
-                    if (kDebugMode) {
-                      //print(userCredential);
-                    }
                   } on FirebaseAuthException catch (e) {
+                    errorMSG = e.code;
                     if (kDebugMode) {
                       print(e.toString());
                     }
                     if (e.code == 'invalid-email') {
-                      alert('invalid-email format');
                       if (kDebugMode) {
                         print('invalid-email format');
                       }
                     } else if (e.code == 'user-not-found') {
-                      alert('user-not-found');
                       if (kDebugMode) {
                         print('user-not-found');
                       }
                     } else if (e.code == 'wrong-password') {
-                      alert("5ra");
                       setState(() {
-                        alert('No matching account with such a password');
                         if (kDebugMode) {
                           print('Wrong password provided for that user.');
                         }
@@ -92,7 +88,7 @@ class _SignInScreenState extends State<signInScreen> {
                     }
                   }
                 }),
-                signUpOption()
+                signUpOption(),
               ],
             ),
           ),
@@ -138,7 +134,7 @@ class _SignInScreenState extends State<signInScreen> {
     );
   }
 
-  Widget alert(String msg) {
+  Widget alert() {
     return Container(
       //alignment: Alignment.topCenter,
       color: Colors.amberAccent,
@@ -149,9 +145,9 @@ class _SignInScreenState extends State<signInScreen> {
             padding: EdgeInsets.only(right: 8.0),
             child: Icon(Icons.error_outline),
           ),
-          const Expanded(
+          Expanded(
             child: Text(
-              'msg',
+              errorMSG,
               maxLines: 3,
             ),
           ),
@@ -161,7 +157,7 @@ class _SignInScreenState extends State<signInScreen> {
               icon: const Icon(Icons.close),
               onPressed: () {
                 setState(() {
-                  msg = "";
+                  errorMSG = "";
                 });
               },
             ),
