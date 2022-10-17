@@ -43,18 +43,18 @@ class _SignInScreenState extends State<signInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
-                    _emailTextController),
+                reusableTextField("أدخل أسم المستخدم", Icons.person_outline,
+                    false, _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Password", Icons.lock_outline, true,
+                reusableTextField("أدخل كلمة المرور", Icons.lock_outline, true,
                     _passwordTextController),
                 const SizedBox(
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "Sign In", () async {
+                firebaseUIButton(context, "تسجيل", () async {
                   try {
                     await FirebaseAuth.instance
                         .signInWithEmailAndPassword(
@@ -101,18 +101,17 @@ class _SignInScreenState extends State<signInScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have account?",
-            style: TextStyle(color: Colors.white70)),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const signUpScreen()));
           },
           child: const Text(
-            " Sign Up",
+            " انشاء حساب",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-        )
+        ),
+        const Text("ليس لديك حساب؟", style: TextStyle(color: Colors.white70))
       ],
     );
   }
@@ -124,7 +123,7 @@ class _SignInScreenState extends State<signInScreen> {
       alignment: Alignment.bottomRight,
       child: TextButton(
         child: const Text(
-          "Forgot Password?",
+          "نسيت كلمة المرور؟",
           style: TextStyle(color: Colors.white70),
           textAlign: TextAlign.right,
         ),

@@ -49,6 +49,7 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
     child: ElevatedButton(
       onPressed: () async {
+        //TextEditingController().clear();
         onTap();
       },
       style: ButtonStyle(

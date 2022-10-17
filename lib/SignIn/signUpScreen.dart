@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<signUpScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Sign Up",
+          "أنشاء حساب",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
@@ -48,22 +48,22 @@ class _SignUpScreenState extends State<signUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
-                    _userNameTextController),
+                reusableTextField("أدخل أسم المستخدم", Icons.person_outline,
+                    false, _userNameTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email ", Icons.person_outline, false,
-                    _emailTextController),
+                reusableTextField("أدخل عنوان البريد الالكتروني",
+                    Icons.person_outline, false, _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Password", Icons.lock_outlined, true,
+                reusableTextField("أدخل كلمة المرور", Icons.lock_outlined, true,
                     _passwordTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () async {
+                firebaseUIButton(context, "انشاء حساب", () async {
                   try {
                     await FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
