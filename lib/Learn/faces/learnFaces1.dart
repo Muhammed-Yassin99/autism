@@ -44,8 +44,8 @@ class learnfaces1 extends StatelessWidget {
             color: Colors.teal,
             child: Stack(children: [
               Positioned(
-                right: 80,
-                top: 25,
+                right: MediaQuery.of(context).size.width * 0.20,
+                top: MediaQuery.of(context).size.height * 0.05,
                 child: Material(
                   color: const Color.fromARGB(255, 10, 79, 135),
                   elevation: 8,
@@ -60,8 +60,8 @@ class learnfaces1 extends StatelessWidget {
                       Ink.image(
                         image: const AssetImage(
                             "assets/images/learn/faces/boyHappy.jpg"),
-                        height: 220,
-                        width: 240,
+                        height: MediaQuery.of(context).size.height * 0.26,
+                        width: MediaQuery.of(context).size.width * 0.585,
                         fit: BoxFit.cover,
                       ),
                       const SizedBox(
@@ -79,8 +79,8 @@ class learnfaces1 extends StatelessWidget {
                 ),
               ),
               Positioned(
-                right: 80,
-                top: 370,
+                right: MediaQuery.of(context).size.width * 0.20,
+                top: MediaQuery.of(context).size.height * 0.48,
                 child: Material(
                   color: const Color.fromARGB(255, 10, 79, 135),
                   elevation: 8,
@@ -95,8 +95,8 @@ class learnfaces1 extends StatelessWidget {
                       Ink.image(
                         image: const AssetImage(
                             "assets/images/learn/faces/boySad.jpg"),
-                        height: 220,
-                        width: 240,
+                        height: MediaQuery.of(context).size.height * 0.26,
+                        width: MediaQuery.of(context).size.width * 0.585,
                         fit: BoxFit.cover,
                       ),
                       const SizedBox(
@@ -114,8 +114,8 @@ class learnfaces1 extends StatelessWidget {
                 ),
               ),
               Positioned(
-                right: 10,
-                top: 310,
+                right: MediaQuery.of(context).size.width * 0.03,
+                top: MediaQuery.of(context).size.height * 0.40,
                 child: FloatingActionButton(
                     onPressed: () {
                       Navigator.push(
@@ -126,8 +126,8 @@ class learnfaces1 extends StatelessWidget {
                     child: const Icon(Icons.navigate_next_sharp)),
               ),
               Positioned(
-                right: 10,
-                top: 10,
+                right: MediaQuery.of(context).size.width * 0.03,
+                top: MediaQuery.of(context).size.width * 0.03,
                 child: FloatingActionButton(
                     onPressed: () {
                       Navigator.push(
