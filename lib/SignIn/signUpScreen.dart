@@ -84,12 +84,12 @@ class _SignUpScreenState extends State<signUpScreen> {
                       if (kDebugMode) {
                         print('invalid-email format');
                       }
+                      errorMSG = "بريد الكتروني غير صحيح";
                     } else if (e.code == 'weak-password') {
-                      setState(() {
-                        if (kDebugMode) {
-                          print('weak-password, Try using a stronger password');
-                        }
-                      });
+                      if (kDebugMode) {
+                        print('weak-password, Try using a stronger password');
+                      }
+                      errorMSG = "كلمة مرور ضعيفة";
                     }
                   }
                 }),

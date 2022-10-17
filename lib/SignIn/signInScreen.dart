@@ -75,15 +75,18 @@ class _SignInScreenState extends State<signInScreen> {
                       if (kDebugMode) {
                         print('invalid-email format');
                       }
+                      errorMSG = "بريد الكتروني غير صحيح";
                     } else if (e.code == 'user-not-found') {
                       if (kDebugMode) {
                         print('user-not-found');
                       }
+                      errorMSG = "لا يوجد مستخدم بهذا الاسم";
                     } else if (e.code == 'wrong-password') {
                       setState(() {
                         if (kDebugMode) {
                           print('Wrong password provided for that user.');
                         }
+                        errorMSG = "كلمة مرور خاطئة";
                       });
                     }
                   }
