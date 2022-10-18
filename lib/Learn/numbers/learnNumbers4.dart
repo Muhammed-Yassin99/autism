@@ -45,8 +45,8 @@ class learnNumbers4 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 80,
-            top: 25,
+            right: MediaQuery.of(context).size.width * 0.20,
+            top: MediaQuery.of(context).size.height * 0.05,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -61,8 +61,8 @@ class learnNumbers4 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/numbers/no6.jpg"),
-                    height: 220,
-                    width: 240,
+                    height: MediaQuery.of(context).size.height * 0.26,
+                    width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -80,8 +80,8 @@ class learnNumbers4 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 80,
-            top: 370,
+            right: MediaQuery.of(context).size.width * 0.20,
+            top: MediaQuery.of(context).size.height * 0.48,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -96,8 +96,8 @@ class learnNumbers4 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/numbers/no7.jpg"),
-                    height: 220,
-                    width: 240,
+                    height: MediaQuery.of(context).size.height * 0.26,
+                    width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -115,8 +115,8 @@ class learnNumbers4 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 10,
-            top: 310,
+            right: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -127,8 +127,8 @@ class learnNumbers4 extends StatelessWidget {
                 child: const Icon(Icons.navigate_next_sharp)),
           ),
           Positioned(
-            left: 10,
-            top: 310,
+            left: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -139,8 +139,8 @@ class learnNumbers4 extends StatelessWidget {
                 child: const Icon(Icons.navigate_before_sharp)),
           ),
           Positioned(
-            right: 10,
-            top: 10,
+            right: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.width * 0.03,
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
