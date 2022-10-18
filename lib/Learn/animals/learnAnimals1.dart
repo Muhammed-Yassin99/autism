@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../HomePage/home.dart';
@@ -44,8 +43,8 @@ class learnAnimals1 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 80,
-            top: 25,
+            right: MediaQuery.of(context).size.width * 0.20,
+            top: MediaQuery.of(context).size.height * 0.05,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -60,8 +59,8 @@ class learnAnimals1 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/games/animals/cat.png"),
-                    height: 220,
-                    width: 240,
+                    height: MediaQuery.of(context).size.height * 0.26,
+                    width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -79,8 +78,8 @@ class learnAnimals1 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 80,
-            top: 370,
+            right: MediaQuery.of(context).size.width * 0.20,
+            top: MediaQuery.of(context).size.height * 0.48,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -95,8 +94,8 @@ class learnAnimals1 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/games/animals/dog.png"),
-                    height: 220,
-                    width: 240,
+                    height: MediaQuery.of(context).size.height * 0.26,
+                    width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -114,9 +113,10 @@ class learnAnimals1 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 10,
-            top: 310,
+            right: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
+                heroTag: "btn2Alv1",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -126,9 +126,10 @@ class learnAnimals1 extends StatelessWidget {
                 child: const Icon(Icons.navigate_next_sharp)),
           ),
           Positioned(
-            right: 10,
-            top: 10,
+            right: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.width * 0.03,
             child: FloatingActionButton(
+                heroTag: "btn3Alvl1",
                 onPressed: () {
                   Navigator.push(
                     context,
