@@ -118,6 +118,7 @@ class learnNumbers3 extends StatelessWidget {
             right: MediaQuery.of(context).size.width * 0.03,
             top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
+                heroTag: "btn1Nlvl3",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -130,6 +131,7 @@ class learnNumbers3 extends StatelessWidget {
             left: MediaQuery.of(context).size.width * 0.03,
             top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
+                heroTag: "btn2Nlvl3",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -142,6 +144,7 @@ class learnNumbers3 extends StatelessWidget {
             right: MediaQuery.of(context).size.width * 0.03,
             top: MediaQuery.of(context).size.width * 0.03,
             child: FloatingActionButton(
+                heroTag: "btn3Nlvl3",
                 onPressed: () {
                   Navigator.push(
                     context,
