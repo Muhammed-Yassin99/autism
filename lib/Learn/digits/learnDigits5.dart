@@ -46,8 +46,8 @@ class learnDigits5 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 35,
-            top: 70,
+            right: MediaQuery.of(context).size.width * 0.05,
+            top: MediaQuery.of(context).size.height * 0.10,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -62,8 +62,8 @@ class learnDigits5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/zaah.jpg"),
-                    height: 150,
-                    width: 160,
+                    width: MediaQuery.of(context).size.width * 0.42,
+                    height: MediaQuery.of(context).size.height * 0.20,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -81,8 +81,8 @@ class learnDigits5 extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 35,
-            top: 70,
+            left: MediaQuery.of(context).size.width * 0.05,
+            top: MediaQuery.of(context).size.height * 0.10,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -97,8 +97,8 @@ class learnDigits5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/3ean.jpg"),
-                    height: 150,
-                    width: 160,
+                    width: MediaQuery.of(context).size.width * 0.42,
+                    height: MediaQuery.of(context).size.height * 0.20,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -116,8 +116,8 @@ class learnDigits5 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 35,
-            top: 380,
+            right: MediaQuery.of(context).size.width * 0.05,
+            top: MediaQuery.of(context).size.height * 0.5,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -132,8 +132,8 @@ class learnDigits5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/8ean.jpg"),
-                    height: 150,
-                    width: 160,
+                    width: MediaQuery.of(context).size.width * 0.42,
+                    height: MediaQuery.of(context).size.height * 0.20,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -151,8 +151,8 @@ class learnDigits5 extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 35,
-            top: 380,
+            left: MediaQuery.of(context).size.width * 0.05,
+            top: MediaQuery.of(context).size.height * 0.5,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -167,8 +167,8 @@ class learnDigits5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/faa2.jpg"),
-                    height: 150,
-                    width: 160,
+                    width: MediaQuery.of(context).size.width * 0.42,
+                    height: MediaQuery.of(context).size.height * 0.20,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -186,8 +186,8 @@ class learnDigits5 extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 10,
-            top: 310,
+            left: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
                 heroTag: "btn1Dlvl5",
                 onPressed: () {
@@ -199,8 +199,8 @@ class learnDigits5 extends StatelessWidget {
                 child: const Icon(Icons.navigate_before_sharp)),
           ),
           Positioned(
-            right: 10,
-            top: 310,
+            right: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
                 heroTag: "btn2Dlvl5",
                 onPressed: () {
@@ -212,8 +212,8 @@ class learnDigits5 extends StatelessWidget {
                 child: const Icon(Icons.navigate_next_sharp)),
           ),
           Positioned(
-            right: 10,
-            top: 10,
+            right: MediaQuery.of(context).size.width * 0.03,
+            top: MediaQuery.of(context).size.height * 0.03,
             child: FloatingActionButton(
                 heroTag: "btn3Dlvl5",
                 onPressed: () {
