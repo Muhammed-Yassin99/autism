@@ -189,6 +189,7 @@ class learnDigits2 extends StatelessWidget {
             left: 10,
             top: 310,
             child: FloatingActionButton(
+                heroTag: "btn1Dlvl2",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -201,6 +202,7 @@ class learnDigits2 extends StatelessWidget {
             right: 10,
             top: 310,
             child: FloatingActionButton(
+                heroTag: "btn2Dlvl2",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -213,6 +215,7 @@ class learnDigits2 extends StatelessWidget {
             right: 10,
             top: 10,
             child: FloatingActionButton(
+                heroTag: "btn3Dlvl2",
                 onPressed: () {
                   Navigator.push(
                     context,

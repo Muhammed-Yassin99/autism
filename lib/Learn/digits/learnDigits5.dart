@@ -97,7 +97,7 @@ class learnDigits5 extends StatelessWidget {
                   Ink.image(
                     image:
                         const AssetImage("assets/images/learn/digits/3ean.jpg"),
-                      height: 150,
+                    height: 150,
                     width: 160,
                     fit: BoxFit.cover,
                   ),
@@ -189,6 +189,7 @@ class learnDigits5 extends StatelessWidget {
             left: 10,
             top: 310,
             child: FloatingActionButton(
+                heroTag: "btn1Dlvl5",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -201,6 +202,7 @@ class learnDigits5 extends StatelessWidget {
             right: 10,
             top: 310,
             child: FloatingActionButton(
+                heroTag: "btn2Dlvl5",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -213,6 +215,7 @@ class learnDigits5 extends StatelessWidget {
             right: 10,
             top: 10,
             child: FloatingActionButton(
+                heroTag: "btn3Dlvl5",
                 onPressed: () {
                   Navigator.push(
                     context,
