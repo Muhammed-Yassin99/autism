@@ -227,12 +227,12 @@ flutter:
      - assets/images/learn/digits/faa2.jpg
      - assets/images/learn/digits/qaaf.jpg
      - assets/images/learn/digits/raa2.jpg
-     - assets/images/learn/family/father.png
-     - assets/images/learn/family/mother.png
-     - assets/images/learn/family/grandFather.png
-     - assets/images/learn/family/grandMother.png
-     - assets/images/learn/family/sister.png
-     - assets/images/learn/family/brother.png
+     - assets/images/learn/family/father.jpg
+     - assets/images/learn/family/mother.jpg
+     - assets/images/learn/family/grandFather.jpg
+     - assets/images/learn/family/grandMother.jpg
+     - assets/images/learn/family/sister.jpg
+     - assets/images/learn/family/brother.jpg
      - assets/sounds/learn/family/father.wav
      - assets/sounds/learn/family/mother.wav
      - assets/sounds/learn/family/grandFather.wav

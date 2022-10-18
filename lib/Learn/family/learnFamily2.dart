@@ -60,7 +60,7 @@ class learnFamily2 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/learn/family/brother.png"),
+                        "assets/images/learn/family/brother.jpg"),
                     height: MediaQuery.of(context).size.height * 0.26,
                     width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
@@ -95,7 +95,7 @@ class learnFamily2 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/learn/family/sister.png"),
+                        "assets/images/learn/family/sister.jpg"),
                     height: MediaQuery.of(context).size.height * 0.26,
                     width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
@@ -116,7 +116,7 @@ class learnFamily2 extends StatelessWidget {
           ),
           Positioned(
             right: MediaQuery.of(context).size.width * 0.03,
-            top: MediaQuery.of(context).size.height * 0.04,
+            top: MediaQuery.of(context).size.height * 0.40,
             child: FloatingActionButton(
                 heroTag: "btn1FAlvl2",
                 onPressed: () {

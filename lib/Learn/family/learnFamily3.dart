@@ -59,7 +59,7 @@ class learnFamily3 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/learn/family/grandFather.png"),
+                        "assets/images/learn/family/grandFather.jpg"),
                     height: MediaQuery.of(context).size.height * 0.26,
                     width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
@@ -94,7 +94,7 @@ class learnFamily3 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image: const AssetImage(
-                        "assets/images/learn/family/grandMother.png"),
+                        "assets/images/learn/family/grandMother.jpg"),
                     height: MediaQuery.of(context).size.height * 0.26,
                     width: MediaQuery.of(context).size.width * 0.585,
                     fit: BoxFit.cover,
