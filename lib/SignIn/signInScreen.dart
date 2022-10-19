@@ -4,7 +4,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../HomePage/home.dart';
 import '../utils/colors_utils.dart';
 import 'resetPass.dart';
 import 'signUpScreen.dart';

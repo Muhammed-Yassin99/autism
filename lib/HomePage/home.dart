@@ -1,15 +1,35 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../model/category.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
+import 'dart:math' as math;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomePage> {
+  getUser() {
+    var user = FirebaseAuth.instance.currentUser;
+    if (kDebugMode) {
+      print(user?.email);
+    }
+  }
+
+  @override
+  void initState() {
+    getUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +55,18 @@ class HomePage extends StatelessWidget {
           ),
         ),
         // ignore: prefer_const_literals_to_create_immutables
-        actions: [
-          IconButton(
+        leading: Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.rotationY(math.pi),
+          child: IconButton(
               alignment: Alignment.topLeft,
               iconSize: 50,
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
                 Navigator.of(context).pushReplacementNamed("login");
               },
-              icon: const Icon(Icons.exit_to_app))
-        ],
+              icon: const Icon(Icons.exit_to_app)),
+        ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: Container(
@@ -92,7 +114,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildCategoryItem(BuildContext context, int index) {
-    Category category = homePage_categories[index];
+    var category = homePage_categories[index];
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 8.0,
@@ -143,7 +165,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       );
-  _categoryPressed(BuildContext context, Category category) {
+  _categoryPressed(BuildContext context, category) {
     if (category.id == 2) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const gamesHomePage()));
