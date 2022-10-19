@@ -1,4 +1,5 @@
 // ignore_for_file: duplicate_import
+import 'package:autism_zz/HomePage/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'SignIn/signInScreen.dart';
@@ -19,6 +20,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        "login": (context) => const signInScreen(),
+        "homePage": (context) => const HomePage(),
+      },
       home: const signInScreen(),
     );
   }

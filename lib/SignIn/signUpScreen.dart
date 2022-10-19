@@ -95,11 +95,11 @@ class _SignUpScreenState extends State<signUpScreen> {
             child: Form(
               key: formstate,
               child: Column(
-                children: <Widget>[
+                children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.18,
                   ),
-                  if (errorMSG != "") alert(),
+                  //if (errorMSG != "") alert(),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.06,
                   ),
@@ -284,7 +284,7 @@ class _SignUpScreenState extends State<signUpScreen> {
       color: Colors.amberAccent,
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        children: <Widget>[
+        children: [
           const Padding(
             padding: EdgeInsets.only(right: 8.0),
             child: Icon(Icons.error_outline),

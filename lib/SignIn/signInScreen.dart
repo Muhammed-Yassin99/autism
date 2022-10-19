@@ -91,8 +91,8 @@ class _SignInScreenState extends State<signInScreen> {
               child: Form(
                 key: formstate,
                 child: Column(
-                  children: <Widget>[
-                    if (errorMSG != "") alert(),
+                  children: [
+                    // if (errorMSG != "") alert(),
                     Image.asset(
                       "assets/images/HomePage/signInLogo.png",
                       fit: BoxFit.fitWidth,
@@ -199,10 +199,8 @@ class _SignInScreenState extends State<signInScreen> {
                         onPressed: () async {
                           UserCredential? user = await SignIn();
                           if (user != null) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomePage()));
+                            Navigator.of(context)
+                                .pushReplacementNamed("homePage");
                           } else {
                             if (kDebugMode) {
                               print("Sign In Failed");
@@ -287,7 +285,7 @@ class _SignInScreenState extends State<signInScreen> {
       color: Colors.amberAccent,
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        children: <Widget>[
+        children: [
           const Padding(
             padding: EdgeInsets.only(right: 8.0),
             child: Icon(Icons.error_outline),

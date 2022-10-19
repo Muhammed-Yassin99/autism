@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
@@ -22,7 +25,6 @@ class HomePage extends StatelessWidget {
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
-        elevation: 0,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -34,7 +36,14 @@ class HomePage extends StatelessWidget {
         ),
         // ignore: prefer_const_literals_to_create_immutables
         actions: [
-          const SizedBox(width: 18),
+          IconButton(
+              alignment: Alignment.topLeft,
+              iconSize: 50,
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushReplacementNamed("login");
+              },
+              icon: const Icon(Icons.exit_to_app))
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(80),
