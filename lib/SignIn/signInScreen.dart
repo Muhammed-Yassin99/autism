@@ -253,7 +253,9 @@ class _SignInScreenState extends State<signInScreen> {
           child: const Text(
             " انشاء حساب",
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                color: Color.fromARGB(255, 212, 40, 28),
+                fontWeight: FontWeight.bold,
+                fontSize: 20),
           ),
         ),
         const Text("ليس لديك حساب؟",
