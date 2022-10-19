@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
-import '../model/category.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
 import 'dart:math' as math;
@@ -21,7 +20,7 @@ class HomeScreenState extends State<HomePage> {
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
     if (kDebugMode) {
-      print(user?.email);
+      print(user!.email);
     }
   }
 
