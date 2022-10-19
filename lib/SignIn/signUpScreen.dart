@@ -236,10 +236,8 @@ class _SignUpScreenState extends State<signUpScreen> {
                       onPressed: () async {
                         UserCredential? response = await SignUp();
                         if (response != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()));
+                          Navigator.of(context)
+                              .pushReplacementNamed("homePage");
                         } else {
                           if (kDebugMode) {
                             print("Sign Up Failed");
