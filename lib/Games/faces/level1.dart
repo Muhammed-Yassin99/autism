@@ -5,7 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
-import '../../HomePage/home.dart';
+import '../../HomePage/parentHomePage.dart';
 
 // ignore: use_key_in_widget_constructors
 class facesLevel1 extends StatefulWidget {

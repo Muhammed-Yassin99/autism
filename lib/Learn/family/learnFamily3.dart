@@ -2,7 +2,7 @@
 // ignore_for_file: file_names, duplicate_ignore
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../HomePage/home.dart';
+import '../../HomePage/parentHomePage.dart';
 import 'learnFamily2.dart';
 
 // ignore: camel_case_types

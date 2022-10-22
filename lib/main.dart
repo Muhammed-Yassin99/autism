@@ -1,8 +1,11 @@
 // ignore_for_file: duplicate_import
-import 'package:autism_zz/HomePage/home.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'HomePage/parentHomePage.dart';
+import 'HomePage/startPage.dart';
 import 'SignIn/signInScreen.dart';
 
 bool islogin = false;
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
         "login": (context) => const signInScreen(),
         "homePage": (context) => const HomePage(),
       },
-      home: islogin == false ? const signInScreen() : const HomePage(),
+      home: islogin == false ? startPage() : const HomePage(),
     );
   }
 }

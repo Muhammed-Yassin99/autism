@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, use_key_in_widget_constructors, camel_case_types
 import 'package:audioplayers/audioplayers.dart';
 import '../../../model/item_model.dart';
-import '../../HomePage/home.dart';
+import '../../HomePage/parentHomePage.dart';
 import '../gamesHomePage1.dart';
 import 'package:flutter/material.dart';
 
