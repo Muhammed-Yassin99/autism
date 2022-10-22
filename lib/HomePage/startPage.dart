@@ -1,58 +1,56 @@
+// ignore_for_file: camel_case_types
+import 'package:autism_zz/SignIn/signInScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class startPage extends StatelessWidget {
+  const startPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            color: Colors.black,
-            child: Stack(
+      body: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/images/HomePage/startPage.jpg'),
+            fit: BoxFit.cover,
+          )),
+          child: Center(
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Positioned.fill(
-                  child: Opacity(
-                    opacity: 0.3,
-                    child: Image.asset('assets/imgs/of_main_bg.png',
-                        fit: BoxFit.cover),
+                Positioned(
+                  right: MediaQuery.of(context).size.width,
+                  top: MediaQuery.of(context).size.height * 0.75,
+                  child: Container(
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(28)),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const signInScreen()),
+                          );
+                        },
+                        // ignore: prefer_const_constructors
+                        child: Text(
+                          'ولي أمر',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold),
+                        )),
                   ),
                 ),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Center(
-                        child: ClipOval(
-                          child: Container(
-                              width: 180,
-                              height: 180,
-                              color: Colors.black,
-                              alignment: Alignment.center,
-                              child: const Text(
-                                " ",
-                                style: TextStyle(
-                                    color: Colors.amber,
-                                    fontSize: 26,
-                                    fontFamily: 'orilla'),
-                              )),
-                        ),
-                      ),
-                      const SizedBox(height: 50),
-                      const Text('Bienvenido/a',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 40),
-                      const Text('Productos Frescos.\nSaludables. A Tiempo',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 18)),
-                      const SizedBox(height: 40),
-                    ],
-                  ),
-                )
+                const SizedBox(
+                  height: 20,
+                ),
               ],
-            )));
+            ),
+          )),
+    );
   }
 }
