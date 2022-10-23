@@ -20,13 +20,23 @@ class signInScreen extends StatefulWidget {
 class _SignInScreenState extends State<signInScreen> {
   // ignore: prefer_typing_uninitialized_variables
   var userEmail, userPass;
-  static var option;
+  static var option = false;
 
   getData(String role) async {
-    CollectionReference userRef = FirebaseFirestore.instance.collection(role);
-    await userRef.get().then((value) {
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("trainner");
+    userRef.get().then((value) {
       for (var element in value.docs) {
-        if (userEmail == element.data()['gmail']) ;
+        if (kDebugMode) {
+          print(element['gmail']);
+          print(role);
+        }
+        if (userEmail == element['gmail']) {
+          option = true;
+          break;
+        } else {
+          option = false;
+        }
       }
     });
   }
@@ -211,16 +221,19 @@ class _SignInScreenState extends State<signInScreen> {
                         onPressed: () async {
                           startPage startpage = const startPage();
                           String role = startpage.getRole();
-                          getData(role);
+                          await getData(role);
                           if (kDebugMode) {
-                            print(role);
+                            //print(role);
                           }
-                          UserCredential? user = await SignIn();
-                          if (user != null) {
-                            if (role == "parent" && option == true) {
+                          if (role == "parent" && option == true) {
+                            UserCredential? user = await SignIn();
+                            if (user != null) {
                               Navigator.of(context)
                                   .pushReplacementNamed("parentHomePage");
-                            } else if (role == "trainner" && option == true) {
+                            }
+                          } else if (role == "trainner" && option == true) {
+                            UserCredential? user = await SignIn();
+                            if (user != null) {
                               Navigator.of(context)
                                   .pushReplacementNamed("trainnerHomePage");
                             }
