@@ -20,18 +20,20 @@ class signInScreen extends StatefulWidget {
 class _SignInScreenState extends State<signInScreen> {
   // ignore: prefer_typing_uninitialized_variables
   var userEmail, userPass;
-  static var option = false;
+  static var option;
 
   getData(String role) async {
-    CollectionReference userRef =
-        FirebaseFirestore.instance.collection("trainner");
-    userRef.get().then((value) {
+    CollectionReference userRef = FirebaseFirestore.instance.collection(role);
+    await userRef.get().then((value) {
       for (var element in value.docs) {
         if (kDebugMode) {
-          print(element['gmail']);
-          print(role);
+          print(element.data());
+          print(element["gmail"]);
         }
         if (userEmail == element['gmail']) {
+          if (kDebugMode) {
+            print("a7a");
+          }
           option = true;
           break;
         } else {
@@ -223,15 +225,16 @@ class _SignInScreenState extends State<signInScreen> {
                           String role = startpage.getRole();
                           await getData(role);
                           if (kDebugMode) {
-                            //print(role);
+                            print(role);
+                            print(option);
                           }
-                          if (role == "parent" && option == true) {
+                          if (role == "parents" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
                               Navigator.of(context)
                                   .pushReplacementNamed("parentHomePage");
                             }
-                          } else if (role == "trainner" && option == true) {
+                          } else if (role == "trainners" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
                               Navigator.of(context)

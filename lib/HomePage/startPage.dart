@@ -37,7 +37,7 @@ class startPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(28)),
                     child: TextButton(
                         onPressed: () {
-                          setRole("parent");
+                          setRole("parents");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -66,7 +66,7 @@ class startPage extends StatelessWidget {
                     child: Center(
                       child: TextButton(
                         onPressed: () {
-                          setRole("trainner");
+                          setRole("trainners");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
