@@ -44,6 +44,9 @@ class startPage extends StatelessWidget {
                                 builder: (context) => const signInScreen()),
                           );
                         },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50), // NEW
+                        ),
                         // ignore: prefer_const_constructors
                         child: Text(
                           'ولي الأمر',
@@ -73,6 +76,9 @@ class startPage extends StatelessWidget {
                                 builder: (context) => const signInScreen()),
                           );
                         },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50), // NEW
+                        ),
                         // ignore: prefer_const_constructors
                         child: Text(
                           'مدرب',

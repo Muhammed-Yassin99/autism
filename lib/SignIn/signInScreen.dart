@@ -39,12 +39,14 @@ class _SignInScreenState extends State<signInScreen> {
             break;
           } else {
             option = false;
-            AwesomeDialog(
-              context: context,
-              title: "Error",
-              body: const Text("حساب غير متطابق مع نوع المسجل"),
-            ).show();
           }
+        }
+        if (option == false) {
+          AwesomeDialog(
+            context: context,
+            title: "Error",
+            body: const Text("حساب غير متطابق مع نوع المسجل"),
+          ).show();
         }
       });
     } else {
