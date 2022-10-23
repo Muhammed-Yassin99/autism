@@ -1,7 +1,8 @@
-// ignore_for_file: file_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, non_constant_identifier_names
+// ignore_for_file: file_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, non_constant_identifier_names, prefer_typing_uninitialized_variables, duplicate_ignore
 
 import 'package:autism_zz/HomePage/startPage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,22 @@ class signInScreen extends StatefulWidget {
 class _SignInScreenState extends State<signInScreen> {
   // ignore: prefer_typing_uninitialized_variables
   var userEmail, userPass;
+  static var option;
+
+  getData(String role) async {
+    CollectionReference userRef = FirebaseFirestore.instance.collection(role);
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (userEmail == element.get('gmail')) {
+          option = true;
+          break;
+        } else {
+          option = false;
+        }
+      }
+    });
+  }
+
   String errorMSG = "";
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   SignIn() async {
@@ -199,19 +216,25 @@ class _SignInScreenState extends State<signInScreen> {
                         onPressed: () async {
                           startPage startpage = const startPage();
                           String role = startpage.getRole();
+                          getData(role);
                           if (kDebugMode) {
                             print(role);
                           }
                           UserCredential? user = await SignIn();
                           if (user != null) {
-                            if (role == "parent") {
+                            if (role == "parent" && option == true) {
                               Navigator.of(context)
                                   .pushReplacementNamed("parentHomePage");
-                            } else if (role == "trainner") {
+                            } else if (role == "trainner" && option == true) {
                               Navigator.of(context)
                                   .pushReplacementNamed("trainnerHomePage");
                             }
                           } else {
+                            AwesomeDialog(
+                              context: context,
+                              title: "Error",
+                              body: const Text("حساب غير متطابق مع نوع المسجل"),
+                            ).show();
                             if (kDebugMode) {
                               print("Sign In Failed");
                             }
