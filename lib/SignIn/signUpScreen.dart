@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, camel_case_types, library_private_types_in_public_api, non_constant_identifier_names, unused_local_variable, use_build_context_synchronously
 
+import 'package:autism_zz/HomePage/startPage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,12 @@ class _SignUpScreenState extends State<signUpScreen> {
   var userName, userEmail, userPass;
   String errorMSG = "";
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
+  addData(String role, String collection) async {
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection(collection);
+    userRef.add({"username": userName, "gmail": userEmail, "role": role});
+  }
+
   SignUp() async {
     var formdate = formstate.currentState;
     if (formdate!.validate()) {
@@ -236,8 +244,19 @@ class _SignUpScreenState extends State<signUpScreen> {
                       onPressed: () async {
                         UserCredential? response = await SignUp();
                         if (response != null) {
-                          Navigator.of(context)
-                              .pushReplacementNamed("homePage");
+                          startPage startpage = const startPage();
+                          String role = startpage.getRole();
+                          if (role == "parent") {
+                            Navigator.of(context)
+                                .pushReplacementNamed("parentHomePage");
+                            addData(role, "parents");
+                            addData(role, "users");
+                          } else if (role == "trainner") {
+                            Navigator.of(context)
+                                .pushReplacementNamed("trainnerHomePage");
+                            addData(role, "trainners");
+                            addData(role, "users");
+                          }
                         } else {
                           if (kDebugMode) {
                             print("Sign Up Failed");
