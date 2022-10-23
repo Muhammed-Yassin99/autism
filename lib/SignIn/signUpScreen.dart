@@ -245,12 +245,12 @@ class _SignUpScreenState extends State<signUpScreen> {
                         if (response != null) {
                           startPage startpage = const startPage();
                           String role = startpage.getRole();
-                          if (role == "parent") {
+                          if (role == "parents") {
                             Navigator.of(context)
                                 .pushReplacementNamed("parentHomePage");
                             addData(role, "parents");
                             addData(role, "users");
-                          } else if (role == "trainer") {
+                          } else if (role == "trainers") {
                             Navigator.of(context)
                                 .pushReplacementNamed("trainerHomePage");
                             addData(role, "trainers");
