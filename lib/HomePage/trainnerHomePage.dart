@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, camel_case_types
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -9,14 +9,14 @@ import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
 import 'dart:math' as math;
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class trainnerHomePage extends StatefulWidget {
+  const trainnerHomePage({super.key});
 
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomePage> {
+class HomeScreenState extends State<trainnerHomePage> {
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
     if (kDebugMode) {
@@ -62,7 +62,7 @@ class HomeScreenState extends State<HomePage> {
               iconSize: 50,
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed("login");
+                Navigator.of(context).pushReplacementNamed("startPage");
               },
               icon: const Icon(Icons.exit_to_app)),
         ),

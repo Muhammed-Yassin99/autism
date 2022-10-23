@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, non_constant_identifier_names
 
+import 'package:autism_zz/HomePage/startPage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -196,10 +197,20 @@ class _SignInScreenState extends State<signInScreen> {
                           borderRadius: BorderRadius.circular(90)),
                       child: ElevatedButton(
                         onPressed: () async {
+                          startPage startpage = const startPage();
+                          String role = startpage.getRole();
+                          if (kDebugMode) {
+                            print(role);
+                          }
                           UserCredential? user = await SignIn();
                           if (user != null) {
-                            Navigator.of(context)
-                                .pushReplacementNamed("homePage");
+                            if (role == "parent") {
+                              Navigator.of(context)
+                                  .pushReplacementNamed("parentHomePage");
+                            } else if (role == "trainner") {
+                              Navigator.of(context)
+                                  .pushReplacementNamed("trainnerHomePage");
+                            }
                           } else {
                             if (kDebugMode) {
                               print("Sign In Failed");

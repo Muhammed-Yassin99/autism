@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'HomePage/parentHomePage.dart';
 import 'HomePage/startPage.dart';
+import 'HomePage/trainnerHomePage.dart';
 import 'SignIn/signInScreen.dart';
 
 bool islogin = false;
@@ -33,10 +34,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
+        "startPage": (context) => const startPage(),
         "login": (context) => const signInScreen(),
-        "homePage": (context) => const HomePage(),
+        "parentHomePage": (context) => const HomePage(),
+        "trainnerHomePage": (context) => const trainnerHomePage(),
       },
-      home: islogin == false ? startPage() : const HomePage(),
+      home: islogin == false ? const startPage() : const HomePage(),
     );
   }
 }

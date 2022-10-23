@@ -62,7 +62,7 @@ class HomeScreenState extends State<HomePage> {
               iconSize: 50,
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed("login");
+                Navigator.of(context).pushReplacementNamed("startPage");
               },
               icon: const Icon(Icons.exit_to_app)),
         ),
