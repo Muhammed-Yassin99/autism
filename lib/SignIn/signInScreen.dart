@@ -29,11 +29,11 @@ class _SignInScreenState extends State<signInScreen> {
       CollectionReference userRef = FirebaseFirestore.instance.collection(role);
       await userRef.get().then((value) {
         for (var element in value.docs) {
-          if (kDebugMode) {
+          /*if (kDebugMode) {
             print(element.data());
             print(element["gmail"]);
             print(userEmail);
-          }
+          }*/
           if (userEmail.toString() == element['gmail'].toString()) {
             option = true;
             break;
@@ -235,10 +235,10 @@ class _SignInScreenState extends State<signInScreen> {
                           startPage startpage = const startPage();
                           String role = startpage.getRole();
                           await getData(role);
-                          if (kDebugMode) {
+                          /*if (kDebugMode) {
                             print(role);
                             print(option);
-                          }
+                          }*/
                           if (role == "parents" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
