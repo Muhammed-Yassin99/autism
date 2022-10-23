@@ -23,24 +23,35 @@ class _SignInScreenState extends State<signInScreen> {
   static var option;
 
   getData(String role) async {
-    CollectionReference userRef = FirebaseFirestore.instance.collection(role);
-    await userRef.get().then((value) {
-      for (var element in value.docs) {
-        if (kDebugMode) {
-          print(element.data());
-          print(element["gmail"]);
-        }
-        if (userEmail == element['gmail']) {
+    var formdate = formstate.currentState;
+    if (formdate!.validate()) {
+      formdate.save();
+      CollectionReference userRef = FirebaseFirestore.instance.collection(role);
+      await userRef.get().then((value) {
+        for (var element in value.docs) {
           if (kDebugMode) {
-            print("a7a");
+            print(element.data());
+            print(element["gmail"]);
+            print(userEmail);
           }
-          option = true;
-          break;
-        } else {
-          option = false;
+          if (userEmail.toString() == element['gmail'].toString()) {
+            option = true;
+            break;
+          } else {
+            option = false;
+            AwesomeDialog(
+              context: context,
+              title: "Error",
+              body: const Text("حساب غير متطابق مع نوع المسجل"),
+            ).show();
+          }
         }
+      });
+    } else {
+      if (kDebugMode) {
+        print("Not Valid");
       }
-    });
+    }
   }
 
   String errorMSG = "";
@@ -241,11 +252,6 @@ class _SignInScreenState extends State<signInScreen> {
                                   .pushReplacementNamed("trainnerHomePage");
                             }
                           } else {
-                            AwesomeDialog(
-                              context: context,
-                              title: "Error",
-                              body: const Text("حساب غير متطابق مع نوع المسجل"),
-                            ).show();
                             if (kDebugMode) {
                               print("Sign In Failed");
                             }
