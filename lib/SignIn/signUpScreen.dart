@@ -250,10 +250,10 @@ class _SignUpScreenState extends State<signUpScreen> {
                                 .pushReplacementNamed("parentHomePage");
                             addData(role, "parents");
                             addData(role, "users");
-                          } else if (role == "trainner") {
+                          } else if (role == "trainer") {
                             Navigator.of(context)
-                                .pushReplacementNamed("trainnerHomePage");
-                            addData(role, "trainners");
+                                .pushReplacementNamed("trainerHomePage");
+                            addData(role, "trainers");
                             addData(role, "users");
                           }
                         } else {

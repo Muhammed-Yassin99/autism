@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         "startPage": (context) => const startPage(),
         "login": (context) => const signInScreen(),
         "parentHomePage": (context) => const HomePage(),
-        "trainnerHomePage": (context) => const trainnerHomePage(),
+        "trainerHomePage": (context) => const trainnerHomePage(),
       },
       home: islogin == false ? const startPage() : const HomePage(),
     );

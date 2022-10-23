@@ -69,7 +69,7 @@ class startPage extends StatelessWidget {
                     child: Center(
                       child: TextButton(
                         onPressed: () {
-                          setRole("trainners");
+                          setRole("trainers");
                           Navigator.push(
                             context,
                             MaterialPageRoute(

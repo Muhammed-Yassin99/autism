@@ -247,11 +247,11 @@ class _SignInScreenState extends State<signInScreen> {
                               Navigator.of(context)
                                   .pushReplacementNamed("parentHomePage");
                             }
-                          } else if (role == "trainners" && option == true) {
+                          } else if (role == "trainers" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
                               Navigator.of(context)
-                                  .pushReplacementNamed("trainnerHomePage");
+                                  .pushReplacementNamed("trainerHomePage");
                             }
                           } else {
                             if (kDebugMode) {
