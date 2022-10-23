@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -8,6 +8,8 @@ import '../Learn/learnHomePage.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
 import 'dart:math' as math;
+
+import 'NavBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,6 +35,7 @@ class HomeScreenState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavBar(),
       resizeToAvoidBottomInset: false, // set it to false
       appBar: AppBar(
         backgroundColor: Colors.transparent,

@@ -20,7 +20,16 @@ class signInScreen extends StatefulWidget {
 class _SignInScreenState extends State<signInScreen> {
   // ignore: prefer_typing_uninitialized_variables
   var userEmail, userPass;
+  static var userName;
   static var option;
+
+  getUserName() async {
+    return userName;
+  }
+
+  getUserEmail() async {
+    return userEmail;
+  }
 
   getData(String role) async {
     var formdate = formstate.currentState;
@@ -36,6 +45,7 @@ class _SignInScreenState extends State<signInScreen> {
           }*/
           if (userEmail.toString() == element['gmail'].toString()) {
             option = true;
+            userName = element['username'].toString();
             break;
           } else {
             option = false;
