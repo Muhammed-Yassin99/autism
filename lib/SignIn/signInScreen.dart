@@ -26,12 +26,7 @@ class _SignInScreenState extends State<signInScreen> {
     CollectionReference userRef = FirebaseFirestore.instance.collection(role);
     await userRef.get().then((value) {
       for (var element in value.docs) {
-        if (userEmail == element.get('gmail')) {
-          option = true;
-          break;
-        } else {
-          option = false;
-        }
+        if (userEmail == element.data()['gmail']) ;
       }
     });
   }
