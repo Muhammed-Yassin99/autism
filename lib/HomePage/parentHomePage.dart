@@ -1,7 +1,5 @@
-// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings
-import 'dart:async';
+// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names
 
-import 'package:autism_zz/SignIn/signInScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -53,7 +51,7 @@ class HomeScreenState extends State<HomePage> {
     });
   }
 
-  getUserName() async {
+  /*getUserName() async {
     var user = FirebaseAuth.instance.currentUser;
     String uid = user!.uid.toString();
     var documentReference =
@@ -62,7 +60,7 @@ class HomeScreenState extends State<HomePage> {
       userName = value['username'].toString();
     });
     return userName;
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

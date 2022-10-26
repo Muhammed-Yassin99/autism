@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'HomePage/parentHomePage.dart';
 import 'HomePage/startPage.dart';
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
         "parentHomePage": (context) => const HomePage(),
         "trainerHomePage": (context) => const trainerHomePage(),
       },
-      home: islogin == false ? const startPage() : HomePage(),
+      home: islogin == false ? const startPage() : const HomePage(),
     );
   }
 }
