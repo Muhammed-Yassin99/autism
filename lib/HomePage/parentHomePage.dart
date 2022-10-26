@@ -1,5 +1,5 @@
-// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void
-
+// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +7,6 @@ import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
-import 'dart:math' as math;
-
-import 'NavBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomePage> {
+  String userName = '';
+
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
     if (kDebugMode) {
@@ -29,13 +28,119 @@ class HomeScreenState extends State<HomePage> {
   @override
   void initState() {
     getUser();
+    setUserName();
     super.initState();
+  }
+
+  setUserName() async {
+    var user = FirebaseAuth.instance.currentUser;
+    String uid = user!.uid.toString();
+    CollectionReference userRef =
+        await FirebaseFirestore.instance.collection("users");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['uid'].toString() == uid) {
+          userName = element['username'].toString();
+          if (kDebugMode) {
+            print(userName);
+          }
+          break;
+        }
+      }
+    });
+  }
+
+  getUserName() {
+    return userName;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(userName),
+              accountEmail:
+                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              currentAccountPicture: CircleAvatar(
+                child: ClipOval(
+                  child: Image.network(
+                    'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                    fit: BoxFit.cover,
+                    width: 90,
+                    height: 90,
+                  ),
+                ),
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(
+                        'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg')),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.favorite),
+              title: const Text('Favorites'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Friends'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.share),
+              title: const Text('Share'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications),
+              title: const Text('Request'),
+              onTap: () {},
+              trailing: ClipOval(
+                child: Container(
+                  color: Colors.red,
+                  width: 20,
+                  height: 20,
+                  child: const Center(
+                    child: Text(
+                      '8',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.description),
+              title: const Text('Policies'),
+              onTap: () {},
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text('تسجيل الخروج'),
+              leading: const Icon(Icons.exit_to_app),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushReplacementNamed("startPage");
+              },
+            ),
+          ],
+        ),
+      ),
       resizeToAvoidBottomInset: false, // set it to false
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -76,7 +181,10 @@ class HomeScreenState extends State<HomePage> {
                 Icons.list,
                 size: 55,
               ),
-              onPressed: () {
+              onPressed: () async {
+                if (kDebugMode) {
+                  print(userName);
+                }
                 Scaffold.of(context).openDrawer();
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -88,7 +196,7 @@ class HomeScreenState extends State<HomePage> {
           child: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.centerRight,
-            child: buildWelcome(''),
+            child: buildWelcome(),
           ),
         ),
       ),
@@ -162,25 +270,28 @@ class HomeScreenState extends State<HomePage> {
     );
   }
 
-  Widget buildWelcome(String username) => Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            username,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+  buildWelcome() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(
+          userName,
+          style: const TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
-          const Text(
-            ' مرحبا',
-            style: TextStyle(
-                fontSize: 32, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ],
-      );
+        ),
+        const Text(
+          ' مرحبا',
+          style: TextStyle(
+              fontSize: 32, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+
   _categoryPressed(BuildContext context, category) {
     if (category.id == 2) {
       Navigator.push(context,

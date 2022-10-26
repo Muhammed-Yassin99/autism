@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
       routes: {
         "startPage": (context) => const startPage(),
         "login": (context) => const signInScreen(),
-        "parentHomePage": (context) => const HomePage(),
+        "parentHomePage": (context) => HomePage(),
         "trainerHomePage": (context) => const trainerHomePage(),
       },
-      home: islogin == false ? const startPage() : const HomePage(),
+      home: islogin == false ? const startPage() : HomePage(),
     );
   }
 }

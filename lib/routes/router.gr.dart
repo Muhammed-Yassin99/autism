@@ -25,7 +25,7 @@ class AppRouter extends _i2.RootStackRouter {
     HomeRoute.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.HomePage(),
+        child: _i1.HomePage(),
       );
     }
   };

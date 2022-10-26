@@ -304,7 +304,7 @@ class _HomeScreenState extends State<animalsLevel1> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 child: const Icon(
