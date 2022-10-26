@@ -1,5 +1,6 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
@@ -80,9 +81,12 @@ class NavBar extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            title: const Text('Exit'),
+            title: const Text('تسجيل الخروج'),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () {},
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacementNamed("startPage");
+            },
           ),
         ],
       ),

@@ -56,9 +56,8 @@ class HomeScreenState extends State<HomePage> {
             ),
           ),
         ),
-        //ignore: prefer_const_literals_to_create_immutables
-          /*
-        leading: Transform(
+        // ignore: prefer_const_literals_to_create_immutables
+        /*leading: Transform(
           alignment: Alignment.center,
           transform: Matrix4.rotationY(math.pi),
           child: IconButton(
@@ -69,8 +68,21 @@ class HomeScreenState extends State<HomePage> {
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
               icon: const Icon(Icons.exit_to_app)),
+        ),*/
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.list,
+                size: 55,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-        */
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: Container(
