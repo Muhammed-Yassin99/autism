@@ -23,11 +23,10 @@ class _SignUpScreenState extends State<signUpScreen> {
   addData(String role, String collection) async {
     CollectionReference userRef =
         FirebaseFirestore.instance.collection(collection);
-    userRef.add({
+    userRef.doc(FirebaseAuth.instance.currentUser!.uid).set({
       "username": userName,
       "gmail": userEmail,
       "role": role,
-      "uid": FirebaseAuth.instance.currentUser!.uid
     });
   }
 

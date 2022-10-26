@@ -14,10 +14,10 @@ class signInScreen extends StatefulWidget {
   const signInScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  SignInScreenState createState() => SignInScreenState();
 }
 
-class _SignInScreenState extends State<signInScreen> {
+class SignInScreenState extends State<signInScreen> {
   // ignore: prefer_typing_uninitialized_variables
   var userEmail, userPass;
   static var userName;
@@ -254,12 +254,14 @@ class _SignInScreenState extends State<signInScreen> {
                           if (role == "parents" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
+                              setState(() {});
                               Navigator.of(context)
                                   .pushReplacementNamed("parentHomePage");
                             }
                           } else if (role == "trainers" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
+                              setState(() {});
                               Navigator.of(context)
                                   .pushReplacementNamed("trainerHomePage");
                             }

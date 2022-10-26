@@ -1,4 +1,7 @@
-// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable
+// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings
+import 'dart:async';
+
+import 'package:autism_zz/SignIn/signInScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -16,7 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomePage> {
-  String userName = '';
+  static var userName = '';
 
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
@@ -27,19 +30,19 @@ class HomeScreenState extends State<HomePage> {
 
   @override
   void initState() {
+    super.initState();
     getUser();
     setUserName();
-    super.initState();
   }
 
   setUserName() async {
     var user = FirebaseAuth.instance.currentUser;
-    String uid = user!.uid.toString();
+    String mail = user!.email.toString();
     CollectionReference userRef =
-        await FirebaseFirestore.instance.collection("users");
+        FirebaseFirestore.instance.collection("users");
     await userRef.get().then((value) {
       for (var element in value.docs) {
-        if (element['uid'].toString() == uid) {
+        if (element['gmail'].toString() == mail) {
           userName = element['username'].toString();
           if (kDebugMode) {
             print(userName);
@@ -50,18 +53,26 @@ class HomeScreenState extends State<HomePage> {
     });
   }
 
-  getUserName() {
+  getUserName() async {
+    var user = FirebaseAuth.instance.currentUser;
+    String uid = user!.uid.toString();
+    var documentReference =
+        FirebaseFirestore.instance.collection('users').doc(uid);
+    documentReference.get().then((value) {
+      userName = value['username'].toString();
+    });
     return userName;
   }
 
   @override
   Widget build(BuildContext context) {
+    setState(() {});
     return Scaffold(
       drawer: Drawer(
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(userName),
+              accountName: Text(userName.toString()),
               accountEmail:
                   Text(FirebaseAuth.instance.currentUser!.email.toString()),
               currentAccountPicture: CircleAvatar(
@@ -182,9 +193,7 @@ class HomeScreenState extends State<HomePage> {
                 size: 55,
               ),
               onPressed: () async {
-                if (kDebugMode) {
-                  print(userName);
-                }
+                setState(() {});
                 Scaffold.of(context).openDrawer();
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -271,12 +280,14 @@ class HomeScreenState extends State<HomePage> {
   }
 
   buildWelcome() {
+    setState(() {});
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          userName,
+          userName.toString(),
+          textAlign: TextAlign.end,
           style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
