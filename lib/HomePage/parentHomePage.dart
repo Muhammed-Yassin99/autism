@@ -56,7 +56,8 @@ class HomeScreenState extends State<HomePage> {
             ),
           ),
         ),
-        // ignore: prefer_const_literals_to_create_immutables
+        //ignore: prefer_const_literals_to_create_immutables
+          /*
         leading: Transform(
           alignment: Alignment.center,
           transform: Matrix4.rotationY(math.pi),
@@ -69,6 +70,7 @@ class HomeScreenState extends State<HomePage> {
               },
               icon: const Icon(Icons.exit_to_app)),
         ),
+        */
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: Container(

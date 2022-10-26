@@ -33,7 +33,7 @@ class startPage extends StatelessWidget {
                     height: 80,
                     width: 200,
                     decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: Colors.cyan,
                         borderRadius: BorderRadius.circular(28)),
                     child: TextButton(
                         onPressed: () {
@@ -64,7 +64,7 @@ class startPage extends StatelessWidget {
                     height: 80,
                     width: 200,
                     decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(28)),
                     child: Center(
                       child: TextButton(
