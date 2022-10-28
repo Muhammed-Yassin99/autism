@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../children/addChild.dart';
+import '../children/childrenList.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
 
@@ -318,6 +319,10 @@ class HomeScreenState extends State<HomePage> {
     if (category.id == 4) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const addChild()));
+    }
+    if (category.id == 5) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const childrenList()));
     }
   }
 }
