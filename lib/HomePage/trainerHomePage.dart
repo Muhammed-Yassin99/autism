@@ -8,7 +8,6 @@ import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
-import 'dart:math' as math;
 
 class trainerHomePage extends StatefulWidget {
   const trainerHomePage({super.key});
