@@ -8,6 +8,7 @@ import 'HomePage/parentHomePage.dart';
 import 'HomePage/startPage.dart';
 import 'HomePage/trainerHomePage.dart';
 import 'SignIn/signInScreen.dart';
+import 'model/splashScreen.dart';
 
 bool islogin = false;
 bool hasRole = false;
@@ -33,7 +34,7 @@ Future<void> main() async {
   } else {
     islogin = false;
   }
-  runApp(const MyApp());
+  runApp(const splashScreen());
 }
 
 getRole(context) {
