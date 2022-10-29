@@ -30,39 +30,43 @@ class startPage extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.50,
                   left: MediaQuery.of(context).size.width * 0.257,
                   child: Container(
-                    height: 80,
-                    width: 200,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.486,
                     decoration: BoxDecoration(
-                        color: Colors.cyan,
+                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(28)),
                     child: TextButton(
-                        onPressed: () {
-                          setRole("parents");
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const signInScreen()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50), // NEW
-                        ),
-                        // ignore: prefer_const_constructors
-                        child: Text(
+                      onPressed: () {
+                        setRole("parents");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const signInScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50), // NEW
+                      ),
+                      // ignore: prefer_const_constructors
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: const Text(
                           'ولي الأمر',
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
                               fontSize: 40,
                               fontWeight: FontWeight.bold),
-                        )),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.63,
                   left: MediaQuery.of(context).size.width * 0.257,
                   child: Container(
-                    height: 80,
-                    width: 200,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.486,
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(28)),
@@ -80,12 +84,15 @@ class startPage extends StatelessWidget {
                           minimumSize: const Size.fromHeight(50), // NEW
                         ),
                         // ignore: prefer_const_constructors
-                        child: Text(
-                          'مدرب',
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold),
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: const Text(
+                            'مدرب',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),

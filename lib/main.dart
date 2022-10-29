@@ -34,7 +34,7 @@ Future<void> main() async {
   } else {
     islogin = false;
   }
-  runApp(const splashScreen());
+  runApp(const MyApp());
 }
 
 getRole(context) {
