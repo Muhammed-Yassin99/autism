@@ -99,8 +99,8 @@ class HomeScreenState extends State<HomePage> {
                   Text(FirebaseAuth.instance.currentUser!.email.toString()),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
-                  child: Image.network(
-                    'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                  child: Image.asset(
+                    'assets/images/HomePage/parent.png',
                     fit: BoxFit.cover,
                     width: 90,
                     height: 90,
