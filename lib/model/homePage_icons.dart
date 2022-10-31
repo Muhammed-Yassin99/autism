@@ -10,7 +10,7 @@ final List<Category> homePage_categories = [
   Category(5, "قائمة الاطفال",
       icon: "assets/images/HomePage/registerdChildren.png"),
 ];
-final List<Category> trainnerHomePage_categories = [
+final List<Category> trainerHomePage_categories = [
   Category(2, "العاب", icon: "assets/images/HomePage/games.png"),
   Category(1, "تعلم", icon: "assets/images/HomePage/learn.png"),
   Category(4, "أضف طفل", icon: "assets/images/HomePage/AddChild.png"),

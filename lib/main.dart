@@ -1,4 +1,4 @@
-// ignore_for_file: duplicate_import
+// ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,43 +9,35 @@ import 'HomePage/parentHomePage.dart';
 import 'HomePage/startPage.dart';
 import 'HomePage/trainerHomePage.dart';
 import 'SignIn/signInScreen.dart';
-import 'model/splashScreen.dart';
 
-bool islogin = false;
-bool hasRole = false;
+var islogin;
+var hasRole;
+var role;
 
-Future<void> main() async {
-  String role = '';
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  User? user = FirebaseAuth.instance.currentUser;
+  var user = FirebaseAuth.instance.currentUser;
   if (user != null) {
-    if (kDebugMode) {
-      print(role);
-    }
     islogin = true;
     String uid = user.uid.toString();
     var documentReference =
         FirebaseFirestore.instance.collection('users').doc(uid);
     documentReference.get().then((value) {
       role = value['role'].toString();
+      if (role == "parents") {
+        hasRole = false;
+      } else if (role == "trainers") {
+        hasRole = true;
+      }
     });
-    if (role == "parents") {
-      hasRole = false;
-    } else if (role == "trainers") {
-      hasRole == true;
-    }
   } else {
     islogin = false;
-  }
-  if (kDebugMode) {
-    print(role);
   }
   runApp(const MyApp());
 }
 
-/*getRole(context) {
-  String role = '';
+/*getRole() async {
   var user = FirebaseAuth.instance.currentUser;
   if (user != null) {
     String uid = user.uid.toString();
@@ -55,8 +47,9 @@ Future<void> main() async {
       role = value['role'].toString();
     });
     if (role == "parents") {
+      hasRole = false;
     } else if (role == "trainers") {
-      Navigator.of(context).pushReplacementNamed("trainerHomePage");
+      hasRole = true;
     }
   }
 }*/
@@ -66,9 +59,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      print(hasRole);
-    }
     return MaterialApp(
       title: 'Autism',
       debugShowCheckedModeBanner: false,

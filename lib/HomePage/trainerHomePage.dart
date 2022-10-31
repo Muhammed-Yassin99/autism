@@ -213,7 +213,7 @@ class HomeScreenState extends State<trainerHomePage> {
                                 mainAxisSpacing: 25.0),
                         delegate: SliverChildBuilderDelegate(
                           _buildCategoryItem,
-                          childCount: trainnerHomePage_categories.length,
+                          childCount: trainerHomePage_categories.length,
                         )),
                   ),
                 ],
@@ -224,7 +224,7 @@ class HomeScreenState extends State<trainerHomePage> {
   }
 
   Widget _buildCategoryItem(BuildContext context, int index) {
-    var category = trainnerHomePage_categories[index];
+    var category = trainerHomePage_categories[index];
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 8.0,
