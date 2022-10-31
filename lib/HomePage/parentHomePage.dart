@@ -1,9 +1,13 @@
 // ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names
 
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../children/addChild.dart';
@@ -19,20 +23,13 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomePage> {
-  static var userName = '';
+  var userName;
 
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
     if (kDebugMode) {
       print(user!.email);
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getUser();
-    setUserName();
   }
 
   setUserName() async {
@@ -53,6 +50,12 @@ class HomeScreenState extends State<HomePage> {
     });
   }
 
+  @override
+  void initState() {
+    setUserName();
+    super.initState();
+    setUserName();
+  }
   /*getUserName() async {
     var user = FirebaseAuth.instance.currentUser;
     String uid = user!.uid.toString();
@@ -62,11 +65,30 @@ class HomeScreenState extends State<HomePage> {
       userName = value['username'].toString();
     });
     return userName;
-  }*/
+  }
+  Future processingData() async {
+    await setUserName();
+    return userName;
+  }
+  Widget splashUI(Size size) {
+    return SafeArea(
+      child: Center(
+        child: SizedBox(
+          width: size.width * 0.5,
+          height: size.height * 0.1,
+          child: const Image(
+            fit: BoxFit.fill,
+            image: AssetImage('assets/images/HomePage/signInLogo.png'),
+          ),
+        ),
+      ),
+    );
+  }
+  */
 
   @override
   Widget build(BuildContext context) {
-    setState(() {});
+    setUserName();
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -88,29 +110,25 @@ class HomeScreenState extends State<HomePage> {
               decoration: const BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg')),
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                      'assets/images/HomePage/sideBarBackground.jpg'),
+                ),
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.favorite),
-              title: const Text('Favorites'),
-              onTap: () {},
-            ),
-            ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('Friends'),
+              title: const Text('الأطفال'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.share),
-              title: const Text('Share'),
+              title: const Text('قائمة المدربين'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.notifications),
-              title: const Text('Request'),
+              title: const Text('الطلبات'),
               onTap: () {},
               trailing: ClipOval(
                 child: Container(
@@ -132,12 +150,7 @@ class HomeScreenState extends State<HomePage> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.description),
-              title: const Text('Policies'),
+              title: const Text('الأعدادات'),
               onTap: () {},
             ),
             const Divider(),
@@ -159,7 +172,7 @@ class HomeScreenState extends State<HomePage> {
         title: const Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'الصفحة الرئسية',
+            'الصفحة الرئيسية',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -201,16 +214,14 @@ class HomeScreenState extends State<HomePage> {
           },
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
+          preferredSize: const Size.fromHeight(35),
           child: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.centerRight,
-            child: buildWelcome(),
           ),
         ),
       ),
       body: Container(
-          //color: const Color.fromARGB(164, 0, 0, 0),
           color: const Color.fromARGB(255, 12, 79, 135),
           child: Stack(
             children: [
@@ -280,7 +291,7 @@ class HomeScreenState extends State<HomePage> {
   }
 
   buildWelcome() {
-    setState(() {});
+    //setState(() {});
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,

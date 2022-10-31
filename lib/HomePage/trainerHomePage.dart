@@ -28,7 +28,6 @@ class HomeScreenState extends State<trainerHomePage> {
 
   @override
   void initState() {
-    getUser();
     super.initState();
     getUser();
     setUserName();
@@ -65,8 +64,8 @@ class HomeScreenState extends State<trainerHomePage> {
                   Text(FirebaseAuth.instance.currentUser!.email.toString()),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
-                  child: Image.network(
-                    'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                  child: Image.asset(
+                    'assets/images/HomePage/trainer.png',
                     fit: BoxFit.cover,
                     width: 90,
                     height: 90,
@@ -76,29 +75,25 @@ class HomeScreenState extends State<trainerHomePage> {
               decoration: const BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg')),
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                      'assets/images/HomePage/sideBarBackground.jpg'),
+                ),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.favorite),
-              title: const Text('Favorites'),
+              title: const Text('الشهادات'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('Friends'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.share),
-              title: const Text('Share'),
+              title: const Text('اولياء الأمور'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.notifications),
-              title: const Text('Request'),
+              title: const Text('الطلبات'),
               onTap: () {},
               trailing: ClipOval(
                 child: Container(
@@ -120,12 +115,7 @@ class HomeScreenState extends State<trainerHomePage> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.description),
-              title: const Text('Policies'),
+              title: const Text('الأعدادات'),
               onTap: () {},
             ),
             const Divider(),
@@ -147,7 +137,7 @@ class HomeScreenState extends State<trainerHomePage> {
         title: const Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'الصفحة الرئسية',
+            'الصفحة الرئيسية',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -189,11 +179,10 @@ class HomeScreenState extends State<trainerHomePage> {
           },
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
+          preferredSize: const Size.fromHeight(35),
           child: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.centerRight,
-            child: buildWelcome(),
           ),
         ),
       ),

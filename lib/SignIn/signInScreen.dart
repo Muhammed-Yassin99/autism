@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import '../utils/colors_utils.dart';
 import 'resetPass.dart';
 import 'signUpScreen.dart';
@@ -254,14 +255,12 @@ class SignInScreenState extends State<signInScreen> {
                           if (role == "parents" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
-                              setState(() {});
                               Navigator.of(context)
                                   .pushReplacementNamed("parentHomePage");
                             }
                           } else if (role == "trainers" && option == true) {
                             UserCredential? user = await SignIn();
                             if (user != null) {
-                              setState(() {});
                               Navigator.of(context)
                                   .pushReplacementNamed("trainerHomePage");
                             }
