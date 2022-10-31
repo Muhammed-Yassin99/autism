@@ -37,23 +37,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-/*getRole() async {
-  var user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    String uid = user.uid.toString();
-    var documentReference =
-        FirebaseFirestore.instance.collection('users').doc(uid);
-    documentReference.get().then((value) {
-      role = value['role'].toString();
-    });
-    if (role == "parents") {
-      hasRole = false;
-    } else if (role == "trainers") {
-      hasRole = true;
-    }
-  }
-}*/
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
