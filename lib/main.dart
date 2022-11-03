@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'HomePage/parentHomePage.dart';
 import 'HomePage/startPage.dart';
@@ -10,10 +11,18 @@ import 'HomePage/trainerHomePage.dart';
 import 'SignIn/signInScreen.dart';
 
 var islogin;
-var hasRole;
+var hasRole = false;
 var role;
 
-void main() async {
+setHasRole(bool role) {
+  hasRole = role;
+}
+
+getHasRole() {
+  return hasRole;
+}
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   var user = FirebaseAuth.instance.currentUser;
@@ -26,8 +35,10 @@ void main() async {
       role = value['role'].toString();
       if (role == "parents") {
         hasRole = false;
+        setHasRole(false);
       } else if (role == "trainers") {
         hasRole = true;
+        setHasRole(true);
       }
     });
   } else {
@@ -41,6 +52,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    hasRole = getHasRole();
+    if (kDebugMode) {
+      print(hasRole);
+    }
     return MaterialApp(
       title: 'Autism',
       debugShowCheckedModeBanner: false,

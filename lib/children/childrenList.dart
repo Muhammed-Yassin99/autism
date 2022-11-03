@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, camel_case_types
+// ignore_for_file: file_names, camel_case_types, non_constant_identifier_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,10 +14,28 @@ class childrenList extends StatefulWidget {
 }
 
 class HomeScreenState extends State<childrenList> {
-  static var userName = '';
+  List children = [];
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+  CollectionReference ChildrenRef =
+      FirebaseFirestore.instance.collection("parents");
+
+  getChildren() async {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
+    var response = await childRef.get();
+    for (var element in response.docs) {
+      setState(() {
+        children.add(element.data());
+      });
+    }
+    if (kDebugMode) {
+      print(children);
+    }
+  }
 
   @override
   void initState() {
+    getChildren();
     super.initState();
   }
 
@@ -63,62 +81,35 @@ class HomeScreenState extends State<childrenList> {
         ),
       ),
 
-      body: ListView(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: ExpansionTile(
-                backgroundColor: Colors.black,
-                title: Text("Account"),
-                children: [
-                  Divider(color: Colors.red),
-                  Card(
-                    color: Colors.grey,
-                    child: ListTile(
-                      title: Text("fkup"),
-                      subtitle: Text("fkup again"),
-                    ),
+      body: ListView.builder(
+        // ignore: prefer_const_literals_to_create_immutables
+        itemCount: children.length,
+        itemBuilder: (BuildContext context, int i) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: ExpansionTile(
+              backgroundColor: Colors.black,
+              title: Text("${children[i]['name']}"),
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Divider(color: Colors.red),
+                Card(
+                  color: Colors.grey,
+                  child: ListTile(
+                    title: Text("${children[i]['age']}"),
                   ),
-                  Card(
-                    color: Colors.grey,
-                    child: ListTile(
-                      title: Text("ummm"),
-                      subtitle: Text("shut up"),
-                    ),
+                ),
+                const Card(
+                  color: Colors.grey,
+                  child: ListTile(
+                    title: Text("ummm"),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: ExpansionTile(
-                backgroundColor: Colors.black,
-                title: Text("More trash"),
-                children: [
-                  Divider(
-                    color: Colors.red,
-                  ),
-                  Card(
-                    color: Colors.grey,
-                    child: ListTile(
-                      title: Text("fkup"),
-                      subtitle: Text("fkup again"),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.grey,
-                    child: ListTile(
-                      title: Text("ummm"),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ]),
+          );
+        },
+      ),
     );
   }
 }
