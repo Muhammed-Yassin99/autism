@@ -23,24 +23,6 @@ class HomePage extends StatefulWidget {
 
 class HomeScreenState extends State<HomePage> {
   var userName;
-  List children = [];
-  String uid = FirebaseAuth.instance.currentUser!.uid;
-  CollectionReference ChildrenRef =
-      FirebaseFirestore.instance.collection("parents");
-
-  getChildren() async {
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
-    var response = await childRef.get();
-    for (var element in response.docs) {
-      setState(() {
-        children.add(element.data());
-      });
-    }
-    if (kDebugMode) {
-      print(children);
-    }
-  }
 
   setUserName() async {
     var user = FirebaseAuth.instance.currentUser;
@@ -62,7 +44,6 @@ class HomeScreenState extends State<HomePage> {
   @override
   void initState() {
     setUserName();
-    getChildren();
     super.initState();
   }
   /*getUserName() async {
@@ -128,7 +109,12 @@ class HomeScreenState extends State<HomePage> {
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('الأطفال'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const childrenList()));
+              },
             ),
             ListTile(
               leading: const Icon(Icons.share),
@@ -194,19 +180,6 @@ class HomeScreenState extends State<HomePage> {
             ),
           ),
         ),
-        // ignore: prefer_const_literals_to_create_immutables
-        /*leading: Transform(
-          alignment: Alignment.center,
-          transform: Matrix4.rotationY(math.pi),
-          child: IconButton(
-              alignment: Alignment.topLeft,
-              iconSize: 50,
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed("startPage");
-              },
-              icon: const Icon(Icons.exit_to_app)),
-        ),*/
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
