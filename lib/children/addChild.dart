@@ -20,6 +20,16 @@ class SignInScreenState extends State<addChild> {
   var userEmail, userPass;
   static var childName;
   static var childAge;
+  static var gamesList = [
+    [
+      'faces',
+      9,
+    ],
+    [
+      'animals',
+      8,
+    ]
+  ].toList();
 
   getChildName() async {
     return childName;
@@ -42,7 +52,65 @@ class SignInScreenState extends State<addChild> {
           .set({
         "name": childName,
         "age": childAge,
+        //"games": gamesList,
       });
+      await userRef
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("faces")
+          .set({
+        "name": "الاوجه التعبيرية",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+      });
+      await userRef
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("animals")
+          .set({
+        "name": "الحيوانات",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+      });
+      await userRef
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("digits")
+          .set({
+        "name": "الحروف",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+        "level3Score": "لا يوجد",
+        "level4score": "لا يوجد"
+      });
+      await userRef
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("numbers")
+          .set({
+        "name": "الأرقام",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+      });
+      await userRef
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("family")
+          .set({
+        "name": "العائلة",
+        "level1Score": "لا يوجد",
+      });
+
       CollectionReference userRef2 =
           FirebaseFirestore.instance.collection("parents");
       await userRef2
@@ -52,6 +120,62 @@ class SignInScreenState extends State<addChild> {
           .set({
         "name": childName,
         "age": childAge,
+      });
+      await userRef2
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("faces")
+          .set({
+        "name": "الاوجه التعبيرية",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+      });
+      await userRef2
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("animals")
+          .set({
+        "name": "الحيوانات",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+      });
+      await userRef2
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("digits")
+          .set({
+        "name": "الحروف",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+        "level3Score": "لا يوجد",
+        "level4score": "لا يوجد"
+      });
+      await userRef2
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("numbers")
+          .set({
+        "name": "الأرقام",
+        "level1Score": "لا يوجد",
+        "level2Score": "لا يوجد",
+      });
+      await userRef2
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("children")
+          .doc(childName)
+          .collection("games")
+          .doc("family")
+          .set({
+        "name": "العائلة",
+        "level1Score": "لا يوجد",
       });
     }
   }
@@ -190,10 +314,8 @@ class SignInScreenState extends State<addChild> {
                           if (kDebugMode) {
                             print("child added");
                           }
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const childrenList()));
+                          Navigator.of(context)
+                              .pushReplacementNamed("childrenList");
                         },
                         style: ButtonStyle(
                             backgroundColor:

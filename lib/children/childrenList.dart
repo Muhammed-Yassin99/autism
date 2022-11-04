@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../model/drawer.dart';
 
 class childrenList extends StatefulWidget {
   const childrenList({super.key});
@@ -16,6 +15,7 @@ class childrenList extends StatefulWidget {
 class HomeScreenState extends State<childrenList> {
   var userName;
   List children = [];
+  List games = [];
   String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
       FirebaseFirestore.instance.collection("parents");
@@ -29,8 +29,28 @@ class HomeScreenState extends State<childrenList> {
         children.add(element.data());
       });
     }
+  }
+
+  getGames() async {
+    await getChildren();
     if (kDebugMode) {
       print(children);
+    }
+    for (int i = 0; i <= children.length - 1; i++) {
+      var uid = FirebaseAuth.instance.currentUser!.uid;
+      CollectionReference childRef = ChildrenRef.doc(uid)
+          .collection("children")
+          .doc(children[i]['name'])
+          .collection("games");
+      var response = await childRef.get();
+      for (var element in response.docs) {
+        setState(() {
+          games.add(element.data());
+        });
+      }
+    }
+    if (kDebugMode) {
+      print(games);
     }
   }
 
@@ -54,7 +74,8 @@ class HomeScreenState extends State<childrenList> {
   @override
   void initState() {
     setUserName();
-    getChildren();
+    //getChildren();
+    getGames();
     super.initState();
   }
 
@@ -87,6 +108,13 @@ class HomeScreenState extends State<childrenList> {
                       'assets/images/HomePage/sideBarBackground.jpg'),
                 ),
               ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.share),
+              title: const Text('الصفحة الرئيسية'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed("parentHomePage");
+              },
             ),
             ListTile(
               leading: const Icon(Icons.person),
@@ -204,6 +232,30 @@ class HomeScreenState extends State<childrenList> {
                   child: ListTile(
                     title: Text(textAlign: TextAlign.right, "ummm"),
                   ),
+
+                  /*ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: ExpansionTile(
+                        backgroundColor: Colors.black,
+                        title: Text(
+                            textAlign: TextAlign.right, "${games[i]['name']}"),
+                        children: [
+                          const Divider(color: Colors.red),
+                          Card(
+                            color: Colors.grey,
+                            child: ListTile(
+                              title: Text(
+                                  textAlign: TextAlign.right,
+                                  "${"العمر"}: ${games[i]['level1score']}"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),*/
                 ),
               ],
             ),
