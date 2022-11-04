@@ -34,9 +34,6 @@ class HomeScreenState extends State<childrenList> {
 
   getGames() async {
     await getChildren();
-    if (kDebugMode) {
-      print(children);
-    }
     for (int i = 0; i <= children.length - 1; i++) {
       games.clear();
       var uid = FirebaseAuth.instance.currentUser!.uid;
@@ -50,10 +47,9 @@ class HomeScreenState extends State<childrenList> {
           games.add(element.data());
         });
       }
-      listofGames.add(games);
-      if (kDebugMode) {
-        print(listofGames);
-      }
+      setState(() {
+        listofGames.add(games);
+      });
     }
     if (kDebugMode) {
       print(listofGames);
@@ -80,15 +76,12 @@ class HomeScreenState extends State<childrenList> {
   @override
   void initState() {
     setUserName();
-    //getChildren();
     getGames();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    setState(() {});
-    print(games.length);
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -240,59 +233,47 @@ class HomeScreenState extends State<childrenList> {
                   ),
                   Card(
                     color: Colors.grey,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: listofGames.length,
-                      itemBuilder: (BuildContext context, int j) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: ExpansionTile(
-                            backgroundColor: Colors.black,
-                            title: Text(
-                                textAlign: TextAlign.right,
-                                "${listofGames[i][j]['name']}"),
-                            children: [
-                              const Divider(color: Colors.red),
-                              Card(
-                                color: Colors.grey,
-                                child: ListTile(
+                    child: ExpansionTile(
+                      backgroundColor: Colors.black,
+                      title: const Text(
+                        textAlign: TextAlign.right,
+                        "الالعاب",
+                      ),
+                      children: [
+                        const Divider(color: Colors.red),
+                        Card(
+                          color: Colors.grey,
+                          child: ListView.builder(
+                            //scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: 5,
+                            itemBuilder: (BuildContext context, int j) {
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: ExpansionTile(
+                                  backgroundColor: Colors.black,
                                   title: Text(
                                       textAlign: TextAlign.right,
-                                      "${"العمر"}: ${listofGames[i][j]['level1score']}"),
+                                      "${listofGames[i][j]['name']}"),
+                                  children: [
+                                    const Divider(color: Colors.red),
+                                    Card(
+                                      color: Colors.grey,
+                                      child: ListTile(
+                                        title: Text(
+                                            textAlign: TextAlign.right,
+                                            "${"العمر"}: ${listofGames[i][j]['level1score']}"),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              );
+                            },
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     ),
                   ),
-                  /* ListView.builder(
-                    itemCount: games.length,
-                    itemBuilder: (BuildContext context, int i) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: ExpansionTile(
-                          backgroundColor: Colors.black,
-                          title: Text(
-                              textAlign: TextAlign.right,
-                              "${games[i]['name']}"),
-                          children: [
-                            const Divider(color: Colors.red),
-                            Card(
-                              color: Colors.grey,
-                              child: ListTile(
-                                title: Text(
-                                    textAlign: TextAlign.right,
-                                    "${"العمر"}: ${games[i]['level1score']}"),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),*/
                 ],
               ),
             );
