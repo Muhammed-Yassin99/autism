@@ -20,16 +20,6 @@ class SignInScreenState extends State<addChild> {
   var userEmail, userPass;
   static var childName;
   static var childAge;
-  static var gamesList = [
-    [
-      'faces',
-      9,
-    ],
-    [
-      'animals',
-      8,
-    ]
-  ].toList();
 
   getChildName() async {
     return childName;
@@ -64,6 +54,8 @@ class SignInScreenState extends State<addChild> {
         "name": "الاوجه التعبيرية",
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -75,6 +67,8 @@ class SignInScreenState extends State<addChild> {
         "name": "الحيوانات",
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -87,7 +81,7 @@ class SignInScreenState extends State<addChild> {
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
         "level3Score": "لا يوجد",
-        "level4score": "لا يوجد"
+        "level4Score": "لا يوجد",
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -99,6 +93,8 @@ class SignInScreenState extends State<addChild> {
         "name": "الأرقام",
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -109,6 +105,9 @@ class SignInScreenState extends State<addChild> {
           .set({
         "name": "العائلة",
         "level1Score": "لا يوجد",
+        "level2Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
 
       CollectionReference userRef2 =
@@ -131,6 +130,8 @@ class SignInScreenState extends State<addChild> {
         "name": "الاوجه التعبيرية",
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -142,6 +143,8 @@ class SignInScreenState extends State<addChild> {
         "name": "الحيوانات",
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -154,7 +157,7 @@ class SignInScreenState extends State<addChild> {
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
         "level3Score": "لا يوجد",
-        "level4score": "لا يوجد"
+        "level4Score": "لا يوجد"
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -166,6 +169,8 @@ class SignInScreenState extends State<addChild> {
         "name": "الأرقام",
         "level1Score": "لا يوجد",
         "level2Score": "لا يوجد",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -176,6 +181,9 @@ class SignInScreenState extends State<addChild> {
           .set({
         "name": "العائلة",
         "level1Score": "لا يوجد",
+        "level2Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
       });
     }
   }

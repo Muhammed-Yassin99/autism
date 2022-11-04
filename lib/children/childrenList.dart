@@ -262,7 +262,31 @@ class HomeScreenState extends State<childrenList> {
                                       child: ListTile(
                                         title: Text(
                                             textAlign: TextAlign.right,
-                                            "${"العمر"}: ${listofGames[i][j]['level1score']}"),
+                                            "${"المستوي الأول"}: ${listofGames[i][j]['level1Score']}"),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.grey,
+                                      child: ListTile(
+                                        title: Text(
+                                            textAlign: TextAlign.right,
+                                            "${"المستوي الثاني"}: ${listofGames[i][j]['level2Score']}"),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.grey,
+                                      child: ListTile(
+                                        title: Text(
+                                            textAlign: TextAlign.right,
+                                            "${"المستوي الثالث"}: ${listofGames[i][j]['level3Score']}"),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.grey,
+                                      child: ListTile(
+                                        title: Text(
+                                            textAlign: TextAlign.right,
+                                            "${"المستوي الرابع"}: ${listofGames[i][j]['level4Score']}"),
                                       ),
                                     ),
                                   ],
