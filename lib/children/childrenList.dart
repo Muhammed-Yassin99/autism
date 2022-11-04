@@ -15,6 +15,7 @@ class childrenList extends StatefulWidget {
 class HomeScreenState extends State<childrenList> {
   var userName;
   List children = [];
+  List listofGames = [];
   List games = [];
   String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
@@ -37,6 +38,7 @@ class HomeScreenState extends State<childrenList> {
       print(children);
     }
     for (int i = 0; i <= children.length - 1; i++) {
+      games.clear();
       var uid = FirebaseAuth.instance.currentUser!.uid;
       CollectionReference childRef = ChildrenRef.doc(uid)
           .collection("children")
@@ -48,9 +50,13 @@ class HomeScreenState extends State<childrenList> {
           games.add(element.data());
         });
       }
+      listofGames.add(games);
+      if (kDebugMode) {
+        print(listofGames);
+      }
     }
     if (kDebugMode) {
-      print(games);
+      print(listofGames);
     }
   }
 
@@ -82,6 +88,7 @@ class HomeScreenState extends State<childrenList> {
   @override
   Widget build(BuildContext context) {
     setState(() {});
+    print(games.length);
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -206,61 +213,91 @@ class HomeScreenState extends State<childrenList> {
           },
         ),
       ),
-
-      body: ListView.builder(
-        // ignore: prefer_const_literals_to_create_immutables
-        itemCount: children.length,
-        itemBuilder: (BuildContext context, int i) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: ExpansionTile(
-              backgroundColor: Colors.black,
-              title: Text(textAlign: TextAlign.right, "${children[i]['name']}"),
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Divider(color: Colors.red),
-                Card(
-                  color: Colors.grey,
-                  child: ListTile(
-                    title: Text(
-                        textAlign: TextAlign.right,
-                        "${"العمر"}: ${children[i]['age']}"),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          // ignore: prefer_const_literals_to_create_immutables
+          itemCount: children.length,
+          itemBuilder: (BuildContext context, int i) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: ExpansionTile(
+                backgroundColor: Colors.black,
+                title:
+                    Text(textAlign: TextAlign.right, "${children[i]['name']}"),
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  const Divider(color: Colors.red),
+                  Card(
+                    color: Colors.grey,
+                    child: ListTile(
+                      title: Text(
+                          textAlign: TextAlign.right,
+                          "${"العمر"}: ${children[i]['age']}"),
+                    ),
                   ),
-                ),
-                const Card(
-                  color: Colors.grey,
-                  child: ListTile(
-                    title: Text(textAlign: TextAlign.right, "ummm"),
-                  ),
-
-                  /*ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: ExpansionTile(
-                        backgroundColor: Colors.black,
-                        title: Text(
-                            textAlign: TextAlign.right, "${games[i]['name']}"),
-                        children: [
-                          const Divider(color: Colors.red),
-                          Card(
-                            color: Colors.grey,
-                            child: ListTile(
-                              title: Text(
-                                  textAlign: TextAlign.right,
-                                  "${"العمر"}: ${games[i]['level1score']}"),
-                            ),
+                  Card(
+                    color: Colors.grey,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: listofGames.length,
+                      itemBuilder: (BuildContext context, int j) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: ExpansionTile(
+                            backgroundColor: Colors.black,
+                            title: Text(
+                                textAlign: TextAlign.right,
+                                "${listofGames[i][j]['name']}"),
+                            children: [
+                              const Divider(color: Colors.red),
+                              Card(
+                                color: Colors.grey,
+                                child: ListTile(
+                                  title: Text(
+                                      textAlign: TextAlign.right,
+                                      "${"العمر"}: ${listofGames[i][j]['level1score']}"),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),*/
-                ),
-              ],
-            ),
-          );
-        },
+                        );
+                      },
+                    ),
+                  ),
+                  /* ListView.builder(
+                    itemCount: games.length,
+                    itemBuilder: (BuildContext context, int i) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: ExpansionTile(
+                          backgroundColor: Colors.black,
+                          title: Text(
+                              textAlign: TextAlign.right,
+                              "${games[i]['name']}"),
+                          children: [
+                            const Divider(color: Colors.red),
+                            Card(
+                              color: Colors.grey,
+                              child: ListTile(
+                                title: Text(
+                                    textAlign: TextAlign.right,
+                                    "${"العمر"}: ${games[i]['level1score']}"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),*/
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
