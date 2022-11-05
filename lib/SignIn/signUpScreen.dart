@@ -27,6 +27,7 @@ class _SignUpScreenState extends State<signUpScreen> {
       "username": userName,
       "gmail": userEmail,
       "role": role,
+      "current child": "",
     });
   }
 

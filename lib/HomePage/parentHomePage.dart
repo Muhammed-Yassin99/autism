@@ -23,6 +23,30 @@ class HomePage extends StatefulWidget {
 
 class HomeScreenState extends State<HomePage> {
   var userName;
+  List children = [];
+  String currentChild = "";
+  //String uid = FirebaseAuth.instance.currentUser!.uid;
+  CollectionReference ChildrenRef =
+      FirebaseFirestore.instance.collection("parents");
+
+  getChildren() async {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
+    var response = await childRef.get();
+    for (var element in response.docs) {
+      setState(() {
+        children.add(element.data());
+      });
+    }
+    setState(() {
+      currentChild = children[0]['name'];
+    });
+  }
+
+  setCurrentChild() async {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    DocumentReference ref = ChildrenRef.doc(uid);
+  }
 
   setUserName() async {
     var user = FirebaseAuth.instance.currentUser;
@@ -43,6 +67,7 @@ class HomeScreenState extends State<HomePage> {
 
   @override
   void initState() {
+    getChildren();
     setUserName();
     super.initState();
   }

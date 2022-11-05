@@ -17,7 +17,7 @@ class HomeScreenState extends State<childrenList> {
   List children = [];
   List listofGames = [];
   List games = [];
-  String uid = FirebaseAuth.instance.currentUser!.uid;
+  //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
       FirebaseFirestore.instance.collection("parents");
 
