@@ -302,10 +302,7 @@ class _HomeScreenState extends State<animalsLevel1> {
             child: FloatingActionButton(
                 backgroundColor: Colors.amber,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
+                  Navigator.of(context).pushNamed("parentHomePage");
                 },
                 child: const Icon(
                   Icons.home_filled,

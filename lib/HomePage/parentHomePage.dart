@@ -38,14 +38,38 @@ class HomeScreenState extends State<HomePage> {
         children.add(element.data());
       });
     }
-    setState(() {
-      currentChild = children[0]['name'];
-    });
+    currentChild = children[0]['name'];
   }
 
   setCurrentChild() async {
+    await getChildren();
+    String child = "";
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    String mail = FirebaseAuth.instance.currentUser!.email.toString();
+    DocumentReference ref = ChildrenRef.doc(uid);
+    await ChildrenRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['gmail'].toString() == mail) {
+          child = element['currentChild'].toString();
+          break;
+        }
+      }
+    });
+    if (child == "") {
+      ref.update({"currentChild": currentChild});
+    }
+    if (kDebugMode) {
+      print(child);
+    }
+  }
+
+  changeCurrentChild() async {
     var uid = FirebaseAuth.instance.currentUser!.uid;
     DocumentReference ref = ChildrenRef.doc(uid);
+    await ref.update({"currentChild": currentChild});
+    if (kDebugMode) {
+      print("done");
+    }
   }
 
   setUserName() async {
@@ -67,7 +91,8 @@ class HomeScreenState extends State<HomePage> {
 
   @override
   void initState() {
-    getChildren();
+    //getChildren();
+    setCurrentChild();
     setUserName();
     super.initState();
   }
@@ -130,6 +155,19 @@ class HomeScreenState extends State<HomePage> {
                       'assets/images/HomePage/sideBarBackground.jpg'),
                 ),
               ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('الطفل الحالي'),
+              onTap: () {
+                setState(() {
+                  currentChild = children[0]['name'];
+                  if (kDebugMode) {
+                    print(currentChild);
+                  }
+                });
+                changeCurrentChild();
+              },
             ),
             ListTile(
               leading: const Icon(Icons.person),
