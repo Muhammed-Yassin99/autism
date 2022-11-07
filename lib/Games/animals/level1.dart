@@ -34,9 +34,6 @@ class _HomeScreenState extends State<animalsLevel1> {
     await ref.get().then((value) {
       currentChild = value['currentChild'].toString();
     });
-    if (kDebugMode) {
-      print(currentChild);
-    }
   }
 
   updateScore(String level, score) async {

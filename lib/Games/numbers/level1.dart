@@ -1,7 +1,9 @@
-// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
+// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types, non_constant_identifier_names
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
 import '../../HomePage/parentHomePage.dart';
@@ -20,6 +22,27 @@ class _HomeScreenState extends State<numbersLevel1> {
   late int score;
   late int lvl;
   late bool gameOver;
+  String currentChild = "";
+  CollectionReference ChildrenRef =
+      FirebaseFirestore.instance.collection('parents');
+
+  getcurrentChild() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid);
+    await ref.get().then((value) {
+      currentChild = value['currentChild'].toString();
+    });
+  }
+
+  updateScore(String level, score) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid)
+        .collection('children')
+        .doc(currentChild)
+        .collection('games')
+        .doc('animals');
+    await ref.update({level: score.toString()});
+  }
 
   initGame1() {
     gameOver = false;
@@ -106,12 +129,15 @@ class _HomeScreenState extends State<numbersLevel1> {
     if (items.isEmpty) gameOver = true;
     if (gameOver && lvl == 1) {
       if (score < 30) {
+        updateScore("level1Score", score);
         initGame1();
       } else {
+        updateScore("level1Score", score);
         initGame2();
       }
     }
     if (gameOver && lvl == 2) {
+      updateScore("level2Score", score);
       initGame2();
     }
     return Scaffold(

@@ -2,7 +2,10 @@
 import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
 import '../../HomePage/parentHomePage.dart';
@@ -21,6 +24,27 @@ class _HomeScreenState extends State<facesLevel1> {
   late int score;
   late int lvl;
   late bool gameOver;
+  String currentChild = "";
+  CollectionReference ChildrenRef =
+      FirebaseFirestore.instance.collection('parents');
+
+  getcurrentChild() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid);
+    await ref.get().then((value) {
+      currentChild = value['currentChild'].toString();
+    });
+  }
+
+  updateScore(String level, score) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid)
+        .collection('children')
+        .doc(currentChild)
+        .collection('games')
+        .doc('faces');
+    await ref.update({level: score.toString()});
+  }
 
   initGame1() {
     gameOver = false;
@@ -88,13 +112,21 @@ class _HomeScreenState extends State<facesLevel1> {
     if (items.isEmpty) gameOver = true;
     if (gameOver && score < 20) {
       if (lvl == 1) {
+        updateScore("level1Score", score);
         initGame1();
       } else {
+        updateScore("level2Score", score);
         initGame2();
       }
     }
     if (gameOver && score >= 20) {
-      initGame2();
+      if (lvl == 1) {
+        updateScore("level1Score", score);
+        initGame2();
+      } else {
+        updateScore("level2Score", score);
+        initGame2();
+      }
     }
     return Scaffold(
         body: SafeArea(
