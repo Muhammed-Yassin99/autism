@@ -1,8 +1,11 @@
-// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types
+// ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types, non_constant_identifier_names
 import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
 import '../../HomePage/parentHomePage.dart';
@@ -21,6 +24,30 @@ class _HomeScreenState extends State<animalsLevel1> {
   late int score;
   late int lvl;
   late bool gameOver;
+  String currentChild = "";
+  CollectionReference ChildrenRef =
+      FirebaseFirestore.instance.collection('parents');
+
+  getcurrentChild() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid);
+    await ref.get().then((value) {
+      currentChild = value['currentChild'].toString();
+    });
+    if (kDebugMode) {
+      print(currentChild);
+    }
+  }
+
+  updateScore(String level, score) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid)
+        .collection('children')
+        .doc(currentChild)
+        .collection('games')
+        .doc('animals');
+    await ref.update({level: score.toString()});
+  }
 
   initGame1() {
     gameOver = false;
@@ -99,6 +126,7 @@ class _HomeScreenState extends State<animalsLevel1> {
 
   @override
   void initState() {
+    getcurrentChild();
     super.initState();
     initGame1();
   }
@@ -107,6 +135,7 @@ class _HomeScreenState extends State<animalsLevel1> {
   Widget build(BuildContext context) {
     if (items.isEmpty) gameOver = true;
     if (gameOver && lvl == 1) {
+      updateScore("level1Score", score);
       if (score < 30) {
         initGame1();
       } else {
@@ -114,6 +143,7 @@ class _HomeScreenState extends State<animalsLevel1> {
       }
     }
     if (gameOver && lvl == 2) {
+      updateScore("level2Score", score);
       initGame2();
     }
     return Scaffold(
@@ -289,6 +319,7 @@ class _HomeScreenState extends State<animalsLevel1> {
               left: 0,
               top: MediaQuery.of(context).size.height / 2,
               child: FloatingActionButton(
+                  heroTag: "animalsBack",
                   onPressed: () {
                     setState(() {
                       initGame1();
@@ -300,9 +331,12 @@ class _HomeScreenState extends State<animalsLevel1> {
             right: 10,
             top: 40,
             child: FloatingActionButton(
+                heroTag: "animalsHome",
                 backgroundColor: Colors.amber,
                 onPressed: () {
-                  Navigator.of(context).pushNamed("parentHomePage");
+                  setState(() {
+                    Navigator.of(context).pushNamed("parentHomePage");
+                  });
                 },
                 child: const Icon(
                   Icons.home_filled,

@@ -412,6 +412,7 @@ class _HomeScreenState extends State<digitsLevel1> {
             right: 10,
             top: 40,
             child: FloatingActionButton(
+                heroTag: "digitsHome",
                 backgroundColor: Colors.amber,
                 onPressed: () {
                   Navigator.push(
@@ -430,6 +431,7 @@ class _HomeScreenState extends State<digitsLevel1> {
               left: 0,
               top: MediaQuery.of(context).size.height * 0.5,
               child: FloatingActionButton(
+                  heroTag: "digitsBack1",
                   onPressed: () {
                     setState(() {
                       initGame1();
@@ -442,6 +444,7 @@ class _HomeScreenState extends State<digitsLevel1> {
               left: 0,
               top: MediaQuery.of(context).size.height * 0.5,
               child: FloatingActionButton(
+                  heroTag: "difitsBack2",
                   onPressed: () {
                     setState(() {
                       initGame2();
@@ -454,6 +457,7 @@ class _HomeScreenState extends State<digitsLevel1> {
               left: 0,
               top: MediaQuery.of(context).size.height * 0.5,
               child: FloatingActionButton(
+                  heroTag: "difitsBack3",
                   onPressed: () {
                     setState(() {
                       initGame3();

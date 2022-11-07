@@ -35,24 +35,23 @@ class HomeScreenState extends State<childrenList> {
   getGames() async {
     await getChildren();
     for (int i = 0; i <= children.length - 1; i++) {
-      games.clear();
       var uid = FirebaseAuth.instance.currentUser!.uid;
       CollectionReference childRef = ChildrenRef.doc(uid)
           .collection("children")
           .doc(children[i]['name'])
           .collection("games");
-      var response = await childRef.get();
-      for (var element in response.docs) {
-        setState(() {
+      await childRef.get().then((value) {
+        //print(i);
+        games = [];
+        /*print("games");
+        print(games);
+        print("listofgames");
+        print(listofGames);*/
+        for (var element in value.docs) {
           games.add(element.data());
-        });
-      }
-      setState(() {
+        }
         listofGames.add(games);
       });
-    }
-    if (kDebugMode) {
-      print(listofGames);
     }
   }
 

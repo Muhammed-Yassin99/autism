@@ -268,6 +268,7 @@ class _HomeScreenState extends State<facesLevel1> {
           right: 10,
           top: 40,
           child: FloatingActionButton(
+              heroTag: "facesHome",
               backgroundColor: Colors.amber,
               onPressed: () {
                 Navigator.push(
@@ -286,6 +287,7 @@ class _HomeScreenState extends State<facesLevel1> {
             left: 0,
             top: MediaQuery.of(context).size.height * 0.5,
             child: FloatingActionButton(
+                heroTag: "facesBack1",
                 onPressed: () {
                   setState(() {
                     initGame1();

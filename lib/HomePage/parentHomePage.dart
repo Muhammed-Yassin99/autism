@@ -158,7 +158,7 @@ class HomeScreenState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('الطفل الحالي'),
+              title: Text("${"الطفل الحالي"}: $currentChild"),
               onTap: () {
                 setState(() {
                   currentChild = children[0]['name'];
