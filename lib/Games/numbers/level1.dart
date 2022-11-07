@@ -120,6 +120,7 @@ class _HomeScreenState extends State<numbersLevel1> {
 
   @override
   void initState() {
+    getcurrentChild();
     super.initState();
     initGame1();
   }

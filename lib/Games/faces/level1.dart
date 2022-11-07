@@ -103,6 +103,7 @@ class _HomeScreenState extends State<facesLevel1> {
 
   @override
   void initState() {
+    getcurrentChild();
     super.initState();
     initGame1();
   }
