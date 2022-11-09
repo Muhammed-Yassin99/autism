@@ -38,7 +38,11 @@ class HomeScreenState extends State<HomePage> {
         children.add(element.data());
       });
     }
-    currentChild = children[0]['name'];
+    if (children.isEmpty) {
+      currentChild = "لم تقم بإضافة أي طفل بعد";
+    } else {
+      currentChild = children[0]['name'];
+    }
   }
 
   setCurrentChild() async {
@@ -47,7 +51,7 @@ class HomeScreenState extends State<HomePage> {
     var uid = FirebaseAuth.instance.currentUser!.uid;
     String mail = FirebaseAuth.instance.currentUser!.email.toString();
     DocumentReference ref = ChildrenRef.doc(uid);
-    await ChildrenRef.get().then((value) {
+    ChildrenRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
           child = element['currentChild'].toString();
@@ -57,6 +61,9 @@ class HomeScreenState extends State<HomePage> {
     });
     if (child == "") {
       ref.update({"currentChild": currentChild});
+    }
+    if (currentChild == "") {
+      currentChild = "لم تقم بإضافة أي طفل بعد";
     }
     if (kDebugMode) {
       print(child);
@@ -96,35 +103,6 @@ class HomeScreenState extends State<HomePage> {
     setUserName();
     super.initState();
   }
-  /*getUserName() async {
-    var user = FirebaseAuth.instance.currentUser;
-    String uid = user!.uid.toString();
-    var documentReference =
-        FirebaseFirestore.instance.collection('users').doc(uid);
-    documentReference.get().then((value) {
-      userName = value['username'].toString();
-    });
-    return userName;
-  }
-  Future processingData() async {
-    await setUserName();
-    return userName;
-  }
-  Widget splashUI(Size size) {
-    return SafeArea(
-      child: Center(
-        child: SizedBox(
-          width: size.width * 0.5,
-          height: size.height * 0.1,
-          child: const Image(
-            fit: BoxFit.fill,
-            image: AssetImage('assets/images/HomePage/signInLogo.png'),
-          ),
-        ),
-      ),
-    );
-  }
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +136,9 @@ class HomeScreenState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title: Text("${"الطفل الحالي"}: $currentChild"),
+              title: Text(
+                  style: const TextStyle(fontSize: 18),
+                  "${"الطفل الحالي"}: $currentChild"),
               onTap: () {
                 setState(() {
                   currentChild = children[0]['name'];
@@ -171,7 +151,7 @@ class HomeScreenState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('الأطفال'),
+              title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
               onTap: () {
                 Navigator.push(
                     context,
@@ -181,12 +161,13 @@ class HomeScreenState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.share),
-              title: const Text('قائمة المدربين'),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.notifications),
-              title: const Text('الطلبات'),
+              title: const Text(style: TextStyle(fontSize: 18), 'الطلبات'),
               onTap: () {},
               trailing: ClipOval(
                 child: Container(
@@ -208,12 +189,12 @@ class HomeScreenState extends State<HomePage> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('الأعدادات'),
+              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
               onTap: () {},
             ),
             const Divider(),
             ListTile(
-              title: const Text('تسجيل الخروج'),
+              title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
               leading: const Icon(Icons.exit_to_app),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();

@@ -49,6 +49,14 @@ class _SignUpScreenState extends State<signUpScreen> {
             title: "Error",
             body: Text(errorMSG),
           ).show();
+        }
+        if (e.code == 'network-request-failed') {
+          errorMSG = "فشل الأتصال عبر الأنترنت";
+          AwesomeDialog(
+            context: context,
+            title: "Error",
+            body: Text(errorMSG),
+          ).show();
         } else if (e.code == 'weak-password') {
           errorMSG = "كلمة مرور ضعيفة";
           AwesomeDialog(

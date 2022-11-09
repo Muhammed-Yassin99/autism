@@ -110,14 +110,15 @@ class HomeScreenState extends State<childrenList> {
             ),
             ListTile(
               leading: const Icon(Icons.share),
-              title: const Text('الصفحة الرئيسية'),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الصفحة الرئيسية'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("parentHomePage");
               },
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('الأطفال'),
+              title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
               onTap: () {
                 Navigator.push(
                     context,
@@ -127,12 +128,13 @@ class HomeScreenState extends State<childrenList> {
             ),
             ListTile(
               leading: const Icon(Icons.share),
-              title: const Text('قائمة المدربين'),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.notifications),
-              title: const Text('الطلبات'),
+              title: const Text(style: TextStyle(fontSize: 18), 'الطلبات'),
               onTap: () {},
               trailing: ClipOval(
                 child: Container(
@@ -154,12 +156,12 @@ class HomeScreenState extends State<childrenList> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('الأعدادات'),
+              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
               onTap: () {},
             ),
             const Divider(),
             ListTile(
-              title: const Text('تسجيل الخروج'),
+              title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
               leading: const Icon(Icons.exit_to_app),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
@@ -217,8 +219,10 @@ class HomeScreenState extends State<childrenList> {
               padding: const EdgeInsets.only(top: 8),
               child: ExpansionTile(
                 backgroundColor: Colors.black,
-                title:
-                    Text(textAlign: TextAlign.right, "${children[i]['name']}"),
+                title: Text(
+                    style: const TextStyle(fontSize: 28),
+                    textAlign: TextAlign.right,
+                    "${children[i]['name']}"),
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const Divider(color: Colors.red),
@@ -226,6 +230,7 @@ class HomeScreenState extends State<childrenList> {
                     color: Colors.grey,
                     child: ListTile(
                       title: Text(
+                          style: const TextStyle(fontSize: 26),
                           textAlign: TextAlign.right,
                           "${"العمر"}: ${children[i]['age']}"),
                     ),
@@ -235,8 +240,9 @@ class HomeScreenState extends State<childrenList> {
                     child: ExpansionTile(
                       backgroundColor: Colors.black,
                       title: const Text(
+                        style: TextStyle(fontSize: 26),
                         textAlign: TextAlign.right,
-                        "الالعاب",
+                        "الألعاب",
                       ),
                       children: [
                         const Divider(color: Colors.red),
@@ -252,6 +258,7 @@ class HomeScreenState extends State<childrenList> {
                                 child: ExpansionTile(
                                   backgroundColor: Colors.black,
                                   title: Text(
+                                      style: const TextStyle(fontSize: 26),
                                       textAlign: TextAlign.right,
                                       "${listofGames[i][j]['name']}"),
                                   children: [
@@ -260,6 +267,8 @@ class HomeScreenState extends State<childrenList> {
                                       color: Colors.grey,
                                       child: ListTile(
                                         title: Text(
+                                            style:
+                                                const TextStyle(fontSize: 24),
                                             textAlign: TextAlign.right,
                                             "${"المستوي الأول"}: ${listofGames[i][j]['level1Score']}"),
                                       ),
@@ -268,6 +277,8 @@ class HomeScreenState extends State<childrenList> {
                                       color: Colors.grey,
                                       child: ListTile(
                                         title: Text(
+                                            style:
+                                                const TextStyle(fontSize: 24),
                                             textAlign: TextAlign.right,
                                             "${"المستوي الثاني"}: ${listofGames[i][j]['level2Score']}"),
                                       ),
@@ -276,6 +287,8 @@ class HomeScreenState extends State<childrenList> {
                                       color: Colors.grey,
                                       child: ListTile(
                                         title: Text(
+                                            style:
+                                                const TextStyle(fontSize: 24),
                                             textAlign: TextAlign.right,
                                             "${"المستوي الثالث"}: ${listofGames[i][j]['level3Score']}"),
                                       ),
@@ -284,6 +297,8 @@ class HomeScreenState extends State<childrenList> {
                                       color: Colors.grey,
                                       child: ListTile(
                                         title: Text(
+                                            style:
+                                                const TextStyle(fontSize: 24),
                                             textAlign: TextAlign.right,
                                             "${"المستوي الرابع"}: ${listofGames[i][j]['level4Score']}"),
                                       ),
