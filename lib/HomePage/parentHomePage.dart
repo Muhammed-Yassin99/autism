@@ -134,21 +134,104 @@ class HomeScreenState extends State<HomePage> {
                 ),
               ),
             ),
-            ListTile(
+            // ignore: prefer_const_constructors
+            Card(
+              color: Colors.blueAccent,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: ExpansionTile(
+                  title: Text(
+                      style: const TextStyle(fontSize: 22, color: Colors.black),
+                      "${"الطفل الحالي"}: $currentChild"),
+                  children: [
+                    ListView.builder(
+                      //scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      // ignore: prefer_const_literals_to_create_immutables
+                      itemCount: children.length,
+                      itemBuilder: (BuildContext context, int i) {
+                        return Card(
+                          color: Colors.white,
+                          child: TextButton(
+                            onPressed: () {
+                              currentChild = children[i]['name'];
+                              changeCurrentChild();
+                            },
+                            child: Text(
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.right,
+                                "${children[i]['name']}"),
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ),
+            /*ListTile(
               leading: const Icon(Icons.person),
               title: Text(
                   style: const TextStyle(fontSize: 18),
                   "${"الطفل الحالي"}: $currentChild"),
               onTap: () {
-                setState(() {
+              },
+                ListView.builder(
+                  //scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  itemCount: children.length,
+                  itemBuilder: (BuildContext context, int i) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: ExpansionTile(
+                        backgroundColor: Colors.black,
+                        title: Text(
+                            style: const TextStyle(fontSize: 18),
+                            textAlign: TextAlign.right,
+                            "${children[i]['name']}"),
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Divider(color: Colors.red),
+                          Card(
+                            color: Colors.grey,
+                            child: ListTile(
+                              title: Text(
+                                  style: const TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.right,
+                                  "${"العمر"}: ${children[i]['age']}"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );*/
+
+            /*PopupMenuButton(
+                    initialValue: 2,
+                    child: const Center(child: Text('click here')),
+                    itemBuilder: (context) {
+                      return List.generate(5, (index) {
+                        return PopupMenuItem(
+                          value: index,
+                          child: Text('button no $index'),
+                        );
+                      });
+                    },
+                  );*/
+
+            /*setState(() {
                   currentChild = children[0]['name'];
                   if (kDebugMode) {
                     print(currentChild);
                   }
                 });
-                changeCurrentChild();
-              },
-            ),
+                changeCurrentChild();*/
+
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
@@ -313,6 +396,21 @@ class HomeScreenState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  buildPopUpMenu() {
+    return PopupMenuButton(
+      initialValue: 2,
+      child: const Center(child: Text('click here')),
+      itemBuilder: (context) {
+        return List.generate(5, (index) {
+          return PopupMenuItem(
+            value: index,
+            child: Text('button no $index'),
+          );
+        });
+      },
     );
   }
 
