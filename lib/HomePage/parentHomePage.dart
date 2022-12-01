@@ -172,66 +172,6 @@ class HomeScreenState extends State<HomePage> {
                 ),
               ),
             ),
-            /*ListTile(
-              leading: const Icon(Icons.person),
-              title: Text(
-                  style: const TextStyle(fontSize: 18),
-                  "${"الطفل الحالي"}: $currentChild"),
-              onTap: () {
-              },
-                ListView.builder(
-                  //scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  itemCount: children.length,
-                  itemBuilder: (BuildContext context, int i) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: ExpansionTile(
-                        backgroundColor: Colors.black,
-                        title: Text(
-                            style: const TextStyle(fontSize: 18),
-                            textAlign: TextAlign.right,
-                            "${children[i]['name']}"),
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          const Divider(color: Colors.red),
-                          Card(
-                            color: Colors.grey,
-                            child: ListTile(
-                              title: Text(
-                                  style: const TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.right,
-                                  "${"العمر"}: ${children[i]['age']}"),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );*/
-
-            /*PopupMenuButton(
-                    initialValue: 2,
-                    child: const Center(child: Text('click here')),
-                    itemBuilder: (context) {
-                      return List.generate(5, (index) {
-                        return PopupMenuItem(
-                          value: index,
-                          child: Text('button no $index'),
-                        );
-                      });
-                    },
-                  );*/
-
-            /*setState(() {
-                  currentChild = children[0]['name'];
-                  if (kDebugMode) {
-                    print(currentChild);
-                  }
-                });
-                changeCurrentChild();*/
-
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
