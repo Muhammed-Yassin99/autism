@@ -23,6 +23,14 @@ class _HomeScreenState extends State<digitsLevel1> {
   late List<ItemModel> items2;
   late int score;
   late int lvl;
+  late int level1score;
+  late int level2score;
+  late int level3score;
+  late int level4score;
+  late double rate;
+  static int MaxObtainableScore =
+      240; //total number of items in all the levels multiped by 10
+  late int TotalScore;
   late bool gameOver;
   String currentChild = "";
   CollectionReference ChildrenRef =
@@ -44,6 +52,33 @@ class _HomeScreenState extends State<digitsLevel1> {
         .collection('games')
         .doc('digits');
     await ref.update({level: score.toString()});
+    await updateTotalScore(MaxObtainableScore);
+  }
+
+  updateTotalScore(score) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid)
+        .collection('children')
+        .doc(currentChild)
+        .collection('games')
+        .doc('digits');
+    await ref.get().then((value) {
+      String x = value.data()!['level1Score'].toString();
+      level1score = int.parse(x);
+      String y = value.data()!['level2Score'].toString();
+      level2score = int.parse(y);
+      String y1 = value.data()!['level3Score'].toString();
+      level3score = int.parse(y1);
+      String x1 = value.data()!['level4Score'].toString();
+      level4score = int.parse(x1);
+    });
+    TotalScore = level1score + level2score + level3score + level4score;
+    rate = (TotalScore / MaxObtainableScore) * 10;
+    rate = double.parse(rate.toStringAsFixed(2));
+    if (rate < 0) {
+      rate = 0;
+    }
+    await ref.update({"Child rate out of 10": rate});
   }
 
   initGame1() {

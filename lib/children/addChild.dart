@@ -52,10 +52,11 @@ class SignInScreenState extends State<addChild> {
           .doc("faces")
           .set({
         "name": "الاوجه التعبيرية",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -65,10 +66,11 @@ class SignInScreenState extends State<addChild> {
           .doc("animals")
           .set({
         "name": "الحيوانات",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -78,10 +80,11 @@ class SignInScreenState extends State<addChild> {
           .doc("digits")
           .set({
         "name": "الحروف",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
-        "level3Score": "لا يوجد",
-        "level4Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
+        "level3Score": 0,
+        "level4Score": 0,
+        "Child rate out of 10": 0,
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -91,10 +94,11 @@ class SignInScreenState extends State<addChild> {
           .doc("numbers")
           .set({
         "name": "الأرقام",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -104,10 +108,11 @@ class SignInScreenState extends State<addChild> {
           .doc("family")
           .set({
         "name": "العائلة",
-        "level1Score": "لا يوجد",
+        "level1Score": 0,
         "level2Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
 
       CollectionReference userRef2 =
@@ -128,10 +133,11 @@ class SignInScreenState extends State<addChild> {
           .doc("faces")
           .set({
         "name": "الاوجه التعبيرية",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -141,10 +147,11 @@ class SignInScreenState extends State<addChild> {
           .doc("animals")
           .set({
         "name": "الحيوانات",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -154,10 +161,11 @@ class SignInScreenState extends State<addChild> {
           .doc("digits")
           .set({
         "name": "الحروف",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
-        "level3Score": "لا يوجد",
-        "level4Score": "لا يوجد"
+        "level1Score": 0,
+        "level2Score": 0,
+        "level3Score": 0,
+        "level4Score": 0,
+        "Child rate out of 10": 0,
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -167,10 +175,11 @@ class SignInScreenState extends State<addChild> {
           .doc("numbers")
           .set({
         "name": "الأرقام",
-        "level1Score": "لا يوجد",
-        "level2Score": "لا يوجد",
+        "level1Score": 0,
+        "level2Score": 0,
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -180,10 +189,11 @@ class SignInScreenState extends State<addChild> {
           .doc("family")
           .set({
         "name": "العائلة",
-        "level1Score": "لا يوجد",
+        "level1Score": 0,
         "level2Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
+        "Child rate out of 10": 0,
       });
     }
   }

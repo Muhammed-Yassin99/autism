@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, unused_element, must_be_immutable, library_private_types_in_public_api, camel_case_types, non_constant_identifier_names
 import 'dart:async';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:confetti/confetti.dart';
@@ -23,6 +22,12 @@ class _HomeScreenState extends State<facesLevel1> {
   late List<ItemModel> items2;
   late int score;
   late int lvl;
+  late int level1score;
+  late int level2score;
+  late double rate;
+  static int MaxObtainableScore =
+      60; //total number of items in all the levels multiped by 10
+  late int TotalScore;
   late bool gameOver;
   String currentChild = "";
   CollectionReference ChildrenRef =
@@ -44,6 +49,29 @@ class _HomeScreenState extends State<facesLevel1> {
         .collection('games')
         .doc('faces');
     await ref.update({level: score.toString()});
+    await updateTotalScore(MaxObtainableScore);
+  }
+
+  updateTotalScore(score) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+    var ref = ChildrenRef.doc(uid)
+        .collection('children')
+        .doc(currentChild)
+        .collection('games')
+        .doc('faces');
+    await ref.get().then((value) {
+      String x = value.data()!['level1Score'].toString();
+      level1score = int.parse(x);
+      String y = value.data()!['level2Score'].toString();
+      level2score = int.parse(y);
+    });
+    TotalScore = level1score + level2score;
+    rate = (TotalScore / MaxObtainableScore) * 10;
+    rate = double.parse(rate.toStringAsFixed(2));
+    if (rate < 0) {
+      rate = 0;
+    }
+    await ref.update({"Child rate out of 10": rate});
   }
 
   initGame1() {

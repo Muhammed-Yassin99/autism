@@ -30,6 +30,9 @@ class HomeScreenState extends State<childrenList> {
         children.add(element.data());
       });
     }
+    if (kDebugMode) {
+      print(children);
+    }
   }
 
   getGames() async {
@@ -316,6 +319,17 @@ class HomeScreenState extends State<childrenList> {
                                                         textAlign:
                                                             TextAlign.right,
                                                         "${"المستوي الرابع"}: ${listofGames[i][j]['level4Score']}"),
+                                                  ),
+                                                ),
+                                                Card(
+                                                  color: Colors.grey,
+                                                  child: ListTile(
+                                                    title: Text(
+                                                        style: const TextStyle(
+                                                            fontSize: 24),
+                                                        textAlign:
+                                                            TextAlign.right,
+                                                        "${" التقييم الكلي لأداء الطفل من10 "}: ${listofGames[i][j]['Child rate out of 10']}"),
                                                   ),
                                                 ),
                                               ],
