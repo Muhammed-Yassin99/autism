@@ -262,12 +262,12 @@ class _SignUpScreenState extends State<signUpScreen> {
                             Navigator.of(context)
                                 .pushReplacementNamed("parentHomePage");
                             addData(role, "parents");
-                            //addData(role, "users");
+                            addData(role, "users");
                           } else if (role == "trainers") {
                             Navigator.of(context)
                                 .pushReplacementNamed("trainerHomePage");
                             addData(role, "trainers");
-                            // addData(role, "users");
+                            addData(role, "users");
                           }
                         } else {
                           if (kDebugMode) {
