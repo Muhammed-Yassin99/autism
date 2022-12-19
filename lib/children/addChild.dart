@@ -32,7 +32,7 @@ class SignInScreenState extends State<addChild> {
     var formdate = formstate.currentState;
     if (formdate!.validate()) {
       formdate.save();
-      CollectionReference userRef =
+      /* CollectionReference userRef =
           FirebaseFirestore.instance.collection("users");
       await userRef
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -112,7 +112,7 @@ class SignInScreenState extends State<addChild> {
         "level3Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "level4Score": "سوف يتم إضافة مستوي جديد في المستقبل",
         "Child rate out of 10": 0,
-      });
+      });*/
 
       CollectionReference userRef2 =
           FirebaseFirestore.instance.collection("parents");
