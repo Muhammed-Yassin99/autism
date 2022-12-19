@@ -10,6 +10,7 @@ import 'HomePage/parentHomePage.dart';
 import 'HomePage/startPage.dart';
 import 'HomePage/trainerHomePage.dart';
 import 'SignIn/signInScreen.dart';
+import 'children/ChildrenChart.dart';
 
 var islogin;
 var hasRole = false;
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
         "parentHomePage": (context) => const HomePage(),
         "trainerHomePage": (context) => const trainerHomePage(),
         "childrenList": (context) => const childrenList(),
+        "ChildrenChart": (context) => const ChildrenChart()
       },
       home: islogin == false
           ? const startPage()

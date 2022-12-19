@@ -9,6 +9,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
+import '../children/ChildrenChart.dart';
 import '../children/addChild.dart';
 import '../children/childrenList.dart';
 import '../model/homePage_icons.dart';
@@ -397,7 +398,7 @@ class HomeScreenState extends State<HomePage> {
     }
     if (category.id == 5) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const childrenList()));
+          MaterialPageRoute(builder: (context) => const ChildrenChart()));
     }
   }
 }
