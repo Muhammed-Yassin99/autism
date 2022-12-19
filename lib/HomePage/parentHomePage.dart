@@ -87,9 +87,7 @@ class HomeScreenState extends State<HomePage> {
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
-          setState(() {
-            userName = element['username'].toString();
-          });
+          userName = element['username'].toString();
           break;
         }
       }
