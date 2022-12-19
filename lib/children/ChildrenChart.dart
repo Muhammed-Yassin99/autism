@@ -52,10 +52,6 @@ class FiChartPageState extends State<ChildrenChart> {
     }
   }
 
-  Future<double> getRate(int i, int j) async {
-    return listofGames[i][j]['Child rate out of 10'];
-  }
-
   getGames() async {
     await getChildren();
     for (int i = 0; i <= children.length - 1; i++) {
