@@ -1,6 +1,4 @@
 // ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables
-
-import 'package:autism_zz/children/childrenList.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -69,7 +67,6 @@ class MyApp extends StatelessWidget {
         "login": (context) => const signInScreen(),
         "parentHomePage": (context) => const HomePage(),
         "trainerHomePage": (context) => const trainerHomePage(),
-        "childrenList": (context) => const childrenList(),
         "ChildrenChart": (context) => const ChildrenChart()
       },
       home: islogin == false

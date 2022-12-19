@@ -11,7 +11,6 @@ import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../children/ChildrenChart.dart';
 import '../children/addChild.dart';
-import '../children/childrenList.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
 
@@ -180,7 +179,7 @@ class HomeScreenState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const childrenList()));
+                        builder: (context) => const ChildrenChart()));
               },
             ),
             ListTile(

@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors_utils.dart';
-import 'childrenList.dart';
 
 class addChild extends StatefulWidget {
   const addChild({Key? key}) : super(key: key);
@@ -333,7 +332,7 @@ class SignInScreenState extends State<addChild> {
                             print("child added");
                           }
                           Navigator.of(context)
-                              .pushReplacementNamed("childrenList");
+                              .pushReplacementNamed("ChildrenChart");
                         },
                         style: ButtonStyle(
                             backgroundColor:
