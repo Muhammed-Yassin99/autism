@@ -9,6 +9,7 @@ final List<Category> homePage_categories = [
   Category(3, "المهارات ", icon: "assets/images/HomePage/dailySkills.png"),
   Category(5, "قائمة الاطفال",
       icon: "assets/images/HomePage/registerdChildren.png"),
+  Category(6, "أكتشف", icon: "assets/images/HomePage/discover.png"),
 ];
 final List<Category> trainerHomePage_categories = [
   Category(2, "العاب", icon: "assets/images/HomePage/games.png"),

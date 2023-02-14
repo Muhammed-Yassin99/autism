@@ -116,6 +116,7 @@ class learnThemes1 extends StatelessWidget {
             right: 10,
             top: 310,
             child: FloatingActionButton(
+                heroTag: "btn1THlvl1",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -128,6 +129,7 @@ class learnThemes1 extends StatelessWidget {
             right: 10,
             top: 10,
             child: FloatingActionButton(
+                heroTag: "btn2THlvl1",
                 onPressed: () {
                   Navigator.push(
                     context,

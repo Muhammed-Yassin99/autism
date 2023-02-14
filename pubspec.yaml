@@ -294,6 +294,7 @@ flutter:
      - assets/images/HomePage/trainer.png
      - assets/images/HomePage/sideBarBackground.jpg
      - assets/images/HomePage/parent.png
+     - assets/images/HomePage/discover.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
