@@ -206,9 +206,9 @@ class _HomeScreenState extends State<familyLevel1> {
                                       score += 10;
                                       item.accepting = false;
                                       playBeep('sounds/true.wav');
-                                      controller.play();
+                                      /*controller.play();
                                       Timer(const Duration(seconds: 1),
-                                          (() => controller.stop()));
+                                          (() => controller.stop()));*/
                                     } else {
                                       setState(() {
                                         score -= 5;
