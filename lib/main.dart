@@ -1,4 +1,5 @@
 // ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,6 +14,7 @@ import 'children/ChildrenChart.dart';
 var islogin;
 var hasRole = false;
 var role;
+List<CameraDescription>? cameras;
 
 setHasRole(bool role) {
   hasRole = role;
@@ -24,6 +26,7 @@ getHasRole() {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   await Firebase.initializeApp();
   var user = FirebaseAuth.instance.currentUser;
   if (user != null) {
