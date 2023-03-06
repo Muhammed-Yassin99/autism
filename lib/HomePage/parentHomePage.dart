@@ -1,13 +1,9 @@
 // ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names
-
-import 'dart:async';
 import 'package:autism_zz/ObjectDetection/objectDetection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../Games/gamesHomePage1.dart';
 import '../Learn/learnHomePage.dart';
 import '../children/ChildrenChart.dart';

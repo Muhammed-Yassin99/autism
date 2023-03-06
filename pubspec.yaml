@@ -54,8 +54,10 @@ dependencies:
   flutter_native_splash: ^2.2.13
   fl_chart: ^0.41.0
   flutter_tflite: ^1.0.1
-  camera: ^0.10.3+2
+  camera: ^0.9.4+5
+  image: ^3.1.0
   tflite_flutter: ^0.9.0
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
