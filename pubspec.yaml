@@ -305,7 +305,6 @@ flutter:
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
      - assets/objecDetec/labels1.txt
-     - assets/objecDetec/yolov2_tiny.tflite
      - assets/objecDetec/yolov2_tiny.txt
      #- assets/objecDetec/yolov7_model.tflite
   
