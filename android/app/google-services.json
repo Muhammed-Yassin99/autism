@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "667945710338",
+    "project_id": "graduationproject-35c1f",
+    "storage_bucket": "graduationproject-35c1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667945710338:android:723875a7f5e303b2a2881b",
+        "android_client_info": {
+          "package_name": "com.example.autism_zz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667945710338-jlu8l2mi0niclira6a9koc1qq42o9l0k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.autism_zz",
+            "certificate_hash": "2602c83f290156592c40efae1f5ab8a02b40e9f6"
+          }
+        },
+        {
+          "client_id": "667945710338-nsodee1acjbg1rit8j67d72kdec9lknp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5_Rj3ALXeh7VmyWIO3Rs-KBTlUCnIGIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667945710338-nsodee1acjbg1rit8j67d72kdec9lknp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
