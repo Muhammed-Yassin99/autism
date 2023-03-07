@@ -18,9 +18,9 @@ class _HomeState extends State<objectDetec> {
 
   @override
   void initState() {
-    super.initState();
     loadCamera();
     loadmodel();
+    super.initState();
   }
 
   loadCamera() {

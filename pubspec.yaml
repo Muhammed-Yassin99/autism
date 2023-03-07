@@ -54,9 +54,11 @@ dependencies:
   flutter_native_splash: ^2.2.13
   fl_chart: ^0.41.0
   flutter_tflite: ^1.0.1
-  camera: ^0.9.4+5
+  camera: ^0.10.3+2
   image: ^3.1.0
   tflite_flutter: ^0.9.0
+  camera_android: ^0.10.4+2
+  #tflite_flutter_helper: ^0.3.1
   
 
   # The following adds the Cupertino Icons font to your application.
@@ -302,6 +304,8 @@ flutter:
      - assets/images/HomePage/discover.png
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
+     #- assets/objecDetec/yolov7_model.tflite
+  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

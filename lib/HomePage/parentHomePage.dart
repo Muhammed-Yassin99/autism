@@ -1,5 +1,7 @@
-// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors
+import 'package:autism_zz/ObjectDetection/home1.dart';
 import 'package:autism_zz/ObjectDetection/objectDetection.dart';
+import 'package:autism_zz/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -396,7 +398,7 @@ class HomeScreenState extends State<HomePage> {
     }
     if (category.id == 6) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const objectDetec()));
+          MaterialPageRoute(builder: (context) => HomePage1(cameras!)));
     }
   }
 }
