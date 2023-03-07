@@ -1,21 +1,20 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'dart:math' as math;
-
 import 'models.dart';
 
-typedef void Callback(List<dynamic> list, int h, int w);
+typedef Callback = void Function(List<dynamic> list, int h, int w);
 
 class Camera extends StatefulWidget {
   final List<CameraDescription> cameras;
   final Callback setRecognitions;
   final String model;
 
-  Camera(this.cameras, this.model, this.setRecognitions);
+  const Camera(this.cameras, this.model, this.setRecognitions, {super.key});
 
   @override
   _CameraState createState() => _CameraState();
@@ -40,6 +39,9 @@ class _CameraState extends State<Camera> {
       );
       controller.initialize().then((_) {
         if (!mounted) {
+          if (kDebugMode) {
+            print("camera available");
+          }
           return;
         }
         setState(() {});
@@ -76,7 +78,9 @@ class _CameraState extends State<Camera> {
                 numResults: 2,
               ).then((recognitions) {
                 int endTime = DateTime.now().millisecondsSinceEpoch;
-                print("Detection took ${endTime - startTime}");
+                if (kDebugMode) {
+                  print("Detection took ${endTime - startTime}");
+                }
 
                 widget.setRecognitions(recognitions!, img.height, img.width);
 

@@ -305,6 +305,7 @@ flutter:
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
      - assets/objecDetec/labels1.txt
+     - assets/objecDetec/yolov2_tiny.txt
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see
