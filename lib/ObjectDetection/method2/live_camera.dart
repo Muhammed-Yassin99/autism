@@ -21,8 +21,8 @@ class _LiveFeedState extends State<LiveFeed> {
   initCameras() async {}
   loadTfModel() async {
     await Tflite.loadModel(
-      model: "assets/objecDetec/detect.tflite",
-      labels: "assets/objecDetec/labelmap.txt",
+      model: "assets/objecDetec/ssd_mobilenet.tflite",
+      labels: "assets/objecDetec/SSDlabels.txt",
     );
   }
 

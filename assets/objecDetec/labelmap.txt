@@ -60,7 +60,7 @@ hot dog
 pizza
 donut
 cake
-chair
+كرسي
 couch
 potted plant
 bed
@@ -70,9 +70,9 @@ dining table
 ???
 toilet
 ???
-tv
+تلفزيون
 laptop
-mouse
+ماوس
 remote
 keyboard
 cell phone
