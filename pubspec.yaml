@@ -304,8 +304,11 @@ flutter:
      - assets/images/HomePage/discover.png
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
-     - assets/objecDetec/labels1.txt
+     - assets/objecDetec/yolov7labels1.txt
      - assets/objecDetec/yolov2_tiny.txt
+     - assets/objecDetec/yolov2_tiny.tflite
+     - assets/objecDetec/SSDlabels.txt
+     - assets/objecDetec/ssd_mobilenet.tflite
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see
