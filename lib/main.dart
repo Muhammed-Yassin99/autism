@@ -1,4 +1,4 @@
-// ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables
+// ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables, prefer_interpolation_to_compose_strings
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +16,7 @@ var hasRole = false;
 var role;
 List<CameraDescription>? cameras;
 
-setHasRole(bool role) {
+setHasRole(bool role) async {
   hasRole = role;
 }
 
@@ -40,7 +40,7 @@ Future<void> main() async {
     String uid = user.uid.toString();
     var documentReference =
         FirebaseFirestore.instance.collection('users').doc(uid);
-    documentReference.get().then((value) {
+    await documentReference.get().then((value) {
       role = value['role'].toString();
       if (role == "parents") {
         hasRole = false;
@@ -62,9 +62,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     hasRole = getHasRole();
-    if (kDebugMode) {
-      print(hasRole);
-    }
     return MaterialApp(
       title: 'Autism',
       debugShowCheckedModeBanner: false,

@@ -125,6 +125,8 @@ flutter:
      - assets/images/games/numbers/no8.png
      - assets/images/games/numbers/no9.png
      - assets/images/HomePage/themes1.png
+     - assets/images/HomePage/profile.png
+     - assets/images/HomePage/requests.jpeg
      - assets/images/HomePage/themes.png
      - assets/images/HomePage/zoo.png
      - assets/images/HomePage/bigFamily.png

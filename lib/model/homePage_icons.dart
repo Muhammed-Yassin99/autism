@@ -12,13 +12,9 @@ final List<Category> homePage_categories = [
   Category(6, "أكتشف", icon: "assets/images/HomePage/discover.png"),
 ];
 final List<Category> trainerHomePage_categories = [
-  Category(2, "العاب", icon: "assets/images/HomePage/games.png"),
-  Category(1, "تعلم", icon: "assets/images/HomePage/learn.png"),
-  Category(4, "أضف طفل", icon: "assets/images/HomePage/AddChild.png"),
-  Category(3, "المهارات ", icon: "assets/images/HomePage/dailySkills.png"),
-  Category(5, "قائمة الاطفال",
-      icon: "assets/images/HomePage/registerdChildren.png"),
-  Category(6, "قائمة الاطفال",
+  Category(2, "الطلبات", icon: "assets/images/HomePage/requests.jpeg"),
+  Category(1, "الملف الشخصي", icon: "assets/images/HomePage/profile.png"),
+  Category(4, "قائمة الاطفال",
       icon: "assets/images/HomePage/registerdChildren.png"),
 ];
 
