@@ -37,7 +37,7 @@ class HomeScreenState extends State<trainerHomePage> {
     var user = FirebaseAuth.instance.currentUser;
     String mail = user!.email.toString();
     CollectionReference userRef =
-        FirebaseFirestore.instance.collection("users");
+        FirebaseFirestore.instance.collection("trainers");
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
@@ -188,7 +188,7 @@ class HomeScreenState extends State<trainerHomePage> {
       ),
       body: Container(
           //color: const Color.fromARGB(164, 0, 0, 0),
-          color: const Color.fromARGB(255, 12, 79, 135),
+          color: const Color.fromARGB(255, 135, 135, 25),
           child: Stack(
             children: [
               const SizedBox(height: 8),
