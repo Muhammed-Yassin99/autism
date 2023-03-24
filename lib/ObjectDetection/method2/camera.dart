@@ -22,6 +22,7 @@ class CameraFeed extends StatefulWidget {
 class _CameraFeedState extends State<CameraFeed> {
   late CameraController controller;
   bool isDetecting = false;
+  bool cameraOn = true;
 
   @override
   void initState() {
