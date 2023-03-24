@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  var uid = FirebaseAuth.instance.currentUser!.uid;
 
   void pickUploadProfilePic() async {
     final image = await ImagePicker().pickImage(
@@ -42,10 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         User.profilePicLink = value;
       });
 
-      await FirebaseFirestore.instance
-          .collection("Employee")
-          .doc(User.id)
-          .update({
+      await FirebaseFirestore.instance.collection("trainers").doc(uid).update({
         'profilePic': value,
       });
     });
