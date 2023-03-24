@@ -140,6 +140,7 @@ flutter:
      - assets/images/HomePage/letters.png
      - assets/images/HomePage/numbers.png
      - assets/images/HomePage/animals.png
+     - assets/images/HomePage/defaultPic.png
      - assets/images/games/digits/3ean.png
      - assets/images/games/digits/5a2.png
      - assets/images/games/digits/7a2.png
@@ -311,6 +312,7 @@ flutter:
      - assets/objecDetec/yolov2_tiny.tflite
      - assets/objecDetec/SSDlabels.txt
      - assets/objecDetec/ssd_mobilenet.tflite
+     - assets/objecDetec/yolov7-tiny.tflite
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see

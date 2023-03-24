@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, unnecessary_null_comparison
+// ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables
 
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -7,12 +7,14 @@ import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
 
 class StaticImage extends StatefulWidget {
+  const StaticImage({super.key});
+
   @override
   _StaticImageState createState() => _StaticImageState();
 }
 
 class _StaticImageState extends State<StaticImage> {
-  late File _image;
+  var _image;
   late List _recognitions;
   late bool _busy;
   late double _imageWidth, _imageHeight;
@@ -22,9 +24,8 @@ class _StaticImageState extends State<StaticImage> {
   // this function loads the model
   loadTfModel() async {
     await Tflite.loadModel(
-      model: "assets/models/ssd_mobilenet.tflite",
-      labels: "assets/models/labels.txt",
-    );
+        model: "assets/objecDetec/ssd_mobilenet.tflite",
+        labels: "assets/objecDetec/SSDlabels.txt");
   }
 
   // this function detects the objects on the image
@@ -34,8 +35,8 @@ class _StaticImageState extends State<StaticImage> {
         model: "SSDMobileNet",
         imageMean: 127.5,
         imageStd: 127.5,
-        threshold: 0.4, // defaults to 0.1
-        numResultsPerClass: 10, // defaults to 5
+        threshold: 0.5, // defaults to 0.1
+        numResultsPerClass: 5, // defaults to 5
         asynch: true // defaults to true
         );
     FileImage(image)
@@ -55,6 +56,9 @@ class _StaticImageState extends State<StaticImage> {
   void initState() {
     super.initState();
     _busy = true;
+    _recognitions = [];
+    _imageWidth = 0;
+    _imageHeight = 0;
     loadTfModel().then((val) {
       {
         setState(() {
@@ -116,7 +120,11 @@ class _StaticImageState extends State<StaticImage> {
               ],
             )
           : // if not null then
-          Image.file(_image),
+          Image.file(
+              _image,
+              width: 640,
+              height: 640,
+            ),
     ));
 
     stackChildren.addAll(renderBoxes(size));

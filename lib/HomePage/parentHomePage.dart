@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors
 import 'package:autism_zz/ObjectDetection/method2/live_camera.dart';
+import 'package:autism_zz/ObjectDetection/objecDetecHomePage.dart';
 import 'package:autism_zz/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -396,8 +397,8 @@ class HomeScreenState extends State<HomePage> {
           MaterialPageRoute(builder: (context) => const ChildrenChart()));
     }
     if (category.id == 6) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => LiveFeed(cameras!)));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => objecDetecHomepage()));
     }
   }
 }

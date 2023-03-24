@@ -1,5 +1,7 @@
 // ignore_for_file: camel_case_types, file_names, use_build_context_synchronously
 
+//import 'package:autism_zz/HomePage/trainerProfile.dart';
+import 'package:autism_zz/HomePage/trainerProfile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -287,7 +289,7 @@ class HomeScreenState extends State<trainerHomePage> {
     }
     if (category.id == 1) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const learnHomePage()));
+          MaterialPageRoute(builder: (context) => const trainerProfile()));
     }
     if (category.id == 3) {
       Navigator.push(context,
