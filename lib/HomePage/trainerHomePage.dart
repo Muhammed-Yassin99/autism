@@ -2,12 +2,12 @@
 
 //import 'package:autism_zz/HomePage/trainerProfile.dart';
 import 'package:autism_zz/HomePage/trainerProfile.dart';
+//import 'package:autism_zz/HomePage/trainerProfile1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../Games/gamesHomePage1.dart';
-import '../Learn/learnHomePage.dart';
 import '../model/homePage_icons.dart';
 import '../skills/skillsHomePage.dart';
 

@@ -171,15 +171,16 @@ class _StaticImageState extends State<StaticImage> {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
     setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
+      if (pickedFile == null) {
         if (kDebugMode) {
           print("No image Selected");
         }
+        return;
+      } else {
+        _image = File(pickedFile.path);
+        detectObject(_image);
       }
     });
-    detectObject(_image);
   }
 
   // gets image from gallery and runs detectObject
@@ -188,12 +189,13 @@ class _StaticImageState extends State<StaticImage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        detectObject(_image);
       } else {
         if (kDebugMode) {
           print("No image Selected");
         }
+        return;
       }
     });
-    detectObject(_image);
   }
 }

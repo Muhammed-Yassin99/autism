@@ -28,6 +28,8 @@ class _SignUpScreenState extends State<signUpScreen> {
       "gmail": userEmail,
       "role": role,
       "current child": "",
+      "profilePic": "",
+      "yearsOfExp": "",
     });
   }
 
