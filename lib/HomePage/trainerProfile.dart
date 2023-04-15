@@ -25,11 +25,13 @@ class _EditProfilePageState extends State<trainerProfile> {
   var userName;
   var userGmail;
   var userPic;
+  var userYearsOfExp;
+  var userLocation;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
   var uid = FirebaseAuth.instance.currentUser!.uid;
 
-  getUserNameAndEmail() async {
+  getUserInfo() async {
     var user = FirebaseAuth.instance.currentUser;
     String gmail = user!.email.toString();
     userGmail = gmail;
@@ -40,30 +42,22 @@ class _EditProfilePageState extends State<trainerProfile> {
         if (element['gmail'].toString() == gmail) {
           setState(() {
             userName = element['username'].toString();
-          });
-        }
-      }
-    });
-  }
-
-  getUserImage() async {
-    var user = FirebaseAuth.instance.currentUser;
-    String mail = user!.email.toString();
-    CollectionReference userRef =
-        FirebaseFirestore.instance.collection("trainers");
-    await userRef.get().then((value) {
-      for (var element in value.docs) {
-        if (element['gmail'].toString() == mail) {
-          setState(() {
             userPic = element['profilePic'].toString();
+            userYearsOfExp = element['yearsOfExp'].toString();
+            userLocation = element['location'].toString();
           });
-          break;
         }
       }
     });
     if (userPic == "") {
       userPic =
-          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2FdefaultPic.png?alt=media&token=bdd0c8b8-7632-40b0-9c2d-4d815264b221";
+          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7";
+    }
+    if (userYearsOfExp == "") {
+      userYearsOfExp = "لم تقم باضافة سنين الخبرة";
+    }
+    if (userLocation == "") {
+      userLocation = "لم تقم باضافة مكان العيادة الخاصة بك";
     }
   }
 
@@ -93,8 +87,7 @@ class _EditProfilePageState extends State<trainerProfile> {
 
   @override
   void initState() {
-    getUserNameAndEmail();
-    getUserImage();
+    getUserInfo();
     super.initState();
   }
 
@@ -109,12 +102,14 @@ class _EditProfilePageState extends State<trainerProfile> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed("trainerHomePage");
+          },
         ),
         actions: [
           IconButton(
             icon: const Icon(
-              Icons.settings,
+              Icons.edit,
               color: Colors.green,
             ),
             onPressed: () {
@@ -193,8 +188,8 @@ class _EditProfilePageState extends State<trainerProfile> {
               buildTextField("Full Name", userName.toString(), false),
               buildTextField("E-mail",
                   FirebaseAuth.instance.currentUser!.email.toString(), false),
-              buildTextField("Password", "********", true),
-              buildTextField("Location", "trash", false),
+              buildTextField("سنين الخبرة", userYearsOfExp.toString(), false),
+              buildTextField("محل العمل", userLocation.toString(), false),
               const SizedBox(
                 height: 35,
               ),
