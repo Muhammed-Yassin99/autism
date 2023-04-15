@@ -53,7 +53,9 @@ class _EditProfilePageState extends State<trainerProfile> {
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == gmail) {
-          userName = element['username'].toString();
+          setState(() {
+            userName = element['username'].toString();
+          });
         }
       }
     });
