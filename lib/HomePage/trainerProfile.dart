@@ -24,26 +24,11 @@ class _EditProfilePageState extends State<trainerProfile> {
   final _firebaseStorage = FirebaseStorage.instance;
   var userName;
   var userGmail;
+  var userPic;
+  CollectionReference trainerRef =
+      FirebaseFirestore.instance.collection("trainers");
+  var uid = FirebaseAuth.instance.currentUser!.uid;
 
-  /*pickImage() async {
-    ImagePicker imagePicker = ImagePicker();
-    XFile? file = await imagePicker.pickImage(source: ImageSource.camera);
-    if (kDebugMode) {
-      print('${file?.path}');
-    }
-
-    if (file == null) return;
-    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
-    Reference referenceRoot = FirebaseStorage.instance.ref();
-    Reference referenceDirImages = referenceRoot.child('images');
-    Reference referenceImageToUpload = referenceDirImages.child('name');
-    try {
-      await referenceImageToUpload.putFile(File(file.path));
-      imageUrl = await referenceImageToUpload.getDownloadURL();
-    } catch (error) {
-      //Some error occurred
-    }
-  }*/
   getUserNameAndEmail() async {
     var user = FirebaseAuth.instance.currentUser;
     String gmail = user!.email.toString();
@@ -61,6 +46,27 @@ class _EditProfilePageState extends State<trainerProfile> {
     });
   }
 
+  getUserImage() async {
+    var user = FirebaseAuth.instance.currentUser;
+    String mail = user!.email.toString();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("trainers");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['gmail'].toString() == mail) {
+          setState(() {
+            userPic = element['profilePic'].toString();
+          });
+          break;
+        }
+      }
+    });
+    if (userPic == "") {
+      userPic =
+          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2FdefaultPic.png?alt=media&token=bdd0c8b8-7632-40b0-9c2d-4d815264b221";
+    }
+  }
+
   Future<void> _pickImage() async {
     final pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
@@ -76,6 +82,8 @@ class _EditProfilePageState extends State<trainerProfile> {
           _image = file;
           _imageUrl = downloadUrl;
         });
+        DocumentReference ref = trainerRef.doc(uid);
+        ref.update({"profilePic": _imageUrl});
         if (kDebugMode) {
           print('Image uploaded successfully: $_imageUrl');
         }
@@ -86,6 +94,7 @@ class _EditProfilePageState extends State<trainerProfile> {
   @override
   void initState() {
     getUserNameAndEmail();
+    getUserImage();
     super.initState();
   }
 
@@ -148,10 +157,9 @@ class _EditProfilePageState extends State<trainerProfile> {
                                 offset: const Offset(0, 10))
                           ],
                           shape: BoxShape.circle,
-                          image: const DecorationImage(
+                          image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage(
-                                  "assets/images/HomePage/defaultPic.png"))),
+                              image: NetworkImage(userPic.toString()))),
                     ),
                     Positioned(
                         bottom: 0,
