@@ -1,6 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api, camel_case_types, unused_field, unused_local_variable, deprecated_member_use, prefer_typing_uninitialized_variables
+// ignore_for_file: library_private_types_in_public_api, camel_case_types, unused_field, unused_local_variable, deprecated_member_use, prefer_typing_uninitialized_variables, depend_on_referenced_packages
 import 'dart:io';
 import 'package:autism_zz/HomePage/trainerHomePage.dart';
+import 'package:autism_zz/HomePage/trainerProfile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -9,14 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
-class edittrainerProfile extends StatefulWidget {
-  const edittrainerProfile({super.key});
+class editTrainerProfile extends StatefulWidget {
+  const editTrainerProfile({super.key});
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _EditProfilePageState extends State<edittrainerProfile> {
+class _EditProfilePageState extends State<editTrainerProfile> {
   bool showPassword = false;
   String imageUrl = "";
   File? _image;
@@ -27,9 +28,16 @@ class _EditProfilePageState extends State<edittrainerProfile> {
   var userPic;
   var userYearsOfExp;
   var userLocation;
+  var editedDate = [];
+  final TimeOfDay _startTime = const TimeOfDay(hour: 12, minute: 0);
+  final TimeOfDay _endTime = const TimeOfDay(hour: 20, minute: 0);
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
   var uid = FirebaseAuth.instance.currentUser!.uid;
+  List<TextEditingController> controllers = List.generate(
+    3,
+    (index) => TextEditingController(),
+  );
 
   getUserInfo() async {
     var user = FirebaseAuth.instance.currentUser;
@@ -59,6 +67,13 @@ class _EditProfilePageState extends State<edittrainerProfile> {
     if (userLocation == "") {
       userLocation = "لم تقم باضافة مكان العيادة الخاصة بك";
     }
+    editedDate.add(userName);
+    editedDate.add(userYearsOfExp);
+    editedDate.add(userLocation);
+    editedDate.add(userPic);
+    if (kDebugMode) {
+      print(editedDate[2]);
+    }
   }
 
   Future<void> _pickImage() async {
@@ -75,12 +90,9 @@ class _EditProfilePageState extends State<edittrainerProfile> {
         setState(() {
           _image = file;
           _imageUrl = downloadUrl;
+          editedDate[3] = _imageUrl;
+          userPic = _imageUrl;
         });
-        DocumentReference ref = trainerRef.doc(uid);
-        ref.update({"profilePic": _imageUrl});
-        if (kDebugMode) {
-          print('Image uploaded successfully: $_imageUrl');
-        }
       });
     }
   }
@@ -103,21 +115,10 @@ class _EditProfilePageState extends State<edittrainerProfile> {
             color: Colors.green,
           ),
           onPressed: () {
-            Navigator.of(context).pushReplacementNamed("trainerHomePage");
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => const trainerProfile()));
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.edit,
-              color: Colors.green,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const trainerHomePage()));
-            },
-          ),
-        ],
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -185,11 +186,9 @@ class _EditProfilePageState extends State<edittrainerProfile> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", userName.toString(), false),
-              buildTextField("E-mail",
-                  FirebaseAuth.instance.currentUser!.email.toString(), false),
-              buildTextField("سنين الخبرة", userYearsOfExp.toString(), false),
-              buildTextField("محل العمل", userLocation.toString(), false),
+              buildTextField("الاسم بالكامل", userName.toString(), 0),
+              buildTextField("سنين الخبرة", userYearsOfExp.toString(), 1),
+              buildTextField("محل العمل", userLocation.toString(), 2),
               const SizedBox(
                 height: 35,
               ),
@@ -209,7 +208,11 @@ class _EditProfilePageState extends State<edittrainerProfile> {
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)))),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const trainerProfile()));
+                    },
                     child: const Text("CANCEL",
                         style: TextStyle(
                             fontSize: 14,
@@ -217,7 +220,14 @@ class _EditProfilePageState extends State<edittrainerProfile> {
                             color: Colors.black)),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        saveChanges();
+                      });
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const trainerProfile()));
+                    },
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.resolveWith((states) {
@@ -247,35 +257,129 @@ class _EditProfilePageState extends State<edittrainerProfile> {
     );
   }
 
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+  saveChanges() async {
+    setState(() {
+      DocumentReference ref = trainerRef.doc(uid);
+      ref.update({"profilePic": editedDate[3]});
+      ref.update({"username": editedDate[0]});
+      ref.update({"yearsOfExp": editedDate[1]});
+      ref.update({"location": editedDate[2]});
+    });
+    if (kDebugMode) {
+      print('Image uploaded successfully: $_imageUrl');
+    }
+  }
+
+  Widget buildTextField(String labelText, String placeholder, int num) {
+    TextEditingController controller = controllers[num];
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
+      child: TextFormField(
+        controller: controller,
+        onChanged: (String newText) {
+          String currentHintText = controller.text;
+          editedDate[num] = currentHintText;
+          print('New hint text: $newText');
+          print('Current hint text: $currentHintText');
+          print(editedDate[0]);
+          print(editedDate[3]);
+        },
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        enabled: true,
         decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                  )
-                : null,
-            contentPadding: const EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
+          contentPadding: const EdgeInsets.only(bottom: 3),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: placeholder,
+          hintStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          labelText: labelText,
+          labelStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+          alignLabelWithHint: true,
+        ),
+      ),
+    );
+  }
+
+  Widget buildTextField1(String labelText, String placeholder, int num) {
+    TextEditingController controller = controllers[1];
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 35.0),
+      child: TextFormField(
+        controller: controller,
+        onChanged: (String newText) {
+          String currentHintText = controller.text;
+          editedDate[num] = currentHintText;
+          print('New hint text: $newText');
+          print('Current hint text: $currentHintText');
+          print(editedDate[0]);
+          print(editedDate[3]);
+        },
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        enabled: true,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(bottom: 3),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: placeholder,
+          hintStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          labelText: labelText,
+          labelStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+          alignLabelWithHint: true,
+        ),
+      ),
+    );
+  }
+
+  Widget buildTextField2(String labelText, String placeholder, int num) {
+    TextEditingController controller = controllers[2];
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 35.0),
+      child: TextFormField(
+        controller: controller,
+        onChanged: (String newText) {
+          String currentHintText = controller.text;
+          editedDate[num] = currentHintText;
+          print('New hint text: $newText');
+          print('Current hint text: $currentHintText');
+          print(editedDate[0]);
+          print(editedDate[3]);
+        },
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        enabled: true,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(bottom: 3),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: placeholder,
+          hintStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          labelText: labelText,
+          labelStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+          alignLabelWithHint: true,
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, camel_case_types, unused_field, unused_local_variable, deprecated_member_use, prefer_typing_uninitialized_variables
 import 'dart:io';
+import 'package:autism_zz/HomePage/editProfile.dart';
 import 'package:autism_zz/HomePage/trainerHomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -90,7 +91,8 @@ class _EditProfilePageState extends State<trainerProfile> {
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const trainerHomePage()));
+                  builder: (BuildContext context) =>
+                      const editTrainerProfile()));
             },
           ),
         ],
@@ -144,7 +146,7 @@ class _EditProfilePageState extends State<trainerProfile> {
                 height: 35,
               ),
               buildTextField("الاسم بالكامل", userName.toString()),
-              buildTextField("الايمال",
+              buildTextField("البريد الألكتروني",
                   FirebaseAuth.instance.currentUser!.email.toString()),
               buildTextField("سنين الخبرة", userYearsOfExp.toString()),
               buildTextField("محل العمل", userLocation.toString()),
@@ -163,13 +165,12 @@ class _EditProfilePageState extends State<trainerProfile> {
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(
         textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
         enabled: false,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(bottom: 3),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
-          floatingLabelAlignment: FloatingLabelAlignment.start,
-          hintTextDirection: TextDirection.rtl,
           hintStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
