@@ -61,30 +61,6 @@ class _EditProfilePageState extends State<trainerProfile> {
     }
   }
 
-  Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      final file = File(pickedFile.path);
-      final fileName = Path.basename(file.path);
-      final storageRef = _firebaseStorage.ref().child('images/$fileName');
-      final uploadTask = storageRef.putFile(file);
-
-      await uploadTask.whenComplete(() async {
-        final downloadUrl = await storageRef.getDownloadURL();
-        setState(() {
-          _image = file;
-          _imageUrl = downloadUrl;
-        });
-        DocumentReference ref = trainerRef.doc(uid);
-        ref.update({"profilePic": _imageUrl});
-        if (kDebugMode) {
-          print('Image uploaded successfully: $_imageUrl');
-        }
-      });
-    }
-  }
-
   @override
   void initState() {
     getUserInfo();
@@ -170,53 +146,6 @@ class _EditProfilePageState extends State<trainerProfile> {
               const SizedBox(
                 height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.pressed)) {
-                            return Colors.black26;
-                          }
-                          return Colors.white;
-                        }),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)))),
-                    onPressed: () {},
-                    child: const Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.pressed)) {
-                            return Colors.black26;
-                          }
-                          return Colors.white;
-                        }),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)))),
-                    child: const Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.black),
-                    ),
-                  )
-                ],
-              )
             ],
           ),
         ),
