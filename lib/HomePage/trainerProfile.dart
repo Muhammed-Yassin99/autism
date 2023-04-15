@@ -51,13 +51,13 @@ class _EditProfilePageState extends State<trainerProfile> {
     });
     if (userPic == "") {
       userPic =
-          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2FdefaultPic.png?alt=media&token=bdd0c8b8-7632-40b0-9c2d-4d815264b221";
+          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7";
     }
     if (userYearsOfExp == "") {
       userYearsOfExp = "لم تقم باضافة سنين الخبرة";
     }
     if (userLocation == "") {
-      userYearsOfExp = "لم تقم باضافة مكان العيادة الخاصة بك";
+      userLocation = "لم تقم باضافة مكان العيادة الخاصة بك";
     }
   }
 
