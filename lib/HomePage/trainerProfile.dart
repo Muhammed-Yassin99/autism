@@ -104,8 +104,12 @@ class _EditProfilePageState extends State<trainerProfile> {
           child: ListView(
             children: [
               const Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                textAlign: TextAlign.right,
+                "الملف الشخصي",
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red),
               ),
               const SizedBox(
                 height: 15,
@@ -118,11 +122,12 @@ class _EditProfilePageState extends State<trainerProfile> {
                       height: 130,
                       decoration: BoxDecoration(
                           border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
+                            width: 4,
+                            color: Colors.blue,
+                          ),
                           boxShadow: [
                             BoxShadow(
-                                spreadRadius: 2,
+                                spreadRadius: 5,
                                 blurRadius: 10,
                                 color: Colors.black.withOpacity(0.1),
                                 offset: const Offset(0, 10))
@@ -138,8 +143,8 @@ class _EditProfilePageState extends State<trainerProfile> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", userName.toString()),
-              buildTextField("E-mail",
+              buildTextField("الاسم بالكامل", userName.toString()),
+              buildTextField("الايمال",
                   FirebaseAuth.instance.currentUser!.email.toString()),
               buildTextField("سنين الخبرة", userYearsOfExp.toString()),
               buildTextField("محل العمل", userLocation.toString()),
@@ -156,18 +161,27 @@ class _EditProfilePageState extends State<trainerProfile> {
   Widget buildTextField(String labelText, String placeholder) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
+      child: TextFormField(
+        textAlign: TextAlign.right,
         enabled: false,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(bottom: 3),
-          labelText: labelText,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
+          floatingLabelAlignment: FloatingLabelAlignment.start,
+          hintTextDirection: TextDirection.rtl,
           hintStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
+          labelText: labelText,
+          labelStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+          alignLabelWithHint: true,
         ),
       ),
     );
