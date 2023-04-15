@@ -241,7 +241,7 @@ class HomeScreenState extends State<trainerHomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          Image.asset(category.icon, height: 120, width: 150),
+          Image.asset(category.icon, height: 100, width: 130),
           const SizedBox(height: 5.0),
           Text(
             style: const TextStyle(
