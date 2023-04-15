@@ -35,3 +35,11 @@ final List<Category> learn_categories = [
   Category(6, "مشاهد ", icon: "assets/images/HomePage/themes.png"),
   Category(5, "الحيوانات ", icon: "assets/images/HomePage/zoo.png"),
 ];
+final List<Category> PhysCard_categories = [
+  Category(1, "تفريش الاسنان ", icon: "assets/images/HomePage/bigFamily.png"),
+  Category(2, "فتح الباب", icon: "assets/images/HomePage/Efaces.png"),
+  Category(3, "أكل الطعام ", icon: "assets/images/HomePage/numbers.png"),
+  Category(4, "الشرب", icon: "assets/images/HomePage/letters.png"),
+  Category(5, "ترتيب السرير", icon: "assets/images/HomePage/themes.png"),
+  Category(56, "الحيوانات ", icon: "assets/images/HomePage/zoo.png"),
+];
