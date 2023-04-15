@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
-class trainerProfile extends StatefulWidget {
-  const trainerProfile({super.key});
+class edittrainerProfile extends StatefulWidget {
+  const edittrainerProfile({super.key});
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _EditProfilePageState extends State<trainerProfile> {
+class _EditProfilePageState extends State<edittrainerProfile> {
   bool showPassword = false;
   String imageUrl = "";
   File? _image;
@@ -156,17 +156,40 @@ class _EditProfilePageState extends State<trainerProfile> {
                               fit: BoxFit.cover,
                               image: NetworkImage(userPic.toString()))),
                     ),
+                    Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              width: 4,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                            ),
+                            color: Colors.green,
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: _pickImage,
+                            iconSize: 20,
+                            color: Colors.white,
+                            alignment: Alignment.center,
+                          ),
+                        )),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", userName.toString()),
+              buildTextField("Full Name", userName.toString(), false),
               buildTextField("E-mail",
-                  FirebaseAuth.instance.currentUser!.email.toString()),
-              buildTextField("سنين الخبرة", userYearsOfExp.toString()),
-              buildTextField("محل العمل", userLocation.toString()),
+                  FirebaseAuth.instance.currentUser!.email.toString(), false),
+              buildTextField("سنين الخبرة", userYearsOfExp.toString(), false),
+              buildTextField("محل العمل", userLocation.toString(), false),
               const SizedBox(
                 height: 35,
               ),
@@ -224,22 +247,35 @@ class _EditProfilePageState extends State<trainerProfile> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder) {
+  Widget buildTextField(
+      String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
-        enabled: false,
+        obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(bottom: 3),
-          labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: placeholder,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
+            suffixIcon: isPasswordTextField
+                ? IconButton(
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.remove_red_eye,
+                      color: Colors.grey,
+                    ),
+                  )
+                : null,
+            contentPadding: const EdgeInsets.only(bottom: 3),
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
+            hintStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )),
       ),
     );
   }
