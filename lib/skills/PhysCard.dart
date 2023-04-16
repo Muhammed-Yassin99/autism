@@ -104,7 +104,7 @@ class PhysCard extends StatelessWidget {
       ),
     );
   }
-
+// 7amraaa
   _categoryPressed(BuildContext context, Category category) {
     if (category.id == 1) {
       Navigator.push(
