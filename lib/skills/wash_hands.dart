@@ -60,9 +60,10 @@ class _FullscreenVideoPlayerState extends State<FullscreenVideoPlayer> {
             : _controller.play();
       },
       child: AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
+        aspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.height,
         child: VideoPlayer(_controller),
       ),
+
     );
   }
 }
