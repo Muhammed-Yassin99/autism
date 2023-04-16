@@ -107,7 +107,7 @@ class PhysCard extends StatelessWidget {
   _categoryPressed(BuildContext context, Category category) {
     if (category.id == 1) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyVideoPlayer()));
+          context, MaterialPageRoute(builder: (context) => FullscreenVideoPlayer()));
     }
 
   }

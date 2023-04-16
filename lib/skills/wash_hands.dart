@@ -1,45 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class MyVideoPlayer extends StatefulWidget {
+class FullscreenVideoPlayer extends StatefulWidget {
   @override
-  _MyVideoPlayerState createState() => _MyVideoPlayerState();
+  _FullscreenVideoPlayerState createState() => _FullscreenVideoPlayerState();
 }
 
-class _MyVideoPlayerState extends State<MyVideoPlayer> {
-
-   VideoPlayerController _controller = VideoPlayerController.asset('assets/videos/wash_hand.mp4');
+class _FullscreenVideoPlayerState extends State<FullscreenVideoPlayer> {
+  late VideoPlayerController _controller;
+  bool _isControllerInitialized = false;
+  bool _hasControllerError = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/wash_hand.mp4');
-    _initializeVideoPlayer();
+    _initVideoPlayer();
   }
 
-  void _initializeVideoPlayer() async {
-    await _controller.initialize();
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Video Player'),
-      ),
-      body: _controller.value.isInitialized
-          ? AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
-        child: VideoPlayer(_controller),
-      )
-          : Container(),
-    );
+  void _initVideoPlayer() async {
+    try {
+      _controller = VideoPlayerController.asset('assets/videos/wash_hand.mp4')
+        ..addListener(() {
+          if (_controller.value.hasError) {
+            setState(() {
+              _hasControllerError = true;
+            });
+          }
+        });
+      await _controller.initialize();
+      setState(() {
+        _isControllerInitialized = true;
+      });
+    } catch (e) {
+      print('Error initializing video player: $e');
+      setState(() {
+        _hasControllerError = true;
+      });
+    }
   }
 
   @override
   void dispose() {
     super.dispose();
     _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_isControllerInitialized) {
+      return CircularProgressIndicator(); // Show loading spinner instead
+    }
+    if (_hasControllerError) {
+      return Text('Error loading video');
+    }
+    return GestureDetector(
+      onTap: () {
+        _controller.value.isPlaying
+            ? _controller.pause()
+            : _controller.play();
+      },
+      child: AspectRatio(
+        aspectRatio: _controller.value.aspectRatio,
+        child: VideoPlayer(_controller),
+      ),
+    );
   }
 }
