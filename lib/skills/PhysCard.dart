@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:autism_zz/model/homePage_icons.dart';
+import 'package:autism_zz/skills/wash_hands.dart';
 import 'package:flutter/material.dart';
 
 import '../model/category.dart';
@@ -104,6 +105,10 @@ class PhysCard extends StatelessWidget {
   }
 
   _categoryPressed(BuildContext context, Category category) {
+    if (category.id == 1) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MyVideoPlayer()));
+    }
 
   }
 
