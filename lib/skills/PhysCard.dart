@@ -2,6 +2,7 @@
 
 import 'package:autism_zz/model/homePage_icons.dart';
 import 'package:autism_zz/skills/wash_hands.dart';
+import 'package:autism_zz/skills/wear_shoes.dart';
 import 'package:flutter/material.dart';
 
 import '../model/category.dart';
@@ -108,6 +109,10 @@ class PhysCard extends StatelessWidget {
     if (category.id == 1) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => FullscreenVideoPlayer()));
+    }
+    if (category.id == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => FullscreenVideoPlayer1()));
     }
 
   }
