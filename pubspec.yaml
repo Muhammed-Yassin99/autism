@@ -59,6 +59,7 @@ dependencies:
   tflite_flutter: ^0.9.0
   camera_android: ^0.10.4+2
   flutter_rating_bar: ^4.0.1
+  video_player: ^2.6.1
   #tflite_flutter_helper: ^0.3.1
   
 
@@ -251,6 +252,12 @@ flutter:
      - assets/images/learn/family/grandMother.jpg
      - assets/images/learn/family/sister.jpg
      - assets/images/learn/family/brother.jpg
+     - assets/images/skills/teeth-brushing.png
+     - assets/images/skills/door.png
+     - assets/images/skills/woman.png
+     - assets/images/skills/drink-water.png
+     - assets/images/skills/sleep.png
+     - assets/images/skills/wash-your-hands.png
      - assets/sounds/learn/family/father.wav
      - assets/sounds/learn/family/mother.wav
      - assets/sounds/learn/family/grandFather.wav
@@ -306,6 +313,8 @@ flutter:
      - assets/images/HomePage/sideBarBackground.jpg
      - assets/images/HomePage/parent.png
      - assets/images/HomePage/discover.png
+     - assets/videos/wear_shoes.mp4
+     - assets/videos/wash_hand.mp4
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
      - assets/objecDetec/yolov7labels1.txt

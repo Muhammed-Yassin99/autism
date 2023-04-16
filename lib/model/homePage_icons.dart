@@ -36,10 +36,10 @@ final List<Category> learn_categories = [
   Category(5, "الحيوانات ", icon: "assets/images/HomePage/zoo.png"),
 ];
 final List<Category> PhysCard_categories = [
-  Category(1, "تفريش الاسنان ", icon: "assets/images/HomePage/bigFamily.png"),
-  Category(2, "فتح الباب", icon: "assets/images/HomePage/Efaces.png"),
-  Category(3, "أكل الطعام ", icon: "assets/images/HomePage/numbers.png"),
-  Category(4, "الشرب", icon: "assets/images/HomePage/letters.png"),
-  Category(5, "ترتيب السرير", icon: "assets/images/HomePage/themes.png"),
-  Category(56, "الحيوانات ", icon: "assets/images/HomePage/zoo.png"),
+  Category(1, "تفريش الاسنان ", icon: "assets/images/skills/teeth-brushing.png"),
+  Category(2, "فتح الباب", icon: "assets/images/skills/door.png"),
+  Category(3, "أكل الطعام ", icon: "assets/images/skills/woman.png"),
+  Category(4, "الشرب", icon: "assets/images/skills/drink-water.png"),
+  Category(5, "ترتيب السرير", icon: "assets/images/skills/sleep.png"),
+  Category(56, "غسل اليدين ", icon: "assets/images/skills/wash-your-hands.png"),
 ];

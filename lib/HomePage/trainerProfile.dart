@@ -182,7 +182,6 @@ class _EditProfilePageState extends State<trainerProfile> {
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
-          alignLabelWithHint: true,
         ),
       ),
     );
