@@ -265,9 +265,9 @@ class _EditProfilePageState extends State<editTrainerProfile> {
       ref.update({"yearsOfExp": editedDate[1]});
       ref.update({"location": editedDate[2]});
     });
-    if (kDebugMode) {
+    /*if (kDebugMode) {
       print('Image uploaded successfully: $_imageUrl');
-    }
+    }*/
   }
 
   Widget buildTextField(String labelText, String placeholder, int num) {
