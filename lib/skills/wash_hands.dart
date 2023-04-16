@@ -1,7 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class FullscreenVideoPlayer extends StatefulWidget {
+  const FullscreenVideoPlayer({super.key});
+
   @override
   _FullscreenVideoPlayerState createState() => _FullscreenVideoPlayerState();
 }
@@ -48,22 +52,20 @@ class _FullscreenVideoPlayerState extends State<FullscreenVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     if (!_isControllerInitialized) {
-      return CircularProgressIndicator(); // Show loading spinner instead
+      return const CircularProgressIndicator(); // Show loading spinner instead
     }
     if (_hasControllerError) {
-      return Text('Error loading video');
+      return const Text('Error loading video');
     }
     return GestureDetector(
       onTap: () {
-        _controller.value.isPlaying
-            ? _controller.pause()
-            : _controller.play();
+        _controller.value.isPlaying ? _controller.pause() : _controller.play();
       },
       child: AspectRatio(
-        aspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.height,
+        aspectRatio: MediaQuery.of(context).size.width /
+            MediaQuery.of(context).size.height,
         child: VideoPlayer(_controller),
       ),
-
     );
   }
 }
