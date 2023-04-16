@@ -39,8 +39,8 @@ class PhysCard extends StatelessWidget {
         ],
       ),
       body: Container(
-        //color: const Color.fromARGB(164, 0, 0, 0),
-          color: const Color.fromARGB(255, 12, 79, 135),
+          //color: const Color.fromARGB(164, 0, 0, 0),
+          color: const Color.fromARGB(255, 125, 12, 135),
           child: Stack(
             children: [
               CustomScrollView(
@@ -49,18 +49,18 @@ class PhysCard extends StatelessWidget {
                   const SliverToBoxAdapter(
                     child: Padding(
                       padding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                     ),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(6.0),
                     sliver: SliverGrid(
                         gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 1,
-                            crossAxisSpacing: 10.0,
-                            mainAxisSpacing: 25.0),
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 1,
+                                crossAxisSpacing: 10.0,
+                                mainAxisSpacing: 25.0),
                         delegate: SliverChildBuilderDelegate(
                           _buildCategoryItem,
                           childCount: game_categories.length,
@@ -104,17 +104,19 @@ class PhysCard extends StatelessWidget {
       ),
     );
   }
-// 7amraaa
+
   _categoryPressed(BuildContext context, Category category) {
     if (category.id == 1) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FullscreenVideoPlayer()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => const FullscreenVideoPlayer()));
     }
     if (category.id == 2) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FullscreenVideoPlayer1()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => const FullscreenVideoPlayer1()));
     }
-
   }
-
 }

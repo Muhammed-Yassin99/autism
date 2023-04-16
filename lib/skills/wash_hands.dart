@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -36,7 +37,9 @@ class _FullscreenVideoPlayerState extends State<FullscreenVideoPlayer> {
         _isControllerInitialized = true;
       });
     } catch (e) {
-      print('Error initializing video player: $e');
+      if (kDebugMode) {
+        print('Error initializing video player: $e');
+      }
       setState(() {
         _hasControllerError = true;
       });
