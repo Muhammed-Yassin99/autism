@@ -20,17 +20,37 @@ class _SignUpScreenState extends State<signUpScreen> {
   var userName, userEmail, userPass;
   String errorMSG = "";
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
+
   addData(String role, String collection) async {
-    CollectionReference userRef =
-        FirebaseFirestore.instance.collection(collection);
-    userRef.doc(FirebaseAuth.instance.currentUser!.uid).set({
-      "username": userName,
-      "gmail": userEmail,
-      "role": role,
-      "current child": "",
-      "profilePic": "",
-      "yearsOfExp": "",
-    });
+    if (role == "parents") {
+      CollectionReference userRef =
+          FirebaseFirestore.instance.collection(collection);
+      userRef.doc(FirebaseAuth.instance.currentUser!.uid).set({
+        "username": userName,
+        "gmail": userEmail,
+        "role": role,
+        "current child": "",
+        "profilePic": "",
+        "currentRequest": "",
+        "assignedTrainer": "",
+      });
+    }
+    if (role == "trainers") {
+      CollectionReference userRef =
+          FirebaseFirestore.instance.collection(collection);
+      userRef.doc(FirebaseAuth.instance.currentUser!.uid).set({
+        "username": userName,
+        "gmail": userEmail,
+        "role": role,
+        "profilePic":
+            "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7",
+        "pendingRequests": [],
+        "location": "لم يتم التحديد بعد",
+        "yearsOfExp": "",
+        "availabeTimes": "لم يتم التحديد بعد",
+        "rate": "",
+      });
+    }
   }
 
   SignUp() async {
