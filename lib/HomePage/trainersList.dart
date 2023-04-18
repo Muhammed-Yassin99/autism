@@ -124,28 +124,12 @@ class FiChartPageState extends State<trainersList> {
               leading: const Icon(Icons.share),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text(style: TextStyle(fontSize: 18), 'الطلبات'),
-              onTap: () {},
-              trailing: ClipOval(
-                child: Container(
-                  color: Colors.red,
-                  width: 20,
-                  height: 20,
-                  child: const Center(
-                    child: Text(
-                      '8',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const trainersList()));
+              },
             ),
             const Divider(),
             ListTile(
@@ -221,36 +205,70 @@ class FiChartPageState extends State<trainersList> {
                           //padding: const EdgeInsets.only(top: 8),
                           child: ExpansionTile(
                             backgroundColor: Colors.black,
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                            title: Stack(
                               children: [
-                                Text(
-                                  "${trainers[i]['username']}",
-                                  style: const TextStyle(fontSize: 28),
-                                  textAlign: TextAlign.right,
-                                ),
-                                const SizedBox(width: 10),
-                                Container(
-                                  width: 70,
-                                  height: 70,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 4,
+                                Positioned(
+                                  top: 10,
+                                  left: 5,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      // Handle button tap
+                                    },
+                                    child: Container(
+                                      width: 110,
+                                      height: 55,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
                                         color: Colors.blue,
                                       ),
-                                      boxShadow: [
-                                        BoxShadow(
+                                      child: const Center(
+                                        child: Text(
+                                          'تقديم طلب',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "${trainers[i]['username']}",
+                                      style: const TextStyle(fontSize: 28),
+                                      textAlign: TextAlign.right,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Container(
+                                      width: 70,
+                                      height: 70,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 4,
+                                          color: Colors.blue,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
                                             spreadRadius: 5,
                                             blurRadius: 10,
                                             color:
                                                 Colors.black.withOpacity(0.1),
-                                            offset: const Offset(0, 10))
-                                      ],
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
+                                            offset: const Offset(0, 10),
+                                          ),
+                                        ],
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: NetworkImage(
-                                              trainers[i]['profilePic']))),
+                                              trainers[i]['profilePic']),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
