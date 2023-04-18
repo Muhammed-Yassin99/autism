@@ -1,5 +1,4 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
-
 import 'package:autism_zz/children/ChildrenChart.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,6 +35,7 @@ class FiChartPageState extends State<trainersList> {
   var currentRequest;
   List trainers = [];
   var assignedTrainer;
+  var parentUid = FirebaseAuth.instance.currentUser?.uid;
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
@@ -73,7 +73,7 @@ class FiChartPageState extends State<trainersList> {
     });
   }
 
-  Widget applyButton(String usermail) {
+  Widget applyButton(String usermail, String trainerUid) {
     var uid = FirebaseAuth.instance.currentUser!.uid;
     DocumentReference ref = parentRef.doc(uid);
     if (currentRequest == "" && assignedTrainer == "") {
@@ -92,6 +92,10 @@ class FiChartPageState extends State<trainersList> {
               setState(() {
                 ref.update({"currentRequest": usermail});
                 setUserName();
+              });
+              var trainerRef1 = trainerRef.doc(trainerUid);
+              trainerRef1.update({
+                'pendingRequests': FieldValue.arrayUnion([parentUid])
               });
             },
             child: const Center(
@@ -163,6 +167,10 @@ class FiChartPageState extends State<trainersList> {
             onPressed: () {
               setState(() {
                 ref.update({"currentRequest": ""});
+                var trainerRef1 = trainerRef.doc(trainerUid);
+                trainerRef1.update({
+                  'pendingRequests': FieldValue.arrayRemove([parentUid])
+                });
                 setUserName();
               });
             },
@@ -365,7 +373,8 @@ class FiChartPageState extends State<trainersList> {
                             backgroundColor: Colors.black,
                             title: Stack(
                               children: [
-                                applyButton(trainers[i]['gmail']),
+                                applyButton(
+                                    trainers[i]['gmail'], trainers[i]['uid']),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [

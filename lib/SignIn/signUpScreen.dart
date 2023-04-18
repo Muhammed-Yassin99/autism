@@ -25,7 +25,12 @@ class _SignUpScreenState extends State<signUpScreen> {
     if (role == "parents") {
       CollectionReference userRef =
           FirebaseFirestore.instance.collection(collection);
+      var uid = FirebaseAuth.instance.currentUser!.uid;
+      if (kDebugMode) {
+        print(uid);
+      }
       userRef.doc(FirebaseAuth.instance.currentUser!.uid).set({
+        "uid": uid,
         "username": userName,
         "gmail": userEmail,
         "role": role,
@@ -38,7 +43,12 @@ class _SignUpScreenState extends State<signUpScreen> {
     if (role == "trainers") {
       CollectionReference userRef =
           FirebaseFirestore.instance.collection(collection);
+      var uid = FirebaseAuth.instance.currentUser!.uid;
+      if (kDebugMode) {
+        print(uid);
+      }
       userRef.doc(FirebaseAuth.instance.currentUser!.uid).set({
+        "uid": uid,
         "username": userName,
         "gmail": userEmail,
         "role": role,
