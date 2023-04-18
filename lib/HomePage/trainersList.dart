@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 
 import 'package:autism_zz/children/ChildrenChart.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -32,10 +33,14 @@ class FiChartPageState extends State<trainersList> {
     const Color(0xff02d39a),
   ];
   var userName;
+  var currentRequest;
   List trainers = [];
+  var assignedTrainer;
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
+  CollectionReference parentRef =
+      FirebaseFirestore.instance.collection("parents");
 
   getTrainers() async {
     var response = await trainerRef.get();
@@ -53,17 +58,170 @@ class FiChartPageState extends State<trainersList> {
     var user = FirebaseAuth.instance.currentUser;
     String mail = user!.email.toString();
     CollectionReference userRef =
-        FirebaseFirestore.instance.collection("users");
+        FirebaseFirestore.instance.collection("parents");
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
           setState(() {
             userName = element['username'].toString();
+            currentRequest = element['currentRequest'].toString();
+            assignedTrainer = element['assignedTrainer'].toString();
           });
           break;
         }
       }
     });
+  }
+
+  Widget applyButton(String usermail) {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    DocumentReference ref = parentRef.doc(uid);
+    if (currentRequest == "" && assignedTrainer == "") {
+      return Positioned(
+        top: 10,
+        left: 5,
+        child: Container(
+          width: 120,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.blue,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                ref.update({"currentRequest": usermail});
+                setUserName();
+              });
+            },
+            child: const Center(
+              child: Text(
+                'تقديم طلب',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    if (currentRequest != "" &&
+        currentRequest != usermail &&
+        assignedTrainer == "") {
+      return Positioned(
+        top: 10,
+        left: 5,
+        child: Container(
+          width: 120,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.blue,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              AwesomeDialog(
+                context: context,
+                title: "Error",
+                body: const Text(
+                  "لديك طلب قيد الانتظار, قم بالغائه حتي تسطيع تقديم طلب اخر",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+              ).show();
+            },
+            child: const Center(
+              child: Text(
+                'تقديم طلب',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (currentRequest == usermail && assignedTrainer == "") {
+      return Positioned(
+        top: 10,
+        left: 5,
+        child: Container(
+          width: 120,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: const Color.fromARGB(255, 243, 33, 33),
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                ref.update({"currentRequest": ""});
+                setUserName();
+              });
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+            ),
+            child: const Center(
+              child: Text(
+                'الغاء طلب',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    if (assignedTrainer != "") {
+      return Positioned(
+        top: 10,
+        left: 5,
+        child: Container(
+          width: 120,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.blue,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              AwesomeDialog(
+                context: context,
+                title: "Error",
+                body: const Text(
+                  "!لقد انضممت الي طبيب معالج بالفعل, لا يمكنك الالتحاق لاكثر من طبيب في وقت واحد",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+              ).show();
+            },
+            child: const Center(
+              child: Text(
+                'تقديم طلب',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return const Text("error");
+    }
   }
 
   @override
@@ -207,33 +365,7 @@ class FiChartPageState extends State<trainersList> {
                             backgroundColor: Colors.black,
                             title: Stack(
                               children: [
-                                Positioned(
-                                  top: 10,
-                                  left: 5,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      // Handle button tap
-                                    },
-                                    child: Container(
-                                      width: 110,
-                                      height: 55,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(25),
-                                        color: Colors.blue,
-                                      ),
-                                      child: const Center(
-                                        child: Text(
-                                          'تقديم طلب',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                applyButton(trainers[i]['gmail']),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -249,7 +381,8 @@ class FiChartPageState extends State<trainersList> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           width: 4,
-                                          color: Colors.blue,
+                                          color: const Color.fromARGB(
+                                              255, 33, 37, 243),
                                         ),
                                         boxShadow: [
                                           BoxShadow(
@@ -282,6 +415,36 @@ class FiChartPageState extends State<trainersList> {
                                       style: const TextStyle(fontSize: 26),
                                       textAlign: TextAlign.right,
                                       "${"سنين الخبرة"}: ${trainers[i]['yearsOfExp']}"),
+                                ),
+                              ),
+                              const Divider(color: Colors.red),
+                              Card(
+                                color: Colors.grey,
+                                child: ListTile(
+                                  title: Text(
+                                      style: const TextStyle(fontSize: 26),
+                                      textAlign: TextAlign.right,
+                                      "${"محل العمل"}: ${trainers[i]['location']}"),
+                                ),
+                              ),
+                              const Divider(color: Colors.red),
+                              Card(
+                                color: Colors.grey,
+                                child: ListTile(
+                                  title: Text(
+                                      style: const TextStyle(fontSize: 26),
+                                      textAlign: TextAlign.right,
+                                      "${"أوقات العمل"}: ${trainers[i]['availabeTimes']}"),
+                                ),
+                              ),
+                              const Divider(color: Colors.red),
+                              Card(
+                                color: Colors.grey,
+                                child: ListTile(
+                                  title: Text(
+                                      style: const TextStyle(fontSize: 26),
+                                      textAlign: TextAlign.right,
+                                      "${trainers[i]['gmail']}:${"البريد الالكتروني"}"),
                                 ),
                               ),
                             ],
