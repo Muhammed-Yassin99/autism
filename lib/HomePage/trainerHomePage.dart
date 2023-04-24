@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, file_names, use_build_context_synchronously
 
 //import 'package:autism_zz/HomePage/trainerProfile.dart';
+import 'package:autism_zz/HomePage/trainerListOfRequests.dart';
 import 'package:autism_zz/HomePage/trainerProfile.dart';
 //import 'package:autism_zz/HomePage/trainerProfile1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +21,7 @@ class trainerHomePage extends StatefulWidget {
 
 class HomeScreenState extends State<trainerHomePage> {
   static var userName = '';
+  var userPic;
 
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
@@ -44,6 +46,7 @@ class HomeScreenState extends State<trainerHomePage> {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
           userName = element['username'].toString();
+          userPic = element['profilePic'].toString();
           if (kDebugMode) {
             print(userName);
           }
@@ -51,6 +54,10 @@ class HomeScreenState extends State<trainerHomePage> {
         }
       }
     });
+    if (userPic == "") {
+      userPic =
+          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7";
+    }
   }
 
   @override
@@ -66,8 +73,8 @@ class HomeScreenState extends State<trainerHomePage> {
                   Text(FirebaseAuth.instance.currentUser!.email.toString()),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
-                  child: Image.asset(
-                    'assets/images/HomePage/trainer.png',
+                  child: Image.network(
+                    userPic.toString(),
                     fit: BoxFit.cover,
                     width: 90,
                     height: 90,
@@ -96,7 +103,12 @@ class HomeScreenState extends State<trainerHomePage> {
             ListTile(
               leading: const Icon(Icons.notifications),
               title: const Text('الطلبات'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const trainerListOfRequests()));
+              },
               trailing: ClipOval(
                 child: Container(
                   color: Colors.red,

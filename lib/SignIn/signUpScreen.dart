@@ -34,7 +34,7 @@ class _SignUpScreenState extends State<signUpScreen> {
         "username": userName,
         "gmail": userEmail,
         "role": role,
-        "current child": "",
+        "currentChild": "",
         "profilePic": "",
         "currentRequest": "",
         "assignedTrainer": "",
@@ -59,6 +59,7 @@ class _SignUpScreenState extends State<signUpScreen> {
         "yearsOfExp": "",
         "availabeTimes": "لم يتم التحديد بعد",
         "rate": "",
+        "supervisedParents": [],
       });
     }
   }
