@@ -91,7 +91,7 @@ class HomeScreenState extends State<trainerHomePage> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.favorite),
+              leading: const Icon(Icons.book),
               title: const Text('الشهادات'),
               onTap: () {},
             ),
@@ -296,8 +296,10 @@ class HomeScreenState extends State<trainerHomePage> {
 
   _categoryPressed(BuildContext context, category) {
     if (category.id == 2) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const gamesHomePage()));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const trainerListOfRequests()));
     }
     if (category.id == 1) {
       Navigator.push(context,
