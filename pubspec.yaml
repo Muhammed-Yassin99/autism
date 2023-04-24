@@ -313,8 +313,10 @@ flutter:
      - assets/images/HomePage/sideBarBackground.jpg
      - assets/images/HomePage/parent.png
      - assets/images/HomePage/discover.png
+     - assets/images/skills/shoes.png
      - assets/videos/wear_shoes.mp4
      - assets/videos/wash_hand.mp4
+     - assets/videos/eat_food.mp4
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
      - assets/objecDetec/yolov7labels1.txt

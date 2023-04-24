@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:autism_zz/model/homePage_icons.dart';
+import 'package:autism_zz/skills/eat_food.dart';
 import 'package:autism_zz/skills/wash_hands.dart';
 import 'package:autism_zz/skills/wear_shoes.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,7 @@ class PhysCard extends StatelessWidget {
   }
 
   _categoryPressed(BuildContext context, Category category) {
-    if (category.id == 1) {
+    if (category.id == 6) {
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -117,6 +118,12 @@ class PhysCard extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => const FullscreenVideoPlayer1()));
+    }
+    if (category.id == 3) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const FullscreenVideoPlayer3()));
     }
   }
 }
