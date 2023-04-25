@@ -78,7 +78,7 @@ class FiChartPageState extends State<trainersList> {
     DocumentReference ref = parentRef.doc(uid);
     if (currentRequest == "" && assignedTrainer == "") {
       return Positioned(
-        top: 10,
+        top: 40,
         left: 5,
         child: Container(
           width: 120,
@@ -116,7 +116,7 @@ class FiChartPageState extends State<trainersList> {
         currentRequest != usermail &&
         assignedTrainer == "") {
       return Positioned(
-        top: 10,
+        top: 40,
         left: 5,
         child: Container(
           width: 120,
@@ -154,7 +154,7 @@ class FiChartPageState extends State<trainersList> {
 
     if (currentRequest == usermail && assignedTrainer == "") {
       return Positioned(
-        top: 10,
+        top: 40,
         left: 5,
         child: Container(
           width: 120,
@@ -193,7 +193,7 @@ class FiChartPageState extends State<trainersList> {
     }
     if (assignedTrainer != "") {
       return Positioned(
-        top: 10,
+        top: 40,
         left: 5,
         child: Container(
           width: 120,
@@ -368,51 +368,68 @@ class FiChartPageState extends State<trainersList> {
                       itemCount: trainers.length,
                       itemBuilder: (BuildContext context, int i) {
                         return Card(
-                          //padding: const EdgeInsets.only(top: 8),
+                            child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
                           child: ExpansionTile(
                             backgroundColor: Colors.black,
-                            title: Stack(
-                              children: [
-                                applyButton(
-                                    trainers[i]['gmail'], trainers[i]['uid']),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "${trainers[i]['username']}",
-                                      style: const TextStyle(fontSize: 28),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Container(
-                                      width: 70,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 4,
-                                          color: const Color.fromARGB(
-                                              255, 33, 37, 243),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            spreadRadius: 5,
-                                            blurRadius: 10,
-                                            color:
-                                                Colors.black.withOpacity(0.1),
-                                            offset: const Offset(0, 10),
+                            title: SizedBox(
+                              height: 110,
+                              child: Stack(
+                                children: [
+                                  applyButton(
+                                      trainers[i]['gmail'], trainers[i]['uid']),
+                                  Positioned(
+                                      top: 10,
+                                      right: 85,
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              "${trainers[i]['username']}",
+                                              style: const TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.right,
+                                            ),
+                                          ])),
+                                  Positioned(
+                                    height: 90,
+                                    right: 0,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          width: 80,
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              width: 4,
+                                              color: const Color.fromARGB(
+                                                  255, 33, 37, 243),
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                spreadRadius: 5,
+                                                blurRadius: 10,
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                                offset: const Offset(0, 10),
+                                              ),
+                                            ],
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  trainers[i]['profilePic']),
+                                            ),
                                           ),
-                                        ],
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                              trainers[i]['profilePic']),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
@@ -458,7 +475,7 @@ class FiChartPageState extends State<trainersList> {
                               ),
                             ],
                           ),
-                        );
+                        ));
                       },
                     ),
                   ),
