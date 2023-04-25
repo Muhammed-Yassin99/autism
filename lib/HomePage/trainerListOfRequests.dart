@@ -32,7 +32,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
   setUserName() async {
     listOfRequests = [];
     parents = [];
-    children = [];
     var user = FirebaseAuth.instance.currentUser;
     var response = await parentRef.get();
     String mail = user!.email.toString();
@@ -74,6 +73,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
   }
 
   getChildren() async {
+    children = [];
     await setUserName();
     if (kDebugMode) {
       print(listOfRequests.length);
@@ -91,12 +91,14 @@ class FiChartPageState extends State<trainerListOfRequests> {
             });
           }
         });
-        children.add(children1);
+        setState(() {
+          children.add(children1);
+        });
       }
     }
     if (kDebugMode) {
       print("childrenList:");
-      print(children);
+      print(children[0].length);
     }
   }
 
@@ -192,47 +194,54 @@ class FiChartPageState extends State<trainerListOfRequests> {
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Stack(children: [
-            SizedBox(
-              child: ListView.builder(
-                  //scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  itemCount: children[num].length,
-                  itemBuilder: (BuildContext context, int i) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: ExpansionTile(
-                        backgroundColor: Colors.black,
-                        title: Text(
-                            style: const TextStyle(fontSize: 28),
-                            textAlign: TextAlign.right,
-                            "${children[num][i]['name']}"),
+            ExpansionTile(
+                backgroundColor: Colors.amber,
+                title: const Text(
+                    style: TextStyle(fontSize: 28),
+                    textAlign: TextAlign.right,
+                    "الأطفال"),
+                children: [
+                  SizedBox(
+                    child: ListView.builder(
+                        //scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
                         // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          const Divider(color: Colors.red),
-                          Card(
-                            color: Colors.grey,
-                            child: ListTile(
+                        itemCount: children[num].length,
+                        itemBuilder: (BuildContext context, int i) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: ExpansionTile(
+                              backgroundColor: Colors.black,
                               title: Text(
-                                  style: const TextStyle(fontSize: 26),
+                                  style: const TextStyle(fontSize: 28),
                                   textAlign: TextAlign.right,
-                                  "${"العمر"}: ${children[num][i]['age']}"),
+                                  "${children[num][i]['name']}"),
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                const Divider(color: Colors.red),
+                                Card(
+                                  color: Colors.grey,
+                                  child: ListTile(
+                                    title: Text(
+                                        style: const TextStyle(fontSize: 26),
+                                        textAlign: TextAlign.right,
+                                        "${"العمر"}: ${children[num][i]['age']}"),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-            )
+                          );
+                        }),
+                  )
+                ]),
           ]),
-        )
+        ),
       ]),
     );
   }
 
   @override
   void initState() {
-    // setUserName();
     getChildren();
     super.initState();
   }
@@ -439,17 +448,76 @@ class FiChartPageState extends State<trainerListOfRequests> {
                               ),
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
-                                showChildren(i),
-                                const Divider(color: Colors.red),
-                                Card(
-                                  color: Colors.grey,
-                                  child: ListTile(
-                                    title: Text(
-                                        style: const TextStyle(fontSize: 26),
-                                        textAlign: TextAlign.right,
-                                        "kkkkkkkk"),
-                                  ),
+                                Container(
+                                  color: Colors.blueGrey,
+                                  child: Stack(children: [
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Stack(children: [
+                                        ExpansionTile(
+                                            backgroundColor: Colors.amber,
+                                            title: const Text(
+                                                style: TextStyle(fontSize: 28),
+                                                textAlign: TextAlign.right,
+                                                "الأطفال"),
+                                            children: [
+                                              SizedBox(
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    shrinkWrap: true,
+                                                    // ignore: prefer_const_literals_to_create_immutables
+                                                    itemCount:
+                                                        children[i].length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int j) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 8),
+                                                        child: ExpansionTile(
+                                                          backgroundColor:
+                                                              Colors.black,
+                                                          title: Text(
+                                                              style:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          28),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              "${children[i][j]['name']}"),
+                                                          // ignore: prefer_const_literals_to_create_immutables
+                                                          children: [
+                                                            const Divider(
+                                                                color:
+                                                                    Colors.red),
+                                                            Card(
+                                                              color:
+                                                                  Colors.grey,
+                                                              child: ListTile(
+                                                                title: Text(
+                                                                    style: const TextStyle(
+                                                                        fontSize:
+                                                                            26),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .right,
+                                                                    "${"العمر"}: ${children[i][j]['age']}"),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    }),
+                                              )
+                                            ]),
+                                      ]),
+                                    ),
+                                  ]),
                                 ),
+                                const Divider(color: Colors.red),
                               ],
                             ),
                           ),
