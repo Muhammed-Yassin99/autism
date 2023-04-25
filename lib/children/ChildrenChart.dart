@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 
+import 'package:autism_zz/HomePage/trainersList.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -150,7 +151,12 @@ class FiChartPageState extends State<ChildrenChart> {
               leading: const Icon(Icons.share),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const trainersList()));
+              },
             ),
             ListTile(
               leading: const Icon(Icons.notifications),
@@ -185,6 +191,9 @@ class FiChartPageState extends State<ChildrenChart> {
               leading: const Icon(Icons.exit_to_app),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),

@@ -22,6 +22,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
   var userPic;
   var trainerUid = FirebaseAuth.instance.currentUser?.uid;
   List listOfRequests = [];
+  List<List> children = [];
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
@@ -41,6 +42,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
   setUserName() async {
     listOfRequests = [];
     parents = [];
+    children = [];
     var user = FirebaseAuth.instance.currentUser;
     var response = await parentRef.get();
     String mail = user!.email.toString();
@@ -68,6 +70,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
         }
       }
     });
+
     if (kDebugMode) {
       print(listOfRequests);
     }
@@ -77,6 +80,33 @@ class FiChartPageState extends State<trainerListOfRequests> {
     if (userPic == "") {
       userPic =
           "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7";
+    }
+  }
+
+  getChildren() async {
+    await setUserName();
+    if (kDebugMode) {
+      print(listOfRequests.length);
+      print(listOfRequests);
+    }
+    if (listOfRequests.isNotEmpty) {
+      for (int i = 0; i <= listOfRequests.length - 1; i++) {
+        List children1 = [];
+        CollectionReference childRef =
+            parentRef.doc(listOfRequests[i].toString()).collection("children");
+        await childRef.get().then((value) {
+          for (var element in value.docs) {
+            setState(() {
+              children1.add(element.data());
+            });
+          }
+        });
+        children.add(children1);
+      }
+    }
+    if (kDebugMode) {
+      print("childrenList:");
+      print(children);
     }
   }
 
@@ -165,10 +195,57 @@ class FiChartPageState extends State<trainerListOfRequests> {
     );
   }
 
+  showChildren(String parentUid, int num) {
+    return Container(
+      color: Colors.blueGrey,
+      child: Stack(children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Stack(children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: ListView.builder(
+                  //scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  itemCount: children[num].length,
+                  itemBuilder: (BuildContext context, int i) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: ExpansionTile(
+                        backgroundColor: Colors.black,
+                        title: Text(
+                            style: const TextStyle(fontSize: 28),
+                            textAlign: TextAlign.right,
+                            "${children[num][i]['name']}"),
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Divider(color: Colors.red),
+                          Card(
+                            color: Colors.grey,
+                            child: ListTile(
+                              title: Text(
+                                  style: const TextStyle(fontSize: 26),
+                                  textAlign: TextAlign.right,
+                                  "${"العمر"}: ${children[num][i]['age']}"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            )
+          ]),
+        )
+      ]),
+    );
+  }
+
   @override
   void initState() {
-    setUserName();
-    getparents();
+    // setUserName();
+    //getparents();
+    getChildren();
     super.initState();
   }
 
@@ -374,6 +451,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                               ),
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
+                                //showChildren(listOfRequests[i].toString(), i),
                                 const Divider(color: Colors.red),
                                 Card(
                                   color: Colors.grey,
@@ -382,16 +460,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                         style: const TextStyle(fontSize: 26),
                                         textAlign: TextAlign.right,
                                         "kkkkkkkk"),
-                                  ),
-                                ),
-                                const Divider(color: Colors.red),
-                                Card(
-                                  color: Colors.grey,
-                                  child: ListTile(
-                                    title: Text(
-                                        style: const TextStyle(fontSize: 26),
-                                        textAlign: TextAlign.right,
-                                        "${"سنين الخبرة"}: ${parents[i]['yearsOfExp']}"),
                                   ),
                                 ),
                               ],
