@@ -224,6 +224,9 @@ class HomeScreenState extends State<HomePage> {
               leading: const Icon(Icons.exit_to_app),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
