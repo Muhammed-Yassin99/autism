@@ -29,16 +29,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
   CollectionReference parentRef =
       FirebaseFirestore.instance.collection("parents");
 
-  getparents() async {
-    var response = await parentRef.get();
-    for (int i = 0; i < listOfRequests.length - 1; i++) {
-      var parentRef1 = parentRef.doc(listOfRequests[i].toString());
-      setState(() {
-        parents.add(parentRef1);
-      });
-    }
-  }
-
   setUserName() async {
     listOfRequests = [];
     parents = [];
@@ -135,7 +125,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
               trainerRef1.update({
                 'supervisedParents': FieldValue.arrayUnion([parentUid])
               });
-              setUserName();
+              getChildren();
             });
           },
           child: const Center(
@@ -174,7 +164,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
               trainerRef1.update({
                 'pendingRequests': FieldValue.arrayRemove([parentUid])
               });
-              setUserName();
+              getChildren();
             });
           },
           style: ButtonStyle(
@@ -195,7 +185,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
     );
   }
 
-  showChildren(String parentUid, int num) {
+  showChildren(int num) {
     return Container(
       color: Colors.blueGrey,
       child: Stack(children: [
@@ -203,7 +193,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
           scrollDirection: Axis.vertical,
           child: Stack(children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                   //scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -244,7 +233,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
   @override
   void initState() {
     // setUserName();
-    //getparents();
     getChildren();
     super.initState();
   }
@@ -451,7 +439,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                               ),
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
-                                //showChildren(listOfRequests[i].toString(), i),
+                                showChildren(i),
                                 const Divider(color: Colors.red),
                                 Card(
                                   color: Colors.grey,
