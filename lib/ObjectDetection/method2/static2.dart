@@ -29,7 +29,7 @@ class _StaticImageState extends State<StaticImage2> {
   loadTfModel() async {
     await Tflite.loadModel(
         model: "assets/objecDetec/ssd_mobilenet.tflite",
-        labels: "assets/objecDetec/SSDlabels.txt");
+        labels: "assets/objecDetec/SSDlabelsArabic.txt");
   }
 
   void navigateToCroppedImagesScreen(File image, List recognitions) {

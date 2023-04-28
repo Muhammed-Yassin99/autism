@@ -326,6 +326,7 @@ flutter:
      - assets/objecDetec/yolov2_tiny.txt
      - assets/objecDetec/yolov2_tiny.tflite
      - assets/objecDetec/SSDlabels.txt
+     - assets/objecDetec/SSDlabelsArabic.txt
      - assets/objecDetec/ssd_mobilenet.tflite
      - assets/objecDetec/yolov7-tiny.tflite
      - assets/objecDetec/mobilenet_v1_1.0_224.tflite

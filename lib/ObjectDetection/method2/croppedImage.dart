@@ -23,7 +23,27 @@ class CroppedImagesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detected Objects'),
+        title: const Align(
+          alignment: Alignment.center,
+          child: Text(
+            'الأشياء اللتي تم التعرف عليها',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.deepOrange, Colors.purple],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+            ),
+          ),
+        ),
+        // ignore: prefer_const_literals_to_create_immutables
       ),
       body: ListView.builder(
         itemCount: recognitions.length,
@@ -33,8 +53,7 @@ class CroppedImagesScreen extends StatelessWidget {
           final top = recognition['rect']['y'] * imageHeight;
           final width = recognition['rect']['w'] * imageWidth;
           final height = recognition['rect']['h'] * imageHeight;
-          final label =
-              '${recognition['detectedClass']} ${(recognition['confidenceInClass'] * 100).toStringAsFixed(0)}%';
+          final label = ': ${recognition['detectedClass']}';
 
           return Column(
             children: [
@@ -46,8 +65,9 @@ class CroppedImagesScreen extends StatelessWidget {
                     Text(
                       label,
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 36,
                         fontWeight: FontWeight.bold,
+                        color: ui.Color.fromARGB(255, 22, 106, 175),
                       ),
                     ),
                     Container(
