@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../HomePage/parentHomePage.dart';
+import '../../HomePage/ParentView/parentHomePage.dart';
 import 'learnFaces2.dart';
 
 // ignore: camel_case_types

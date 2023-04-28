@@ -1,110 +1,68 @@
-// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors
-import 'package:autism_zz/HomePage/trainersList.dart';
-import 'package:autism_zz/ObjectDetection/method2/live_camera.dart';
-import 'package:autism_zz/ObjectDetection/objecDetecHomePage.dart';
-import 'package:autism_zz/main.dart';
+// ignore_for_file: camel_case_types, file_names, use_build_context_synchronously
+
+//import 'package:autism_zz/HomePage/trainerProfile.dart';
+import 'package:autism_zz/HomePage/TrainerView/trainerListOfRequests.dart';
+import 'package:autism_zz/HomePage/TrainerView/trainerProfile.dart';
+//import 'package:autism_zz/HomePage/trainerProfile1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../Games/gamesHomePage1.dart';
-import '../Learn/learnHomePage.dart';
-import '../children/ChildrenChart.dart';
-import '../children/addChild.dart';
-import '../model/homePage_icons.dart';
-import '../skills/skillsHomePage.dart';
+import '../../Games/gamesHomePage1.dart';
+import '../../model/homePage_icons.dart';
+import '../../skills/skillsHomePage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class trainerHomePage extends StatefulWidget {
+  const trainerHomePage({super.key});
 
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomePage> {
-  var userName;
-  List children = [];
-  String currentChild = "";
-  //String uid = FirebaseAuth.instance.currentUser!.uid;
-  CollectionReference ChildrenRef =
-      FirebaseFirestore.instance.collection("parents");
+class HomeScreenState extends State<trainerHomePage> {
+  static var userName = '';
+  var userPic;
 
-  getChildren() async {
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
-    var response = await childRef.get();
-    for (var element in response.docs) {
-      setState(() {
-        children.add(element.data());
-      });
-    }
-    if (children.isEmpty) {
-      currentChild = "لم تقم بإضافة أي طفل بعد";
-    } else {
-      currentChild = children[0]['name'];
+  getUser() {
+    var user = FirebaseAuth.instance.currentUser;
+    if (kDebugMode) {
+      print(user!.email);
     }
   }
 
-  setCurrentChild() async {
-    await getChildren();
-    String child = "";
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    String mail = FirebaseAuth.instance.currentUser!.email.toString();
-    DocumentReference ref = ChildrenRef.doc(uid);
-    ChildrenRef.get().then((value) {
-      for (var element in value.docs) {
-        if (element['gmail'].toString() == mail) {
-          child = element['currentChild'].toString();
-          break;
-        }
-      }
-    });
-    if (child == "") {
-      ref.update({"currentChild": currentChild});
-    }
-    if (currentChild == "") {
-      currentChild = "لم تقم بإضافة أي طفل بعد";
-    }
-    if (kDebugMode) {
-      print(child);
-    }
-  }
-
-  changeCurrentChild() async {
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    DocumentReference ref = ChildrenRef.doc(uid);
-    await ref.update({"currentChild": currentChild});
-    if (kDebugMode) {
-      print("done");
-    }
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+    setUserName();
   }
 
   setUserName() async {
     var user = FirebaseAuth.instance.currentUser;
     String mail = user!.email.toString();
     CollectionReference userRef =
-        FirebaseFirestore.instance.collection("parents");
+        FirebaseFirestore.instance.collection("trainers");
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
           userName = element['username'].toString();
+          userPic = element['profilePic'].toString();
+          if (kDebugMode) {
+            print(userName);
+          }
           break;
         }
       }
     });
-  }
-
-  @override
-  void initState() {
-    //getChildren();
-    setCurrentChild();
-    setUserName();
-    super.initState();
+    if (userPic == "") {
+      userPic =
+          "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7";
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    setUserName();
+    setState(() {});
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -115,8 +73,8 @@ class HomeScreenState extends State<HomePage> {
                   Text(FirebaseAuth.instance.currentUser!.email.toString()),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
-                  child: Image.asset(
-                    'assets/images/HomePage/parent.png',
+                  child: Image.network(
+                    userPic.toString(),
                     fit: BoxFit.cover,
                     width: 90,
                     height: 90,
@@ -132,69 +90,25 @@ class HomeScreenState extends State<HomePage> {
                 ),
               ),
             ),
-            // ignore: prefer_const_constructors
-            Card(
-              color: Colors.blueAccent,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: ExpansionTile(
-                  title: Text(
-                      style: const TextStyle(fontSize: 22, color: Colors.black),
-                      "${"الطفل الحالي"}: $currentChild"),
-                  children: [
-                    ListView.builder(
-                      //scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      itemCount: children.length,
-                      itemBuilder: (BuildContext context, int i) {
-                        return Card(
-                          color: Colors.white,
-                          child: TextButton(
-                            onPressed: () {
-                              currentChild = children[i]['name'];
-                              changeCurrentChild();
-                            },
-                            child: Text(
-                                style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.right,
-                                "${children[i]['name']}"),
-                          ),
-                        );
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ),
             ListTile(
-              leading: const Icon(Icons.child_care),
-              title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ChildrenChart()));
-              },
+              leading: const Icon(Icons.book),
+              title: const Text('الشهادات'),
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.person),
-              title:
-                  const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
+              title: const Text('اولياء الأمور'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications),
+              title: const Text('الطلبات'),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const trainersList()));
+                        builder: (context) => const trainerListOfRequests()));
               },
-            ),
-            ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text(style: TextStyle(fontSize: 18), 'الطلبات'),
-              onTap: () {},
               trailing: ClipOval(
                 child: Container(
                   color: Colors.red,
@@ -215,18 +129,15 @@ class HomeScreenState extends State<HomePage> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
+              title: const Text('الأعدادات'),
               onTap: () {},
             ),
             const Divider(),
             ListTile(
-              title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
+              title: const Text('تسجيل الخروج'),
               leading: const Icon(Icons.exit_to_app),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
-                setState(() {
-                  FirebaseAuth.instance.signOut();
-                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
@@ -253,6 +164,19 @@ class HomeScreenState extends State<HomePage> {
             ),
           ),
         ),
+        // ignore: prefer_const_literals_to_create_immutables
+        /*leading: Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.rotationY(math.pi),
+          child: IconButton(
+              alignment: Alignment.topLeft,
+              iconSize: 50,
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushReplacementNamed("startPage");
+              },
+              icon: const Icon(Icons.exit_to_app)),
+        ),*/
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -277,7 +201,8 @@ class HomeScreenState extends State<HomePage> {
         ),
       ),
       body: Container(
-          color: const Color.fromARGB(255, 12, 79, 135),
+          //color: const Color.fromARGB(164, 0, 0, 0),
+          color: const Color.fromARGB(255, 135, 135, 25),
           child: Stack(
             children: [
               const SizedBox(height: 8),
@@ -302,7 +227,7 @@ class HomeScreenState extends State<HomePage> {
                                 mainAxisSpacing: 25.0),
                         delegate: SliverChildBuilderDelegate(
                           _buildCategoryItem,
-                          childCount: homePage_categories.length,
+                          childCount: trainerHomePage_categories.length,
                         )),
                   ),
                 ],
@@ -313,7 +238,7 @@ class HomeScreenState extends State<HomePage> {
   }
 
   Widget _buildCategoryItem(BuildContext context, int index) {
-    var category = homePage_categories[index];
+    var category = trainerHomePage_categories[index];
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 8.0,
@@ -328,7 +253,7 @@ class HomeScreenState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          Image.asset(category.icon, height: 120, width: 150),
+          Image.asset(category.icon, height: 100, width: 130),
           const SizedBox(height: 5.0),
           Text(
             style: const TextStyle(
@@ -345,23 +270,8 @@ class HomeScreenState extends State<HomePage> {
     );
   }
 
-  buildPopUpMenu() {
-    return PopupMenuButton(
-      initialValue: 2,
-      child: const Center(child: Text('click here')),
-      itemBuilder: (context) {
-        return List.generate(5, (index) {
-          return PopupMenuItem(
-            value: index,
-            child: Text('button no $index'),
-          );
-        });
-      },
-    );
-  }
-
   buildWelcome() {
-    //setState(() {});
+    setState(() {});
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
@@ -386,28 +296,18 @@ class HomeScreenState extends State<HomePage> {
 
   _categoryPressed(BuildContext context, category) {
     if (category.id == 2) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const gamesHomePage()));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const trainerListOfRequests()));
     }
     if (category.id == 1) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const learnHomePage()));
+          MaterialPageRoute(builder: (context) => const trainerProfile()));
     }
     if (category.id == 3) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const skillsHomePage()));
-    }
-    if (category.id == 4) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const addChild()));
-    }
-    if (category.id == 5) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ChildrenChart()));
-    }
-    if (category.id == 6) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => objecDetecHomepage()));
     }
   }
 }

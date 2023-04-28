@@ -1,6 +1,8 @@
-import 'dart:io';
+// ignore_for_file: unused_import
 
-import 'package:flutter/foundation.dart';
+import 'dart:io';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 
 class CroppedImagesScreen extends StatelessWidget {
@@ -20,64 +22,100 @@ class CroppedImagesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Cropped Images'),
+        title: const Text('Detected Objects'),
       ),
-      body: Stack(
-        children: [
-          Image.file(
-            image,
-            width: double.infinity,
-            height: double.infinity,
-            fit: BoxFit.cover,
-          ),
-          ...recognitions.map((recognition) {
-            final rect = recognition['rect'];
-            final left = rect['x'] * imageWidth;
-            final top = rect['y'] * imageHeight;
-            final width = rect['w'] * imageWidth;
-            final height = rect['h'] * imageHeight;
-            final label =
-                '${recognition['detectedClass']} ${(recognition['confidenceInClass'] * 100).toStringAsFixed(0)}%';
-            return Positioned(
-              left: left,
-              top: top,
-              child: Container(
-                width: width,
-                height: height + 20,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.blue,
-                    width: 3,
-                  ),
-                ),
+      body: ListView.builder(
+        itemCount: recognitions.length,
+        itemBuilder: (context, index) {
+          final recognition = recognitions[index];
+          final left = recognition['rect']['x'] * imageWidth;
+          final top = recognition['rect']['y'] * imageHeight;
+          final width = recognition['rect']['w'] * imageWidth;
+          final height = recognition['rect']['h'] * imageHeight;
+          final label =
+              '${recognition['detectedClass']} ${(recognition['confidenceInClass'] * 100).toStringAsFixed(0)}%';
+
+          return Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       label,
-                      style: TextStyle(
-                        background: Paint()..color = Colors.blue,
-                        color: Colors.white,
-                        fontSize: 15,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    Image.file(
-                      image,
-                      width: width,
-                      height: height,
-                      fit: BoxFit.cover,
-                      alignment: Alignment(-left / width, -top / height),
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: ClipRect(
+                        child: CustomPaint(
+                          painter: BoundingBoxPainter(
+                            left: left,
+                            top: top,
+                            width: width,
+                            height: height,
+                            color: Colors.blue,
+                            strokeWidth: 3,
+                          ),
+                          child: Image.file(
+                            image,
+                            width: width,
+                            height: height,
+                            fit: BoxFit.cover,
+                            alignment: Alignment(-left / width, -top / height),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-            );
-          }).toList(),
-        ],
+              const Divider(),
+            ],
+          );
+        },
       ),
     );
+  }
+}
+
+class BoundingBoxPainter extends CustomPainter {
+  final double left;
+  final double top;
+  final double width;
+  final double height;
+  final Color color;
+  final double strokeWidth;
+
+  BoundingBoxPainter({
+    required this.left,
+    required this.top,
+    required this.width,
+    required this.height,
+    required this.color,
+    required this.strokeWidth,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth;
+
+    canvas.drawRect(
+      Rect.fromLTWH(left, top, width, height),
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }

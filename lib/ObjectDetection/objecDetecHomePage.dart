@@ -5,6 +5,8 @@ import 'package:autism_zz/main.dart';
 import 'package:autism_zz/skills/skill.dart';
 import 'package:flutter/material.dart';
 
+import 'method2/static2.dart';
+
 class objecDetecHomepage extends StatefulWidget {
   const objecDetecHomepage({super.key});
 
@@ -14,7 +16,7 @@ class objecDetecHomepage extends StatefulWidget {
 
 class _HomeScreenState extends State<objecDetecHomepage> {
   int seletedItem = 0;
-  var pages = [StaticImage(), LiveFeed(cameras!)];
+  var pages = [StaticImage2(), LiveFeed(cameras!)];
   var pageController = PageController();
 
   @override

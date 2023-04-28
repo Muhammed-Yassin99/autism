@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../HomePage/parentHomePage.dart';
+import '../../HomePage/ParentView/parentHomePage.dart';
 import 'learnNumbers1.dart';
 import 'learnNumbers3.dart';
 

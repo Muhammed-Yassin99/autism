@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../HomePage/parentHomePage.dart';
+import '../../HomePage/ParentView/parentHomePage.dart';
 import 'learnThemes2.dart';
 
 // ignore: camel_case_types

@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, camel_case_types, unused_field, unused_local_variable, deprecated_member_use, prefer_typing_uninitialized_variables, depend_on_referenced_packages
 import 'dart:io';
-import 'package:autism_zz/HomePage/trainerHomePage.dart';
-import 'package:autism_zz/HomePage/trainerProfile.dart';
+import 'package:autism_zz/HomePage/TrainerView/trainerHomePage.dart';
+import 'package:autism_zz/HomePage/TrainerView/trainerProfile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';

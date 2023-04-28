@@ -2,7 +2,7 @@
 // ignore_for_file: file_names, duplicate_ignore
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../HomePage/parentHomePage.dart';
+import '../../HomePage/ParentView/parentHomePage.dart';
 import 'learnDigits1.dart';
 import 'learnDigits3.dart';
 //import 'learnAnimals2.dart';

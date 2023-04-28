@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables
+// ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -7,15 +7,17 @@ import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'croppedImage.dart';
+import 'dart:io';
+import 'dart:ui' as ui;
 
-class StaticImage extends StatefulWidget {
-  const StaticImage({super.key});
+class StaticImage2 extends StatefulWidget {
+  const StaticImage2({super.key});
 
   @override
   _StaticImageState createState() => _StaticImageState();
 }
 
-class _StaticImageState extends State<StaticImage> {
+class _StaticImageState extends State<StaticImage2> {
   var _image;
   late List _recognitions;
   late bool _busy;
@@ -45,6 +47,7 @@ class _StaticImageState extends State<StaticImage> {
   }
 
   // this function detects the objects on the image
+  // this function detects the objects on the image
   detectObject(File image) async {
     var recognitions = await Tflite.detectObjectOnImage(
         path: image.path, // required
@@ -55,19 +58,51 @@ class _StaticImageState extends State<StaticImage> {
         numResultsPerClass: 5, // defaults to 5
         asynch: true // defaults to true
         );
-    FileImage(image)
-        .resolve(const ImageConfiguration())
-        .addListener((ImageStreamListener((ImageInfo info, bool _) {
-          setState(() {
-            _imageWidth = info.image.width.toDouble();
-            _imageHeight = info.image.height.toDouble();
-          });
-        })));
-    setState(() {
-      _recognitions = recognitions!;
-      navigateToCroppedImagesScreen(image, recognitions);
-    });
-    //_navigateToCroppedImagesScreen();
+
+    if (recognitions != null && recognitions.isNotEmpty) {
+      final imageBytes = await image.readAsBytes();
+      final imageCodec = await ui.instantiateImageCodec(imageBytes);
+      final ui.Image fullSizeImage = (await imageCodec.getNextFrame()).image;
+      final imageWidth = fullSizeImage.width.toDouble();
+      final imageHeight = fullSizeImage.height.toDouble();
+      FileImage(image)
+          .resolve(const ImageConfiguration())
+          .addListener((ImageStreamListener((ImageInfo info, bool _) {
+            setState(() {
+              _imageWidth = info.image.width.toDouble();
+              _imageHeight = info.image.height.toDouble();
+            });
+          })));
+      setState(() {
+        _recognitions = recognitions;
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CroppedImagesScreen(
+            image: image,
+            recognitions: recognitions,
+            imageWidth: imageWidth,
+            imageHeight: imageHeight,
+          ),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('No objects detected'),
+          content: const Text('Please select another image.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -240,20 +275,18 @@ class _StaticImageState extends State<StaticImage> {
   }
 
   // gets image from camera and runs detectObject
+  // gets image from camera and runs detectObject
   Future getImageFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
-    setState(() {
-      if (pickedFile == null) {
-        if (kDebugMode) {
-          print("No image Selected");
-        }
-        return;
-      } else {
-        _image = File(pickedFile.path);
-        detectObject(_image);
+    if (pickedFile != null) {
+      final image = File(pickedFile.path);
+      detectObject(image);
+    } else {
+      if (kDebugMode) {
+        print("No image selected");
       }
-    });
+    }
   }
 
   // gets image from gallery and runs detectObject

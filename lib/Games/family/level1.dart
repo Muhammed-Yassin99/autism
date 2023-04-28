@@ -7,7 +7,7 @@ import 'package:confetti/confetti.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../model/item_model.dart';
-import '../../HomePage/parentHomePage.dart';
+import '../../HomePage/ParentView/parentHomePage.dart';
 
 // ignore: use_key_in_widget_constructors
 class familyLevel1 extends StatefulWidget {
