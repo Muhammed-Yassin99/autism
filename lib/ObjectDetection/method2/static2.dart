@@ -65,7 +65,9 @@ class _StaticImageState extends State<StaticImage> {
         })));
     setState(() {
       _recognitions = recognitions!;
+      navigateToCroppedImagesScreen(image, recognitions);
     });
+    //_navigateToCroppedImagesScreen();
   }
 
   @override
