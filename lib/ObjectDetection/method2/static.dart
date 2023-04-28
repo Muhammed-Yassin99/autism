@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'croppedImage.dart';
+
 class StaticImage extends StatefulWidget {
   const StaticImage({super.key});
 
@@ -26,6 +28,20 @@ class _StaticImageState extends State<StaticImage> {
     await Tflite.loadModel(
         model: "assets/objecDetec/ssd_mobilenet.tflite",
         labels: "assets/objecDetec/SSDlabels.txt");
+  }
+
+  void navigateToCroppedImagesScreen(File image, List recognitions) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CroppedImagesScreen(
+          image: image,
+          recognitions: recognitions,
+          imageWidth: _imageWidth,
+          imageHeight: _imageHeight,
+        ),
+      ),
+    );
   }
 
   // this function detects the objects on the image
@@ -49,7 +65,9 @@ class _StaticImageState extends State<StaticImage> {
         })));
     setState(() {
       _recognitions = recognitions!;
+      navigateToCroppedImagesScreen(image, recognitions);
     });
+    //_navigateToCroppedImagesScreen();
   }
 
   @override
@@ -110,23 +128,40 @@ class _StaticImageState extends State<StaticImage> {
 
     List<Widget> stackChildren = [];
 
-    stackChildren.add(Positioned(
-      // using ternary operator
-      child: _image == null
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                Text("Please Select an Image"),
-              ],
-            )
-          : // if not null then
-          Image.file(
-              _image,
-              width: 640,
-              height: 640,
+    if (_image == null) {
+      stackChildren.add(Positioned(
+          top: 105,
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/HomePage/discover1.jpg"),
+                fit: BoxFit.cover,
+                //alignment: Alignment.topCenter, // set the position of the image
+              ),
             ),
-    ));
-
+            height: size.height * 0.62,
+            width: size.width,
+          )));
+      stackChildren.add(
+        const Text(
+          "قم باختيار الصورة للتعرف على الأشياء الموجودة بها",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 35,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 190, 41, 61),
+          ),
+        ),
+      );
+    } else {
+      stackChildren.add(
+        Image.file(
+          _image,
+          width: size.width,
+          height: size.height,
+        ),
+      );
+    }
     stackChildren.addAll(renderBoxes(size));
 
     if (_busy) {
@@ -135,35 +170,73 @@ class _StaticImageState extends State<StaticImage> {
       ));
     }
 
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
-        title: const Text("Object Detector"),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            heroTag: "Fltbtn2",
-            onPressed: getImageFromCamera,
-            child: const Icon(Icons.camera_alt),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            heroTag: "Fltbtn1",
-            onPressed: getImageFromGallery,
-            child: const Icon(Icons.photo),
-          ),
-        ],
-      ),
-      body: Container(
-        alignment: Alignment.center,
-        child: Stack(
-          children: stackChildren,
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(25.0),
+          child: SizedBox(),
         ),
       ),
-    );
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(
+          bottom: (size.height) * 0.01,
+        ),
+        width: 340,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                SizedBox(
+                  width: 140,
+                  height: 140,
+                  child: FloatingActionButton(
+                    heroTag: "Fltbtn2",
+                    onPressed: getImageFromCamera,
+                    mini: false,
+                    child: const Icon(Icons.camera_alt, size: 80),
+                  ),
+                ),
+                SizedBox(
+                  width: 140,
+                  height: 140,
+                  child: FloatingActionButton(
+                    heroTag: "Fltbtn1",
+                    onPressed: getImageFromGallery,
+                    mini: false,
+                    child: const Icon(Icons.photo, size: 80),
+                  ),
+                ),
+              ],
+            ),
+            /*const SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              width: 140,
+              height: 140,
+              child: FloatingActionButton(
+                heroTag: "Fltbtn3",
+                onPressed: _navigateToCroppedImagesScreen,
+                mini: false,
+                child: const Icon(Icons.crop, size: 80),
+              ),
+            ),*/
+          ],
+        ),
+      ),
+      body: Column(children: [
+        SizedBox(
+          height: size.height - 170,
+          width: size.width,
+          child: Stack(
+            children: stackChildren,
+          ),
+        )
+      ]),
+    ));
   }
 
   // gets image from camera and runs detectObject

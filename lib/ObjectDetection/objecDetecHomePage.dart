@@ -32,7 +32,7 @@ class _HomeScreenState extends State<objecDetecHomepage> {
         title: const Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'المهارات',
+            '!تعرف علي الاشياء',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -68,9 +68,17 @@ class _HomeScreenState extends State<objecDetecHomepage> {
                 items: <BottomNavigationBarItem>[
                   // ignore: prefer_const_constructors
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.home), label: 'الكروت'),
+                      icon: Icon(
+                        Icons.picture_in_picture,
+                        size: 50,
+                      ),
+                      label: 'صورة'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.photo), label: 'المهارات'),
+                      icon: Icon(
+                        Icons.video_call,
+                        size: 50,
+                      ),
+                      label: 'فديو'),
                 ],
                 currentIndex: seletedItem,
                 onTap: (index) {
