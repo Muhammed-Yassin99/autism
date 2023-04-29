@@ -16,7 +16,7 @@ class objecDetecHomepage extends StatefulWidget {
 
 class _HomeScreenState extends State<objecDetecHomepage> {
   int seletedItem = 0;
-  var pages = [StaticImage2(), LiveFeed(cameras!)];
+  var pages = [StaticImage(), LiveFeed(cameras!)];
   var pageController = PageController();
 
   @override

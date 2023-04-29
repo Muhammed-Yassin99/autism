@@ -1,12 +1,14 @@
-// ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables
+// ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'croppedImage.dart';
+import 'dart:ui' as ui;
+import 'package:image/image.dart' as img;
+import 'dart:math' as math;
 
 class StaticImage extends StatefulWidget {
   const StaticImage({super.key});
@@ -26,8 +28,8 @@ class _StaticImageState extends State<StaticImage> {
   // this function loads the model
   loadTfModel() async {
     await Tflite.loadModel(
-        model: "assets/objecDetec/ssd_mobilenet.tflite",
-        labels: "assets/objecDetec/SSDlabels.txt");
+        model: "assets/objecDetec/yolov2_tiny.tflite",
+        labels: "assets/objecDetec/yolov7labels1.txt");
   }
 
   void navigateToCroppedImagesScreen(File image, List recognitions) {
@@ -45,27 +47,94 @@ class _StaticImageState extends State<StaticImage> {
   }
 
   // this function detects the objects on the image
+  // this function detects the objects on the image
   detectObject(File image) async {
-    var recognitions = await Tflite.detectObjectOnImage(
-        path: image.path, // required
-        model: "SSDMobileNet",
-        imageMean: 127.5,
-        imageStd: 127.5,
-        threshold: 0.5, // defaults to 0.1
-        numResultsPerClass: 5, // defaults to 5
-        asynch: true // defaults to true
-        );
-    FileImage(image)
-        .resolve(const ImageConfiguration())
-        .addListener((ImageStreamListener((ImageInfo info, bool _) {
-          setState(() {
-            _imageWidth = info.image.width.toDouble();
-            _imageHeight = info.image.height.toDouble();
-          });
-        })));
-    setState(() {
-      _recognitions = recognitions!;
-    });
+    if (image == null || !(await image.exists())) {
+      throw ArgumentError('Input image is null or empty');
+    }
+
+    // Load the image using the Image package
+    final bytes = await image.readAsBytes();
+    final decodedImage = img.decodeImage(bytes.toList())!;
+
+    // Resize the image to match the expected input size of the TensorFlow Lite model
+    const inputSize = 416;
+    final resizedImage =
+        img.copyResize(decodedImage, width: inputSize, height: inputSize);
+
+    // Convert the resized image to a byte buffer
+    final input = Float32List(inputSize * inputSize * 3);
+    int pixelIndex = 0;
+    for (int i = 0; i < inputSize; i++) {
+      for (int j = 0; j < inputSize; j++) {
+        final pixel = resizedImage.getPixel(j, i);
+        input[pixelIndex++] = img.getRed(pixel) / 255.0;
+        input[pixelIndex++] = img.getGreen(pixel) / 255.0;
+        input[pixelIndex++] = img.getBlue(pixel) / 255.0;
+      }
+    }
+
+    // Detect objects on the resized image
+    final byteBuffer = input.buffer.asUint8List();
+    if (byteBuffer.isEmpty) {
+      throw ArgumentError('Input byte buffer is empty');
+    }
+    var recognitions = await Tflite.detectObjectOnBinary(
+      binary: byteBuffer,
+      model: "yolov2-tiny.tflite",
+      threshold: 0.5,
+      numResultsPerClass: 1,
+    );
+
+    // Check that the recognitions array is not empty or null
+    if (recognitions == null || recognitions.isEmpty) {
+      throw ArgumentError('No objects detected');
+    }
+
+    if (recognitions != null && recognitions.isNotEmpty) {
+      final imageBytes = await image.readAsBytes();
+      final imageCodec = await ui.instantiateImageCodec(imageBytes);
+      final ui.Image fullSizeImage = (await imageCodec.getNextFrame()).image;
+      final imageWidth = fullSizeImage.width.toDouble();
+      final imageHeight = fullSizeImage.height.toDouble();
+      FileImage(image)
+          .resolve(const ImageConfiguration())
+          .addListener((ImageStreamListener((ImageInfo info, bool _) {
+            setState(() {
+              _imageWidth = info.image.width.toDouble();
+              _imageHeight = info.image.height.toDouble();
+            });
+          })));
+      setState(() {
+        _recognitions = recognitions;
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CroppedImagesScreen(
+            image: image,
+            recognitions: recognitions,
+            imageWidth: imageWidth,
+            imageHeight: imageHeight,
+          ),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('No objects detected'),
+          content: const Text('Please select another image.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -238,20 +307,18 @@ class _StaticImageState extends State<StaticImage> {
   }
 
   // gets image from camera and runs detectObject
+  // gets image from camera and runs detectObject
   Future getImageFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
-    setState(() {
-      if (pickedFile == null) {
-        if (kDebugMode) {
-          print("No image Selected");
-        }
-        return;
-      } else {
-        _image = File(pickedFile.path);
-        detectObject(_image);
+    if (pickedFile != null) {
+      final image = File(pickedFile.path);
+      detectObject(image);
+    } else {
+      if (kDebugMode) {
+        print("No image selected");
       }
-    });
+    }
   }
 
   // gets image from gallery and runs detectObject

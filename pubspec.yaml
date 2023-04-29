@@ -61,6 +61,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   video_player: ^2.6.1
   image_cropper: ^1.4.1
+  
 
    #tflite_flutter_helper: ^0.3.1
   
