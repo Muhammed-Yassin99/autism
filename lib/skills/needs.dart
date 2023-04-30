@@ -85,7 +85,7 @@ class HomeScreenState extends State<needs> {
                       ),
                     ],
                   ),
-                  dialogType: DialogType.question,
+                  dialogType: DialogType.success,
                   animType: AnimType.leftSlide,
                 ).show();
               },
