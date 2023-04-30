@@ -1,4 +1,9 @@
-// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api
+// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, use_build_context_synchronously, prefer_typing_uninitialized_variables
+import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
+import 'package:autism_zz/children/ChildrenChart.dart';
+import 'package:autism_zz/skills/needs.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'PhysCard.dart';
 import 'skill.dart';
@@ -12,17 +17,108 @@ class skillsHomePage extends StatefulWidget {
 
 class _HomeScreenState extends State<skillsHomePage> {
   int seletedItem = 0;
-  var pages = [const PhysCard(), const skills()];
+  var userName;
+  var pages = [const PhysCard(), needs()];
   var pageController = PageController();
+  setUserName() async {
+    var user = FirebaseAuth.instance.currentUser;
+    String mail = user!.email.toString();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("parents");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['gmail'].toString() == mail) {
+          setState(() {
+            userName = element['username'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
 
   @override
   void initState() {
+    setUserName();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(userName.toString()),
+              accountEmail:
+                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              currentAccountPicture: CircleAvatar(
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/HomePage/parent.png',
+                    fit: BoxFit.cover,
+                    width: 90,
+                    height: 90,
+                  ),
+                ),
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                      'assets/images/HomePage/sideBarBackground.jpg'),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.share),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الصفحة الرئيسية'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed("parentHomePage");
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChildrenChart()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.share),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const trainersList()));
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
+              onTap: () {},
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
+              leading: const Icon(Icons.exit_to_app),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushReplacementNamed("startPage");
+              },
+            ),
+          ],
+        ),
+      ),
       resizeToAvoidBottomInset: false, // set it to false
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -66,9 +162,17 @@ class _HomeScreenState extends State<skillsHomePage> {
                 items: <BottomNavigationBarItem>[
                   // ignore: prefer_const_constructors
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.home), label: 'الكروت'),
+                      icon: Icon(
+                        Icons.home,
+                        size: 40,
+                      ),
+                      label: 'الكروت'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.photo), label: 'المهارات'),
+                      icon: Icon(
+                        Icons.photo,
+                        size: 40,
+                      ),
+                      label: 'الاحتياجات'),
                 ],
                 currentIndex: seletedItem,
                 onTap: (index) {

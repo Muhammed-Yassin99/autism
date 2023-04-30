@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
@@ -22,8 +24,25 @@ class _StaticImageState extends State<StaticImage> {
   late List _recognitions;
   late bool _busy;
   late double _imageWidth, _imageHeight;
+  var userName;
 
   final picker = ImagePicker();
+  setUserName() async {
+    var user = FirebaseAuth.instance.currentUser;
+    String mail = user!.email.toString();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("parents");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['gmail'].toString() == mail) {
+          setState(() {
+            userName = element['username'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
 
   // this function loads the model
   loadTfModel() async {
@@ -139,6 +158,7 @@ class _StaticImageState extends State<StaticImage> {
 
   @override
   void initState() {
+    setUserName();
     super.initState();
     _busy = true;
     _recognitions = [];

@@ -221,6 +221,30 @@ flutter:
      - assets/sounds/learn/animals/fox.wav
      - assets/sounds/learn/animals/cow.wav
      - assets/sounds/learn/animals/hen.wav
+     - assets/sounds/needs/1.m4a
+     - assets/sounds/needs/2.m4a
+     - assets/sounds/needs/3.m4a
+     - assets/sounds/needs/4.m4a
+     - assets/sounds/needs/5.m4a
+     - assets/sounds/needs/6.m4a
+     - assets/sounds/needs/7.m4a
+     - assets/sounds/needs/8.m4a
+     - assets/sounds/needs/9.m4a
+     - assets/sounds/needs/10.m4a
+     - assets/sounds/needs/11.m4a
+     - assets/sounds/needs/12.m4a
+     - assets/images/needs/1.jpg
+     - assets/images/needs/2.jpg
+     - assets/images/needs/3.jpg
+     - assets/images/needs/4.jpg
+     - assets/images/needs/5.jpg
+     - assets/images/needs/6.jpg
+     - assets/images/needs/7.jpg
+     - assets/images/needs/8.jpg
+     - assets/images/needs/9.jpg
+     - assets/images/needs/10.jpg
+     - assets/images/needs/11.jpg
+     - assets/images/needs/12.jpg
      - assets/images/learn/digits/3ean.jpg
      - assets/images/learn/digits/5a2.jpg
      - assets/images/learn/digits/7a2.jpg
