@@ -28,9 +28,7 @@ class FiChartPageState extends State<supervisedParents> {
   List<List> listofGames = [
     [""]
   ];
-  List<List> games = [
-    [""]
-  ];
+  List games = [];
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
@@ -139,18 +137,15 @@ class FiChartPageState extends State<supervisedParents> {
     listofGames = [];
     await getChildren();
     for (int i = 0; i <= supervisedParents.length - 1; i++) {
-      List games1 = [];
-      for (int j = 0; j <= children.length - 1; j++) {
+      games = [];
+      for (int j = 0; j <= children[i].length - 1; j++) {
         CollectionReference childRef = parentRef
             .doc(supervisedParents[i].toString())
             .collection("children")
             .doc(children[i][j]['name'])
             .collection("games");
         await childRef.get().then((value) {
-          /*print("games");
-        print(games);
-        print("listofgames");
-        print(listofGames);*/
+          List games1 = [];
           for (var element in value.docs) {
             setState(() {
               games1.add(element.data());
@@ -165,12 +160,12 @@ class FiChartPageState extends State<supervisedParents> {
         listofGames.add(games);
       });
     }
-    if (kDebugMode) {
+    /*if (kDebugMode) {
       print("games:");
       print(games);
       print("ListOFgames:");
-      print(listofGames);
-    }
+      print(listofGames[0].length);
+    }*/
   }
 
   Widget acceptButton(String parentUid) {
@@ -180,34 +175,22 @@ class FiChartPageState extends State<supervisedParents> {
     return Positioned(
       top: 40,
       left: 5,
-      child: Container(
-        width: 80,
-        height: 55,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.blue,
-        ),
-        child: ElevatedButton(
-          onPressed: () {
-            setState(() {
-              parentref1.update({"assignedTrainer": trainerUid});
-              parentref1.update({"currentRequest": ""});
-              trainerRef1.update({
-                'pendingRequests': FieldValue.arrayRemove([parentUid])
-              });
-              trainerRef1.update({
-                'supervisedParents': FieldValue.arrayUnion([parentUid])
-              });
-              getChildren();
-            });
-          },
-          child: const Center(
-            child: Text(
-              'قبول',
-              style: TextStyle(
+      child: ClipOval(
+        child: SizedBox(
+          width: 70,
+          height: 70,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+            ),
+            onPressed: () {
+              // button functionality
+            },
+            child: const Center(
+              child: Icon(
+                Icons.chat,
                 color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+                size: 40,
               ),
             ),
           ),
@@ -462,8 +445,8 @@ class FiChartPageState extends State<supervisedParents> {
                                                               Axis.vertical,
                                                           shrinkWrap: true,
                                                           // ignore: prefer_const_literals_to_create_immutables
-                                                          itemCount: snapshot
-                                                              .data![i].length,
+                                                          itemCount: children[i]
+                                                              .length,
                                                           itemBuilder:
                                                               (BuildContext
                                                                       context,
