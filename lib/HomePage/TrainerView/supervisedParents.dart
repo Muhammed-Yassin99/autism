@@ -2,6 +2,7 @@
 import 'package:autism_zz/HomePage/TrainerView/trainerListOfRequests.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -24,6 +25,12 @@ class FiChartPageState extends State<supervisedParents> {
   var trainerUid = FirebaseAuth.instance.currentUser?.uid;
   List supervisedParents = [""];
   List<List> children = [];
+  List<List> listofGames = [
+    [""]
+  ];
+  List<List> games = [
+    [""]
+  ];
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
@@ -127,6 +134,45 @@ class FiChartPageState extends State<supervisedParents> {
     }
   }
 
+  getGames() async {
+    games = [];
+    listofGames = [];
+    await getChildren();
+    for (int i = 0; i <= supervisedParents.length - 1; i++) {
+      List games1 = [];
+      for (int j = 0; j <= children.length - 1; j++) {
+        CollectionReference childRef = parentRef
+            .doc(supervisedParents[i].toString())
+            .collection("children")
+            .doc(children[i][j]['name'])
+            .collection("games");
+        await childRef.get().then((value) {
+          /*print("games");
+        print(games);
+        print("listofgames");
+        print(listofGames);*/
+          for (var element in value.docs) {
+            setState(() {
+              games1.add(element.data());
+            });
+          }
+          setState(() {
+            games.add(games1);
+          });
+        });
+      }
+      setState(() {
+        listofGames.add(games);
+      });
+    }
+    if (kDebugMode) {
+      print("games:");
+      print(games);
+      print("ListOFgames:");
+      print(listofGames);
+    }
+  }
+
   Widget acceptButton(String parentUid) {
     var trainerUid = FirebaseAuth.instance.currentUser!.uid;
     DocumentReference trainerRef1 = trainerRef.doc(trainerUid);
@@ -173,6 +219,7 @@ class FiChartPageState extends State<supervisedParents> {
   @override
   void initState() {
     setUserName();
+    getGames();
     super.initState();
   }
 
@@ -456,6 +503,223 @@ class FiChartPageState extends State<supervisedParents> {
                                                                           textAlign:
                                                                               TextAlign.right,
                                                                           "${"العمر"}: ${snapshot.data![i][j]['age']}"),
+                                                                    ),
+                                                                  ),
+                                                                  Card(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    child:
+                                                                        ExpansionTile(
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .black,
+                                                                      title:
+                                                                          const Text(
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                26),
+                                                                        textAlign:
+                                                                            TextAlign.right,
+                                                                        "التقييم الكلي",
+                                                                      ),
+                                                                      children: [
+                                                                        const Divider(
+                                                                            color:
+                                                                                Colors.red),
+                                                                        Card(
+                                                                          color:
+                                                                              Colors.grey,
+                                                                          child:
+                                                                              ListView.builder(
+                                                                            //scrollDirection: Axis.vertical,
+                                                                            shrinkWrap:
+                                                                                true,
+                                                                            itemCount:
+                                                                                1,
+                                                                            itemBuilder:
+                                                                                (BuildContext context, int k) {
+                                                                              return Padding(
+                                                                                padding: const EdgeInsets.only(right: 22.0),
+                                                                                child: Center(
+                                                                                  child: SizedBox(
+                                                                                    width: 400,
+                                                                                    height: 400,
+                                                                                    child: LineChart(LineChartData(
+                                                                                        borderData: FlBorderData(show: true, border: Border.all(color: Colors.white, width: 2)),
+                                                                                        gridData: FlGridData(
+                                                                                          show: true,
+                                                                                          getDrawingHorizontalLine: (value) {
+                                                                                            return FlLine(color: Colors.white, strokeWidth: 1);
+                                                                                          },
+                                                                                          drawVerticalLine: true,
+                                                                                          getDrawingVerticalLine: (value) {
+                                                                                            return FlLine(color: Colors.white, strokeWidth: 1);
+                                                                                          },
+                                                                                        ),
+                                                                                        titlesData: FlTitlesData(
+                                                                                          show: true,
+                                                                                          bottomTitles: SideTitles(
+                                                                                              showTitles: true,
+                                                                                              reservedSize: 35,
+                                                                                              getTextStyles: (context, value) {
+                                                                                                return const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
+                                                                                              },
+                                                                                              getTitles: (value) {
+                                                                                                switch (value.toInt()) {
+                                                                                                  case 0:
+                                                                                                    return 'الحيوانات';
+                                                                                                  case 2:
+                                                                                                    return 'الحروف';
+                                                                                                  case 4:
+                                                                                                    return 'الأوجه';
+                                                                                                  case 6:
+                                                                                                    return 'العائلة';
+                                                                                                  case 8:
+                                                                                                    return 'الأرقام';
+                                                                                                }
+                                                                                                return '';
+                                                                                              },
+                                                                                              margin: 8),
+                                                                                          rightTitles: SideTitles(),
+                                                                                          topTitles: SideTitles(),
+                                                                                          leftTitles: SideTitles(
+                                                                                            showTitles: true,
+                                                                                            reservedSize: 35,
+                                                                                            getTextStyles: (context, value) {
+                                                                                              return const TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold);
+                                                                                            },
+                                                                                            getTitles: (value) {
+                                                                                              switch (value.toInt()) {
+                                                                                                case 0:
+                                                                                                  return '0';
+                                                                                                case 1:
+                                                                                                  return '1';
+                                                                                                case 2:
+                                                                                                  return '2';
+                                                                                                case 3:
+                                                                                                  return '3';
+                                                                                                case 4:
+                                                                                                  return '4';
+                                                                                                case 5:
+                                                                                                  return '5';
+                                                                                                case 6:
+                                                                                                  return '6';
+                                                                                                case 7:
+                                                                                                  return '7';
+                                                                                                case 8:
+                                                                                                  return '8';
+                                                                                                case 9:
+                                                                                                  return '9';
+                                                                                                case 10:
+                                                                                                  return '10';
+                                                                                              }
+                                                                                              return '';
+                                                                                            },
+                                                                                            margin: 12,
+                                                                                          ),
+                                                                                        ),
+                                                                                        maxX: 10,
+                                                                                        maxY: 11,
+                                                                                        minY: 0,
+                                                                                        minX: 0,
+                                                                                        lineBarsData: [
+                                                                                          LineChartBarData(
+                                                                                              spots: [
+                                                                                                FlSpot(0, double.parse(listofGames[i][j][0]['Child rate out of 10'].toString())),
+                                                                                                FlSpot(2, double.parse(listofGames[i][j][1]['Child rate out of 10'].toString())),
+                                                                                                FlSpot(4, double.parse(listofGames[i][j][2]['Child rate out of 10'].toString())),
+                                                                                                FlSpot(6, double.parse(listofGames[i][j][3]['Child rate out of 10'].toString())),
+                                                                                                FlSpot(8, double.parse(listofGames[i][j][4]['Child rate out of 10'].toString())),
+                                                                                              ],
+                                                                                              isCurved: true,
+                                                                                              colors: [
+                                                                                                Colors.white,
+                                                                                                Colors.white,
+                                                                                                Colors.white,
+                                                                                              ],
+                                                                                              barWidth: 5,
+                                                                                              belowBarData: BarAreaData(show: true, colors: gradientColors.map((e) => e.withOpacity(0.7)).toList()))
+                                                                                        ])),
+                                                                                  ),
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Card(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    child:
+                                                                        ExpansionTile(
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .black,
+                                                                      title:
+                                                                          const Text(
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                26),
+                                                                        textAlign:
+                                                                            TextAlign.right,
+                                                                        "مزيد من التفاصيل",
+                                                                      ),
+                                                                      children: [
+                                                                        const Divider(
+                                                                            color:
+                                                                                Colors.red),
+                                                                        Card(
+                                                                          color:
+                                                                              Colors.grey,
+                                                                          child:
+                                                                              ListView.builder(
+                                                                            //scrollDirection: Axis.vertical,
+                                                                            shrinkWrap:
+                                                                                true,
+                                                                            itemCount:
+                                                                                5,
+                                                                            itemBuilder:
+                                                                                (BuildContext context, int k) {
+                                                                              return Padding(
+                                                                                padding: const EdgeInsets.only(top: 4),
+                                                                                child: ExpansionTile(
+                                                                                  backgroundColor: Colors.black,
+                                                                                  title: Text(style: const TextStyle(fontSize: 26), textAlign: TextAlign.right, "${listofGames[i][j][k]['name']}"),
+                                                                                  children: [
+                                                                                    const Divider(color: Colors.red),
+                                                                                    Card(
+                                                                                      color: Colors.grey,
+                                                                                      child: ListTile(
+                                                                                        title: Text(style: const TextStyle(fontSize: 24), textAlign: TextAlign.right, "${"المستوي الأول"}: ${listofGames[i][j][k]['level1Score']}"),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Card(
+                                                                                      color: Colors.grey,
+                                                                                      child: ListTile(
+                                                                                        title: Text(style: const TextStyle(fontSize: 24), textAlign: TextAlign.right, "${"المستوي الثاني"}: ${listofGames[i][j][k]['level2Score']}"),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Card(
+                                                                                      color: Colors.grey,
+                                                                                      child: ListTile(
+                                                                                        title: Text(style: const TextStyle(fontSize: 24), textAlign: TextAlign.right, "${"المستوي الثالث"}: ${listofGames[i][j][k]['level3Score']}"),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Card(
+                                                                                      color: Colors.grey,
+                                                                                      child: ListTile(
+                                                                                        title: Text(style: const TextStyle(fontSize: 24), textAlign: TextAlign.right, "${"المستوي الرابع"}: ${listofGames[i][j][k]['level4Score']}"),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 ],
