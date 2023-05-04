@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../utils/colors_utils.dart';
+import '../../utils/colors_utils.dart';
 
 class addChild extends StatefulWidget {
   const addChild({Key? key}) : super(key: key);

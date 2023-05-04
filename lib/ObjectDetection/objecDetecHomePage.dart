@@ -2,7 +2,7 @@
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/ObjectDetection/method2/live_camera.dart';
 import 'package:autism_zz/ObjectDetection/method2/static.dart';
-import 'package:autism_zz/children/ChildrenChart.dart';
+import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:autism_zz/main.dart';
 import 'package:autism_zz/skills/skill.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<objecDetecHomepage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ChildrenChart()));
+                        builder: (context) => const ChildrenList()));
               },
             ),
             ListTile(

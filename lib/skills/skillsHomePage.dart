@@ -1,6 +1,6 @@
 // ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
-import 'package:autism_zz/children/ChildrenChart.dart';
+import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:autism_zz/skills/needs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<skillsHomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ChildrenChart()));
+                        builder: (context) => const ChildrenList()));
               },
             ),
             ListTile(

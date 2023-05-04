@@ -19,14 +19,14 @@ import 'package:fl_chart/fl_chart.dart'
         LineChartData,
         SideTitles;
 
-class ChildrenChart extends StatefulWidget {
-  const ChildrenChart({Key? key}) : super(key: key);
+class ChildrenList extends StatefulWidget {
+  const ChildrenList({Key? key}) : super(key: key);
 
   @override
   FiChartPageState createState() => FiChartPageState();
 }
 
-class FiChartPageState extends State<ChildrenChart> {
+class FiChartPageState extends State<ChildrenList> {
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
@@ -144,7 +144,7 @@ class FiChartPageState extends State<ChildrenChart> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ChildrenChart()));
+                        builder: (context) => const ChildrenList()));
               },
             ),
             ListTile(

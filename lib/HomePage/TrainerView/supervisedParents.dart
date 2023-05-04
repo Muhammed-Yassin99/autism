@@ -1,18 +1,19 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
+import 'package:autism_zz/HomePage/TrainerView/trainerListOfRequests.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 
-class trainerListOfRequests extends StatefulWidget {
-  const trainerListOfRequests({Key? key}) : super(key: key);
+class supervisedParents extends StatefulWidget {
+  const supervisedParents({Key? key}) : super(key: key);
 
   @override
   FiChartPageState createState() => FiChartPageState();
 }
 
-class FiChartPageState extends State<trainerListOfRequests> {
+class FiChartPageState extends State<supervisedParents> {
   List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
@@ -21,7 +22,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
   List parents = [];
   var userPic;
   var trainerUid = FirebaseAuth.instance.currentUser?.uid;
-  List listOfRequests = [""];
+  List supervisedParents = [""];
   List<List> children = [];
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
@@ -29,8 +30,31 @@ class FiChartPageState extends State<trainerListOfRequests> {
   CollectionReference parentRef =
       FirebaseFirestore.instance.collection("parents");
 
+  Future<List<List>> fetchData() async {
+    List<List> children = [];
+    if (kDebugMode) {
+      print(supervisedParents.length);
+      print(supervisedParents);
+    }
+    if (supervisedParents.isNotEmpty) {
+      for (int i = 0; i <= supervisedParents.length - 1; i++) {
+        List children1 = [];
+        CollectionReference childRef = parentRef
+            .doc(supervisedParents[i].toString())
+            .collection("children");
+        await childRef.get().then((value) {
+          for (var element in value.docs) {
+            children1.add(element.data());
+          }
+        });
+        children.add(children1);
+      }
+    }
+    return children;
+  }
+
   setUserName() async {
-    listOfRequests = [];
+    supervisedParents = [];
     parents = [];
     var user = FirebaseAuth.instance.currentUser;
     var response = await parentRef.get();
@@ -43,14 +67,14 @@ class FiChartPageState extends State<trainerListOfRequests> {
           setState(() {
             userName = element['username'].toString();
             userPic = element['profilePic'].toString();
-            listOfRequests = element['pendingRequests'];
+            supervisedParents = element['supervisedParents'];
           });
           break;
         }
       }
-      for (int i = 0; i <= listOfRequests.length - 1; i++) {
+      for (int i = 0; i <= supervisedParents.length - 1; i++) {
         for (var element in response.docs) {
-          if (element['uid'].toString() == listOfRequests[i].toString()) {
+          if (element['uid'].toString() == supervisedParents[i].toString()) {
             setState(() {
               parents.add(element.data());
             });
@@ -61,7 +85,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
     });
 
     if (kDebugMode) {
-      print(listOfRequests);
+      print(supervisedParents);
     }
     if (kDebugMode) {
       print(parents);
@@ -76,14 +100,15 @@ class FiChartPageState extends State<trainerListOfRequests> {
     children = [];
     await setUserName();
     if (kDebugMode) {
-      print(listOfRequests.length);
-      print(listOfRequests);
+      print(supervisedParents.length);
+      print(supervisedParents);
     }
-    if (listOfRequests.isNotEmpty) {
-      for (int i = 0; i <= listOfRequests.length - 1; i++) {
+    if (supervisedParents.isNotEmpty) {
+      for (int i = 0; i <= supervisedParents.length - 1; i++) {
         List children1 = [];
-        CollectionReference childRef =
-            parentRef.doc(listOfRequests[i].toString()).collection("children");
+        CollectionReference childRef = parentRef
+            .doc(supervisedParents[i].toString())
+            .collection("children");
         await childRef.get().then((value) {
           for (var element in value.docs) {
             setState(() {
@@ -142,123 +167,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget rejectButton(String parentUid) {
-    var trainerUid = FirebaseAuth.instance.currentUser!.uid;
-    DocumentReference trainerRef1 = trainerRef.doc(trainerUid);
-    DocumentReference parentref1 = parentRef.doc(parentUid);
-    return Positioned(
-      top: 40,
-      left: 95,
-      child: Container(
-        width: 80,
-        height: 55,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: const Color.fromARGB(255, 243, 33, 33),
-        ),
-        child: ElevatedButton(
-          onPressed: () {
-            setState(() {
-              parentref1.update({"currentRequest": ""});
-              trainerRef1.update({
-                'pendingRequests': FieldValue.arrayRemove([parentUid])
-              });
-              getChildren();
-            });
-          },
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-          ),
-          child: const Center(
-            child: Text(
-              'رفض',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<List<List>> fetchData() async {
-    List<List> children = [];
-    if (kDebugMode) {
-      print(listOfRequests.length);
-      print(listOfRequests);
-    }
-    if (listOfRequests.isNotEmpty) {
-      for (int i = 0; i <= listOfRequests.length - 1; i++) {
-        List children1 = [];
-        CollectionReference childRef =
-            parentRef.doc(listOfRequests[i].toString()).collection("children");
-        await childRef.get().then((value) {
-          for (var element in value.docs) {
-            children1.add(element.data());
-          }
-        });
-        children.add(children1);
-      }
-    }
-    return children;
-  }
-
-  showChildren(int num) {
-    return Container(
-      color: Colors.blueGrey,
-      child: Stack(children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Stack(children: [
-            ExpansionTile(
-                backgroundColor: Colors.amber,
-                title: const Text(
-                    style: TextStyle(fontSize: 28),
-                    textAlign: TextAlign.right,
-                    "الأطفال"),
-                children: [
-                  SizedBox(
-                    child: ListView.builder(
-                        //scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        itemCount: children[num].length,
-                        itemBuilder: (BuildContext context, int i) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: ExpansionTile(
-                              backgroundColor: Colors.black,
-                              title: Text(
-                                  style: const TextStyle(fontSize: 28),
-                                  textAlign: TextAlign.right,
-                                  "${children[num][i]['name']}"),
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                                const Divider(color: Colors.red),
-                                Card(
-                                  color: Colors.grey,
-                                  child: ListTile(
-                                    title: Text(
-                                        style: const TextStyle(fontSize: 26),
-                                        textAlign: TextAlign.right,
-                                        "${"العمر"}: ${children[num][i]['age']}"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                  )
-                ]),
-          ]),
-        ),
-      ]),
     );
   }
 
@@ -365,7 +273,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
         title: const Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'قائمة الطلبات',
+            'قائمة الأهالي',
             style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
           ),
         ),
@@ -422,7 +330,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                             //scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             // ignore: prefer_const_literals_to_create_immutables
-                            itemCount: listOfRequests.length,
+                            itemCount: supervisedParents.length,
                             itemBuilder: (BuildContext context, int i) {
                               return Card(
                                 //padding: const EdgeInsets.only(top: 8),
@@ -434,8 +342,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                       height: 110,
                                       child: Stack(
                                         children: [
-                                          acceptButton(listOfRequests[i]),
-                                          rejectButton(listOfRequests[i]),
+                                          acceptButton(supervisedParents[i]),
                                           Positioned(
                                               top: 10,
                                               right: 85,

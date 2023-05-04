@@ -7,8 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../Games/gamesHomePage1.dart';
 import '../../Learn/learnHomePage.dart';
-import '../../children/ChildrenChart.dart';
-import '../../children/addChild.dart';
+import 'ChildrenList.dart';
+import 'addChild.dart';
 import '../../model/homePage_icons.dart';
 import '../../skills/skillsHomePage.dart';
 
@@ -175,7 +175,7 @@ class HomeScreenState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ChildrenChart()));
+                        builder: (context) => const ChildrenList()));
               },
             ),
             ListTile(
@@ -401,7 +401,7 @@ class HomeScreenState extends State<HomePage> {
     }
     if (category.id == 5) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ChildrenChart()));
+          MaterialPageRoute(builder: (context) => const ChildrenList()));
     }
     if (category.id == 6) {
       Navigator.push(context,

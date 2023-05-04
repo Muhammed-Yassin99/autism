@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'HomePage/ParentView/parentHomePage.dart';
 import 'HomePage/TrainerView/trainerHomePage.dart';
 import 'SignIn/signInScreen.dart';
-import 'children/ChildrenChart.dart';
+import 'HomePage/ParentView/ChildrenList.dart';
 
 var islogin;
 var hasRole = false;
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
         "login": (context) => const signInScreen(),
         "parentHomePage": (context) => const HomePage(),
         "trainerHomePage": (context) => const trainerHomePage(),
-        "ChildrenChart": (context) => const ChildrenChart()
+        "ChildrenChart": (context) => const ChildrenList()
       },
       home: islogin == false
           ? const startPage()
