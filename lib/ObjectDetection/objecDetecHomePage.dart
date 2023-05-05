@@ -1,10 +1,12 @@
-// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, unused_import, use_build_context_synchronously
+// ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, unused_import, use_build_context_synchronously, prefer_typing_uninitialized_variables
+import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/ObjectDetection/method2/live_camera.dart';
 import 'package:autism_zz/ObjectDetection/method2/static.dart';
 import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:autism_zz/main.dart';
 import 'package:autism_zz/skills/skill.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +17,18 @@ class objecDetecHomepage extends StatefulWidget {
   const objecDetecHomepage({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState1 createState() => HomeScreenState1();
 }
 
-class _HomeScreenState extends State<objecDetecHomepage> {
+class HomeScreenState1 extends State<objecDetecHomepage> {
   int seletedItem = 0;
+  var uid = FirebaseAuth.instance.currentUser!.uid;
+  var trainerName;
   var userName;
+  var assignedTrainer = "";
   var pages = [StaticImage(), LiveFeed(cameras!)];
   var pageController = PageController();
+
   setUserName() async {
     var user = FirebaseAuth.instance.currentUser;
     String mail = user!.email.toString();
@@ -33,6 +39,23 @@ class _HomeScreenState extends State<objecDetecHomepage> {
         if (element['gmail'].toString() == mail) {
           setState(() {
             userName = element['username'].toString();
+            assignedTrainer = element['assignedTrainer'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
+
+  getTrainerName() async {
+    await setUserName();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("trainers");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['uid'].toString() == assignedTrainer) {
+          setState(() {
+            trainerName = element['username'].toString();
           });
           break;
         }
@@ -42,13 +65,12 @@ class _HomeScreenState extends State<objecDetecHomepage> {
 
   @override
   void initState() {
-    setUserName();
+    getTrainerName();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    setUserName();
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -103,6 +125,37 @@ class _HomeScreenState extends State<objecDetecHomepage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const trainersList()));
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.chat),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
+              onTap: () {
+                if (assignedTrainer == "") {
+                  AwesomeDialog(
+                    context: context,
+                    body: const Text(
+                      "!لم تقم بالانضمام الي طبيب معالج",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    dialogType: DialogType.info,
+                    animType: AnimType.leftSlide,
+                  ).show();
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => parentChatScreen(
+                        senderId: assignedTrainer,
+                        receiverId: uid,
+                        trainerName: trainerName,
+                      ),
+                    ),
+                  );
+                }
               },
             ),
             const Divider(),

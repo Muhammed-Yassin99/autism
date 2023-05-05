@@ -1,14 +1,14 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, camel_case_types
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatefulWidget {
+class trainerChatScreen extends StatefulWidget {
   final String senderId;
   final String receiverId;
   final String parentName;
 
-  const ChatScreen(
+  const trainerChatScreen(
       {super.key,
       required this.senderId,
       required this.receiverId,
@@ -18,7 +18,7 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<trainerChatScreen> {
   final TextEditingController _textEditingController = TextEditingController();
 
   @override
@@ -42,9 +42,8 @@ class _ChatScreenState extends State<ChatScreen> {
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('chats')
-                  .where('senderId',
-                      whereIn: [widget.senderId, widget.receiverId])
-                  .where('receiverId', isEqualTo: [widget.receiverId])
+                  .where('senderId', isEqualTo: widget.senderId)
+                  .where('receiverId', isEqualTo: widget.receiverId)
                   .orderBy('timestamp', descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
@@ -55,7 +54,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 }
 
                 List<DocumentSnapshot> docs = snapshot.data!.docs;
-                print(docs);
                 return ListView.builder(
                   reverse: true,
                   itemCount: docs.length,
@@ -110,7 +108,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: TextField(
                     controller: _textEditingController,
                     decoration: const InputDecoration(
-                      hintText: 'Type a message',
+                      hintText: 'اكتب رسالة',
                     ),
                   ),
                 ),

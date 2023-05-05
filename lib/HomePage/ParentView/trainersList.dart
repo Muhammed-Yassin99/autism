@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
+import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,6 +32,8 @@ class FiChartPageState extends State<trainersList> {
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
+  var uid = FirebaseAuth.instance.currentUser!.uid;
+  var trainerName;
   var userName;
   var currentRequest;
   List trainers = [];
@@ -63,9 +66,11 @@ class FiChartPageState extends State<trainersList> {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
           setState(() {
-            userName = element['username'].toString();
-            currentRequest = element['currentRequest'].toString();
-            assignedTrainer = element['assignedTrainer'].toString();
+            setState(() {
+              userName = element['username'].toString();
+              currentRequest = element['currentRequest'].toString();
+              assignedTrainer = element['assignedTrainer'].toString();
+            });
           });
           break;
         }
@@ -232,10 +237,26 @@ class FiChartPageState extends State<trainersList> {
     }
   }
 
+  getTrainerName() async {
+    await setUserName();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("trainers");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['uid'].toString() == assignedTrainer) {
+          setState(() {
+            trainerName = element['username'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
     getTrainers();
-    setUserName();
+    getTrainerName();
     super.initState();
   }
 
@@ -295,6 +316,37 @@ class FiChartPageState extends State<trainersList> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const trainersList()));
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.chat),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
+              onTap: () {
+                if (assignedTrainer == "") {
+                  AwesomeDialog(
+                    context: context,
+                    body: const Text(
+                      "!لم تقم بالانضمام الي طبيب معالج",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    dialogType: DialogType.info,
+                    animType: AnimType.leftSlide,
+                  ).show();
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => parentChatScreen(
+                        senderId: assignedTrainer,
+                        receiverId: uid,
+                        trainerName: trainerName,
+                      ),
+                    ),
+                  );
+                }
               },
             ),
             const Divider(),

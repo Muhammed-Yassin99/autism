@@ -1,6 +1,8 @@
-// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors
+// ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors, duplicate_ignore
+import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/ObjectDetection/objecDetecHomePage.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -21,8 +23,11 @@ class HomePage extends StatefulWidget {
 
 class HomeScreenState extends State<HomePage> {
   var userName;
+  var trainerName;
+  var assignedTrainer = "";
   List children = [];
   String currentChild = "";
+  var uid = FirebaseAuth.instance.currentUser!.uid;
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
       FirebaseFirestore.instance.collection("parents");
@@ -77,6 +82,22 @@ class HomeScreenState extends State<HomePage> {
     }
   }
 
+  getTrainerName() async {
+    await setUserName();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("trainers");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['uid'].toString() == assignedTrainer) {
+          setState(() {
+            trainerName = element['username'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
+
   setUserName() async {
     var user = FirebaseAuth.instance.currentUser;
     String mail = user!.email.toString();
@@ -85,7 +106,10 @@ class HomeScreenState extends State<HomePage> {
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
-          userName = element['username'].toString();
+          setState(() {
+            userName = element['username'].toString();
+            assignedTrainer = element['assignedTrainer'].toString();
+          });
           break;
         }
       }
@@ -96,13 +120,12 @@ class HomeScreenState extends State<HomePage> {
   void initState() {
     //getChildren();
     setCurrentChild();
-    setUserName();
+    getTrainerName();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    setUserName();
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -189,26 +212,36 @@ class HomeScreenState extends State<HomePage> {
                         builder: (context) => const trainersList()));
               },
             ),
+            const Divider(),
             ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text(style: TextStyle(fontSize: 18), 'الطلبات'),
-              onTap: () {},
-              trailing: ClipOval(
-                child: Container(
-                  color: Colors.red,
-                  width: 20,
-                  height: 20,
-                  child: const Center(
-                    child: Text(
-                      '8',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
+              leading: const Icon(Icons.chat),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
+              onTap: () {
+                if (assignedTrainer == "") {
+                  AwesomeDialog(
+                    context: context,
+                    body: Text(
+                      "!لم تقم بالانضمام الي طبيب معالج",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    dialogType: DialogType.info,
+                    animType: AnimType.leftSlide,
+                  ).show();
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => parentChatScreen(
+                        senderId: assignedTrainer,
+                        receiverId: uid.toString(),
+                        trainerName: trainerName,
                       ),
                     ),
-                  ),
-                ),
-              ),
+                  );
+                }
+              },
             ),
             const Divider(),
             ListTile(
