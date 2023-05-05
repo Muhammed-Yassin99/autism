@@ -169,7 +169,7 @@ class FiChartPageState extends State<supervisedParents> {
     }*/
   }
 
-  Widget chatButton(String parentUid) {
+  Widget chatButton(String parentUid, String parentName) {
     var trainerUid = FirebaseAuth.instance.currentUser!.uid;
     return Positioned(
       top: 40,
@@ -189,6 +189,7 @@ class FiChartPageState extends State<supervisedParents> {
                   builder: (context) => ChatScreen(
                     senderId: trainerUid,
                     receiverId: parentUid,
+                    parentName: parentName,
                   ),
                 ),
               );
@@ -379,7 +380,8 @@ class FiChartPageState extends State<supervisedParents> {
                                       height: 110,
                                       child: Stack(
                                         children: [
-                                          chatButton(supervisedParents[i]),
+                                          chatButton(supervisedParents[i],
+                                              parents[i]['username']),
                                           Positioned(
                                               top: 10,
                                               right: 85,

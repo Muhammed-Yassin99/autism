@@ -1,13 +1,18 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
   final String senderId;
   final String receiverId;
+  final String parentName;
 
   const ChatScreen(
-      {super.key, required this.senderId, required this.receiverId});
+      {super.key,
+      required this.senderId,
+      required this.receiverId,
+      required this.parentName});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -18,9 +23,18 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print("widget.receiverId");
+      print(widget.receiverId);
+    }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with ${widget.receiverId}'),
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
+              "${widget.parentName} : التحدث مع"),
+        ),
       ),
       body: Column(
         children: [
@@ -28,8 +42,8 @@ class _ChatScreenState extends State<ChatScreen> {
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('chats')
-                  .where('senderId',
-                      whereIn: [widget.senderId, widget.receiverId])
+                  .where('senderId', isEqualTo: widget.senderId.toString())
+                  .where('receiverId', isEqualTo: widget.receiverId.toString())
                   .orderBy('timestamp', descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
@@ -40,14 +54,28 @@ class _ChatScreenState extends State<ChatScreen> {
                 }
 
                 List<DocumentSnapshot> docs = snapshot.data!.docs;
-
+                print(docs);
                 return ListView.builder(
                   reverse: true,
                   itemCount: docs.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(docs[index]['message']),
-                      subtitle: Text(docs[index]['timestamp'].toString()),
+                    print(docs.length);
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: Wrap(
+                        children: [
+                          Text(
+                            docs[index]['message'],
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 );
