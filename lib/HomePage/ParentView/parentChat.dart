@@ -30,11 +30,20 @@ class _ChatScreenState extends State<parentChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Align(
-          alignment: Alignment.centerRight,
-          child: Text(
-              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
-              "${widget.trainerName} : التحدث مع"),
-        ),
+            alignment: Alignment.centerRight,
+            child: Row(
+              textDirection: TextDirection.rtl,
+              children: [
+                const Text(
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
+                    ": التحدث مع"),
+                Text(
+                  "${widget.trainerName} ",
+                  style: const TextStyle(
+                      fontSize: 26, fontWeight: FontWeight.w900),
+                ),
+              ],
+            )),
       ),
       body: Column(
         children: [

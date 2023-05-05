@@ -27,6 +27,7 @@ class HomeScreenState extends State<HomePage> {
   var assignedTrainer = "";
   List children = [];
   String currentChild = "";
+  String mail = FirebaseAuth.instance.currentUser!.email.toString();
   var uid = FirebaseAuth.instance.currentUser!.uid;
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
@@ -132,8 +133,7 @@ class HomeScreenState extends State<HomePage> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountEmail: Text(mail),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.asset(
