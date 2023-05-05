@@ -132,7 +132,7 @@ class _ChatScreenState extends State<parentChatScreen> {
                           'senderId': widget.senderId,
                           'receiverId': widget.receiverId,
                           'message': message,
-                          'timestamp': DateTime.now().microsecondsSinceEpoch,
+                          'timestamp': FieldValue.serverTimestamp(),
                           'isSent': false,
                         });
                       });
