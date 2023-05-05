@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:autism_zz/HomePage/TrainerView/trainerListOfRequests.dart';
+import 'package:autism_zz/HomePage/chat/chat.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -168,10 +169,8 @@ class FiChartPageState extends State<supervisedParents> {
     }*/
   }
 
-  Widget acceptButton(String parentUid) {
+  Widget chatButton(String parentUid) {
     var trainerUid = FirebaseAuth.instance.currentUser!.uid;
-    DocumentReference trainerRef1 = trainerRef.doc(trainerUid);
-    DocumentReference parentref1 = parentRef.doc(parentUid);
     return Positioned(
       top: 40,
       left: 5,
@@ -184,7 +183,15 @@ class FiChartPageState extends State<supervisedParents> {
               backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
             ),
             onPressed: () {
-              // button functionality
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatScreen(
+                    senderId: trainerUid,
+                    receiverId: parentUid,
+                  ),
+                ),
+              );
             },
             child: const Center(
               child: Icon(
@@ -372,7 +379,7 @@ class FiChartPageState extends State<supervisedParents> {
                                       height: 110,
                                       child: Stack(
                                         children: [
-                                          acceptButton(supervisedParents[i]),
+                                          chatButton(supervisedParents[i]),
                                           Positioned(
                                               top: 10,
                                               right: 85,
