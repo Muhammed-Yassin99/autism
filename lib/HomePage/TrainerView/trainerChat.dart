@@ -132,7 +132,7 @@ class _ChatScreenState extends State<trainerChatScreen> {
                           'senderId': widget.senderId,
                           'receiverId': widget.receiverId,
                           'message': message,
-                          'timestamp': DateTime.now(),
+                          'timestamp': FieldValue.serverTimestamp(),
                           'isSent': true,
                         });
                       });
