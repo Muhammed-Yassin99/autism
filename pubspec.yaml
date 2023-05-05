@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  rxdart: ^0.27.2
   cupertino_icons: ^1.0.5
   font_awesome_flutter: ^10.2.1
   audioplayers: ^3.0.0
@@ -42,11 +43,11 @@ dependencies:
   jiffy: ^5.0.0
   image_picker: ^0.8.6
   http: ^0.13.5
-  firebase_core: ^2.1.1
-  firebase_storage: ^11.0.3
-  cloud_firestore: ^4.0.3
-  firebase_messaging: ^14.0.3
-  firebase_auth: ^4.1.0
+  firebase_core: ^2.11.0
+  firebase_storage: ^11.1.2
+  cloud_firestore: ^4.6.0
+  firebase_messaging: ^14.5.0
+  firebase_auth: ^4.5.0
   awesome_dialog: ^3.0.2
   dropdown_search: ^5.0.3
   easy_splash_screen: ^1.0.4

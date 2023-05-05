@@ -42,8 +42,9 @@ class _ChatScreenState extends State<ChatScreen> {
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('chats')
-                  .where('senderId', isEqualTo: widget.senderId.toString())
-                  .where('receiverId', isEqualTo: widget.receiverId.toString())
+                  .where('senderId',
+                      whereIn: [widget.senderId, widget.receiverId])
+                  .where('receiverId', isEqualTo: [widget.receiverId])
                   .orderBy('timestamp', descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
@@ -59,23 +60,42 @@ class _ChatScreenState extends State<ChatScreen> {
                   reverse: true,
                   itemCount: docs.length,
                   itemBuilder: (context, index) {
-                    print(docs.length);
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 16.0),
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Wrap(
-                        children: [
-                          Text(
-                            docs[index]['message'],
-                            style: const TextStyle(fontSize: 16.0),
+                    return Row(
+                      mainAxisAlignment: docs[index]['isSent']
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        if (docs[index]['isSent'])
+                          Container(
+                            constraints: const BoxConstraints(maxWidth: 300),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16),
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Text(
+                              docs[index]['message'],
+                              style: const TextStyle(fontSize: 20.0),
+                            ),
                           ),
-                        ],
-                      ),
+                        if (!docs[index]['isSent'])
+                          Container(
+                            constraints: const BoxConstraints(maxWidth: 300),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16),
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Text(
+                              docs[index]['message'],
+                              style: const TextStyle(fontSize: 20.0),
+                            ),
+                          ),
+                      ],
                     );
                   },
                 );
@@ -105,6 +125,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         'receiverId': widget.receiverId,
                         'message': message,
                         'timestamp': DateTime.now(),
+                        'isSent': true,
                       });
 
                       _textEditingController.clear();
