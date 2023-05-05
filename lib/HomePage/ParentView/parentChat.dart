@@ -127,14 +127,15 @@ class _ChatScreenState extends State<parentChatScreen> {
                     String message = _textEditingController.text.trim();
 
                     if (message.isNotEmpty) {
-                      FirebaseFirestore.instance.collection('chats').add({
-                        'senderId': widget.senderId,
-                        'receiverId': widget.receiverId,
-                        'message': message,
-                        'timestamp': DateTime.now(),
-                        'isSent': false,
+                      setState(() {
+                        FirebaseFirestore.instance.collection('chats').add({
+                          'senderId': widget.senderId,
+                          'receiverId': widget.receiverId,
+                          'message': message,
+                          'timestamp': DateTime.now(),
+                          'isSent': false,
+                        });
                       });
-
                       _textEditingController.clear();
                     }
                   },

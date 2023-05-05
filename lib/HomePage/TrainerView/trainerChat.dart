@@ -127,12 +127,14 @@ class _ChatScreenState extends State<trainerChatScreen> {
                     String message = _textEditingController.text.trim();
 
                     if (message.isNotEmpty) {
-                      FirebaseFirestore.instance.collection('chats').add({
-                        'senderId': widget.senderId,
-                        'receiverId': widget.receiverId,
-                        'message': message,
-                        'timestamp': DateTime.now(),
-                        'isSent': true,
+                      setState(() {
+                        FirebaseFirestore.instance.collection('chats').add({
+                          'senderId': widget.senderId,
+                          'receiverId': widget.receiverId,
+                          'message': message,
+                          'timestamp': DateTime.now(),
+                          'isSent': true,
+                        });
                       });
 
                       _textEditingController.clear();
@@ -147,4 +149,3 @@ class _ChatScreenState extends State<trainerChatScreen> {
     );
   }
 }
-//hummm
