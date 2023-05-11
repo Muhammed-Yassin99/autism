@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
+import 'package:autism_zz/HomePage/ParentView/questions.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -290,15 +291,25 @@ class FiChartPageState extends State<trainersList> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.share),
+              leading: const Icon(
+                Icons.home,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'الصفحة الرئيسية'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("parentHomePage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(
+                Icons.child_care,
+                color: Colors.blue,
+              ),
               title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
               onTap: () {
                 Navigator.push(
@@ -307,8 +318,15 @@ class FiChartPageState extends State<trainersList> {
                         builder: (context) => const ChildrenList()));
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.share),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
               onTap: () {
@@ -318,9 +336,15 @@ class FiChartPageState extends State<trainersList> {
                         builder: (context) => const trainersList()));
               },
             ),
-            const Divider(),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.chat),
+              leading: const Icon(
+                Icons.chat,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
               onTap: () {
@@ -341,7 +365,7 @@ class FiChartPageState extends State<trainersList> {
                     MaterialPageRoute(
                       builder: (context) => parentChatScreen(
                         senderId: assignedTrainer,
-                        receiverId: uid,
+                        receiverId: uid.toString(),
                         trainerName: trainerName,
                       ),
                     ),
@@ -349,20 +373,43 @@ class FiChartPageState extends State<trainersList> {
                 }
               },
             ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
-            const Divider(),
+            ListTile(
+              leading: const Icon(
+                Icons.question_mark,
+                color: Colors.blue,
+              ),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الأسئلة الشائعة'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FaqsPage()));
+              },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
               title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
-              leading: const Icon(Icons.exit_to_app),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors, duplicate_ignore
 import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
+import 'package:autism_zz/HomePage/ParentView/questions.dart';
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/ObjectDetection/objecDetecHomePage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -191,8 +192,15 @@ class HomeScreenState extends State<HomePage> {
                 ),
               ),
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.child_care),
+              leading: const Icon(
+                Icons.child_care,
+                color: Colors.blue,
+              ),
               title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
               onTap: () {
                 Navigator.push(
@@ -201,8 +209,15 @@ class HomeScreenState extends State<HomePage> {
                         builder: (context) => const ChildrenList()));
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
               onTap: () {
@@ -212,9 +227,15 @@ class HomeScreenState extends State<HomePage> {
                         builder: (context) => const trainersList()));
               },
             ),
-            const Divider(),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.chat),
+              leading: const Icon(
+                Icons.chat,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
               onTap: () {
@@ -243,16 +264,32 @@ class HomeScreenState extends State<HomePage> {
                 }
               },
             ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
-            const Divider(),
+            ListTile(
+              leading: const Icon(
+                Icons.question_mark,
+                color: Colors.blue,
+              ),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الأسئلة الشائعة'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FaqsPage()));
+              },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
               title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
-              leading: const Icon(Icons.exit_to_app),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
                 setState(() {
@@ -260,6 +297,10 @@ class HomeScreenState extends State<HomePage> {
                 });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
           ],
         ),

@@ -1,11 +1,11 @@
 // ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, unused_import, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
+import 'package:autism_zz/HomePage/ParentView/questions.dart';
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/ObjectDetection/method2/live_camera.dart';
 import 'package:autism_zz/ObjectDetection/method2/static.dart';
 import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:autism_zz/main.dart';
-import 'package:autism_zz/skills/skill.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,6 +25,7 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
   var uid = FirebaseAuth.instance.currentUser!.uid;
   var trainerName;
   var userName;
+  String mail = FirebaseAuth.instance.currentUser!.email.toString();
   var assignedTrainer = "";
   var pages = [StaticImage(), LiveFeed(cameras!)];
   var pageController = PageController();
@@ -76,9 +77,14 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountName: Text(
+                userName.toString(),
+                style: TextStyle(fontSize: 18),
+              ),
+              accountEmail: Text(
+                mail,
+                style: TextStyle(fontSize: 18),
+              ),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.asset(
@@ -99,15 +105,25 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.share),
+              leading: const Icon(
+                Icons.home,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'الصفحة الرئيسية'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("parentHomePage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(
+                Icons.child_care,
+                color: Colors.blue,
+              ),
               title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
               onTap: () {
                 Navigator.push(
@@ -116,8 +132,15 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
                         builder: (context) => const ChildrenList()));
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.share),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
               onTap: () {
@@ -127,9 +150,15 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
                         builder: (context) => const trainersList()));
               },
             ),
-            const Divider(),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.chat),
+              leading: const Icon(
+                Icons.chat,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
               onTap: () {
@@ -150,7 +179,7 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
                     MaterialPageRoute(
                       builder: (context) => parentChatScreen(
                         senderId: assignedTrainer,
-                        receiverId: uid,
+                        receiverId: uid.toString(),
                         trainerName: trainerName,
                       ),
                     ),
@@ -158,20 +187,43 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
                 }
               },
             ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
-            const Divider(),
+            ListTile(
+              leading: const Icon(
+                Icons.question_mark,
+                color: Colors.blue,
+              ),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الأسئلة الشائعة'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FaqsPage()));
+              },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
               title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
-              leading: const Icon(Icons.exit_to_app),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
           ],
         ),

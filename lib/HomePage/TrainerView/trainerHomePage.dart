@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, file_names, use_build_context_synchronously
+// ignore_for_file: camel_case_types, file_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 
 //import 'package:autism_zz/HomePage/trainerProfile.dart';
 import 'package:autism_zz/HomePage/TrainerView/supervisedParents.dart';
@@ -21,6 +21,8 @@ class trainerHomePage extends StatefulWidget {
 class HomeScreenState extends State<trainerHomePage> {
   static var userName = '';
   var userPic;
+  List listOfRequests = [""];
+  String mail = FirebaseAuth.instance.currentUser!.email.toString();
 
   getUser() {
     var user = FirebaseAuth.instance.currentUser;
@@ -44,8 +46,11 @@ class HomeScreenState extends State<trainerHomePage> {
     await userRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
-          userName = element['username'].toString();
-          userPic = element['profilePic'].toString();
+          setState(() {
+            userName = element['username'].toString();
+            userPic = element['profilePic'].toString();
+            listOfRequests = element['pendingRequests'];
+          });
           if (kDebugMode) {
             print(userName);
           }
@@ -67,9 +72,12 @@ class HomeScreenState extends State<trainerHomePage> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountName: Text(userName.toString(),
+                  style: const TextStyle(fontSize: 18)),
+              accountEmail: Text(
+                mail,
+                style: const TextStyle(fontSize: 18),
+              ),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(
@@ -90,18 +98,49 @@ class HomeScreenState extends State<trainerHomePage> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text('الشهادات'),
+              leading: const Icon(
+                Icons.book,
+                color: Colors.blue,
+              ),
+              title: const Text(
+                'الشهادات',
+                style: TextStyle(fontSize: 18),
+              ),
               onTap: () {},
             ),
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('اولياء الأمور'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
             ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text('الطلبات'),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
+              title: const Text(
+                'اولياء الأمور',
+                style: TextStyle(fontSize: 18),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const supervisedParents()));
+              },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.notifications,
+                color: Colors.blue,
+              ),
+              title: const Text(
+                'الطلبات',
+                style: TextStyle(fontSize: 18),
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -113,32 +152,42 @@ class HomeScreenState extends State<trainerHomePage> {
                   color: Colors.red,
                   width: 20,
                   height: 20,
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      '8',
-                      style: TextStyle(
+                      '${listOfRequests.length}',
+                      style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 18,
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('الأعدادات'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
-            const Divider(),
             ListTile(
-              title: const Text('تسجيل الخروج'),
-              leading: const Icon(Icons.exit_to_app),
+              title: const Text(
+                'تسجيل الخروج',
+                style: TextStyle(fontSize: 18),
+              ),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
           ],
         ),

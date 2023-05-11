@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
+import 'package:autism_zz/HomePage/ParentView/questions.dart';
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:autism_zz/skills/needs.dart';
@@ -8,7 +9,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'PhysCard.dart';
-import 'skill.dart';
 
 class skillsHomePage extends StatefulWidget {
   const skillsHomePage({super.key});
@@ -22,6 +22,7 @@ class _HomeScreenState extends State<skillsHomePage> {
   var uid = FirebaseAuth.instance.currentUser!.uid;
   var trainerName;
   var userName;
+  String mail = FirebaseAuth.instance.currentUser!.email.toString();
   var assignedTrainer = "";
   var pages = [const PhysCard(), needs()];
   var pageController = PageController();
@@ -73,9 +74,14 @@ class _HomeScreenState extends State<skillsHomePage> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountName: Text(
+                userName.toString(),
+                style: TextStyle(fontSize: 18),
+              ),
+              accountEmail: Text(
+                mail,
+                style: TextStyle(fontSize: 18),
+              ),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.asset(
@@ -96,15 +102,25 @@ class _HomeScreenState extends State<skillsHomePage> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.share),
+              leading: const Icon(
+                Icons.home,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'الصفحة الرئيسية'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("parentHomePage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(
+                Icons.child_care,
+                color: Colors.blue,
+              ),
               title: const Text(style: TextStyle(fontSize: 18), 'الأطفال'),
               onTap: () {
                 Navigator.push(
@@ -113,8 +129,15 @@ class _HomeScreenState extends State<skillsHomePage> {
                         builder: (context) => const ChildrenList()));
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.share),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'قائمة المدربين'),
               onTap: () {
@@ -124,9 +147,15 @@ class _HomeScreenState extends State<skillsHomePage> {
                         builder: (context) => const trainersList()));
               },
             ),
-            const Divider(),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.chat),
+              leading: const Icon(
+                Icons.chat,
+                color: Colors.blue,
+              ),
               title:
                   const Text(style: TextStyle(fontSize: 18), 'المدرب الحالي'),
               onTap: () {
@@ -147,7 +176,7 @@ class _HomeScreenState extends State<skillsHomePage> {
                     MaterialPageRoute(
                       builder: (context) => parentChatScreen(
                         senderId: assignedTrainer,
-                        receiverId: uid,
+                        receiverId: uid.toString(),
                         trainerName: trainerName,
                       ),
                     ),
@@ -155,20 +184,43 @@ class _HomeScreenState extends State<skillsHomePage> {
                 }
               },
             ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text(style: TextStyle(fontSize: 18), 'الأعدادات'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
-            const Divider(),
+            ListTile(
+              leading: const Icon(
+                Icons.question_mark,
+                color: Colors.blue,
+              ),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الأسئلة الشائعة'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FaqsPage()));
+              },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
               title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
-              leading: const Icon(Icons.exit_to_app),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
           ],
         ),
