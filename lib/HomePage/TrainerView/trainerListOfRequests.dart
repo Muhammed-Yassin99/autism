@@ -403,6 +403,10 @@ class FiChartPageState extends State<trainerListOfRequests> {
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
           ],
         ),
       ),

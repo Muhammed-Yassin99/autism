@@ -338,6 +338,10 @@ class FiChartPageState extends State<supervisedParents> {
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
           ],
         ),
       ),

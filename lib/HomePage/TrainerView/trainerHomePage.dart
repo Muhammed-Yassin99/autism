@@ -185,6 +185,10 @@ class HomeScreenState extends State<trainerHomePage> {
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
           ],
         ),
       ),
