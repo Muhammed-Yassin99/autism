@@ -244,24 +244,48 @@ class FiChartPageState extends State<supervisedParents> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.home),
+              leading: const Icon(
+                Icons.home,
+                color: Colors.blue,
+              ),
               title: const Text('الصفحة الرئيسية'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("trainerHomePage");
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.book),
+              leading: const Icon(
+                Icons.book,
+                color: Colors.blue,
+              ),
               title: const Text('الشهادات'),
               onTap: () {},
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
               title: const Text('اولياء الأمور'),
               onTap: () {},
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
             ListTile(
-              leading: const Icon(Icons.notifications),
+              leading: const Icon(
+                Icons.notifications,
+                color: Colors.blue,
+              ),
               title: const Text('الطلبات'),
               onTap: () {
                 Navigator.push(
@@ -286,18 +310,21 @@ class FiChartPageState extends State<supervisedParents> {
                 ),
               ),
             ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('الأعدادات'),
-              onTap: () {},
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
             ),
-            const Divider(),
             ListTile(
               title: const Text('تسجيل الخروج'),
-              leading: const Icon(Icons.exit_to_app),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
                 Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
