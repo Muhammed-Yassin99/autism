@@ -23,6 +23,8 @@ class FiChartPageState extends State<supervisedParents> {
   var userName;
   List parents = [];
   var userPic;
+  String mail = FirebaseAuth.instance.currentUser!.email.toString();
+  List listOfRequests = [""];
   var trainerUid = FirebaseAuth.instance.currentUser?.uid;
   List supervisedParents = [""];
   List<List> children = [];
@@ -73,6 +75,7 @@ class FiChartPageState extends State<supervisedParents> {
           setState(() {
             userName = element['username'].toString();
             userPic = element['profilePic'].toString();
+            listOfRequests = element['pendingRequests'];
             supervisedParents = element['supervisedParents'];
           });
           break;
@@ -221,9 +224,14 @@ class FiChartPageState extends State<supervisedParents> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountName: Text(
+                userName.toString(),
+                style: const TextStyle(fontSize: 18),
+              ),
+              accountEmail: Text(
+                mail,
+                style: const TextStyle(fontSize: 18),
+              ),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(
@@ -248,7 +256,8 @@ class FiChartPageState extends State<supervisedParents> {
                 Icons.home,
                 color: Colors.blue,
               ),
-              title: const Text('الصفحة الرئيسية'),
+              title:
+                  const Text('الصفحة الرئيسية', style: TextStyle(fontSize: 18)),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("trainerHomePage");
               },
@@ -262,7 +271,7 @@ class FiChartPageState extends State<supervisedParents> {
                 Icons.book,
                 color: Colors.blue,
               ),
-              title: const Text('الشهادات'),
+              title: const Text('الشهادات', style: TextStyle(fontSize: 18)),
               onTap: () {},
             ),
             const Divider(
@@ -274,7 +283,8 @@ class FiChartPageState extends State<supervisedParents> {
                 Icons.person,
                 color: Colors.blue,
               ),
-              title: const Text('اولياء الأمور'),
+              title:
+                  const Text('اولياء الأمور', style: TextStyle(fontSize: 18)),
               onTap: () {},
             ),
             const Divider(
@@ -286,7 +296,7 @@ class FiChartPageState extends State<supervisedParents> {
                 Icons.notifications,
                 color: Colors.blue,
               ),
-              title: const Text('الطلبات'),
+              title: const Text('الطلبات', style: TextStyle(fontSize: 18)),
               onTap: () {
                 Navigator.push(
                     context,
@@ -298,10 +308,10 @@ class FiChartPageState extends State<supervisedParents> {
                   color: Colors.red,
                   width: 20,
                   height: 20,
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      '8',
-                      style: TextStyle(
+                      '${listOfRequests.length}',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                       ),
@@ -315,7 +325,7 @@ class FiChartPageState extends State<supervisedParents> {
               thickness: 1,
             ),
             ListTile(
-              title: const Text('تسجيل الخروج'),
+              title: const Text('تسجيل الخروج', style: TextStyle(fontSize: 18)),
               leading: const Icon(
                 Icons.exit_to_app,
                 color: Colors.blue,

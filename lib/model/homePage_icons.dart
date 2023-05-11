@@ -7,14 +7,14 @@ final List<Category> homePage_categories = [
   Category(1, "تعلم", icon: "assets/images/HomePage/learn.png"),
   Category(4, "أضف طفل", icon: "assets/images/HomePage/AddChild.png"),
   Category(3, "المهارات ", icon: "assets/images/HomePage/dailySkills.png"),
-  Category(5, "قائمة الاطفال",
+  Category(5, "قائمة الأطفال",
       icon: "assets/images/HomePage/registerdChildren.png"),
   Category(6, "أكتشف", icon: "assets/images/HomePage/discover.png"),
 ];
 final List<Category> trainerHomePage_categories = [
   Category(2, "الطلبات", icon: "assets/images/HomePage/requests.jpeg"),
   Category(1, "الملف الشخصي", icon: "assets/images/HomePage/profile.png"),
-  Category(4, "قائمة الاطفال",
+  Category(4, "أولياء الأمور",
       icon: "assets/images/HomePage/registerdChildren.png"),
 ];
 
@@ -36,7 +36,8 @@ final List<Category> learn_categories = [
   Category(5, "الحيوانات ", icon: "assets/images/HomePage/zoo.png"),
 ];
 final List<Category> PhysCard_categories = [
-  Category(1, "تفريش الاسنان ", icon: "assets/images/skills/teeth-brushing.png"),
+  Category(1, "تفريش الأسنان ",
+      icon: "assets/images/skills/teeth-brushing.png"),
   Category(2, "لبس الحذاء", icon: "assets/images/skills/shoes.png"),
   Category(3, "أكل الطعام ", icon: "assets/images/skills/woman.png"),
   Category(4, "الشرب", icon: "assets/images/skills/drink-water.png"),

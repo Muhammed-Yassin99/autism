@@ -41,6 +41,7 @@ class FiChartPageState extends State<ChildrenList> {
   List children = [];
   List listofGames = [];
   List games = [];
+  String email = FirebaseAuth.instance.currentUser!.email.toString();
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
       FirebaseFirestore.instance.collection("parents");
@@ -131,8 +132,7 @@ class FiChartPageState extends State<ChildrenList> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountEmail: Text(email),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.asset(

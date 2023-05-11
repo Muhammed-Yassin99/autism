@@ -23,6 +23,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
   var trainerUid = FirebaseAuth.instance.currentUser?.uid;
   List listOfRequests = [""];
   List<List> children = [];
+  String mail = FirebaseAuth.instance.currentUser!.email.toString();
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
@@ -275,9 +276,14 @@ class FiChartPageState extends State<trainerListOfRequests> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountName: Text(
+                userName.toString(),
+                style: const TextStyle(fontSize: 18),
+              ),
+              accountEmail: Text(
+                mail,
+                style: const TextStyle(fontSize: 18),
+              ),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(
@@ -302,7 +308,10 @@ class FiChartPageState extends State<trainerListOfRequests> {
                 Icons.home,
                 color: Colors.blue,
               ),
-              title: const Text('الصفحة الرئيسية'),
+              title: const Text(
+                'الصفحة الرئيسية',
+                style: TextStyle(fontSize: 18),
+              ),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed("trainerHomePage");
               },
@@ -316,7 +325,10 @@ class FiChartPageState extends State<trainerListOfRequests> {
                 Icons.book,
                 color: Colors.blue,
               ),
-              title: const Text('الشهادات'),
+              title: const Text(
+                'الشهادات',
+                style: TextStyle(fontSize: 18),
+              ),
               onTap: () {},
             ),
             const Divider(
@@ -328,7 +340,10 @@ class FiChartPageState extends State<trainerListOfRequests> {
                 Icons.person,
                 color: Colors.blue,
               ),
-              title: const Text('اولياء الأمور'),
+              title: const Text(
+                'اولياء الأمور',
+                style: TextStyle(fontSize: 18),
+              ),
               onTap: () {},
             ),
             const Divider(
@@ -340,7 +355,10 @@ class FiChartPageState extends State<trainerListOfRequests> {
                 Icons.notifications,
                 color: Colors.blue,
               ),
-              title: const Text('الطلبات'),
+              title: const Text(
+                'الطلبات',
+                style: TextStyle(fontSize: 18),
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -357,7 +375,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                       '${listOfRequests.length}',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -369,7 +387,10 @@ class FiChartPageState extends State<trainerListOfRequests> {
               thickness: 1,
             ),
             ListTile(
-              title: const Text('تسجيل الخروج'),
+              title: const Text(
+                'تسجيل الخروج',
+                style: TextStyle(fontSize: 18),
+              ),
               leading: const Icon(
                 Icons.exit_to_app,
                 color: Colors.blue,
