@@ -105,3 +105,5 @@ class FaqsPage extends StatelessWidget {
     );
   }
 }
+
+// 7amraaa :)
