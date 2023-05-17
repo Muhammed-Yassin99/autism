@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'croppedImage.dart';
 import 'dart:ui' as ui;
 import 'package:image/image.dart' as img;
-import 'dart:math' as math;
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class StaticImage extends StatefulWidget {
   const StaticImage({super.key});
@@ -69,7 +69,16 @@ class _StaticImageState extends State<StaticImage> {
   // this function detects the objects on the image
   detectObject(File image) async {
     if (image == null || !(await image.exists())) {
-      throw ArgumentError('Input image is null or empty');
+      return AwesomeDialog(
+        context: context,
+        body: const Text(
+          textAlign: TextAlign.center,
+          "!حدث خطأ اثناء تحميل الصورة, حاول مجددا ",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        dialogType: DialogType.info,
+        animType: AnimType.leftSlide,
+      ).show();
     }
 
     // Load the image using the Image package
@@ -107,7 +116,19 @@ class _StaticImageState extends State<StaticImage> {
 
     // Check that the recognitions array is not empty or null
     if (recognitions == null || recognitions.isEmpty) {
-      throw ArgumentError('No objects detected');
+      setState(() {
+        _image = null;
+      });
+      return AwesomeDialog(
+        context: context,
+        body: const Text(
+          textAlign: TextAlign.center,
+          "!لا تحتوي الصورة علي اي اشياء للتعرف عليها,حاول مجددا",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        dialogType: DialogType.info,
+        animType: AnimType.leftSlide,
+      ).show();
     }
 
     if (recognitions != null && recognitions.isNotEmpty) {
@@ -140,19 +161,19 @@ class _StaticImageState extends State<StaticImage> {
         ),
       );
     } else {
-      showDialog(
+      setState(() {
+        _image = null;
+      });
+      return AwesomeDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('No objects detected'),
-          content: const Text('Please select another image.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
+        body: const Text(
+          textAlign: TextAlign.center,
+          "!لا تحتوي الصورة علي اي اشياء للتعرف عليها,حاول مجددا",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-      );
+        dialogType: DialogType.info,
+        animType: AnimType.leftSlide,
+      ).show();
     }
   }
 
