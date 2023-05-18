@@ -47,6 +47,8 @@ class _StaticImageState extends State<StaticImage> {
   // this function loads the model
   loadTfModel() async {
     await Tflite.loadModel(
+        //model: "assets/objecDetec/ssd_mobilenet.tflite",
+        //labels: "assets/objecDetec/SSDlabels.txt",
         model: "assets/objecDetec/yolov2_tiny.tflite",
         labels: "assets/objecDetec/yolov7labels1.txt");
   }
@@ -89,6 +91,8 @@ class _StaticImageState extends State<StaticImage> {
     const inputSize = 416;
     final resizedImage =
         img.copyResize(decodedImage, width: inputSize, height: inputSize);
+
+    print("Resized image size: ${resizedImage.width} x ${resizedImage.height}");
 
     // Convert the resized image to a byte buffer
     final input = Float32List(inputSize * inputSize * 3);
@@ -195,12 +199,14 @@ class _StaticImageState extends State<StaticImage> {
   }
 
   // display the bounding boxes over the detected objects
-  List<Widget> renderBoxes(Size screen) {
+  List<Widget> renderBoxes(Size imageSize) {
     if (_recognitions == null) return [];
     if (_imageHeight == null) return [];
 
-    double factorX = screen.width;
-    double factorY = _imageHeight / _imageHeight * screen.width;
+    double factorX = imageSize.width;
+    double factorY = imageSize.height;
+
+    print("FactorX: ${factorX}, FactorY: ${factorY}");
 
     Color blue = Colors.blue;
 
@@ -270,6 +276,7 @@ class _StaticImageState extends State<StaticImage> {
         ),
       );
     }
+    //Size(_imageWidth, _imageHeight)
     stackChildren.addAll(renderBoxes(size));
 
     if (_busy) {
