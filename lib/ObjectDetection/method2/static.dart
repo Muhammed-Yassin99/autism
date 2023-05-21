@@ -122,6 +122,7 @@ class _StaticImageState extends State<StaticImage> {
     if (recognitions == null || recognitions.isEmpty) {
       setState(() {
         _image = null;
+        _recognitions = [];
       });
       return AwesomeDialog(
         context: context,
@@ -167,6 +168,7 @@ class _StaticImageState extends State<StaticImage> {
     } else {
       setState(() {
         _image = null;
+        _recognitions = [];
       });
       return AwesomeDialog(
         context: context,
@@ -203,8 +205,10 @@ class _StaticImageState extends State<StaticImage> {
     if (_recognitions == null) return [];
     if (_imageHeight == null) return [];
 
+    //double factorX = imageSize.width;
+    // double factorY = imageSize.height;
     double factorX = imageSize.width;
-    double factorY = imageSize.height;
+    double factorY = _imageHeight / _imageHeight * imageSize.width;
 
     print("FactorX: ${factorX}, FactorY: ${factorY}");
 
