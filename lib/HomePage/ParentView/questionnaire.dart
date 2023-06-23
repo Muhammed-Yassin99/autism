@@ -443,17 +443,30 @@ class QuestionnaireState extends State<QuestionnairePage> {
           shape: const StadiumBorder(),
         ),
         onPressed: () {
-          totalScore += score;
-          if (isLastQuestion) {
-            //display score
-
-            showDialog(context: context, builder: (_) => _showScoreDialog());
+          if (selectedAnswer != null) {
+            // Check if an answer has been selected
+            totalScore += score;
+            if (isLastQuestion) {
+              //display score
+              showDialog(context: context, builder: (_) => _showScoreDialog());
+            } else {
+              //next question
+              setState(() {
+                selectedAnswer = null;
+                currentQuestionIndex++;
+              });
+            }
           } else {
-            //next question
-            setState(() {
-              selectedAnswer = null;
-              currentQuestionIndex++;
-            });
+            AwesomeDialog(
+              context: context,
+              body: const Text(
+                textAlign: TextAlign.center,
+                "اختر الإجابة أولا قبل الانتقال الي السؤال التالي",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              dialogType: DialogType.info,
+              animType: AnimType.leftSlide,
+            ).show();
           }
         },
         child: Text(
