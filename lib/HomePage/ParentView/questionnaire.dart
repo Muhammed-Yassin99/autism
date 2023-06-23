@@ -269,24 +269,6 @@ class QuestionnaireState extends State<QuestionnairePage> {
               color: Colors.red,
               thickness: 1,
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.person,
-                color: Colors.blue,
-              ),
-              title: const Text(
-                  style: TextStyle(fontSize: 18), 'اخبرنا عن حالة طفلك'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const QuestionnairePage()));
-              },
-            ),
-            const Divider(
-              color: Colors.red,
-              thickness: 1,
-            ),
           ],
         ),
       ),
