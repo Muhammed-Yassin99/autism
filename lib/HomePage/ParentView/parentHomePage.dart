@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors, duplicate_ignore
 import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
+import 'package:autism_zz/HomePage/ParentView/questionnaire.dart';
 import 'package:autism_zz/HomePage/ParentView/questions.dart';
 import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
 import 'package:autism_zz/ObjectDetection/objecDetecHomePage.dart';
@@ -301,6 +302,20 @@ class HomeScreenState extends State<HomePage> {
             const Divider(
               color: Colors.red,
               thickness: 1,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.person,
+                color: Colors.blue,
+              ),
+              title: const Text(
+                  style: TextStyle(fontSize: 18), 'اخبرنا عن حالة طفلك'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => QuestionnairePage()));
+              },
             ),
           ],
         ),
