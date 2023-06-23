@@ -13,6 +13,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
   List<Question> questionList = getQuestions();
   int currentQuestionIndex = 0;
   int score = 0;
+  int totalScore = 0;
   Answer? selectedAnswer;
 
   @override
@@ -44,6 +45,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
+          textAlign: TextAlign.right,
           "${currentQuestionIndex + 1}/${questionList.length.toString()} السؤال",
           style: const TextStyle(
             color: Colors.white,
@@ -93,10 +95,12 @@ class QuestionnaireState extends State<QuestionnairePage> {
         if (selectedAnswer == null) {
           setState(() {
             selectedAnswer = answer;
+            score = answer.score;
           });
         } else {
           setState(() {
             selectedAnswer = null;
+            score = answer.score;
           });
         }
       },
@@ -114,6 +118,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
+                textAlign: TextAlign.right,
                 answer.answerText,
                 style: TextStyle(
                   color: isSelected ? Colors.white : Colors.black,
@@ -148,6 +153,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
           shape: const StadiumBorder(),
         ),
         onPressed: () {
+          totalScore += score;
           if (isLastQuestion) {
             //display score
 
@@ -171,7 +177,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
   _showScoreDialog() {
     bool isPassed = false;
 
-    if (score >= questionList.length * 0.6) {
+    if (totalScore >= questionList.length * 0.6) {
       //pass if 60 %
       isPassed = true;
     }
@@ -179,16 +185,18 @@ class QuestionnaireState extends State<QuestionnairePage> {
 
     return AlertDialog(
       title: Text(
-        "$title | Score is $score",
+        textAlign: TextAlign.right,
+        "$title | الناتج النهائي : $totalScore",
         style: TextStyle(color: isPassed ? Colors.green : Colors.redAccent),
       ),
       content: ElevatedButton(
-        child: const Text("Restart"),
+        child: const Text("إعادة"),
         onPressed: () {
           Navigator.pop(context);
           setState(() {
             currentQuestionIndex = 0;
             score = 0;
+            totalScore = 0;
             selectedAnswer = null;
           });
         },

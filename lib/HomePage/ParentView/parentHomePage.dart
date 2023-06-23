@@ -317,6 +317,10 @@ class HomeScreenState extends State<HomePage> {
                         builder: (context) => QuestionnairePage()));
               },
             ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
           ],
         ),
       ),
