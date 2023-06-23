@@ -182,6 +182,9 @@ class QuestionnaireState extends State<QuestionnairePage> {
       isPassed = true;
     }
     String title = isPassed ? "Passed " : "Failed";
+    double screenWidth = MediaQuery.of(context).size.width;
+    double buttonWidth = screenWidth * 0.5;
+    double buttonHeight = screenWidth * 0.125;
 
     return AlertDialog(
       title: Text(
@@ -189,17 +192,36 @@ class QuestionnaireState extends State<QuestionnairePage> {
         "$title | الناتج النهائي : $totalScore",
         style: TextStyle(color: isPassed ? Colors.green : Colors.redAccent),
       ),
-      content: ElevatedButton(
-        child: const Text("إعادة"),
-        onPressed: () {
-          Navigator.pop(context);
-          setState(() {
-            currentQuestionIndex = 0;
-            score = 0;
-            totalScore = 0;
-            selectedAnswer = null;
-          });
-        },
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: buttonWidth,
+            height: buttonHeight,
+            child: ElevatedButton(
+              child: const Text("إعادة", style: TextStyle(fontSize: 22)),
+              onPressed: () {
+                Navigator.pop(context);
+                setState(() {
+                  currentQuestionIndex = 0;
+                  score = 0;
+                  selectedAnswer = null;
+                });
+              },
+            ),
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: buttonWidth,
+            height: buttonHeight,
+            child: ElevatedButton(
+              child: const Text("إنهاء", style: TextStyle(fontSize: 22)),
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed("parentHomePage");
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
