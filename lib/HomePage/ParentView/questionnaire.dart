@@ -5,10 +5,10 @@ class QuestionnairePage extends StatefulWidget {
   const QuestionnairePage({super.key});
 
   @override
-  State<QuestionnairePage> createState() => _QuizScreenState();
+  State<QuestionnairePage> createState() => QuestionnaireState();
 }
 
-class _QuizScreenState extends State<QuestionnairePage> {
+class QuestionnaireState extends State<QuestionnairePage> {
   //define the datas
   List<Question> questionList = getQuestions();
   int currentQuestionIndex = 0;
@@ -24,10 +24,10 @@ class _QuizScreenState extends State<QuestionnairePage> {
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           const Text(
-            "Simple Quiz App",
+            "إستبيان سلوك الطفل",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 34,
             ),
           ),
           _questionWidget(),
@@ -44,10 +44,10 @@ class _QuizScreenState extends State<QuestionnairePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Question ${currentQuestionIndex + 1}/${questionList.length.toString()}",
+          "${currentQuestionIndex + 1}/${questionList.length.toString()} السؤال",
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 25,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -57,15 +57,16 @@ class _QuizScreenState extends State<QuestionnairePage> {
           width: double.infinity,
           padding: const EdgeInsets.all(32),
           decoration: BoxDecoration(
-            color: Colors.orangeAccent,
+            color: const Color.fromARGB(255, 80, 161, 227),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Text(
             questionList[currentQuestionIndex].questionText,
+            textAlign: TextAlign.right,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
             ),
           ),
         )
@@ -87,25 +88,46 @@ class _QuizScreenState extends State<QuestionnairePage> {
   Widget _answerButton(Answer answer) {
     bool isSelected = answer == selectedAnswer;
 
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      height: 48,
-      child: ElevatedButton(
-        child: Text(answer.answerText),
-        style: ElevatedButton.styleFrom(
-          shape: const StadiumBorder(),
-          primary: isSelected ? Colors.orangeAccent : Colors.white,
-          onPrimary: isSelected ? Colors.white : Colors.black,
+    return GestureDetector(
+      onTap: () {
+        if (selectedAnswer == null) {
+          setState(() {
+            selectedAnswer = answer;
+          });
+        } else {
+          setState(() {
+            selectedAnswer = null;
+          });
+        }
+      },
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        height: 64, // Increase the height of the button
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.green : Colors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                answer.answerText,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black,
+                  fontSize: 22, // Increase the font size of the answer text
+                ),
+              ),
+              Icon(
+                isSelected ? Icons.check : Icons.radio_button_unchecked,
+                color: isSelected ? Colors.white : Colors.black,
+                size: 24, // Increase the size of the check/radio button
+              ),
+            ],
+          ),
         ),
-        onPressed: () {
-          if (selectedAnswer == null) {
-            score += answer.score; // Add the score of the selected answer
-            setState(() {
-              selectedAnswer = answer;
-            });
-          }
-        },
       ),
     );
   }
@@ -116,15 +138,14 @@ class _QuizScreenState extends State<QuestionnairePage> {
       isLastQuestion = true;
     }
 
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
       height: 48,
       child: ElevatedButton(
-        child: Text(isLastQuestion ? "Submit" : "Next"),
         style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.blueAccent,
           shape: const StadiumBorder(),
-          primary: Colors.blueAccent,
-          onPrimary: Colors.white,
         ),
         onPressed: () {
           if (isLastQuestion) {
@@ -139,6 +160,10 @@ class _QuizScreenState extends State<QuestionnairePage> {
             });
           }
         },
+        child: Text(
+          isLastQuestion ? "تاكيد" : "التالي",
+          style: const TextStyle(fontSize: 22),
+        ),
       ),
     );
   }
@@ -154,7 +179,7 @@ class _QuizScreenState extends State<QuestionnairePage> {
 
     return AlertDialog(
       title: Text(
-        title + " | Score is $score",
+        "$title | Score is $score",
         style: TextStyle(color: isPassed ? Colors.green : Colors.redAccent),
       ),
       content: ElevatedButton(
