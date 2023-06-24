@@ -67,7 +67,7 @@ class FaqsPage extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: const Color.fromARGB(212, 89, 204, 232),
       body: Theme(
         data: ThemeData(
           textTheme: const TextTheme(

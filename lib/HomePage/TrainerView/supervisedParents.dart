@@ -25,7 +25,7 @@ class FiChartPageState extends State<supervisedParents> {
   var userPic;
   String mail = FirebaseAuth.instance.currentUser!.email.toString();
   List listOfRequests = [""];
-  var trainerUid = FirebaseAuth.instance.currentUser?.uid;
+  var trainerUid = FirebaseAuth.instance.currentUser!.uid;
   List supervisedParents = [""];
   List<List> children = [];
   List<List> listofGames = [
@@ -173,7 +173,6 @@ class FiChartPageState extends State<supervisedParents> {
   }
 
   Widget chatButton(String parentUid, String parentName) {
-    var trainerUid = FirebaseAuth.instance.currentUser!.uid;
     return Positioned(
       top: 40,
       left: 5,

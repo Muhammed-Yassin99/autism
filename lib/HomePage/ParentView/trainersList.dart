@@ -415,7 +415,7 @@ class FiChartPageState extends State<trainersList> {
       ),
       resizeToAvoidBottomInset: false, // set it to false
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         titleSpacing: 0.0,
         title: const Align(
           alignment: Alignment.centerRight,

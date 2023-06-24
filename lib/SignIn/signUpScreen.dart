@@ -56,7 +56,7 @@ class _SignUpScreenState extends State<signUpScreen> {
             "https://firebasestorage.googleapis.com/v0/b/graduationproject-35c1f.appspot.com/o/images%2Fdoctor.png?alt=media&token=04531c72-1cf6-48f2-a20c-f305e8cd33a7",
         "pendingRequests": [],
         "location": "لم يتم التحديد بعد",
-        "yearsOfExp": "",
+        "yearsOfExp": "لم يتم التحديد بعد",
         "availabeTimes": "لم يتم التحديد بعد",
         "rate": "",
         "supervisedParents": [],

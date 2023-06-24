@@ -34,9 +34,9 @@ class _ChatScreenState extends State<trainerChatScreen> {
             child: Row(
               textDirection: TextDirection.rtl,
               children: [
-                const Text(
+                /* const Text(
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
-                    ": التحدث مع"),
+                    ": التحدث مع"),*/
                 Text(
                   "${widget.parentName} ",
                   style: const TextStyle(
@@ -45,106 +45,126 @@ class _ChatScreenState extends State<trainerChatScreen> {
               ],
             )),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('chats')
-                  .where('senderId', isEqualTo: widget.senderId)
-                  .where('receiverId', isEqualTo: widget.receiverId)
-                  .orderBy('timestamp', descending: true)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-
-                List<DocumentSnapshot> docs = snapshot.data!.docs;
-                return ListView.builder(
-                  reverse: true,
-                  itemCount: docs.length,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisAlignment: docs[index]['isSent']
-                          ? MainAxisAlignment.end
-                          : MainAxisAlignment.start,
-                      children: [
-                        if (docs[index]['isSent'])
-                          Container(
-                            constraints: const BoxConstraints(maxWidth: 300),
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 16),
-                            padding: const EdgeInsets.all(16.0),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Text(
-                              docs[index]['message'],
-                              style: const TextStyle(fontSize: 20.0),
-                            ),
-                          ),
-                        if (!docs[index]['isSent'])
-                          Container(
-                            constraints: const BoxConstraints(maxWidth: 300),
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 16),
-                            padding: const EdgeInsets.all(16.0),
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            child: Text(
-                              docs[index]['message'],
-                              style: const TextStyle(fontSize: 20.0),
-                            ),
-                          ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/HomePage/WhatsAppImage.jpeg'),
+            fit: BoxFit.cover,
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _textEditingController,
-                    decoration: const InputDecoration(
-                      hintText: 'اكتب رسالة',
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('chats')
+                    .where('senderId', isEqualTo: widget.senderId)
+                    .where('receiverId', isEqualTo: widget.receiverId)
+                    .orderBy('timestamp', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  List<DocumentSnapshot> docs = snapshot.data!.docs;
+                  return ListView.builder(
+                    reverse: true,
+                    itemCount: docs.length,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        mainAxisAlignment: docs[index]['isSent']
+                            ? MainAxisAlignment.end
+                            : MainAxisAlignment.start,
+                        children: [
+                          if (docs[index]['isSent'])
+                            Container(
+                              constraints: const BoxConstraints(maxWidth: 300),
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 16),
+                              padding: const EdgeInsets.all(16.0),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(158, 17, 155, 22),
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Text(
+                                docs[index]['message'],
+                                style: const TextStyle(fontSize: 20.0),
+                              ),
+                            ),
+                          if (!docs[index]['isSent'])
+                            Container(
+                              constraints: const BoxConstraints(maxWidth: 300),
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 16),
+                              padding: const EdgeInsets.all(16.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Text(
+                                docs[index]['message'],
+                                style: const TextStyle(fontSize: 20.0),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.0),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: TextField(
+                        style: const TextStyle(fontSize: 20.0),
+                        controller: _textEditingController,
+                        decoration: const InputDecoration(
+                          hintText: 'اكتب رسالة',
+                          border: InputBorder.none,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () {
-                    String message = _textEditingController.text.trim();
+                  IconButton(
+                    icon: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      String message = _textEditingController.text.trim();
 
-                    if (message.isNotEmpty) {
-                      setState(() {
-                        FirebaseFirestore.instance.collection('chats').add({
-                          'senderId': widget.senderId,
-                          'receiverId': widget.receiverId,
-                          'message': message,
-                          'timestamp': FieldValue.serverTimestamp(),
-                          'isSent': true,
+                      if (message.isNotEmpty) {
+                        setState(() {
+                          FirebaseFirestore.instance.collection('chats').add({
+                            'senderId': widget.senderId,
+                            'receiverId': widget.receiverId,
+                            'message': message,
+                            'timestamp': FieldValue.serverTimestamp(),
+                            'isSent': true,
+                          });
                         });
-                      });
 
-                      _textEditingController.clear();
-                    }
-                  },
-                ),
-              ],
+                        _textEditingController.clear();
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

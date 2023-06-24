@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:autism_zz/model/question.dart';
 
 class QuizScreen extends StatefulWidget {
+  const QuizScreen({super.key});
+
   @override
   State<QuizScreen> createState() => _QuizScreenState();
 }
@@ -20,7 +22,7 @@ class _QuizScreenState extends State<QuizScreen> {
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
         child:
-        Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           const Text(
             "Simple Quiz App",
             style: TextStyle(
@@ -77,7 +79,7 @@ class _QuizScreenState extends State<QuizScreen> {
           .answersList
           .map(
             (e) => _answerButton(e),
-      )
+          )
           .toList(),
     );
   }
@@ -107,7 +109,6 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
     );
   }
-
 
   _nextButton() {
     bool isLastQuestion = false;

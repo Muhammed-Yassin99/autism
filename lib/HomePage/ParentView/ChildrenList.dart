@@ -353,7 +353,7 @@ class FiChartPageState extends State<ChildrenList> {
                                 children: [
                                   const Divider(color: Colors.red),
                                   Card(
-                                    color: Colors.grey,
+                                    color: Colors.white,
                                     child: ListTile(
                                       title: Text(
                                           style: const TextStyle(fontSize: 26),
@@ -362,7 +362,7 @@ class FiChartPageState extends State<ChildrenList> {
                                     ),
                                   ),
                                   Card(
-                                    color: Colors.grey,
+                                    color: Colors.white,
                                     child: ExpansionTile(
                                       backgroundColor: Colors.black,
                                       title: const Text(
@@ -573,7 +573,7 @@ class FiChartPageState extends State<ChildrenList> {
                                     ),
                                   ),
                                   Card(
-                                    color: Colors.grey,
+                                    color: Colors.white,
                                     child: ExpansionTile(
                                       backgroundColor: Colors.black,
                                       title: const Text(
