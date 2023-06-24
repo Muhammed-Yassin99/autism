@@ -37,6 +37,30 @@ class _ChatScreenState extends State<trainerChatScreen> {
                 /* const Text(
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
                     ": التحدث مع"),*/
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 4,
+                      color: const Color.fromARGB(255, 33, 37, 243),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        color: Colors.black.withOpacity(0.1),
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                    shape: BoxShape.circle,
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                          'assets/images/HomePage/sideBarBackground.jpg'),
+                    ),
+                  ),
+                ),
                 Text(
                   "${widget.parentName} ",
                   style: const TextStyle(

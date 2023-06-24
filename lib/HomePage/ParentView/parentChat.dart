@@ -20,6 +20,27 @@ class parentChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<parentChatScreen> {
   final TextEditingController _textEditingController = TextEditingController();
+  var profPic = "";
+  getTrainerName() async {
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("trainers");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['uid'].toString() == widget.senderId) {
+          setState(() {
+            profPic = element['profilePic'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    getTrainerName();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +58,29 @@ class _ChatScreenState extends State<parentChatScreen> {
                 /*const Text(
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
                     ": التحدث مع"),*/
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 4,
+                      color: const Color.fromARGB(255, 33, 37, 243),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        color: Colors.black.withOpacity(0.1),
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(profPic),
+                    ),
+                  ),
+                ),
                 Text(
                   "${widget.trainerName} ",
                   style: const TextStyle(
