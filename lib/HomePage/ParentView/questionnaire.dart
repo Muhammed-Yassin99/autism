@@ -484,7 +484,6 @@ class QuestionnaireState extends State<QuestionnairePage> {
       //pass if 60 %
       isPassed = true;
     }
-    String title = isPassed ? "Passed " : "Failed";
     double screenWidth = MediaQuery.of(context).size.width;
     double buttonWidth = screenWidth * 0.5;
     double buttonHeight = screenWidth * 0.125;
@@ -492,7 +491,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
     return AlertDialog(
       title: Text(
         textAlign: TextAlign.right,
-        "$title | الناتج النهائي : $totalScore",
+        "$totalScore : الناتج النهائي",
         style: TextStyle(color: isPassed ? Colors.green : Colors.redAccent),
       ),
       content: Column(
