@@ -286,24 +286,6 @@ class HomeScreenState extends State<HomePage> {
               thickness: 1,
             ),
             ListTile(
-              title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
-              leading: const Icon(
-                Icons.exit_to_app,
-                color: Colors.blue,
-              ),
-              onTap: () async {
-                await FirebaseAuth.instance.signOut();
-                setState(() {
-                  FirebaseAuth.instance.signOut();
-                });
-                Navigator.of(context).pushReplacementNamed("startPage");
-              },
-            ),
-            const Divider(
-              color: Colors.red,
-              thickness: 1,
-            ),
-            ListTile(
               leading: const Icon(
                 Icons.person,
                 color: Colors.blue,
@@ -315,6 +297,24 @@ class HomeScreenState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => QuestionnairePage()));
+              },
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
+            ListTile(
+              title: const Text(style: TextStyle(fontSize: 18), 'تسجيل الخروج'),
+              leading: const Icon(
+                Icons.exit_to_app,
+                color: Colors.blue,
+              ),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                });
+                Navigator.of(context).pushReplacementNamed("startPage");
               },
             ),
             const Divider(
