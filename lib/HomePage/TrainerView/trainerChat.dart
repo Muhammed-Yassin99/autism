@@ -56,8 +56,7 @@ class _ChatScreenState extends State<trainerChatScreen> {
                     shape: BoxShape.circle,
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(
-                          'assets/images/HomePage/sideBarBackground.jpg'),
+                      image: AssetImage('assets/images/HomePage/parent.png'),
                     ),
                   ),
                 ),
