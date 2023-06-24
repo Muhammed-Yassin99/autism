@@ -123,6 +123,7 @@ class SignInScreenState extends State<addChild> {
           .set({
         "name": childName,
         "age": childAge,
+        "QuestionnaireScore": 0,
       });
       await userRef2
           .doc(FirebaseAuth.instance.currentUser!.uid)

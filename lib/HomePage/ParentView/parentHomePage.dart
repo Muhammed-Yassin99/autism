@@ -36,6 +36,7 @@ class HomeScreenState extends State<HomePage> {
       FirebaseFirestore.instance.collection("parents");
 
   getChildren() async {
+    getTrainerName();
     var uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
     var response = await childRef.get();
@@ -47,7 +48,9 @@ class HomeScreenState extends State<HomePage> {
     if (children.isEmpty) {
       currentChild = "لم تقم بإضافة أي طفل بعد";
     } else {
-      currentChild = children[0]['name'];
+      if (currentChild == "") {
+        currentChild = children[0]['name'];
+      }
     }
   }
 
@@ -57,19 +60,27 @@ class HomeScreenState extends State<HomePage> {
     var uid = FirebaseAuth.instance.currentUser!.uid;
     String mail = FirebaseAuth.instance.currentUser!.email.toString();
     DocumentReference ref = ChildrenRef.doc(uid);
-    ChildrenRef.get().then((value) {
+    await ChildrenRef.get().then((value) {
       for (var element in value.docs) {
         if (element['gmail'].toString() == mail) {
-          child = element['currentChild'].toString();
+          setState(() {
+            child = element['currentChild'].toString();
+          });
           break;
         }
       }
     });
-    if (child == "") {
-      ref.update({"currentChild": currentChild});
-    }
     if (currentChild == "") {
       currentChild = "لم تقم بإضافة أي طفل بعد";
+    }
+    if (child == "") {
+      print("o7a");
+      ref.update({"currentChild": currentChild});
+    }
+    if (child != "") {
+      setState(() {
+        currentChild = child;
+      });
     }
     if (kDebugMode) {
       print(child);
@@ -83,6 +94,7 @@ class HomeScreenState extends State<HomePage> {
     if (kDebugMode) {
       print("done");
     }
+    setState(() {});
   }
 
   getTrainerName() async {
@@ -112,6 +124,7 @@ class HomeScreenState extends State<HomePage> {
           setState(() {
             userName = element['username'].toString();
             assignedTrainer = element['assignedTrainer'].toString();
+            currentChild = element['currentChild'].toString();
           });
           break;
         }
@@ -121,9 +134,7 @@ class HomeScreenState extends State<HomePage> {
 
   @override
   void initState() {
-    //getChildren();
     setCurrentChild();
-    getTrainerName();
     super.initState();
   }
 

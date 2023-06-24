@@ -1,10 +1,9 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, prefer_typing_uninitialized_variables, non_constant_identifier_names
 
 import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:autism_zz/model/question.dart';
 import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
@@ -48,6 +47,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
           setState(() {
             userName = element['username'].toString();
             assignedTrainer = element['assignedTrainer'].toString();
+            currentChild = element['currentChild'].toString();
           });
           break;
         }
@@ -55,45 +55,9 @@ class QuestionnaireState extends State<QuestionnairePage> {
     });
   }
 
-  getChildren() async {
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
-    var response = await childRef.get();
-    for (var element in response.docs) {
-      setState(() {
-        children.add(element.data());
-      });
-    }
-    if (children.isEmpty) {
-      currentChild = "لم تقم بإضافة أي طفل بعد";
-    } else {
-      currentChild = children[0]['name'];
-    }
-  }
-
-  setCurrentChild() async {
-    await getChildren();
-    String child = "";
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    String mail = FirebaseAuth.instance.currentUser!.email.toString();
-    DocumentReference ref = ChildrenRef.doc(uid);
-    ChildrenRef.get().then((value) {
-      for (var element in value.docs) {
-        if (element['gmail'].toString() == mail) {
-          child = element['currentChild'].toString();
-          break;
-        }
-      }
-    });
-    if (child == "") {
-      ref.update({"currentChild": currentChild});
-    }
-    if (currentChild == "") {
-      currentChild = "لم تقم بإضافة أي طفل بعد";
-    }
-    if (kDebugMode) {
-      print(child);
-    }
+  updateChildQuestionnaireScore() async {
+    var ref = ChildrenRef.doc(uid).collection('children').doc(currentChild);
+    await ref.update({'QuestionnaireScore': totalScore.toString()});
   }
 
   getTrainerName() async {
@@ -114,8 +78,6 @@ class QuestionnaireState extends State<QuestionnairePage> {
 
   @override
   void initState() {
-    //getChildren();
-    setCurrentChild();
     getTrainerName();
     super.initState();
   }
@@ -158,6 +120,21 @@ class QuestionnaireState extends State<QuestionnairePage> {
                     style: const TextStyle(fontSize: 22, color: Colors.black),
                     "${"الطفل الحالي"}: $currentChild"),
               ),
+            ),
+            const Divider(
+              color: Colors.red,
+              thickness: 1,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.home,
+                color: Colors.blue,
+              ),
+              title:
+                  const Text(style: TextStyle(fontSize: 18), 'الصفحة الرئيسية'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed("parentHomePage");
+              },
             ),
             const Divider(
               color: Colors.red,
@@ -448,6 +425,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
             totalScore += score;
             if (isLastQuestion) {
               //display score
+              updateChildQuestionnaireScore();
               showDialog(context: context, builder: (_) => _showScoreDialog());
             } else {
               //next question
