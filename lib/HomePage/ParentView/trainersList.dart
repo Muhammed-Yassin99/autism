@@ -39,6 +39,7 @@ class FiChartPageState extends State<trainersList> {
   var currentRequest;
   List trainers = [];
   var assignedTrainer;
+  String gmail = FirebaseAuth.instance.currentUser!.email.toString();
   var parentUid = FirebaseAuth.instance.currentUser?.uid;
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference trainerRef =
@@ -80,7 +81,6 @@ class FiChartPageState extends State<trainersList> {
   }
 
   Widget applyButton(String usermail, String trainerUid) {
-    var uid = FirebaseAuth.instance.currentUser!.uid;
     DocumentReference ref = parentRef.doc(uid);
     if (currentRequest == "" && assignedTrainer == "") {
       return Positioned(
@@ -269,8 +269,7 @@ class FiChartPageState extends State<trainersList> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(userName.toString()),
-              accountEmail:
-                  Text(FirebaseAuth.instance.currentUser!.email.toString()),
+              accountEmail: Text(gmail),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.asset(
@@ -400,7 +399,7 @@ class FiChartPageState extends State<trainersList> {
                 color: Colors.blue,
               ),
               onTap: () async {
-                await FirebaseAuth.instance.signOut();
+                // await FirebaseAuth.instance.signOut();
                 setState(() {
                   FirebaseAuth.instance.signOut();
                 });
