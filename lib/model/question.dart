@@ -147,10 +147,10 @@ List<Question> getQuestions() {
   list.add(Question(
     "عندما يقرأ قصة ما، فإنه يجد صعوبة في معرفة نوايا الشخصيات أو مشاعرها",
     [
-      Answer("أوافق بشدة", 1),
+      Answer("أوافق بشدة", 3),
       Answer("أوافق قليلا", 2),
-      Answer("أعارض قليلا ", 3),
-      Answer("أعارض بشدة", 4),
+      Answer("أعارض قليلا ", 1),
+      Answer("أعارض بشدة", 0),
     ],
   ));
   list.add(Question(
