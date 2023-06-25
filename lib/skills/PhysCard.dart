@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 
-import 'package:autism_zz/model/homePage_icons.dart';
-import 'package:autism_zz/skills/eat_food.dart';
-import 'package:autism_zz/skills/wash_hands.dart';
-import 'package:autism_zz/skills/wear_shoes.dart';
+import 'package:Autism_Helper/model/homePage_icons.dart';
+import 'package:Autism_Helper/skills/eat_food.dart';
+import 'package:Autism_Helper/skills/wash_hands.dart';
+import 'package:Autism_Helper/skills/wear_shoes.dart';
 import 'package:flutter/material.dart';
 
 import '../model/category.dart';

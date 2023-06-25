@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
-import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
-import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
-import 'package:autism_zz/HomePage/ParentView/questions.dart';
+import 'package:Autism_Helper/HomePage/ParentView/ChildrenList.dart';
+import 'package:Autism_Helper/HomePage/ParentView/parentChat.dart';
+import 'package:Autism_Helper/HomePage/ParentView/questions.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

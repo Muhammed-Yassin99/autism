@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:autism_zz/ObjectDetection/method2/bounding_box.dart';
-import 'package:autism_zz/ObjectDetection/method2/camera.dart';
+import 'package:Autism_Helper/ObjectDetection/method2/bounding_box.dart';
+import 'package:Autism_Helper/ObjectDetection/method2/camera.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;

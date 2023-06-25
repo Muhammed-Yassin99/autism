@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:autism_zz/model/question.dart';
+import 'package:Autism_Helper/model/question.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});

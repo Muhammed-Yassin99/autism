@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, non_constant_identifier_names, prefer_typing_uninitialized_variables, duplicate_ignore
 
-import 'package:autism_zz/SignIn/startPage.dart';
+import 'package:Autism_Helper/SignIn/startPage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

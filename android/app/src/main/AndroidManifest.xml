@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.autism_zz">
+    package="com.example.Autism_Helper">
    <application
-        android:label="autism_zz"
+        android:label="Autism Helper"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

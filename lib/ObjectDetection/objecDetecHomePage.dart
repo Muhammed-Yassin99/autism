@@ -1,11 +1,11 @@
 // ignore_for_file: camel_case_types, file_names, must_be_immutable, sort_child_properties_last, prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, library_private_types_in_public_api, unused_import, use_build_context_synchronously, prefer_typing_uninitialized_variables
-import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
-import 'package:autism_zz/HomePage/ParentView/questions.dart';
-import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
-import 'package:autism_zz/ObjectDetection/method2/live_camera.dart';
-import 'package:autism_zz/ObjectDetection/method2/static.dart';
-import 'package:autism_zz/HomePage/ParentView/ChildrenList.dart';
-import 'package:autism_zz/main.dart';
+import 'package:Autism_Helper/HomePage/ParentView/parentChat.dart';
+import 'package:Autism_Helper/HomePage/ParentView/questions.dart';
+import 'package:Autism_Helper/HomePage/ParentView/trainersList.dart';
+import 'package:Autism_Helper/ObjectDetection/method2/live_camera.dart';
+import 'package:Autism_Helper/ObjectDetection/method2/static.dart';
+import 'package:Autism_Helper/HomePage/ParentView/ChildrenList.dart';
+import 'package:Autism_Helper/main.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

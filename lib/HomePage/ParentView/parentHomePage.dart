@@ -1,9 +1,9 @@
 // ignore_for_file: use_build_context_synchronously, avoid_returning_null_for_void, prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, prefer_const_constructors, duplicate_ignore
-import 'package:autism_zz/HomePage/ParentView/parentChat.dart';
-import 'package:autism_zz/HomePage/ParentView/questionnaire.dart';
-import 'package:autism_zz/HomePage/ParentView/questions.dart';
-import 'package:autism_zz/HomePage/ParentView/trainersList.dart';
-import 'package:autism_zz/ObjectDetection/objecDetecHomePage.dart';
+import 'package:Autism_Helper/HomePage/ParentView/parentChat.dart';
+import 'package:Autism_Helper/HomePage/ParentView/questionnaire.dart';
+import 'package:Autism_Helper/HomePage/ParentView/questions.dart';
+import 'package:Autism_Helper/HomePage/ParentView/trainersList.dart';
+import 'package:Autism_Helper/ObjectDetection/objecDetecHomePage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

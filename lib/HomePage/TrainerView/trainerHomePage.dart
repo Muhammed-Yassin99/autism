@@ -1,10 +1,10 @@
 // ignore_for_file: camel_case_types, file_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 
-//import 'package:autism_zz/HomePage/trainerProfile.dart';
-import 'package:autism_zz/HomePage/TrainerView/supervisedParents.dart';
-import 'package:autism_zz/HomePage/TrainerView/trainerListOfRequests.dart';
-import 'package:autism_zz/HomePage/TrainerView/trainerProfile.dart';
-//import 'package:autism_zz/HomePage/trainerProfile1.dart';
+//import 'package:Autism_Helper/HomePage/trainerProfile.dart';
+import 'package:Autism_Helper/HomePage/TrainerView/supervisedParents.dart';
+import 'package:Autism_Helper/HomePage/TrainerView/trainerListOfRequests.dart';
+import 'package:Autism_Helper/HomePage/TrainerView/trainerProfile.dart';
+//import 'package:Autism_Helper/HomePage/trainerProfile1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';

@@ -1,4 +1,4 @@
-import 'package:autism_zz/HomePage/ParentView/parentHomePage.dart';
+import 'package:Autism_Helper/HomePage/ParentView/parentHomePage.dart';
 import 'package:auto_route/annotations.dart';
 
 @MaterialAutoRouter(

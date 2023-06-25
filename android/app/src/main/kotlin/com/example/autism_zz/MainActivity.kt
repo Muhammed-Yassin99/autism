@@ -1,4 +1,4 @@
-package com.example.autism_zz
+package com.example.Autism_Helper
 
 import io.flutter.embedding.android.FlutterActivity
 
