@@ -22,6 +22,8 @@ import 'package:fl_chart/fl_chart.dart'
         LineChartData,
         SideTitles;
 
+import 'addChild.dart';
+
 class ChildrenList extends StatefulWidget {
   const ChildrenList({Key? key}) : super(key: key);
 
@@ -319,29 +321,34 @@ class FiChartPageState extends State<ChildrenList> {
         ),
       ),
       body: childrenListEmpty == true
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'لم تقم يإضافة أي طفل بعد',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigate to the add child screen
-                    },
-                    style: ButtonStyle(
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(150, 40)),
+          ? Container(
+              color: Colors.blueGrey,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'لم تقم يإضافة أي طفل بعد',
+                      style: TextStyle(fontSize: 24),
                     ),
-                    child:
-                        const Text('أضف طفل', style: TextStyle(fontSize: 24)),
-                  ),
-                ],
-              ),
-            )
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const addChild()));
+                      },
+                      style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(150, 40)),
+                      ),
+                      child:
+                          const Text('أضف طفل', style: TextStyle(fontSize: 24)),
+                    ),
+                  ],
+                ),
+              ))
           : Container(
               color: Colors.blueGrey,
               child: Stack(
