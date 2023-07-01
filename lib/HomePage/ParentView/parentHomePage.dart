@@ -74,7 +74,6 @@ class HomeScreenState extends State<HomePage> {
       currentChild = "لم تقم بإضافة أي طفل بعد";
     }
     if (child == "") {
-      print("o7a");
       ref.update({"currentChild": currentChild});
     }
     if (child != "") {
@@ -304,10 +303,39 @@ class HomeScreenState extends State<HomePage> {
               title: const Text(
                   style: TextStyle(fontSize: 18), 'اخبرنا عن حالة طفلك'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => QuestionnairePage()));
+                if (children.isEmpty) {
+                  AwesomeDialog(
+                    context: context,
+                    body: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "لم تقم بإضافة أي طفل بعد",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const addChild()));
+                          },
+                          child: Text('Add Child'),
+                        ),
+                      ],
+                    ),
+                    dialogType: DialogType.info,
+                    animType: AnimType.leftSlide,
+                  ).show();
+                } else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QuestionnairePage()));
+                }
               },
             ),
             const Divider(

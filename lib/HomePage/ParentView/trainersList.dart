@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, non_constant_identifier_names, use_build_context_synchronously, prefer_typing_uninitialized_variables
 import 'package:Autism_Helper/HomePage/ParentView/ChildrenList.dart';
+import 'package:Autism_Helper/HomePage/ParentView/addChild.dart';
 import 'package:Autism_Helper/HomePage/ParentView/parentChat.dart';
 import 'package:Autism_Helper/HomePage/ParentView/questions.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -39,6 +40,10 @@ class FiChartPageState extends State<trainersList> {
   var currentRequest;
   List trainers = [];
   var assignedTrainer;
+  var children = [];
+  bool isDialogShowing = false;
+  CollectionReference ChildrenRef =
+      FirebaseFirestore.instance.collection("parents");
   String gmail = FirebaseAuth.instance.currentUser!.email.toString();
   var parentUid = FirebaseAuth.instance.currentUser?.uid;
   //String uid = FirebaseAuth.instance.currentUser!.uid;
@@ -47,7 +52,23 @@ class FiChartPageState extends State<trainersList> {
   CollectionReference parentRef =
       FirebaseFirestore.instance.collection("parents");
 
+  getChildren() async {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference childRef = ChildrenRef.doc(uid).collection("children");
+    var response = await childRef.get();
+    for (var element in response.docs) {
+      setState(() {
+        children.add(element.data());
+      });
+    }
+    if (children.isEmpty) {
+      isDialogShowing = true;
+    }
+    print(isDialogShowing);
+  }
+
   getTrainers() async {
+    await getChildren();
     var response = await trainerRef.get();
     for (var element in response.docs) {
       setState(() {
@@ -82,7 +103,70 @@ class FiChartPageState extends State<trainersList> {
 
   Widget applyButton(String usermail, String trainerUid) {
     DocumentReference ref = parentRef.doc(uid);
-    if (currentRequest == "" && assignedTrainer == "") {
+    if (isDialogShowing == true) {
+      return Positioned(
+        top: 40,
+        left: 5,
+        child: Container(
+          width: 120,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.blue,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              AwesomeDialog(
+                context: context,
+                body: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "لم تقم بإضافة أي طفل بعد",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const addChild()));
+                      },
+                      style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(150, 40)),
+                      ),
+                      child: const Text(
+                        'أضف طفل',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ],
+                ),
+                dialogType: DialogType.info,
+                animType: AnimType.leftSlide,
+              ).show();
+            },
+            child: const Center(
+              child: Text(
+                'تقديم طلب',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    if (isDialogShowing == false &&
+        currentRequest == "" &&
+        assignedTrainer == "") {
       return Positioned(
         top: 40,
         left: 5,
@@ -118,7 +202,8 @@ class FiChartPageState extends State<trainersList> {
         ),
       );
     }
-    if (currentRequest != "" &&
+    if (isDialogShowing == false &&
+        currentRequest != "" &&
         currentRequest != usermail &&
         assignedTrainer == "") {
       return Positioned(
@@ -158,7 +243,9 @@ class FiChartPageState extends State<trainersList> {
       );
     }
 
-    if (currentRequest == usermail && assignedTrainer == "") {
+    if (isDialogShowing == false &&
+        currentRequest == usermail &&
+        assignedTrainer == "") {
       return Positioned(
         top: 40,
         left: 5,
@@ -197,7 +284,7 @@ class FiChartPageState extends State<trainersList> {
         ),
       );
     }
-    if (assignedTrainer != "") {
+    if (isDialogShowing == false && assignedTrainer != "") {
       return Positioned(
         top: 40,
         left: 5,
@@ -256,6 +343,7 @@ class FiChartPageState extends State<trainersList> {
 
   @override
   void initState() {
+    getChildren();
     getTrainers();
     getTrainerName();
     super.initState();

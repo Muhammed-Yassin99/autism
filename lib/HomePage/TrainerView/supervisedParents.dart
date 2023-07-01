@@ -480,10 +480,12 @@ class FiChartPageState extends State<supervisedParents> {
                                             scrollDirection: Axis.vertical,
                                             child: Stack(children: [
                                               ExpansionTile(
-                                                  backgroundColor: Colors.amber,
+                                                  backgroundColor:
+                                                      Colors.blueGrey,
                                                   title: const Text(
                                                       style: TextStyle(
-                                                          fontSize: 28),
+                                                          fontSize: 30,
+                                                          color: Colors.black),
                                                       textAlign:
                                                           TextAlign.right,
                                                       "الأطفال"),
@@ -508,12 +510,13 @@ class FiChartPageState extends State<supervisedParents> {
                                                               child:
                                                                   ExpansionTile(
                                                                 backgroundColor:
-                                                                    Colors
-                                                                        .black,
+                                                                    Colors.blue,
                                                                 title: Text(
                                                                     style: const TextStyle(
                                                                         fontSize:
-                                                                            28),
+                                                                            28,
+                                                                        color: Colors
+                                                                            .black),
                                                                     textAlign:
                                                                         TextAlign
                                                                             .right,
@@ -525,7 +528,7 @@ class FiChartPageState extends State<supervisedParents> {
                                                                           .red),
                                                                   Card(
                                                                     color: Colors
-                                                                        .grey,
+                                                                        .white,
                                                                     child:
                                                                         ListTile(
                                                                       title: Text(
@@ -539,7 +542,21 @@ class FiChartPageState extends State<supervisedParents> {
                                                                   ),
                                                                   Card(
                                                                     color: Colors
-                                                                        .grey,
+                                                                        .white,
+                                                                    child:
+                                                                        ListTile(
+                                                                      title: Text(
+                                                                          style: const TextStyle(
+                                                                              fontSize:
+                                                                                  26),
+                                                                          textAlign:
+                                                                              TextAlign.right,
+                                                                          "${"نتيجة إستبيان حالة الطفل"}: ${snapshot.data![i][j]['QuestionnaireScore']}"),
+                                                                    ),
+                                                                  ),
+                                                                  Card(
+                                                                    color: Colors
+                                                                        .white,
                                                                     child:
                                                                         ExpansionTile(
                                                                       backgroundColor:
@@ -683,7 +700,7 @@ class FiChartPageState extends State<supervisedParents> {
                                                                   ),
                                                                   Card(
                                                                     color: Colors
-                                                                        .grey,
+                                                                        .white,
                                                                     child:
                                                                         ExpansionTile(
                                                                       backgroundColor:
@@ -704,7 +721,7 @@ class FiChartPageState extends State<supervisedParents> {
                                                                                 Colors.red),
                                                                         Card(
                                                                           color:
-                                                                              Colors.grey,
+                                                                              Colors.white,
                                                                           child:
                                                                               ListView.builder(
                                                                             //scrollDirection: Axis.vertical,
