@@ -218,9 +218,9 @@ class FiChartPageState extends State<trainerListOfRequests> {
           scrollDirection: Axis.vertical,
           child: Stack(children: [
             ExpansionTile(
-                backgroundColor: Colors.amber,
+                backgroundColor: Colors.blueGrey,
                 title: const Text(
-                    style: TextStyle(fontSize: 28),
+                    style: TextStyle(fontSize: 30, color: Colors.black),
                     textAlign: TextAlign.right,
                     "الأطفال"),
                 children: [
@@ -249,6 +249,15 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                         style: const TextStyle(fontSize: 26),
                                         textAlign: TextAlign.right,
                                         "${"العمر"}: ${children[num][i]['age']}"),
+                                  ),
+                                ),
+                                Card(
+                                  color: Colors.grey,
+                                  child: ListTile(
+                                    title: Text(
+                                        style: const TextStyle(fontSize: 26),
+                                        textAlign: TextAlign.right,
+                                        "${"نتيجة إستبيان حالة الطفل"}: ${children[num][i]['QuestionnaireScore']}"),
                                   ),
                                 ),
                               ],
@@ -498,7 +507,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                                     Text(
                                                       "${parents[i]['username']}",
                                                       style: const TextStyle(
-                                                          fontSize: 24,
+                                                          fontSize: 30,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                       textAlign:
@@ -546,10 +555,12 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                             scrollDirection: Axis.vertical,
                                             child: Stack(children: [
                                               ExpansionTile(
-                                                  backgroundColor: Colors.amber,
+                                                  backgroundColor:
+                                                      Colors.blueGrey,
                                                   title: const Text(
                                                       style: TextStyle(
-                                                          fontSize: 28),
+                                                          fontSize: 30,
+                                                          color: Colors.black),
                                                       textAlign:
                                                           TextAlign.right,
                                                       "الأطفال"),
@@ -574,12 +585,13 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                                               child:
                                                                   ExpansionTile(
                                                                 backgroundColor:
-                                                                    Colors
-                                                                        .black,
+                                                                    Colors.blue,
                                                                 title: Text(
                                                                     style: const TextStyle(
                                                                         fontSize:
-                                                                            28),
+                                                                            30,
+                                                                        color: Colors
+                                                                            .black),
                                                                     textAlign:
                                                                         TextAlign
                                                                             .right,
@@ -591,7 +603,7 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                                                           .red),
                                                                   Card(
                                                                     color: Colors
-                                                                        .grey,
+                                                                        .white,
                                                                     child:
                                                                         ListTile(
                                                                       title: Text(
@@ -601,6 +613,20 @@ class FiChartPageState extends State<trainerListOfRequests> {
                                                                           textAlign:
                                                                               TextAlign.right,
                                                                           "${"العمر"}: ${snapshot.data![i][j]['age']}"),
+                                                                    ),
+                                                                  ),
+                                                                  Card(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    child:
+                                                                        ListTile(
+                                                                      title: Text(
+                                                                          style: const TextStyle(
+                                                                              fontSize:
+                                                                                  26),
+                                                                          textAlign:
+                                                                              TextAlign.right,
+                                                                          "${"نتيجة إستبيان حالة الطفل"}: ${snapshot.data![i][j]['QuestionnaireScore']}"),
                                                                     ),
                                                                   ),
                                                                 ],
