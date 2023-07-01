@@ -323,7 +323,11 @@ class HomeScreenState extends State<HomePage> {
                                 MaterialPageRoute(
                                     builder: (context) => const addChild()));
                           },
-                          child: Text('Add Child'),
+                          style: ButtonStyle(
+                            minimumSize:
+                                MaterialStateProperty.all(const Size(150, 40)),
+                          ),
+                          child: Text('أضف طفل'),
                         ),
                       ],
                     ),

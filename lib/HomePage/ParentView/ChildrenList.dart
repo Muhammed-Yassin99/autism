@@ -41,6 +41,7 @@ class FiChartPageState extends State<ChildrenList> {
   List children = [];
   List listofGames = [];
   List games = [];
+  bool childrenListEmpty = false;
   String email = FirebaseAuth.instance.currentUser!.email.toString();
   //String uid = FirebaseAuth.instance.currentUser!.uid;
   CollectionReference ChildrenRef =
@@ -53,6 +54,11 @@ class FiChartPageState extends State<ChildrenList> {
     for (var element in response.docs) {
       setState(() {
         children.add(element.data());
+      });
+    }
+    if (children.isEmpty) {
+      setState(() {
+        childrenListEmpty = true;
       });
     }
     if (kDebugMode) {
@@ -312,125 +318,186 @@ class FiChartPageState extends State<ChildrenList> {
           },
         ),
       ),
-      body: Container(
-        color: Colors.blueGrey,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
+      body: childrenListEmpty == true
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'لم تقم يإضافة أي طفل بعد',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to the add child screen
+                    },
+                    style: ButtonStyle(
+                      minimumSize:
+                          MaterialStateProperty.all(const Size(150, 40)),
+                    ),
+                    child:
+                        const Text('أضف طفل', style: TextStyle(fontSize: 24)),
+                  ),
+                ],
+              ),
+            )
+          : Container(
+              color: Colors.blueGrey,
               child: Stack(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: ListView.builder(
-                      //scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      itemCount: children.length,
-                      itemBuilder: (BuildContext context, int i) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 8.0),
-                          child: Container(
-                            constraints: const BoxConstraints(
-                              minHeight: 80,
-                              maxHeight: double.infinity,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: ExpansionTile(
-                                backgroundColor: Colors.blue,
-                                title: Text(
-                                    style: const TextStyle(
-                                        fontSize: 28, color: Colors.black),
-                                    textAlign: TextAlign.right,
-                                    "${children[i]['name']}"),
-                                // ignore: prefer_const_literals_to_create_immutables
-                                children: [
-                                  const Divider(color: Colors.red),
-                                  Card(
-                                    color: Colors.white,
-                                    child: ListTile(
-                                      title: Text(
-                                          style: const TextStyle(fontSize: 26),
-                                          textAlign: TextAlign.right,
-                                          "${"العمر"}: ${children[i]['age']}"),
-                                    ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          child: ListView.builder(
+                            //scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            itemCount: children.length,
+                            itemBuilder: (BuildContext context, int i) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 8.0),
+                                child: Container(
+                                  constraints: const BoxConstraints(
+                                    minHeight: 80,
+                                    maxHeight: double.infinity,
                                   ),
-                                  Card(
+                                  decoration: BoxDecoration(
                                     color: Colors.white,
-                                    child: ListTile(
-                                      title: Text(
-                                          style: const TextStyle(fontSize: 26),
-                                          textAlign: TextAlign.right,
-                                          "${"نتيجة إستبيان حالة الطفل"}: ${children[i]['QuestionnaireScore']}"),
-                                    ),
+                                    borderRadius: BorderRadius.circular(16),
                                   ),
-                                  Card(
-                                    color: Colors.white,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
                                     child: ExpansionTile(
-                                      backgroundColor: Colors.black,
-                                      title: const Text(
-                                        style: TextStyle(fontSize: 26),
-                                        textAlign: TextAlign.right,
-                                        "التقييم الكلي",
-                                      ),
+                                      backgroundColor: Colors.blue,
+                                      title: Text(
+                                          style: const TextStyle(
+                                              fontSize: 28,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.right,
+                                          "${children[i]['name']}"),
+                                      // ignore: prefer_const_literals_to_create_immutables
                                       children: [
                                         const Divider(color: Colors.red),
                                         Card(
-                                          color: Colors.grey,
-                                          child: ListView.builder(
-                                            //scrollDirection: Axis.vertical,
-                                            shrinkWrap: true,
-                                            itemCount: 1,
-                                            itemBuilder:
-                                                (BuildContext context, int j) {
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 22.0),
-                                                child: Center(
-                                                  child: SizedBox(
-                                                    width: 400,
-                                                    height: 400,
-                                                    child: LineChart(
-                                                        LineChartData(
-                                                            borderData: FlBorderData(
-                                                                show: true,
-                                                                border: Border.all(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    width: 2)),
-                                                            gridData:
-                                                                FlGridData(
-                                                              show: true,
-                                                              getDrawingHorizontalLine:
-                                                                  (value) {
-                                                                return FlLine(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    strokeWidth:
-                                                                        1);
-                                                              },
-                                                              drawVerticalLine:
-                                                                  true,
-                                                              getDrawingVerticalLine:
-                                                                  (value) {
-                                                                return FlLine(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    strokeWidth:
-                                                                        1);
-                                                              },
-                                                            ),
-                                                            titlesData:
-                                                                FlTitlesData(
-                                                              show: true,
-                                                              bottomTitles:
-                                                                  SideTitles(
+                                          color: Colors.white,
+                                          child: ListTile(
+                                            title: Text(
+                                                style: const TextStyle(
+                                                    fontSize: 26),
+                                                textAlign: TextAlign.right,
+                                                "${"العمر"}: ${children[i]['age']}"),
+                                          ),
+                                        ),
+                                        Card(
+                                          color: Colors.white,
+                                          child: ListTile(
+                                            title: Text(
+                                                style: const TextStyle(
+                                                    fontSize: 26),
+                                                textAlign: TextAlign.right,
+                                                "${"نتيجة إستبيان حالة الطفل"}: ${children[i]['QuestionnaireScore']}"),
+                                          ),
+                                        ),
+                                        Card(
+                                          color: Colors.white,
+                                          child: ExpansionTile(
+                                            backgroundColor: Colors.black,
+                                            title: const Text(
+                                              style: TextStyle(fontSize: 26),
+                                              textAlign: TextAlign.right,
+                                              "التقييم الكلي",
+                                            ),
+                                            children: [
+                                              const Divider(color: Colors.red),
+                                              Card(
+                                                color: Colors.grey,
+                                                child: ListView.builder(
+                                                  //scrollDirection: Axis.vertical,
+                                                  shrinkWrap: true,
+                                                  itemCount: 1,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int j) {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 22.0),
+                                                      child: Center(
+                                                        child: SizedBox(
+                                                          width: 400,
+                                                          height: 400,
+                                                          child: LineChart(
+                                                              LineChartData(
+                                                                  borderData: FlBorderData(
+                                                                      show:
+                                                                          true,
+                                                                      border: Border.all(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          width:
+                                                                              2)),
+                                                                  gridData:
+                                                                      FlGridData(
+                                                                    show: true,
+                                                                    getDrawingHorizontalLine:
+                                                                        (value) {
+                                                                      return FlLine(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          strokeWidth:
+                                                                              1);
+                                                                    },
+                                                                    drawVerticalLine:
+                                                                        true,
+                                                                    getDrawingVerticalLine:
+                                                                        (value) {
+                                                                      return FlLine(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          strokeWidth:
+                                                                              1);
+                                                                    },
+                                                                  ),
+                                                                  titlesData:
+                                                                      FlTitlesData(
+                                                                    show: true,
+                                                                    bottomTitles: SideTitles(
+                                                                        showTitles: true,
+                                                                        reservedSize: 35,
+                                                                        getTextStyles: (context, value) {
+                                                                          return const TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 18,
+                                                                              fontWeight: FontWeight.bold);
+                                                                        },
+                                                                        getTitles: (value) {
+                                                                          switch (
+                                                                              value.toInt()) {
+                                                                            case 0:
+                                                                              return 'الحيوانات';
+                                                                            case 2:
+                                                                              return 'الحروف';
+                                                                            case 4:
+                                                                              return 'الأوجه';
+                                                                            case 6:
+                                                                              return 'العائلة';
+                                                                            case 8:
+                                                                              return 'الأرقام';
+                                                                          }
+                                                                          return '';
+                                                                        },
+                                                                        margin: 8),
+                                                                    rightTitles:
+                                                                        SideTitles(),
+                                                                    topTitles:
+                                                                        SideTitles(),
+                                                                    leftTitles:
+                                                                        SideTitles(
                                                                       showTitles:
                                                                           true,
                                                                       reservedSize:
@@ -440,9 +507,9 @@ class FiChartPageState extends State<ChildrenList> {
                                                                               value) {
                                                                         return const TextStyle(
                                                                             color: Colors
-                                                                                .black,
+                                                                                .blue,
                                                                             fontSize:
-                                                                                18,
+                                                                                16,
                                                                             fontWeight:
                                                                                 FontWeight.bold);
                                                                       },
@@ -451,244 +518,204 @@ class FiChartPageState extends State<ChildrenList> {
                                                                         switch (
                                                                             value.toInt()) {
                                                                           case 0:
-                                                                            return 'الحيوانات';
+                                                                            return '0';
+                                                                          case 1:
+                                                                            return '1';
                                                                           case 2:
-                                                                            return 'الحروف';
+                                                                            return '2';
+                                                                          case 3:
+                                                                            return '3';
                                                                           case 4:
-                                                                            return 'الأوجه';
+                                                                            return '4';
+                                                                          case 5:
+                                                                            return '5';
                                                                           case 6:
-                                                                            return 'العائلة';
+                                                                            return '6';
+                                                                          case 7:
+                                                                            return '7';
                                                                           case 8:
-                                                                            return 'الأرقام';
+                                                                            return '8';
+                                                                          case 9:
+                                                                            return '9';
+                                                                          case 10:
+                                                                            return '10';
                                                                         }
                                                                         return '';
                                                                       },
                                                                       margin:
-                                                                          8),
-                                                              rightTitles:
-                                                                  SideTitles(),
-                                                              topTitles:
-                                                                  SideTitles(),
-                                                              leftTitles:
-                                                                  SideTitles(
-                                                                showTitles:
-                                                                    true,
-                                                                reservedSize:
-                                                                    35,
-                                                                getTextStyles:
-                                                                    (context,
-                                                                        value) {
-                                                                  return const TextStyle(
-                                                                      color: Colors
-                                                                          .blue,
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold);
-                                                                },
-                                                                getTitles:
-                                                                    (value) {
-                                                                  switch (value
-                                                                      .toInt()) {
-                                                                    case 0:
-                                                                      return '0';
-                                                                    case 1:
-                                                                      return '1';
-                                                                    case 2:
-                                                                      return '2';
-                                                                    case 3:
-                                                                      return '3';
-                                                                    case 4:
-                                                                      return '4';
-                                                                    case 5:
-                                                                      return '5';
-                                                                    case 6:
-                                                                      return '6';
-                                                                    case 7:
-                                                                      return '7';
-                                                                    case 8:
-                                                                      return '8';
-                                                                    case 9:
-                                                                      return '9';
-                                                                    case 10:
-                                                                      return '10';
-                                                                  }
-                                                                  return '';
-                                                                },
-                                                                margin: 12,
-                                                              ),
-                                                            ),
-                                                            maxX: 10,
-                                                            maxY: 11,
-                                                            minY: 0,
-                                                            minX: 0,
-                                                            lineBarsData: [
-                                                          LineChartBarData(
-                                                              spots: [
-                                                                FlSpot(
-                                                                    0,
-                                                                    double.parse(listofGames[i][0]
-                                                                            [
-                                                                            'Child rate out of 10']
-                                                                        .toString())),
-                                                                FlSpot(
-                                                                    2,
-                                                                    double.parse(listofGames[i][1]
-                                                                            [
-                                                                            'Child rate out of 10']
-                                                                        .toString())),
-                                                                FlSpot(
-                                                                    4,
-                                                                    double.parse(listofGames[i][2]
-                                                                            [
-                                                                            'Child rate out of 10']
-                                                                        .toString())),
-                                                                FlSpot(
-                                                                    6,
-                                                                    double.parse(listofGames[i][3]
-                                                                            [
-                                                                            'Child rate out of 10']
-                                                                        .toString())),
-                                                                FlSpot(
-                                                                    8,
-                                                                    double.parse(listofGames[i][4]
-                                                                            [
-                                                                            'Child rate out of 10']
-                                                                        .toString())),
-                                                              ],
-                                                              isCurved: true,
-                                                              colors: [
-                                                                Colors.white,
-                                                                Colors.white,
-                                                                Colors.white,
-                                                              ],
-                                                              barWidth: 5,
-                                                              belowBarData: BarAreaData(
-                                                                  show: true,
-                                                                  colors: gradientColors
-                                                                      .map((e) =>
-                                                                          e.withOpacity(
-                                                                              0.7))
-                                                                      .toList()))
-                                                        ])),
-                                                  ),
+                                                                          12,
+                                                                    ),
+                                                                  ),
+                                                                  maxX: 10,
+                                                                  maxY: 11,
+                                                                  minY: 0,
+                                                                  minX: 0,
+                                                                  lineBarsData: [
+                                                                LineChartBarData(
+                                                                    spots: [
+                                                                      FlSpot(
+                                                                          0,
+                                                                          double.parse(
+                                                                              listofGames[i][0]['Child rate out of 10'].toString())),
+                                                                      FlSpot(
+                                                                          2,
+                                                                          double.parse(
+                                                                              listofGames[i][1]['Child rate out of 10'].toString())),
+                                                                      FlSpot(
+                                                                          4,
+                                                                          double.parse(
+                                                                              listofGames[i][2]['Child rate out of 10'].toString())),
+                                                                      FlSpot(
+                                                                          6,
+                                                                          double.parse(
+                                                                              listofGames[i][3]['Child rate out of 10'].toString())),
+                                                                      FlSpot(
+                                                                          8,
+                                                                          double.parse(
+                                                                              listofGames[i][4]['Child rate out of 10'].toString())),
+                                                                    ],
+                                                                    isCurved:
+                                                                        true,
+                                                                    colors: [
+                                                                      Colors
+                                                                          .white,
+                                                                      Colors
+                                                                          .white,
+                                                                      Colors
+                                                                          .white,
+                                                                    ],
+                                                                    barWidth: 5,
+                                                                    belowBarData: BarAreaData(
+                                                                        show:
+                                                                            true,
+                                                                        colors: gradientColors
+                                                                            .map((e) =>
+                                                                                e.withOpacity(0.7))
+                                                                            .toList()))
+                                                              ])),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
                                                 ),
-                                              );
-                                            },
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  Card(
-                                    color: Colors.white,
-                                    child: ExpansionTile(
-                                      backgroundColor: Colors.black,
-                                      title: const Text(
-                                        style: TextStyle(fontSize: 26),
-                                        textAlign: TextAlign.right,
-                                        "مزيد من التفاصيل",
-                                      ),
-                                      children: [
-                                        const Divider(color: Colors.red),
                                         Card(
                                           color: Colors.white,
-                                          child: ListView.builder(
-                                            //scrollDirection: Axis.vertical,
-                                            shrinkWrap: true,
-                                            itemCount: 5,
-                                            itemBuilder:
-                                                (BuildContext context, int j) {
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 4),
-                                                child: ExpansionTile(
-                                                  backgroundColor: Colors.black,
-                                                  title: Text(
-                                                      style: const TextStyle(
-                                                          fontSize: 26),
-                                                      textAlign:
-                                                          TextAlign.right,
-                                                      "${listofGames[i][j]['name']}"),
-                                                  children: [
-                                                    const Divider(
-                                                        color: Colors.red),
-                                                    Card(
-                                                      color: Colors.grey,
-                                                      child: ListTile(
+                                          child: ExpansionTile(
+                                            backgroundColor: Colors.black,
+                                            title: const Text(
+                                              style: TextStyle(fontSize: 26),
+                                              textAlign: TextAlign.right,
+                                              "مزيد من التفاصيل",
+                                            ),
+                                            children: [
+                                              const Divider(color: Colors.red),
+                                              Card(
+                                                color: Colors.white,
+                                                child: ListView.builder(
+                                                  //scrollDirection: Axis.vertical,
+                                                  shrinkWrap: true,
+                                                  itemCount: 5,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int j) {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 4),
+                                                      child: ExpansionTile(
+                                                        backgroundColor:
+                                                            Colors.black,
                                                         title: Text(
                                                             style:
                                                                 const TextStyle(
                                                                     fontSize:
-                                                                        24),
+                                                                        26),
                                                             textAlign:
                                                                 TextAlign.right,
-                                                            "${"المستوي الأول"}: ${listofGames[i][j]['level1Score']}"),
+                                                            "${listofGames[i][j]['name']}"),
+                                                        children: [
+                                                          const Divider(
+                                                              color:
+                                                                  Colors.red),
+                                                          Card(
+                                                            color: Colors.grey,
+                                                            child: ListTile(
+                                                              title: Text(
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          24),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  "${"المستوي الأول"}: ${listofGames[i][j]['level1Score']}"),
+                                                            ),
+                                                          ),
+                                                          Card(
+                                                            color: Colors.grey,
+                                                            child: ListTile(
+                                                              title: Text(
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          24),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  "${"المستوي الثاني"}: ${listofGames[i][j]['level2Score']}"),
+                                                            ),
+                                                          ),
+                                                          Card(
+                                                            color: Colors.grey,
+                                                            child: ListTile(
+                                                              title: Text(
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          24),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  "${"المستوي الثالث"}: ${listofGames[i][j]['level3Score']}"),
+                                                            ),
+                                                          ),
+                                                          Card(
+                                                            color: Colors.grey,
+                                                            child: ListTile(
+                                                              title: Text(
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          24),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .right,
+                                                                  "${"المستوي الرابع"}: ${listofGames[i][j]['level4Score']}"),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
-                                                    Card(
-                                                      color: Colors.grey,
-                                                      child: ListTile(
-                                                        title: Text(
-                                                            style:
-                                                                const TextStyle(
-                                                                    fontSize:
-                                                                        24),
-                                                            textAlign:
-                                                                TextAlign.right,
-                                                            "${"المستوي الثاني"}: ${listofGames[i][j]['level2Score']}"),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      color: Colors.grey,
-                                                      child: ListTile(
-                                                        title: Text(
-                                                            style:
-                                                                const TextStyle(
-                                                                    fontSize:
-                                                                        24),
-                                                            textAlign:
-                                                                TextAlign.right,
-                                                            "${"المستوي الثالث"}: ${listofGames[i][j]['level3Score']}"),
-                                                      ),
-                                                    ),
-                                                    Card(
-                                                      color: Colors.grey,
-                                                      child: ListTile(
-                                                        title: Text(
-                                                            style:
-                                                                const TextStyle(
-                                                                    fontSize:
-                                                                        24),
-                                                            textAlign:
-                                                                TextAlign.right,
-                                                            "${"المستوي الرابع"}: ${listofGames[i][j]['level4Score']}"),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                    );
+                                                  },
                                                 ),
-                                              );
-                                            },
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

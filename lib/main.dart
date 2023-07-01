@@ -1,4 +1,5 @@
-// ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables, prefer_interpolation_to_compose_strings
+// ignore_for_file: duplicate_import, prefer_typing_uninitialized_variables, prefer_interpolation_to_compose_strings, import_of_legacy_library_into_null_safe
+// @dart=2.9
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,11 +11,12 @@ import 'HomePage/ParentView/parentHomePage.dart';
 import 'HomePage/TrainerView/trainerHomePage.dart';
 import 'SignIn/signInScreen.dart';
 import 'HomePage/ParentView/ChildrenList.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 var islogin;
 var hasRole = false;
 var role;
-List<CameraDescription>? cameras;
+List<CameraDescription> cameras;
 
 setHasRole(bool role) async {
   hasRole = role;
@@ -57,7 +59,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +78,70 @@ class MyApp extends StatelessWidget {
         "ChildrenChart": (context) => const ChildrenList()
       },
       home: islogin == false
-          ? const startPage()
+          ? SplashScreen(
+              seconds: 5,
+              navigateAfterSeconds: const startPage(),
+              title: Text('Autism Helper',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: Colors.red.withOpacity(0.5),
+                          blurRadius: 5,
+                          offset: const Offset(0, 5),
+                        ),
+                      ])),
+              image: Image.asset('assets/images/HomePage/AppIcon.png',
+                  alignment: Alignment.center),
+              backgroundColor: Colors.blue,
+              styleTextUnderTheLoader: const TextStyle(),
+              photoSize: 100.0,
+              //loaderColor: Colors.white,
+            )
           : hasRole == false
-              ? const HomePage()
-              : const trainerHomePage(),
+              ? SplashScreen(
+                  seconds: 5,
+                  navigateAfterSeconds: const HomePage(),
+                  title: Text('Autism Helper',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: Colors.red.withOpacity(0.5),
+                              blurRadius: 5,
+                              offset: const Offset(0, 5),
+                            ),
+                          ])),
+                  image: Image.asset('assets/images/HomePage/AppIcon.png',
+                      alignment: Alignment.center),
+                  backgroundColor: Colors.blue,
+                  styleTextUnderTheLoader: const TextStyle(),
+                  photoSize: 100.0,
+                  //loaderColor: Colors.white,
+                )
+              : SplashScreen(
+                  seconds: 5,
+                  navigateAfterSeconds: const trainerHomePage(),
+                  title: Text('Autism Helper',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: Colors.red.withOpacity(0.5),
+                              blurRadius: 5,
+                              offset: const Offset(0, 5),
+                            ),
+                          ])),
+                  image: Image.asset('assets/images/HomePage/AppIcon.png',
+                      alignment: Alignment.center),
+                  backgroundColor: Colors.blue,
+                  styleTextUnderTheLoader: const TextStyle(),
+                  photoSize: 100.0,
+                  //loaderColor: Colors.white,
+                ),
     );
   }
 }
