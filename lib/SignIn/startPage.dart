@@ -28,10 +28,10 @@ class startPage extends StatelessWidget {
               children: [
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.50,
-                  left: MediaQuery.of(context).size.width * 0.257,
+                  left: MediaQuery.of(context).size.width * 0.05,
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.486,
+                    width: MediaQuery.of(context).size.width * 0.40,
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(28)),
@@ -62,11 +62,11 @@ class startPage extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.63,
-                  left: MediaQuery.of(context).size.width * 0.257,
+                  top: MediaQuery.of(context).size.height * 0.50,
+                  right: MediaQuery.of(context).size.width * 0.05,
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.486,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(28)),
