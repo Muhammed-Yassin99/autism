@@ -331,21 +331,6 @@ class FiChartPageState extends State<trainerListOfRequests> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.book,
-                color: Colors.blue,
-              ),
-              title: const Text(
-                'الشهادات',
-                style: TextStyle(fontSize: 18),
-              ),
-              onTap: () {},
-            ),
-            const Divider(
-              color: Colors.red,
-              thickness: 1,
-            ),
-            ListTile(
-              leading: const Icon(
                 Icons.person,
                 color: Colors.blue,
               ),
