@@ -1,14 +1,16 @@
 // ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'croppedImage.dart';
-import 'dart:io';
 import 'dart:ui' as ui;
+import 'package:image/image.dart' as img;
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class StaticImage2 extends StatefulWidget {
   const StaticImage2({super.key});
@@ -22,8 +24,25 @@ class _StaticImageState extends State<StaticImage2> {
   late List _recognitions;
   late bool _busy;
   late double _imageWidth, _imageHeight;
+  var userName;
 
   final picker = ImagePicker();
+  setUserName() async {
+    var user = FirebaseAuth.instance.currentUser;
+    String mail = user!.email.toString();
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection("parents");
+    await userRef.get().then((value) {
+      for (var element in value.docs) {
+        if (element['gmail'].toString() == mail) {
+          setState(() {
+            userName = element['username'].toString();
+          });
+          break;
+        }
+      }
+    });
+  }
 
   // this function loads the model
   loadTfModel() async {
@@ -49,15 +68,71 @@ class _StaticImageState extends State<StaticImage2> {
   // this function detects the objects on the image
   // this function detects the objects on the image
   detectObject(File image) async {
-    var recognitions = await Tflite.detectObjectOnImage(
-        path: image.path, // required
-        model: "SSDMobileNet",
-        imageMean: 127.5,
-        imageStd: 127.5,
-        threshold: 0.5, // defaults to 0.1
-        numResultsPerClass: 5, // defaults to 5
-        asynch: true // defaults to true
-        );
+    if (image == null || !(await image.exists())) {
+      return AwesomeDialog(
+        context: context,
+        body: const Text(
+          textAlign: TextAlign.center,
+          "!حدث خطأ اثناء تحميل الصورة, حاول مجددا ",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        dialogType: DialogType.info,
+        animType: AnimType.leftSlide,
+      ).show();
+    }
+
+    // Load the image using the Image package
+    final bytes = await image.readAsBytes();
+    final decodedImage = img.decodeImage(bytes.toList())!;
+
+    // Resize the image to match the expected input size of the TensorFlow Lite model
+    const inputSize = 416;
+    final resizedImage =
+        img.copyResize(decodedImage, width: inputSize, height: inputSize);
+
+    print("Resized image size: ${resizedImage.width} x ${resizedImage.height}");
+
+    // Convert the resized image to a byte buffer
+    final input = Float32List(inputSize * inputSize * 3);
+    int pixelIndex = 0;
+    for (int i = 0; i < inputSize; i++) {
+      for (int j = 0; j < inputSize; j++) {
+        final pixel = resizedImage.getPixel(j, i);
+        input[pixelIndex++] = img.getRed(pixel) / 255.0;
+        input[pixelIndex++] = img.getGreen(pixel) / 255.0;
+        input[pixelIndex++] = img.getBlue(pixel) / 255.0;
+      }
+    }
+
+    // Detect objects on the resized image
+    final byteBuffer = input.buffer.asUint8List();
+    if (byteBuffer.isEmpty) {
+      throw ArgumentError('Input byte buffer is empty');
+    }
+    var recognitions = await Tflite.detectObjectOnBinary(
+      binary: byteBuffer,
+      model: "yolov2-tiny.tflite",
+      threshold: 0.5,
+      numResultsPerClass: 1,
+    );
+
+    // Check that the recognitions array is not empty or null
+    if (recognitions == null || recognitions.isEmpty) {
+      setState(() {
+        _image = null;
+        _recognitions = [];
+      });
+      return AwesomeDialog(
+        context: context,
+        body: const Text(
+          textAlign: TextAlign.center,
+          "!لا تحتوي الصورة علي اي اشياء للتعرف عليها,حاول مجددا",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        dialogType: DialogType.info,
+        animType: AnimType.leftSlide,
+      ).show();
+    }
 
     if (recognitions != null && recognitions.isNotEmpty) {
       final imageBytes = await image.readAsBytes();
@@ -89,24 +164,26 @@ class _StaticImageState extends State<StaticImage2> {
         ),
       );
     } else {
-      showDialog(
+      setState(() {
+        _image = null;
+        _recognitions = [];
+      });
+      return AwesomeDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('No objects detected'),
-          content: const Text('Please select another image.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
+        body: const Text(
+          textAlign: TextAlign.center,
+          "!لا تحتوي الصورة علي اي اشياء للتعرف عليها,حاول مجددا",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-      );
+        dialogType: DialogType.info,
+        animType: AnimType.leftSlide,
+      ).show();
     }
   }
 
   @override
   void initState() {
+    setUserName();
     super.initState();
     _busy = true;
     _recognitions = [];
@@ -122,12 +199,16 @@ class _StaticImageState extends State<StaticImage2> {
   }
 
   // display the bounding boxes over the detected objects
-  List<Widget> renderBoxes(Size screen) {
+  List<Widget> renderBoxes(Size imageSize) {
     if (_recognitions == null) return [];
     if (_imageHeight == null) return [];
 
-    double factorX = screen.width;
-    double factorY = _imageHeight / _imageHeight * screen.width;
+    //double factorX = imageSize.width;
+    // double factorY = imageSize.height;
+    double factorX = imageSize.width;
+    double factorY = _imageHeight / _imageHeight * imageSize.width;
+
+    print("FactorX: ${factorX}, FactorY: ${factorY}");
 
     Color blue = Colors.blue;
 
@@ -197,6 +278,7 @@ class _StaticImageState extends State<StaticImage2> {
         ),
       );
     }
+    //Size(_imageWidth, _imageHeight)
     stackChildren.addAll(renderBoxes(size));
 
     if (_busy) {
