@@ -81,40 +81,15 @@ class _StaticImageState extends State<StaticImage2> {
       ).show();
     }
 
-    // Load the image using the Image package
-    final bytes = await image.readAsBytes();
-    final decodedImage = img.decodeImage(bytes.toList())!;
-
-    // Resize the image to match the expected input size of the TensorFlow Lite model
-    const inputSize = 416;
-    final resizedImage =
-        img.copyResize(decodedImage, width: inputSize, height: inputSize);
-
-    print("Resized image size: ${resizedImage.width} x ${resizedImage.height}");
-
-    // Convert the resized image to a byte buffer
-    final input = Float32List(inputSize * inputSize * 3);
-    int pixelIndex = 0;
-    for (int i = 0; i < inputSize; i++) {
-      for (int j = 0; j < inputSize; j++) {
-        final pixel = resizedImage.getPixel(j, i);
-        input[pixelIndex++] = img.getRed(pixel) / 255.0;
-        input[pixelIndex++] = img.getGreen(pixel) / 255.0;
-        input[pixelIndex++] = img.getBlue(pixel) / 255.0;
-      }
-    }
-
-    // Detect objects on the resized image
-    final byteBuffer = input.buffer.asUint8List();
-    if (byteBuffer.isEmpty) {
-      throw ArgumentError('Input byte buffer is empty');
-    }
-    var recognitions = await Tflite.detectObjectOnBinary(
-      binary: byteBuffer,
-      model: "SSDMobileNet",
-      threshold: 0.4,
-      numResultsPerClass: 1,
-    );
+    var recognitions = await Tflite.detectObjectOnImage(
+        path: image.path, // required
+        model: "SSDMobileNet",
+        imageMean: 127.5,
+        imageStd: 127.5,
+        threshold: 0.5, // defaults to 0.1
+        numResultsPerClass: 5, // defaults to 5
+        asynch: true // defaults to true
+        );
 
     // Check that the recognitions array is not empty or null
     if (recognitions == null || recognitions.isEmpty) {
