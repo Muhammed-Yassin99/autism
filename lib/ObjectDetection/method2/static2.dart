@@ -201,11 +201,12 @@ class _StaticImageState extends State<StaticImage2> {
                     width: 3,
                   )),
                   child: Text(
-                    "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
+                    "%${re["detectedClass"]} "
+                    " ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}",
                     style: TextStyle(
                       background: Paint()..color = blue,
                       color: Colors.white,
-                      fontSize: 15,
+                      fontSize: 20,
                     ),
                   ),
                 )
