@@ -351,6 +351,7 @@ flutter:
      - assets/videos/wash_hand.mp4
      - assets/videos/eat_food.mp4
      - assets/videos/make_bed.mp4
+     - assets/videos/brush_teeth.mp4
      - assets/objecDetec/detect.tflite
      - assets/objecDetec/labelmap.txt
      - assets/objecDetec/yolov7labels1.txt
