@@ -4,14 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class FullscreenVideoPlayer3 extends StatefulWidget {
-  const FullscreenVideoPlayer3({super.key});
+class FullscreenVideoPlayer5 extends StatefulWidget {
+  const FullscreenVideoPlayer5({super.key});
 
   @override
-  _FullscreenVideoPlayer3State createState() => _FullscreenVideoPlayer3State();
+  _FullscreenVideoPlayer5State createState() => _FullscreenVideoPlayer5State();
 }
 
-class _FullscreenVideoPlayer3State extends State<FullscreenVideoPlayer3> {
+class _FullscreenVideoPlayer5State extends State<FullscreenVideoPlayer5> {
   late VideoPlayerController _controller;
   bool _isControllerInitialized = false;
   bool _hasControllerError = false;
@@ -24,7 +24,7 @@ class _FullscreenVideoPlayer3State extends State<FullscreenVideoPlayer3> {
 
   void _initVideoPlayer() async {
     try {
-      _controller = VideoPlayerController.asset('assets/videos/eat_food.mp4')
+      _controller = VideoPlayerController.asset('assets/videos/make_bed.mp4')
         ..addListener(() {
           if (_controller.value.hasError) {
             setState(() {

@@ -44,6 +44,7 @@ class _FullscreenVideoPlayerState1 extends State<FullscreenVideoPlayer1> {
         _hasControllerError = true;
       });
     }
+    _controller.play();
   }
 
   @override
