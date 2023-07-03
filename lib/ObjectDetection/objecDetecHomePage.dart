@@ -9,6 +9,7 @@ import 'package:Autism_Helper/main.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'method2/static2.dart';
@@ -287,9 +288,20 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
                 onTap: (index) {
                   setState(() {
                     seletedItem = index;
-                    pageController.animateToPage(seletedItem,
-                        duration: Duration(milliseconds: 200),
-                        curve: Curves.linear);
+                    try {
+                      pageController.animateToPage(seletedItem,
+                          duration: Duration(milliseconds: 200),
+                          curve: Curves.linear);
+                    } catch (error) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => objecDetecHomepage()),
+                      );
+                      if (kDebugMode) {
+                        print('Error: $error');
+                      }
+                    }
                   });
                 },
               ),
