@@ -364,8 +364,8 @@ class _StaticImageState extends State<StaticImage> {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      final image = File(pickedFile.path);
-      detectObject(image);
+      _image = File(pickedFile.path);
+      detectObject(_image);
     } else {
       if (kDebugMode) {
         print("No image selected");
