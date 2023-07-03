@@ -111,8 +111,8 @@ class _StaticImageState extends State<StaticImage2> {
     }
     var recognitions = await Tflite.detectObjectOnBinary(
       binary: byteBuffer,
-      model: "yolov2-tiny.tflite",
-      threshold: 0.5,
+      model: "SSDMobileNet",
+      threshold: 0.4,
       numResultsPerClass: 1,
     );
 
