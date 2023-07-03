@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:Autism_Helper/model/homePage_icons.dart';
+import 'package:Autism_Helper/skills/brush_teeth.dart';
+import 'package:Autism_Helper/skills/drink.dart';
 import 'package:Autism_Helper/skills/eat_food.dart';
 import 'package:Autism_Helper/skills/make_bed.dart';
 import 'package:Autism_Helper/skills/wash_hands.dart';
@@ -131,6 +133,18 @@ class PhysCard extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => const FullscreenVideoPlayer5()));
+    }
+    if (category.id == 1) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const FullscreenVideoPlayer6()));
+    }
+    if (category.id == 4) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const FullscreenVideoPlayer7()));
     }
   }
 }
