@@ -250,6 +250,22 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
             ),
           ),
         ),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.list,
+                size: 55,
+              ),
+              onPressed: () async {
+                setState(() {});
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+
         // ignore: prefer_const_literals_to_create_immutables
         actions: [
           const SizedBox(width: 18),
