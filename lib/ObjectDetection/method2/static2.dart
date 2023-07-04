@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use, unnecessary_null_comparison, unused_field, library_private_types_in_public_api, prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'dart:io';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -18,6 +19,7 @@ class StaticImage2 extends StatefulWidget {
 }
 
 class _StaticImageState extends State<StaticImage2> {
+  final player = AudioPlayer();
   var _image;
   late List _recognitions;
   late bool _busy;
@@ -178,27 +180,64 @@ class _StaticImageState extends State<StaticImage2> {
 
     return _recognitions.map((re) {
       return Positioned(
-          left: re["rect"]["x"] * factorX,
-          top: re["rect"]["y"] * factorY,
-          width: re["rect"]["w"] * factorX,
-          height: re["rect"]["h"] * factorY,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: ((re["confidenceInClass"] > 0.50))
-              ? Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    color: blue,
-                    width: 3,
-                  )),
-                  child: Text(
-                    "%${re["detectedClass"]} "
-                    " ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}",
-                    style: TextStyle(
-                      background: Paint()..color = blue,
-                      color: Colors.white,
-                      fontSize: 20,
+              ? Stack(children: [
+                  Positioned(
+                    left: re["rect"]["x"] * factorX,
+                    top: re["rect"]["y"] * factorY,
+                    width: re["rect"]["w"] * factorX,
+                    height: re["rect"]["h"] * factorY,
+                    child: GestureDetector(
+                      onTap: () {
+                        print(re["detectedClass"]);
+                        String newPath = getPath(re["detectedClass"]);
+                        playBeep(newPath);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                          color: blue,
+                          width: 3,
+                        )),
+                      ),
                     ),
                   ),
-                )
+                  Positioned(
+                    left: re["rect"]["x"] * factorX,
+                    top: re["rect"]["y"] * factorY - 33,
+                    width: 125,
+                    child: GestureDetector(
+                      onTap: () {
+                        String newPath = getPath(re["detectedClass"]);
+                        print(newPath);
+                        playBeep(newPath);
+                      },
+                      child: Container(
+                          color: Colors.blue,
+                          child: Row(children: [
+                            const SizedBox(
+                                width:
+                                    5), // Add some spacing between the icon and the text
+                            Text(
+                              "%${re["detectedClass"]} "
+                              " ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}",
+                              style: TextStyle(
+                                background: Paint()..color = blue,
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                            const Icon(
+                              size: 20,
+                              Icons.volume_up,
+                              color: Colors.white,
+                            ),
+                          ])),
+                    ),
+                  ),
+                ])
               : Container());
     }).toList();
   }
@@ -331,5 +370,18 @@ class _StaticImageState extends State<StaticImage2> {
         return;
       }
     });
+  }
+
+  Future<void> playBeep(String path) async {
+    player.play(AssetSource(path), volume: 1.0);
+  }
+
+  String getPath(String label) {
+    if (label == 'شخص') {
+      String newPath = 'sounds/objectDetec/person.wav';
+      return newPath;
+    } else {
+      return "";
+    }
   }
 }

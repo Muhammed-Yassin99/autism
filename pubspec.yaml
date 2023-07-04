@@ -363,6 +363,26 @@ flutter:
      - assets/objecDetec/yolov7-tiny.tflite
      - assets/objecDetec/mobilenet_v1_1.0_224.tflite
      - assets/objecDetec/mobilenet_v1_1.0_224.txt
+     - assets/sounds/objectDetec/اتوبيس.wav
+     - assets/sounds/objectDetec/اشارة مرور.wav
+     - assets/sounds/objectDetec/بقرة.wav
+     - assets/sounds/objectDetec/حصان.wav
+     - assets/sounds/objectDetec/خاروف.wav
+     - assets/sounds/objectDetec/دراجة نارية.wav
+     - assets/sounds/objectDetec/سيارة.wav
+     - assets/sounds/objectDetec/شاحنة نقل.wav
+     - assets/sounds/objectDetec/person.wav
+     - assets/sounds/objectDetec/صنبور الاطفاء.wav
+     - assets/sounds/objectDetec/طائر.wav
+     - assets/sounds/objectDetec/طائرة.wav
+     - assets/sounds/objectDetec/عجلة.wav
+     - assets/sounds/objectDetec/عداد موقف السيارات.wav
+     - assets/sounds/objectDetec/علامة وقوف.wav
+     - assets/sounds/objectDetec/قطار.wav
+     - assets/sounds/objectDetec/قطة.wav
+     - assets/sounds/objectDetec/كلب.wav
+     - assets/sounds/objectDetec/مركب.wav
+     - assets/sounds/objectDetec/مقعد.wav
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see
