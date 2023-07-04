@@ -28,6 +28,8 @@ class _EditProfilePageState extends State<editTrainerProfile> {
   var userPic;
   var userYearsOfExp;
   var userLocation;
+  var availabeTimes;
+  var moreDetailsAboutYou;
   var editedDate = [];
   final TimeOfDay _startTime = const TimeOfDay(hour: 12, minute: 0);
   final TimeOfDay _endTime = const TimeOfDay(hour: 20, minute: 0);
@@ -35,7 +37,7 @@ class _EditProfilePageState extends State<editTrainerProfile> {
       FirebaseFirestore.instance.collection("trainers");
   var uid = FirebaseAuth.instance.currentUser!.uid;
   List<TextEditingController> controllers = List.generate(
-    3,
+    6,
     (index) => TextEditingController(),
   );
 
@@ -53,6 +55,8 @@ class _EditProfilePageState extends State<editTrainerProfile> {
             userPic = element['profilePic'].toString();
             userYearsOfExp = element['yearsOfExp'].toString();
             userLocation = element['location'].toString();
+            availabeTimes = element['availabeTimes'].toString();
+            moreDetailsAboutYou = element['moreDetailsAboutYou'].toString();
           });
         }
       }
@@ -71,8 +75,10 @@ class _EditProfilePageState extends State<editTrainerProfile> {
     editedDate.add(userYearsOfExp);
     editedDate.add(userLocation);
     editedDate.add(userPic);
+    editedDate.add(availabeTimes);
+    editedDate.add(moreDetailsAboutYou);
     if (kDebugMode) {
-      print(editedDate[2]);
+      print(editedDate);
     }
   }
 
@@ -189,6 +195,9 @@ class _EditProfilePageState extends State<editTrainerProfile> {
               buildTextField("الاسم بالكامل", userName.toString(), 0),
               buildTextField("سنين الخبرة", userYearsOfExp.toString(), 1),
               buildTextField("محل العمل", userLocation.toString(), 2),
+              buildTextField("أوقات العمل", availabeTimes.toString(), 4),
+              buildTextField(
+                  "مزيد من التفاصيل عنك", moreDetailsAboutYou.toString(), 5),
               const SizedBox(
                 height: 35,
               ),
@@ -264,6 +273,8 @@ class _EditProfilePageState extends State<editTrainerProfile> {
       ref.update({"username": editedDate[0]});
       ref.update({"yearsOfExp": editedDate[1]});
       ref.update({"location": editedDate[2]});
+      ref.update({"availabeTimes": editedDate[4]});
+      ref.update({"moreDetailsAboutYou": editedDate[5]});
     });
     /*if (kDebugMode) {
       print('Image uploaded successfully: $_imageUrl');
@@ -272,82 +283,6 @@ class _EditProfilePageState extends State<editTrainerProfile> {
 
   Widget buildTextField(String labelText, String placeholder, int num) {
     TextEditingController controller = controllers[num];
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextFormField(
-        controller: controller,
-        onChanged: (String newText) {
-          String currentHintText = controller.text;
-          editedDate[num] = currentHintText;
-          print('New hint text: $newText');
-          print('Current hint text: $currentHintText');
-          print(editedDate[0]);
-          print(editedDate[3]);
-        },
-        textAlign: TextAlign.right,
-        textDirection: TextDirection.rtl,
-        enabled: true,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(bottom: 3),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: placeholder,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          labelText: labelText,
-          labelStyle: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
-          alignLabelWithHint: true,
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField1(String labelText, String placeholder, int num) {
-    TextEditingController controller = controllers[1];
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextFormField(
-        controller: controller,
-        onChanged: (String newText) {
-          String currentHintText = controller.text;
-          editedDate[num] = currentHintText;
-          print('New hint text: $newText');
-          print('Current hint text: $currentHintText');
-          print(editedDate[0]);
-          print(editedDate[3]);
-        },
-        textAlign: TextAlign.right,
-        textDirection: TextDirection.rtl,
-        enabled: true,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(bottom: 3),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: placeholder,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          labelText: labelText,
-          labelStyle: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
-          alignLabelWithHint: true,
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField2(String labelText, String placeholder, int num) {
-    TextEditingController controller = controllers[2];
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(

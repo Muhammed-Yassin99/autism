@@ -28,6 +28,8 @@ class _EditProfilePageState extends State<trainerProfile> {
   var userPic;
   var userYearsOfExp;
   var userLocation;
+  var availabeTimes;
+  var moreDetailsAboutYou;
   CollectionReference trainerRef =
       FirebaseFirestore.instance.collection("trainers");
   var uid = FirebaseAuth.instance.currentUser!.uid;
@@ -46,6 +48,8 @@ class _EditProfilePageState extends State<trainerProfile> {
             userPic = element['profilePic'].toString();
             userYearsOfExp = element['yearsOfExp'].toString();
             userLocation = element['location'].toString();
+            availabeTimes = element['availabeTimes'].toString();
+            moreDetailsAboutYou = element['moreDetailsAboutYou'].toString();
           });
         }
       }
@@ -150,6 +154,9 @@ class _EditProfilePageState extends State<trainerProfile> {
                   FirebaseAuth.instance.currentUser!.email.toString()),
               buildTextField("سنين الخبرة", userYearsOfExp.toString()),
               buildTextField("محل العمل", userLocation.toString()),
+              buildTextField("أوقات العمل", availabeTimes.toString()),
+              buildTextField(
+                  "مزيد من التفاصيل عنك", moreDetailsAboutYou.toString()),
               const SizedBox(
                 height: 35,
               ),

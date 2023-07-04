@@ -58,6 +58,7 @@ class _SignUpScreenState extends State<signUpScreen> {
         "location": "لم يتم التحديد بعد",
         "yearsOfExp": "لم يتم التحديد بعد",
         "availabeTimes": "لم يتم التحديد بعد",
+        "moreDetailsAboutYou": " ",
         "rate": "",
         "supervisedParents": [],
       });

@@ -659,6 +659,16 @@ class FiChartPageState extends State<trainersList> {
                                       "${trainers[i]['gmail']}:${"البريد الالكتروني"}"),
                                 ),
                               ),
+                              const Divider(color: Colors.red),
+                              Card(
+                                color: Colors.grey,
+                                child: ListTile(
+                                  title: Text(
+                                      style: const TextStyle(fontSize: 26),
+                                      textAlign: TextAlign.right,
+                                      "${trainers[i]['moreDetailsAboutYou']}:${"مزيد من التفاصيل"}"),
+                                ),
+                              ),
                             ],
                           ),
                         ));
