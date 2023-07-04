@@ -11,13 +11,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../Games/gamesHomePage1.dart';
 import '../../Learn/learnHomePage.dart';
-import '../../ObjectDetection/method2/try.dart';
 import 'ChildrenList.dart';
 import 'addChild.dart';
 import '../../model/homePage_icons.dart';
 import '../../skills/skillsHomePage.dart';
-
-import 'package:Autism_Helper/ObjectDetection/method2/static2.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
 import 'croppedImage.dart';
-import 'dart:ui' as ui;
-import 'package:image/image.dart' as img;
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 class StaticImage2 extends StatefulWidget {
@@ -208,7 +206,6 @@ class _StaticImageState extends State<StaticImage2> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(size);
 
     List<Widget> stackChildren = [];
 
