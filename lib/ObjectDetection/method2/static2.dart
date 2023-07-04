@@ -68,6 +68,15 @@ class _StaticImageState extends State<StaticImage2> {
   // this function detects the objects on the image
   // this function detects the objects on the image
   detectObject(File image) async {
+    var recognitions = await Tflite.detectObjectOnImage(
+        path: image.path, // required
+        model: "SSDMobileNet",
+        imageMean: 127.5,
+        imageStd: 127.5,
+        threshold: 0.5, // defaults to 0.1
+        numResultsPerClass: 5, // defaults to 5
+        asynch: true // defaults to true
+        );
     if (image == null || !(await image.exists())) {
       return AwesomeDialog(
         context: context,
@@ -80,17 +89,6 @@ class _StaticImageState extends State<StaticImage2> {
         animType: AnimType.leftSlide,
       ).show();
     }
-
-    var recognitions = await Tflite.detectObjectOnImage(
-        path: image.path, // required
-        model: "SSDMobileNet",
-        imageMean: 127.5,
-        imageStd: 127.5,
-        threshold: 0.5, // defaults to 0.1
-        numResultsPerClass: 5, // defaults to 5
-        asynch: true // defaults to true
-        );
-
     // Check that the recognitions array is not empty or null
     if (recognitions == null || recognitions.isEmpty) {
       setState(() {
@@ -108,13 +106,7 @@ class _StaticImageState extends State<StaticImage2> {
         animType: AnimType.leftSlide,
       ).show();
     }
-
     if (recognitions != null && recognitions.isNotEmpty) {
-      final imageBytes = await image.readAsBytes();
-      final imageCodec = await ui.instantiateImageCodec(imageBytes);
-      final ui.Image fullSizeImage = (await imageCodec.getNextFrame()).image;
-      final imageWidth = fullSizeImage.width.toDouble();
-      final imageHeight = fullSizeImage.height.toDouble();
       FileImage(image)
           .resolve(const ImageConfiguration())
           .addListener((ImageStreamListener((ImageInfo info, bool _) {
@@ -126,15 +118,14 @@ class _StaticImageState extends State<StaticImage2> {
       setState(() {
         _recognitions = recognitions;
       });
-
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => CroppedImagesScreen(
             image: image,
             recognitions: recognitions,
-            imageWidth: imageWidth,
-            imageHeight: imageHeight,
+            imageWidth: _imageWidth,
+            imageHeight: _imageHeight,
           ),
         ),
       );
@@ -174,15 +165,15 @@ class _StaticImageState extends State<StaticImage2> {
   }
 
   // display the bounding boxes over the detected objects
-  List<Widget> renderBoxes(Size imageSize) {
+  List<Widget> renderBoxes(Size screen) {
     if (_recognitions == null) return [];
     if (_imageHeight == null) return [];
 
     //double factorX = imageSize.width;
     // double factorY = imageSize.height;
-    double factorX = imageSize.width;
-    double factorY = _imageHeight / _imageHeight * imageSize.width;
-
+    double factorX = screen.width;
+    double factorY = _imageHeight / _imageHeight * screen.width;
+    print("imageSize.width: ${_imageWidth}, imageSize.height: ${_imageHeight}");
     print("FactorX: ${factorX}, FactorY: ${factorY}");
 
     Color blue = Colors.blue;
@@ -217,23 +208,25 @@ class _StaticImageState extends State<StaticImage2> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(size);
 
     List<Widget> stackChildren = [];
 
     if (_image == null) {
-      stackChildren.add(Positioned(
-          top: 105,
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/HomePage/discover1.jpg"),
-                fit: BoxFit.cover,
-                //alignment: Alignment.topCenter, // set the position of the image
-              ),
+      stackChildren.add(Padding(
+        padding: EdgeInsets.only(top: size.height * 0.15),
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/HomePage/discover1.jpg"),
+              fit: BoxFit.cover,
+              //alignment: Alignment.topCenter, // set the position of the image
             ),
-            height: size.height * 0.62,
-            width: size.width,
-          )));
+          ),
+          height: size.height * 0.66,
+          width: size.width,
+        ),
+      ));
       stackChildren.add(
         const Text(
           "قم باختيار الصورة للتعرف على الأشياء الموجودة بها",
@@ -247,11 +240,7 @@ class _StaticImageState extends State<StaticImage2> {
       );
     } else {
       stackChildren.add(
-        Image.file(
-          _image,
-          width: size.width,
-          height: size.height,
-        ),
+        Container(child: Image.file(_image)),
       );
     }
     //Size(_imageWidth, _imageHeight)
@@ -283,8 +272,8 @@ class _StaticImageState extends State<StaticImage2> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 SizedBox(
-                  width: 140,
-                  height: 140,
+                  width: 100,
+                  height: 100,
                   child: FloatingActionButton(
                     heroTag: "Fltbtn2",
                     onPressed: getImageFromCamera,
@@ -293,8 +282,8 @@ class _StaticImageState extends State<StaticImage2> {
                   ),
                 ),
                 SizedBox(
-                  width: 140,
-                  height: 140,
+                  width: 100,
+                  height: 100,
                   child: FloatingActionButton(
                     heroTag: "Fltbtn1",
                     onPressed: getImageFromGallery,
@@ -304,31 +293,15 @@ class _StaticImageState extends State<StaticImage2> {
                 ),
               ],
             ),
-            /*const SizedBox(
-              height: 40,
-            ),
-            SizedBox(
-              width: 140,
-              height: 140,
-              child: FloatingActionButton(
-                heroTag: "Fltbtn3",
-                onPressed: _navigateToCroppedImagesScreen,
-                mini: false,
-                child: const Icon(Icons.crop, size: 80),
-              ),
-            ),*/
           ],
         ),
       ),
-      body: Column(children: [
-        SizedBox(
-          height: size.height - 170,
-          width: size.width,
-          child: Stack(
-            children: stackChildren,
-          ),
-        )
-      ]),
+      body: Container(
+        alignment: Alignment.center,
+        child: Stack(
+          children: stackChildren,
+        ),
+      ),
     ));
   }
 
