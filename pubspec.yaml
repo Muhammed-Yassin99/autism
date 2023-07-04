@@ -363,26 +363,26 @@ flutter:
      - assets/objecDetec/yolov7-tiny.tflite
      - assets/objecDetec/mobilenet_v1_1.0_224.tflite
      - assets/objecDetec/mobilenet_v1_1.0_224.txt
-     - assets/sounds/objectDetec/اتوبيس.wav
-     - assets/sounds/objectDetec/اشارة مرور.wav
-     - assets/sounds/objectDetec/بقرة.wav
-     - assets/sounds/objectDetec/حصان.wav
-     - assets/sounds/objectDetec/خاروف.wav
-     - assets/sounds/objectDetec/دراجة نارية.wav
-     - assets/sounds/objectDetec/سيارة.wav
-     - assets/sounds/objectDetec/شاحنة نقل.wav
+     - assets/sounds/objectDetec/bus.wav
+     - assets/sounds/objectDetec/TrafficSignal.wav
+     - assets/sounds/objectDetec/cow.wav
+     - assets/sounds/objectDetec/horse.wav
+     - assets/sounds/objectDetec/sheep.wav
+     - assets/sounds/objectDetec/motorcycle.wav
+     - assets/sounds/objectDetec/car.wav
+     - assets/sounds/objectDetec/truck.wav
      - assets/sounds/objectDetec/person.wav
-     - assets/sounds/objectDetec/صنبور الاطفاء.wav
-     - assets/sounds/objectDetec/طائر.wav
-     - assets/sounds/objectDetec/طائرة.wav
-     - assets/sounds/objectDetec/عجلة.wav
-     - assets/sounds/objectDetec/عداد موقف السيارات.wav
-     - assets/sounds/objectDetec/علامة وقوف.wav
-     - assets/sounds/objectDetec/قطار.wav
-     - assets/sounds/objectDetec/قطة.wav
-     - assets/sounds/objectDetec/كلب.wav
-     - assets/sounds/objectDetec/مركب.wav
-     - assets/sounds/objectDetec/مقعد.wav
+     - assets/sounds/objectDetec/fireHydrant.wav
+     - assets/sounds/objectDetec/bird.wav
+     - assets/sounds/objectDetec/airplane.wav
+     - assets/sounds/objectDetec/bike.wav
+     - assets/sounds/objectDetec/ParkingMeter.wav
+     - assets/sounds/objectDetec/stopSign.wav
+     - assets/sounds/objectDetec/train.wav
+     - assets/sounds/objectDetec/cat.wav
+     - assets/sounds/objectDetec/dog.wav
+     - assets/sounds/objectDetec/boat.wav
+     - assets/sounds/objectDetec/seat.wav
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see

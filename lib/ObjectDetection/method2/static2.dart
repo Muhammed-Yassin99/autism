@@ -380,6 +380,78 @@ class _StaticImageState extends State<StaticImage2> {
     if (label == 'شخص') {
       String newPath = 'sounds/objectDetec/person.wav';
       return newPath;
+    }
+    if (label == 'عجلة') {
+      String newPath = 'sounds/objectDetec/bike.wav';
+      return newPath;
+    }
+    if (label == 'سيارة') {
+      String newPath = 'sounds/objectDetec/car.wav';
+      return newPath;
+    }
+    if (label == 'دراجة نارية') {
+      String newPath = 'sounds/objectDetec/motorcycle.wav';
+      return newPath;
+    }
+    if (label == 'طائرة') {
+      String newPath = 'sounds/objectDetec/airplane.wav';
+      return newPath;
+    }
+    if (label == 'قطار') {
+      String newPath = 'sounds/objectDetec/train.wav';
+      return newPath;
+    }
+    if (label == 'شاحنة نقل') {
+      String newPath = 'sounds/objectDetec/truck.wav';
+      return newPath;
+    }
+    if (label == 'مركب') {
+      String newPath = 'sounds/objectDetec/boat.wav';
+      return newPath;
+    }
+    if (label == 'اشارة مرور') {
+      String newPath = 'sounds/objectDetec/TrafficSignal.wav';
+      return newPath;
+    }
+    if (label == 'صنبور الاطفاء') {
+      String newPath = 'sounds/objectDetec/fireHydrant.wav';
+      return newPath;
+    }
+    if (label == 'علامة وقوف') {
+      String newPath = 'sounds/objectDetec/stopSign.wav';
+      return newPath;
+    }
+    if (label == 'عداد موقف السيارات') {
+      String newPath = 'sounds/objectDetec/ParkingMeter.wav';
+      return newPath;
+    }
+    if (label == 'مقعد') {
+      String newPath = 'sounds/objectDetec/seat.wav';
+      return newPath;
+    }
+    if (label == 'طائر') {
+      String newPath = 'sounds/objectDetec/bird.wav';
+      return newPath;
+    }
+    if (label == 'قطة') {
+      String newPath = 'sounds/objectDetec/cat.wav';
+      return newPath;
+    }
+    if (label == 'كلب') {
+      String newPath = 'sounds/objectDetec/dog.wav';
+      return newPath;
+    }
+    if (label == 'حصان') {
+      String newPath = 'sounds/objectDetec/horse.wav';
+      return newPath;
+    }
+    if (label == 'خاروف') {
+      String newPath = 'sounds/objectDetec/sheep.wav';
+      return newPath;
+    }
+    if (label == 'بقرة') {
+      String newPath = 'sounds/objectDetec/cow.wav';
+      return newPath;
     } else {
       return "";
     }
