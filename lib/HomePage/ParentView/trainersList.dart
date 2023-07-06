@@ -656,7 +656,7 @@ class FiChartPageState extends State<trainersList> {
                                   title: Text(
                                       style: const TextStyle(fontSize: 26),
                                       textAlign: TextAlign.right,
-                                      "${trainers[i]['gmail']}:${"البريد الالكتروني"}"),
+                                      ":${"البريد الالكتروني"} ${trainers[i]['gmail']}"),
                                 ),
                               ),
                               const Divider(color: Colors.red),
@@ -666,7 +666,7 @@ class FiChartPageState extends State<trainersList> {
                                   title: Text(
                                       style: const TextStyle(fontSize: 26),
                                       textAlign: TextAlign.right,
-                                      "${trainers[i]['moreDetailsAboutYou']}:${"مزيد من التفاصيل"}"),
+                                      "${"مزيد من التفاصيل"}: ${trainers[i]['moreDetailsAboutYou']}"),
                                 ),
                               ),
                             ],
