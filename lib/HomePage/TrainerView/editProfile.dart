@@ -135,7 +135,7 @@ class _EditProfilePageState extends State<editTrainerProfile> {
           child: ListView(
             children: [
               const Text(
-                "Edit Profile",
+                "تعديل الملف الشخصي",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               const SizedBox(
@@ -286,6 +286,7 @@ class _EditProfilePageState extends State<editTrainerProfile> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(
+        maxLines: null,
         controller: controller,
         onChanged: (String newText) {
           String currentHintText = controller.text;

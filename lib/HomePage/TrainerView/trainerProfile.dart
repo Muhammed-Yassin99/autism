@@ -171,6 +171,7 @@ class _EditProfilePageState extends State<trainerProfile> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(
+        maxLines: null,
         textAlign: TextAlign.right,
         textDirection: TextDirection.rtl,
         enabled: false,
