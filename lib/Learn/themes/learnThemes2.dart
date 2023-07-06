@@ -20,7 +20,7 @@ class learnThemes2 extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             'هيا لنتعلم المشهد العاطفي',
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
           ),
         ),
         elevation: 0,
