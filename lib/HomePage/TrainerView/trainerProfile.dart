@@ -149,14 +149,14 @@ class _EditProfilePageState extends State<trainerProfile> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("الاسم بالكامل", userName.toString()),
+              buildTextField("الاسم بالكامل", userName.toString(), 1),
               buildTextField("البريد الألكتروني",
-                  FirebaseAuth.instance.currentUser!.email.toString()),
-              buildTextField("سنين الخبرة", userYearsOfExp.toString()),
-              buildTextField("محل العمل", userLocation.toString()),
-              buildTextField("أوقات العمل", availabeTimes.toString()),
+                  FirebaseAuth.instance.currentUser!.email.toString(), 1),
+              buildTextField("سنين الخبرة", userYearsOfExp.toString(), 1),
+              buildTextField("محل العمل", userLocation.toString(), 1),
+              buildTextField("أوقات العمل", availabeTimes.toString(), 1),
               buildTextField(
-                  "مزيد من التفاصيل عنك", moreDetailsAboutYou.toString()),
+                  "مزيد من التفاصيل عنك", moreDetailsAboutYou.toString(), 3),
               const SizedBox(
                 height: 35,
               ),
@@ -167,11 +167,11 @@ class _EditProfilePageState extends State<trainerProfile> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder) {
+  Widget buildTextField(String labelText, String placeholder, int NoLines) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(
-        maxLines: null,
+        maxLines: NoLines,
         textAlign: TextAlign.right,
         textDirection: TextDirection.rtl,
         enabled: false,

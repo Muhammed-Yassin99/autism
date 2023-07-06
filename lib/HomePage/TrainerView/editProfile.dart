@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, camel_case_types, unused_field, unused_local_variable, deprecated_member_use, prefer_typing_uninitialized_variables, depend_on_referenced_packages
+// ignore_for_file: library_private_types_in_public_api, camel_case_types, unused_field, unused_local_variable, deprecated_member_use, prefer_typing_uninitialized_variables, depend_on_referenced_packages, non_constant_identifier_names
 import 'dart:io';
 import 'package:Autism_Helper/HomePage/TrainerView/trainerHomePage.dart';
 import 'package:Autism_Helper/HomePage/TrainerView/trainerProfile.dart';
@@ -192,12 +192,12 @@ class _EditProfilePageState extends State<editTrainerProfile> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("الاسم بالكامل", userName.toString(), 0),
-              buildTextField("سنين الخبرة", userYearsOfExp.toString(), 1),
-              buildTextField("محل العمل", userLocation.toString(), 2),
-              buildTextField("أوقات العمل", availabeTimes.toString(), 4),
+              buildTextField("الاسم بالكامل", userName.toString(), 0, 1),
+              buildTextField("سنين الخبرة", userYearsOfExp.toString(), 1, 1),
+              buildTextField("محل العمل", userLocation.toString(), 2, 1),
+              buildTextField("أوقات العمل", availabeTimes.toString(), 4, 1),
               buildTextField(
-                  "مزيد من التفاصيل عنك", moreDetailsAboutYou.toString(), 5),
+                  "مزيد من التفاصيل عنك", moreDetailsAboutYou.toString(), 5, 3),
               const SizedBox(
                 height: 35,
               ),
@@ -281,12 +281,13 @@ class _EditProfilePageState extends State<editTrainerProfile> {
     }*/
   }
 
-  Widget buildTextField(String labelText, String placeholder, int num) {
+  Widget buildTextField(
+      String labelText, String placeholder, int num, int NoLines) {
     TextEditingController controller = controllers[num];
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(
-        maxLines: null,
+        maxLines: NoLines,
         controller: controller,
         onChanged: (String newText) {
           String currentHintText = controller.text;
