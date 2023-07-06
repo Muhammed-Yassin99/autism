@@ -373,7 +373,8 @@ class QuestionnaireState extends State<QuestionnairePage> {
       child: Container(
         width: double.infinity,
         margin: const EdgeInsets.symmetric(vertical: 8),
-        height: 64, // Increase the height of the button
+        height: MediaQuery.of(context).size.height *
+            0.06, // Increase the height of the button
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
