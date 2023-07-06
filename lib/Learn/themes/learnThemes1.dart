@@ -113,8 +113,8 @@ class learnThemes1 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 10,
-            top: 310,
+            right: MediaQuery.of(context).size.width * .05,
+            bottom: MediaQuery.of(context).size.height * .4,
             child: FloatingActionButton(
                 heroTag: "btn1THlvl1",
                 onPressed: () {

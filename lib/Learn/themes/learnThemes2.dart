@@ -43,7 +43,7 @@ class learnThemes2 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: MediaQuery.of(context).size.width * .15,
+            right: MediaQuery.of(context).size.width * .13,
             top: MediaQuery.of(context).size.height * .07,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
@@ -113,8 +113,8 @@ class learnThemes2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 0,
-            top: 310,
+            left: MediaQuery.of(context).size.width * .05,
+            bottom: MediaQuery.of(context).size.height * .4,
             child: FloatingActionButton(
                 heroTag: "btn1THlvl2",
                 onPressed: () {
