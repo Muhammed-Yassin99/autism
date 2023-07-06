@@ -235,7 +235,7 @@ class HomeScreenState extends State<trainerHomePage> {
       ),
       body: Container(
           //color: const Color.fromARGB(164, 0, 0, 0),
-          color: const Color.fromARGB(255, 135, 135, 25),
+          color: const Color.fromARGB(186, 27, 57, 141),
           child: Stack(
             children: [
               const SizedBox(height: 8),
