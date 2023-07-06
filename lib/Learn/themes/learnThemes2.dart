@@ -43,8 +43,8 @@ class learnThemes2 extends StatelessWidget {
         child: Center(
             child: Stack(children: [
           Positioned(
-            right: 70,
-            top: 25,
+            right: MediaQuery.of(context).size.width * .15,
+            top: MediaQuery.of(context).size.height * .07,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -59,8 +59,8 @@ class learnThemes2 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/eating.jpg"),
-                    height: 220,
-                    width: 290,
+                    height: MediaQuery.of(context).size.height * .25,
+                    width: MediaQuery.of(context).size.width * .75,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
@@ -78,8 +78,8 @@ class learnThemes2 extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 70,
-            top: 370,
+            right: MediaQuery.of(context).size.width * .12,
+            bottom: MediaQuery.of(context).size.height * .05,
             child: Material(
               color: const Color.fromARGB(255, 10, 79, 135),
               elevation: 8,
@@ -94,8 +94,8 @@ class learnThemes2 extends StatelessWidget {
                   Ink.image(
                     image: const AssetImage(
                         "assets/images/learn/themes/party.jpg"),
-                    height: 220,
-                    width: 290,
+                    height: MediaQuery.of(context).size.height * .25,
+                    width: MediaQuery.of(context).size.width * .75,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(
