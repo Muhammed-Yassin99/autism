@@ -383,6 +383,36 @@ flutter:
      - assets/sounds/objectDetec/dog.wav
      - assets/sounds/objectDetec/boat.wav
      - assets/sounds/objectDetec/seat.wav
+     - assets/sounds/objectDetec/broccoli.wav
+     - assets/sounds/objectDetec/carrot.wav
+     - assets/sounds/objectDetec/sausage.wav
+     - assets/sounds/objectDetec/pizza.wav
+     - assets/sounds/objectDetec/donut.wav
+     - assets/sounds/objectDetec/cake.wav
+     - assets/sounds/objectDetec/chair.wav
+     - assets/sounds/objectDetec/sofa.wav
+     - assets/sounds/objectDetec/pottedplant.wav
+     - assets/sounds/objectDetec/bed.wav
+     - assets/sounds/objectDetec/diningtable.wav
+     - assets/sounds/objectDetec/toilet.wav
+     - assets/sounds/objectDetec/tv.wav
+     - assets/sounds/objectDetec/laptop.wav
+     - assets/sounds/objectDetec/remote.wav
+     - assets/sounds/objectDetec/remote.wav
+     - assets/sounds/objectDetec/keyboard.wav
+     - assets/sounds/objectDetec/mobile.wav
+     - assets/sounds/objectDetec/microwave.wav
+     - assets/sounds/objectDetec/oven.wav
+     - assets/sounds/objectDetec/toaster.wav
+     - assets/sounds/objectDetec/sink.wav
+     - assets/sounds/objectDetec/fridge.wav
+     - assets/sounds/objectDetec/book.wav
+     - assets/sounds/objectDetec/watch.wav
+     - assets/sounds/objectDetec/vase.wav
+     - assets/sounds/objectDetec/scissors.wav
+     - assets/sounds/objectDetec/teadybear.wav
+     - assets/sounds/objectDetec/hairdryer.wav
+     - assets/sounds/objectDetec/teethbrush.wav
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see

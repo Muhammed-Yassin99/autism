@@ -454,6 +454,126 @@ class _StaticImageState extends State<StaticImage2> {
     if (label == 'بقرة') {
       String newPath = 'sounds/objectDetec/cow.wav';
       return newPath;
+    }
+    if (label == 'بروكلي') {
+      String newPath = 'sounds/objectDetec/broccoli.wav';
+      return newPath;
+    }
+    if (label == 'جزرة') {
+      String newPath = 'sounds/objectDetec/carrot.wav';
+      return newPath;
+    }
+    if (label == 'سوسيس') {
+      String newPath = 'sounds/objectDetec/sausage.wav';
+      return newPath;
+    }
+    if (label == 'بيتزا') {
+      String newPath = 'sounds/objectDetec/pizza.wav';
+      return newPath;
+    }
+    if (label == 'دونتس') {
+      String newPath = 'sounds/objectDetec/donut.wav';
+      return newPath;
+    }
+    if (label == 'كيكة') {
+      String newPath = 'sounds/objectDetec/cake.wav';
+      return newPath;
+    }
+    if (label == 'كرسي') {
+      String newPath = 'sounds/objectDetec/chair.wav';
+      return newPath;
+    }
+    if (label == 'كنبة') {
+      String newPath = 'sounds/objectDetec/sofa.wav';
+      return newPath;
+    }
+    if (label == 'اصرية زرع') {
+      String newPath = 'sounds/objectDetec/pottedPlant.wav';
+      return newPath;
+    }
+    if (label == 'فراش(سرير)') {
+      String newPath = 'sounds/objectDetec/bed.wav';
+      return newPath;
+    }
+    if (label == 'مائدة طعام') {
+      String newPath = 'sounds/objectDetec/diningTable.wav';
+      return newPath;
+    }
+    if (label == 'مرحاض(حمام)') {
+      String newPath = 'sounds/objectDetec/toilet.wav';
+      return newPath;
+    }
+    if (label == 'تلفزيون') {
+      String newPath = 'sounds/objectDetec/tv.wav';
+      return newPath;
+    }
+    if (label == 'لابتوب') {
+      String newPath = 'sounds/objectDetec/laptop.wav';
+      return newPath;
+    }
+    if (label == 'فارة التحكم') {
+      String newPath = 'sounds/objectDetec/controlMouse.wav';
+      return newPath;
+    }
+    if (label == 'ريموت') {
+      String newPath = 'sounds/objectDetec/remote.wav';
+      return newPath;
+    }
+    if (label == 'لوحة المفاتيح') {
+      String newPath = 'sounds/objectDetec/keyboard.wav';
+      return newPath;
+    }
+    if (label == 'هاتف محمول') {
+      String newPath = 'sounds/objectDetec/mobile.wav';
+      return newPath;
+    }
+    if (label == 'مايكروايف') {
+      String newPath = 'sounds/objectDetec/microwave.wav';
+      return newPath;
+    }
+    if (label == 'فرن') {
+      String newPath = 'sounds/objectDetec/oven.wav';
+      return newPath;
+    }
+    if (label == 'محمصة') {
+      String newPath = 'sounds/objectDetec/toaster.wav';
+      return newPath;
+    }
+    if (label == 'حوض') {
+      String newPath = 'sounds/objectDetec/sink.wav';
+      return newPath;
+    }
+    if (label == 'ثلاجة') {
+      String newPath = 'sounds/objectDetec/fridge.wav';
+      return newPath;
+    }
+    if (label == 'كتاب') {
+      String newPath = 'sounds/objectDetec/book.wav';
+      return newPath;
+    }
+    if (label == 'ساعة') {
+      String newPath = 'sounds/objectDetec/watch.wav';
+      return newPath;
+    }
+    if (label == 'مزهرية') {
+      String newPath = 'sounds/objectDetec/vase.wav';
+      return newPath;
+    }
+    if (label == 'مقصات') {
+      String newPath = 'sounds/objectDetec/scissors.wav';
+      return newPath;
+    }
+    if (label == 'دبدوب') {
+      String newPath = 'sounds/objectDetec/teadyBear.wav';
+      return newPath;
+    }
+    if (label == 'مجفف شعر') {
+      String newPath = 'sounds/objectDetec/hairDryer.wav';
+      return newPath;
+    }
+    if (label == 'فرشة اسنان') {
+      String newPath = 'sounds/objectDetec/teethBrush.wav';
+      return newPath;
     } else {
       return "";
     }
