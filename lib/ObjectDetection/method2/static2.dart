@@ -638,6 +638,62 @@ class _StaticImageState extends State<StaticImage2> {
     if (label == 'قفاز بيسبول') {
       String newPath = 'sounds/objectDetec/baseballGlove.wav';
       return newPath;
+    }
+    if (label == 'لوح التزحلق') {
+      String newPath = 'sounds/objectDetec/surfingBoard1.wav';
+      return newPath;
+    }
+    if (label == 'لوح ركوب الامواج') {
+      String newPath = 'sounds/objectDetec/windsurfingBoard.wav';
+      return newPath;
+    }
+    if (label == 'مضرب تينس') {
+      String newPath = 'sounds/objectDetec/tennisRacket.wav';
+      return newPath;
+    }
+    if (label == 'زجاجة') {
+      String newPath = 'sounds/objectDetec/bottle.wav';
+      return newPath;
+    }
+    if (label == 'زجاجة عنب') {
+      String newPath = 'sounds/objectDetec/grapeBottle.wav';
+      return newPath;
+    }
+    if (label == 'فنجان') {
+      String newPath = 'sounds/objectDetec/cup.wav';
+      return newPath;
+    }
+    if (label == 'شوكة') {
+      String newPath = 'sounds/objectDetec/fork.wav';
+      return newPath;
+    }
+    if (label == 'سكينة') {
+      String newPath = 'sounds/objectDetec/knife.wav';
+      return newPath;
+    }
+    if (label == 'ملعقة') {
+      String newPath = 'sounds/objectDetec/spoon.wav';
+      return newPath;
+    }
+    if (label == 'إناء') {
+      String newPath = 'sounds/objectDetec/bowl.wav';
+      return newPath;
+    }
+    if (label == 'موزة') {
+      String newPath = 'sounds/objectDetec/banana.wav';
+      return newPath;
+    }
+    if (label == 'تفاحة') {
+      String newPath = 'sounds/objectDetec/apple.wav';
+      return newPath;
+    }
+    if (label == 'طعام') {
+      String newPath = 'sounds/objectDetec/sadwich.wav';
+      return newPath;
+    }
+    if (label == 'برتقال') {
+      String newPath = 'sounds/objectDetec/orange.wav';
+      return newPath;
     } else {
       String newPath = 'sounds/objectDetec/unknown.wav';
       return newPath;
