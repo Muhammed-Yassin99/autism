@@ -257,10 +257,11 @@ class QuestionnaireState extends State<QuestionnairePage> {
           alignment: Alignment.centerRight,
           child: Text(
             'إستبيان عن حالة الطفل',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
           ),
         ),
         flexibleSpace: Container(
+          height: MediaQuery.of(context).size.height * 0.14,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Colors.deepOrange, Colors.purple],
@@ -285,15 +286,15 @@ class QuestionnaireState extends State<QuestionnairePage> {
           },
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(35),
+          preferredSize: const Size.fromHeight(10),
           child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(10),
             alignment: Alignment.centerRight,
           ),
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           _questionWidget(),
@@ -319,7 +320,7 @@ class QuestionnaireState extends State<QuestionnairePage> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Container(
           alignment: Alignment.center,
           width: double.infinity,
