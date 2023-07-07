@@ -639,7 +639,8 @@ class _StaticImageState extends State<StaticImage2> {
       String newPath = 'sounds/objectDetec/baseballGlove.wav';
       return newPath;
     } else {
-      return "";
+      String newPath = 'sounds/objectDetec/unknown.wav';
+      return newPath;
     }
   }
 }

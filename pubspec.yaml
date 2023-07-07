@@ -429,6 +429,7 @@ flutter:
      - assets/sounds/objectDetec/kite.wav
      - assets/sounds/objectDetec/baseballBat.wav
      - assets/sounds/objectDetec/baseballGlove.wav
+     - assets/sounds/objectDetec/unknown.wav
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see
