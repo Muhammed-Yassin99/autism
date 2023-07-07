@@ -412,8 +412,8 @@ class QuestionnaireState extends State<QuestionnairePage> {
     }
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.5,
-      height: MediaQuery.of(context).size.width * 0.15,
+      width: MediaQuery.of(context).size.width * 0.4,
+      height: MediaQuery.of(context).size.width * 0.12,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
