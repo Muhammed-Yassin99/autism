@@ -116,7 +116,7 @@ class _StaticImageState extends State<try1> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Please Select an Image"),
+                  const Text("Please Select an Image"),
                 ],
               ),
             )
@@ -127,30 +127,30 @@ class _StaticImageState extends State<try1> {
     stackChildren.addAll(renderBoxes(size));
 
     if (_busy) {
-      stackChildren.add(Center(
+      stackChildren.add(const Center(
         child: CircularProgressIndicator(),
       ));
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Object Detector"),
+        title: const Text("Object Detector"),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
             heroTag: "Fltbtn2",
-            child: Icon(Icons.camera_alt),
             onPressed: getImageFromCamera,
+            child: const Icon(Icons.camera_alt),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           FloatingActionButton(
             heroTag: "Fltbtn1",
-            child: Icon(Icons.photo),
             onPressed: getImageFromGallery,
+            child: const Icon(Icons.photo),
           ),
         ],
       ),

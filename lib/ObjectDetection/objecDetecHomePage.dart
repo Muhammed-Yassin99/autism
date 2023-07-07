@@ -5,6 +5,7 @@ import 'package:Autism_Helper/HomePage/ParentView/trainersList.dart';
 import 'package:Autism_Helper/ObjectDetection/method2/live_camera.dart';
 import 'package:Autism_Helper/ObjectDetection/method2/static.dart';
 import 'package:Autism_Helper/HomePage/ParentView/ChildrenList.dart';
+import 'package:Autism_Helper/ObjectDetection/method2/try.dart';
 import 'package:Autism_Helper/main.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,7 +29,7 @@ class HomeScreenState1 extends State<objecDetecHomepage> {
   var userName;
   String mail = FirebaseAuth.instance.currentUser!.email.toString();
   var assignedTrainer = "";
-  var pages = [StaticImage2(), LiveFeed(cameras!)];
+  var pages = [try1(), LiveFeed(cameras!)];
   var pageController = PageController();
 
   setUserName() async {
