@@ -206,7 +206,9 @@ class _StaticImageState extends State<StaticImage2> {
                   ),
                   Positioned(
                     left: re["rect"]["x"] * factorX,
-                    top: re["rect"]["y"] * factorY - 33,
+                    top: re["rect"]["y"] * factorY,
+                    // left: re["rect"]["x"] * factorX,
+                    //top: re["rect"]["y"] * factorY - 33,
                     width: 125,
                     child: GestureDetector(
                       onTap: () {
