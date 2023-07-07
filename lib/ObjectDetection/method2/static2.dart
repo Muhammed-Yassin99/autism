@@ -574,6 +574,70 @@ class _StaticImageState extends State<StaticImage2> {
     if (label == 'فرشة اسنان') {
       String newPath = 'sounds/objectDetec/teethBrush.wav';
       return newPath;
+    }
+    if (label == 'فيل') {
+      String newPath = 'sounds/objectDetec/elephant.wav';
+      return newPath;
+    }
+    if (label == 'دب') {
+      String newPath = 'sounds/objectDetec/bear.wav';
+      return newPath;
+    }
+    if (label == 'حمار وحشي') {
+      String newPath = 'sounds/objectDetec/zebra.wav';
+      return newPath;
+    }
+    if (label == 'ظرافة') {
+      String newPath = 'sounds/objectDetec/giraffe.wav';
+      return newPath;
+    }
+    if (label == 'حقيبة ظهر') {
+      String newPath = 'sounds/objectDetec/backpack.wav';
+      return newPath;
+    }
+    if (label == 'مظلة') {
+      String newPath = 'sounds/objectDetec/umbrella.wav';
+      return newPath;
+    }
+    if (label == 'حقيبة يد') {
+      String newPath = 'sounds/objectDetec/handBag.wav';
+      return newPath;
+    }
+    if (label == 'ربطة') {
+      String newPath = 'sounds/objectDetec/tie.wav';
+      return newPath;
+    }
+    if (label == 'حقيبة سفر') {
+      String newPath = 'sounds/objectDetec/suitcase.wav';
+      return newPath;
+    }
+    if (label == 'طبق طائر') {
+      String newPath = 'sounds/objectDetec/frisbee.wav';
+      return newPath;
+    }
+    if (label == 'لوح تزحلق') {
+      String newPath = 'sounds/objectDetec/surfingBoard.wav';
+      return newPath;
+    }
+    if (label == 'لوح تزلج') {
+      String newPath = 'sounds/objectDetec/skateboard.wav';
+      return newPath;
+    }
+    if (label == 'كرة رياضة') {
+      String newPath = 'sounds/objectDetec/sportsBall.wav';
+      return newPath;
+    }
+    if (label == 'طائرة ورقية') {
+      String newPath = 'sounds/objectDetec/kite.wav';
+      return newPath;
+    }
+    if (label == 'مضرب بيسبول') {
+      String newPath = 'sounds/objectDetec/baseballBat.wav';
+      return newPath;
+    }
+    if (label == 'قفاز بيسبول') {
+      String newPath = 'sounds/objectDetec/baseballGlove.wav';
+      return newPath;
     } else {
       return "";
     }

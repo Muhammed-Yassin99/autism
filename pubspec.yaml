@@ -413,6 +413,22 @@ flutter:
      - assets/sounds/objectDetec/teadybear.wav
      - assets/sounds/objectDetec/hairdryer.wav
      - assets/sounds/objectDetec/teethbrush.wav
+     - assets/sounds/objectDetec/elephant.wav
+     - assets/sounds/objectDetec/bear.wav
+     - assets/sounds/objectDetec/zebra.wav
+     - assets/sounds/objectDetec/giraffe.wav
+     - assets/sounds/objectDetec/backpack.wav
+     - assets/sounds/objectDetec/umbrella.wav
+     - assets/sounds/objectDetec/handBag.wav
+     - assets/sounds/objectDetec/tie.wav
+     - assets/sounds/objectDetec/suitcase.wav
+     - assets/sounds/objectDetec/frisbee.wav
+     - assets/sounds/objectDetec/surfingBoard.wav
+     - assets/sounds/objectDetec/skateboard.wav
+     - assets/sounds/objectDetec/sportsBall.wav
+     - assets/sounds/objectDetec/kite.wav
+     - assets/sounds/objectDetec/baseballBat.wav
+     - assets/sounds/objectDetec/baseballGlove.wav
      #- assets/objecDetec/yolov7_model.tflite
   
   # An image asset can refer to one or more resolution-specific "variants", see
