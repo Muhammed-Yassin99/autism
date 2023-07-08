@@ -79,25 +79,25 @@ class _HomeScreenState extends State<numbersLevel1> {
     lvl = 1;
     items = [
       ItemModel(
-          value: 'صفر',
-          name: 'صفر',
-          img: 'assets/images/games/numbers/no0.png',
-          sound: 'sounds/learn/numbers/no0.wav'),
-      ItemModel(
           value: 'واحد',
           name: 'واحد',
-          img: 'assets/images/games/numbers/no1.png',
+          img: 'assets/images/games/numbers/1.png',
           sound: 'sounds/learn/numbers/no1.wav'),
       ItemModel(
           value: 'اثنان',
           name: 'اثنان',
-          img: 'assets/images/games/numbers/no2.png',
+          img: 'assets/images/games/numbers/2.png',
           sound: 'sounds/learn/numbers/no2.wav'),
       ItemModel(
           value: 'ثلاثة',
           name: 'ثلاثة',
-          img: 'assets/images/games/numbers/no3.png',
+          img: 'assets/images/games/numbers/3.png',
           sound: 'sounds/learn/numbers/no3.wav'),
+      ItemModel(
+          value: 'اربعة',
+          name: 'اربعة',
+          img: 'assets/images/games/numbers/4.png',
+          sound: 'sounds/learn/numbers/no4.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -113,33 +113,38 @@ class _HomeScreenState extends State<numbersLevel1> {
       ItemModel(
           value: 'اربعة',
           name: 'اربعة',
-          img: 'assets/images/games/numbers/no4.png',
+          img: 'assets/images/games/numbers/4.png',
           sound: 'sounds/learn/numbers/no4.wav'),
       ItemModel(
           value: 'خمسة',
           name: 'خمسة',
-          img: 'assets/images/games/numbers/no5.png',
+          img: 'assets/images/games/numbers/5.png',
           sound: 'sounds/learn/numbers/no5.wav'),
       ItemModel(
           value: 'ستة',
           name: 'ستة',
-          img: 'assets/images/games/numbers/no6.png',
+          img: 'assets/images/games/numbers/6.png',
           sound: 'sounds/learn/numbers/no6.wav'),
       ItemModel(
           value: 'سبعة',
           name: 'سبعة',
-          img: 'assets/images/games/numbers/no7.png',
+          img: 'assets/images/games/numbers/7.png',
           sound: 'sounds/learn/numbers/no7.wav'),
       ItemModel(
           value: 'ثمانية',
           name: 'ثمانية',
-          img: 'assets/images/games/numbers/no8.png',
+          img: 'assets/images/games/numbers/8.png',
           sound: 'sounds/learn/numbers/no8.wav'),
       ItemModel(
           value: 'تسعة',
           name: 'تسعة',
-          img: 'assets/images/games/numbers/no9.png',
+          img: 'assets/images/games/numbers/9.png',
           sound: 'sounds/learn/numbers/no9.wav'),
+      ItemModel(
+          value: 'عشرة',
+          name: 'عشرة',
+          img: 'assets/images/games/numbers/10.png',
+          sound: 'sounds/learn/numbers/no10.wav'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -204,7 +209,7 @@ class _HomeScreenState extends State<numbersLevel1> {
                                 text: '$score',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline2
+                                    .displayMedium
                                     ?.copyWith(color: Colors.black),
                               ),
                               const TextSpan(
@@ -316,7 +321,7 @@ class _HomeScreenState extends State<numbersLevel1> {
                                               item.name,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .headline6,
+                                                  .titleLarge,
                                             ),
                                             const SizedBox(
                                               width: 20,

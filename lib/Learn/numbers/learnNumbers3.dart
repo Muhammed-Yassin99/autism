@@ -48,7 +48,7 @@ class learnNumbers3 extends StatelessWidget {
             right: MediaQuery.of(context).size.width * 0.20,
             top: MediaQuery.of(context).size.height * 0.05,
             child: Material(
-              color: const Color.fromARGB(255, 10, 79, 135),
+              color: const Color.fromARGB(255, 80, 159, 223),
               elevation: 8,
               borderRadius: BorderRadius.circular(28),
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -60,10 +60,10 @@ class learnNumbers3 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/numbers/no4.jpg"),
+                        const AssetImage("assets/images/learn/numbers/4.png"),
                     height: MediaQuery.of(context).size.height * 0.26,
                     width: MediaQuery.of(context).size.width * 0.585,
-                    fit: BoxFit.cover,
+                    //fit: BoxFit.cover,
                   ),
                   const SizedBox(
                     height: 10,
@@ -83,7 +83,7 @@ class learnNumbers3 extends StatelessWidget {
             right: MediaQuery.of(context).size.width * 0.20,
             top: MediaQuery.of(context).size.height * 0.48,
             child: Material(
-              color: const Color.fromARGB(255, 10, 79, 135),
+              color: const Color.fromARGB(255, 80, 159, 223),
               elevation: 8,
               borderRadius: BorderRadius.circular(28),
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -95,10 +95,10 @@ class learnNumbers3 extends StatelessWidget {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Ink.image(
                     image:
-                        const AssetImage("assets/images/learn/numbers/no5.jpg"),
+                        const AssetImage("assets/images/learn/numbers/5.png"),
                     height: MediaQuery.of(context).size.height * 0.26,
                     width: MediaQuery.of(context).size.width * 0.585,
-                    fit: BoxFit.cover,
+                    //fit: BoxFit.cover,
                   ),
                   const SizedBox(
                     height: 10,

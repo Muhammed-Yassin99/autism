@@ -215,6 +215,28 @@ flutter:
      - assets/images/learn/numbers/no7.jpg
      - assets/images/learn/numbers/no8.jpg
      - assets/images/learn/numbers/no9.jpg
+     - assets/images/learn/numbers/1.png
+     - assets/images/learn/numbers/2.png
+     - assets/images/learn/numbers/3.png
+     - assets/images/learn/numbers/4.png
+     - assets/images/learn/numbers/5.png
+     - assets/images/learn/numbers/6.png
+     - assets/images/learn/numbers/7.png
+     - assets/images/learn/numbers/8.png
+     - assets/images/learn/numbers/9.png
+     - assets/images/learn/numbers/10.png
+     - assets/images/games/numbers/1.png
+     - assets/images/games/numbers/2.png
+     - assets/images/games/numbers/3.png
+     - assets/images/games/numbers/4.png
+     - assets/images/games/numbers/5.png
+     - assets/images/games/numbers/6.png
+     - assets/images/games/numbers/7.png
+     - assets/images/games/numbers/8.png
+     - assets/images/games/numbers/9.png
+     - assets/images/games/numbers/10.png
+     - assets/sounds/learn/numbers/no10.wav
+     - assets/images/learn/numbers/0.png
      - assets/sounds/learn/animals/lion.wav
      - assets/sounds/learn/animals/panda.wav
      - assets/sounds/learn/animals/camel.wav
