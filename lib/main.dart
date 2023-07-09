@@ -95,8 +95,21 @@ class MyApp extends StatelessWidget {
               image: Image.asset('assets/images/HomePage/AppIcon.png',
                   alignment: Alignment.center),
               backgroundColor: Colors.blue,
-              styleTextUnderTheLoader: const TextStyle(),
               photoSize: 100.0,
+              loadingText: Text(
+                'انت لست وحيدا',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        color: Colors.red.withOpacity(0.8),
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ]),
+              ),
               //loaderColor: Colors.white,
             )
           : hasRole == false
@@ -119,6 +132,20 @@ class MyApp extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   styleTextUnderTheLoader: const TextStyle(),
                   photoSize: 100.0,
+                  loadingText: Text(
+                    'انت لست وحيدا',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.red.withOpacity(0.8),
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ]),
+                  ),
                   //loaderColor: Colors.white,
                 )
               : SplashScreen(
@@ -140,6 +167,20 @@ class MyApp extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   styleTextUnderTheLoader: const TextStyle(),
                   photoSize: 100.0,
+                  loadingText: Text(
+                    'انت لست وحيدا',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.red.withOpacity(0.8),
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ]),
+                  ),
                   //loaderColor: Colors.white,
                 ),
     );
