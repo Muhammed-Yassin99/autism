@@ -507,7 +507,7 @@ class _StaticImageState extends State<StaticImage2> {
       String newPath = 'sounds/objectDetec/tv.wav';
       return newPath;
     }
-    if (label == 'لابتوب') {
+    if (label == 'لاب توب') {
       String newPath = 'sounds/objectDetec/laptop.wav';
       return newPath;
     }
