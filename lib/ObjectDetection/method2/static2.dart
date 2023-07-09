@@ -209,7 +209,7 @@ class _StaticImageState extends State<StaticImage2> {
                     top: re["rect"]["y"] * factorY,
                     // left: re["rect"]["x"] * factorX,
                     //top: re["rect"]["y"] * factorY - 33,
-                    width: 125,
+                    width: null,
                     child: GestureDetector(
                       onTap: () {
                         String newPath = getPath(re["detectedClass"]);
